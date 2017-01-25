@@ -1,0 +1,2 @@
+class ScrumIteration < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class UserStory < ApplicationRecord
+end

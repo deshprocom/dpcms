@@ -1,0 +1,24 @@
+<% content_for :title, '用户故事'%>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      用户故事
+      <span class="pull-right">
+        <%= link_to '创建用户故事', new_scrum_user_story_path %>
+      </span>
+    </h3>
+  </div>
+
+  <table class="table" id="story_table">
+    <tr>
+      <th>故事编号</th>
+      <th>故事名称</th>
+      <th>故事状态</th>
+      <th>比重分数</th>
+      <th>操作</th>
+    </tr>
+    <%= render @stories %>
+
+  </table>
+</div>

@@ -1,0 +1,32 @@
+<%= form_for [:scrum, @user_story, @ac] do |f| %>
+    <%=	render 'common/error_messages', object:f.object %>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">AC编号</span>
+      <%= f.text_field :number, class: 'form-control', placeholder: 'AC编号' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">given</span>
+      <%= f.text_field :given, class: 'form-control', placeholder: '给定项' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">when</span>
+      <%= f.text_field :when, class: 'form-control', placeholder: '当' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">than</span>
+      <%= f.text_field :than, class: 'form-control', placeholder: '那么' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">uri</span>
+      <%= f.text_field :uri, class: 'form-control', placeholder: '' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit '保存', class: 'btn btn-primary col-xs-2' %>
+    </div>
+<% end %>

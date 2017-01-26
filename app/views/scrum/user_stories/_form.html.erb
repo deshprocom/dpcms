@@ -1,0 +1,32 @@
+<%= form_for [:scrum, @user_story], remote: true do |f| %>
+    <%=	render 'common/error_messages', object:f.object %>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">故事名称</span>
+      <%= f.text_field :name, class: 'form-control', placeholder: '故事名称' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">故事编号</span>
+      <%= f.text_field :number, class: 'form-control', placeholder: '故事编号' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">比重分数</span>
+      <%= f.text_field :score, class: 'form-control', placeholder: '故事比重分数' %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">故事介绍</span>
+      <%= f.text_area :introduce, class: 'form-control', placeholder: '故事介绍', rows: 5 %>
+    </div>
+
+    <div class="form-group input-group">
+      <span class="input-group-addon">故事状态</span>
+      <%= f.select :status, BACKLOG: :BACKLOG, TODO: :TODO, WIP: :WIP, DONE: :DONE %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit '保存', class: 'btn btn-primary col-xs-2' %>
+    </div>
+<% end %>

@@ -30,7 +30,7 @@
           <td><%= ac.when %></td>
           <td><%= ac.than %></td>
           <td>
-            <%= link_to '创建数据', "http://192.168.2.92:8800#{ac.uri}", remote: true,
+            <%= link_to '创建数据', ENV['DPAPI_TESTING_DOMAIN'] + ac.uri, remote: true,
                         class: 'btn btn-success invoke_factory' %>
             <div class="btn-group">
               <%= link_to '编辑', edit_scrum_user_story_ac_path(@user_story, ac), class: 'btn btn-default' %>

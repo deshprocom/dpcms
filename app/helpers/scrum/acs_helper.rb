@@ -1,2 +1,0 @@
-module Scrum::AcsHelper
-end

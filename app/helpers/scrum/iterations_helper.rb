@@ -1,2 +1,0 @@
-module Scrum::IterationsHelper
-end

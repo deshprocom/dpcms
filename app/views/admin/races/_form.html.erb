@@ -1,0 +1,23 @@
+<%= semantic_form_for [:admin, @race] do |f| %>
+    <%= f.inputs name: '赛事简介' do %>
+        <%= f.input :name %>
+        <%= f.input :prize %>
+        <%= f.input :location %>
+        <%= f.input :begin_date %>
+        <%= f.input :end_date %>
+        <%= f.input :logo, as: :file %>
+        <%= f.input :status, as: :select,  collection: [%w(未开始 0), %w(进行中 1), %w(已结束 2), %w(已关闭 3)] %>
+    <% end %>
+
+    <%= f.semantic_fields_for [:ticket_info, f.object.ticket_info || TicketInfo.new] do |info_form| %>
+        <%= f.inputs name: '门票数量信息' do %>
+            <%= info_form.input :e_ticket_number %>
+            <%= info_form.input :entity_ticket_number %>
+            <%= info_form.input :e_ticket_sold_number %>
+            <%= info_form.input :entity_ticket_sold_number %>
+        <% end %>
+    <% end %>
+
+    <%= f.actions %>
+
+<% end %>

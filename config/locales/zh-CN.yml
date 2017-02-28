@@ -7,7 +7,7 @@
       ticket_info: "门票数量信息"
     attributes:
       race:
-        name: "赛事名称"
+        name: "赛事标题"
         logo: "赛事图片"
         prize: "奖池"
         location: "比赛地点"
@@ -18,3 +18,8 @@
         updated_at: "更新时间"
         ticket_status: "售票状态"
         ticket_price: "门票金额"
+      ticket_info:
+        e_ticket_number: "总电子票数"
+        entity_ticket_number: "总实体票数"
+        e_ticket_sold_number: "已售电子票数"
+        entity_ticket_sold_number: "已售实体票数"

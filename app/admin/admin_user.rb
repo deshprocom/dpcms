@@ -7,14 +7,17 @@ ActiveAdmin.register AdminUser do
   index do
     column "Id", :id
     column :email
-    column :current_sign_in_at
     column :sign_in_count
-    column :created_at
+    column :last_sign_in_at
+    column :last_sign_in_ip
+    column :created_at do |obj|
+      DateTime.parse(obj.created_at.to_s).strftime('%Y年%m月%d日').to_s
+    end
     actions
   end
 
   form do |f|
-    f.inputs "Admin Details" do
+    f.inputs do
       f.input :email
       f.input :password
       f.input :password_confirmation

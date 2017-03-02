@@ -1,6 +1,6 @@
 ActiveAdmin.register Race do
 
-  menu label: '赛事列表', priority: 1
+  menu label: '赛事列表', priority: 2
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status
 #
 # or

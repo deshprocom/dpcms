@@ -5,6 +5,7 @@
       race: "赛事"
       ticket: "用户的门票"
       ticket_info: "门票数量信息"
+      purchase_order: "订单"
     attributes:
       race:
         name: "赛事名称"
@@ -27,3 +28,16 @@
         created_at: "注册时间"
         password: "密码"
         password_confirmation: "确认密码"
+      purchase_order:
+        ticket_type: "票务类型"
+        email: "邮箱"
+        address: "地址"
+        consignee: "收货人"
+        mobile: "手机号"
+        order_number: "订单编号"
+        original_price: "商品价格"
+        price: "实际价格"
+        status: "订单状态"
+        created_at: "下单时间"
+        updated_at: "更新时间"
+        unpaid: '已付款'

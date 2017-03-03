@@ -51,7 +51,7 @@
 # ------------------------------------
 server '192.168.2.231',
   user: 'deploy',
-  roles: %w{app db cache},
+  roles: %w{app db web},
   ssh_options: {
     user: 'deploy', # overrides user setting above
     keys: %w(~/.ssh/id_rsa),

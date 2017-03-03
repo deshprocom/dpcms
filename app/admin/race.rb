@@ -1,6 +1,8 @@
 ActiveAdmin.register Race do
   menu label: '赛事列表', priority: 1
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
+                race_desc_attributes: [:description]
   config.filters = false
   scope :all, default: true
 
@@ -24,7 +26,6 @@ ActiveAdmin.register Race do
     actions name: '操作'
   end
 
-
   sidebar '赛事详情', only: [:show, :edit] do
     ul do
       li link_to '该赛事的票', admin_race_tickets_path(resource)
@@ -32,26 +33,4 @@ ActiveAdmin.register Race do
   end
 
   form partial: 'form'
-
-  #
-  # form do |f|
-  #   f.inputs '赛事简介' do
-  #     f.input :name
-  #     f.input :prize
-  #     f.input :location
-  #     f.input :begin_date
-  #     f.input :end_date
-  #     f.input :logo, as: :file
-  #     f.input :status , as: :select, collection: [%w(未开始 0), %w(进行中 1), %w(已结束 2), %w(已关闭 3)]
-  #   end
-  #
-  #   f.inputs '门票数量信息', for: :ticket_info do |ticket|
-  #       ticket.input :e_ticket_number, as: :number
-  #       ticket.input :entity_ticket_number, as: :number
-  #       ticket.input :e_ticket_sold_number, as: :number
-  #       ticket.input :entity_ticket_sold_number, as: :number
-  #   end
-  #   f.actions
-  # end
-
 end

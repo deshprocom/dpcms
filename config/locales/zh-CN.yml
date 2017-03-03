@@ -23,3 +23,6 @@
         entity_ticket_number: "总实体票数"
         e_ticket_sold_number: "已售电子票数"
         entity_ticket_sold_number: "已售实体票数"
+      race_desc:
+        description: "赛事描述"
+

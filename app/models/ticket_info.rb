@@ -14,5 +14,5 @@
 +---------------------------+----------+------+-----+---------+----------------+
 =end
 class TicketInfo < ApplicationRecord
-  belongs_to :race,  inverse_of: :ticket_info
+  belongs_to :race
 end

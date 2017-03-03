@@ -43,9 +43,10 @@
         consignee: "收货人"
         mobile: "手机号"
         order_number: "订单编号"
-        original_price: "商品价格"
-        price: "实际价格"
+        original_price: "订单总金额"
+        price: "实付价格"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"
         unpaid: '已付款'
+        user_status: '实名状态'

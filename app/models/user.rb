@@ -20,4 +20,5 @@
 
 # 用户信息表
 class User < ApplicationRecord
+  has_one :user_extra
 end

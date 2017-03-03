@@ -16,8 +16,8 @@
 class Race < ApplicationRecord
   has_one :ticket_info, dependent: :destroy
   has_one :race_desc, dependent: :destroy
-  accepts_nested_attributes_for :ticket_info
-  accepts_nested_attributes_for :race_desc
+  accepts_nested_attributes_for :ticket_info, update_only: true
+  accepts_nested_attributes_for :race_desc, update_only: true
   has_many :tickets
   mount_uploader :logo, PhotoUploader
 
@@ -27,5 +27,5 @@ class Race < ApplicationRecord
     ticket_info || build_ticket_info
     race_desc || build_race_desc
   end
-  validates :name, :prize, :location, presence: true
+  validates :name, :prize, :location, :logo, presence: true
 end

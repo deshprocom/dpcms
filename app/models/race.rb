@@ -19,6 +19,7 @@ class Race < ApplicationRecord
   accepts_nested_attributes_for :ticket_info
   accepts_nested_attributes_for :race_desc
   has_many :tickets
+  mount_uploader :logo, PhotoUploader
 
   after_initialize do
     self.begin_date ||= Time.current

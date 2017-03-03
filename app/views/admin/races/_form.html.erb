@@ -5,8 +5,9 @@
         <%= f.input :location %>
         <%= f.input :begin_date %>
         <%= f.input :end_date %>
-        <%= f.input :logo, as: :file %>
         <%= f.input :status, as: :select,  collection: [%w(未开始 0), %w(进行中 1), %w(已结束 2), %w(已关闭 3)] %>
+        <%= f.input :logo, as: :file,
+                    hint: f.object.logo.present? ? image_tag(f.object.logo.url(:preview)) : nil %>
         <%= f.semantic_fields_for :race_desc do |desc_form| %>
             <%= desc_form.input :description %>
         <% end %>

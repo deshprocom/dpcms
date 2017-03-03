@@ -14,7 +14,18 @@
 # | updated_at | datetime     | NO   |     | NULL    |                |
 # +------------+--------------+------+-----+---------+----------------+
 class Race < ApplicationRecord
-  has_one :ticket_info
+  has_one :ticket_info, dependent: :destroy
+  has_one :race_desc, dependent: :destroy
+  accepts_nested_attributes_for :ticket_info
+  accepts_nested_attributes_for :race_desc
   has_many :tickets
+  mount_uploader :logo, PhotoUploader
 
+  after_initialize do
+    self.begin_date ||= Time.current
+    self.end_date ||= Time.current
+    ticket_info || build_ticket_info
+    race_desc || build_race_desc
+  end
+  validates :name, :prize, :location, presence: true
 end

@@ -49,4 +49,6 @@
         created_at: "下单时间"
         updated_at: "更新时间"
         unpaid: '已付款'
-        user_status: '实名状态'
+        ticket_type: '票务类型'
+      user_extra:
+        real_name: "真实姓名"

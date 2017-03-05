@@ -21,4 +21,5 @@
 # 用户信息表
 class User < ApplicationRecord
   has_one :user_extra
+  has_many :purchase_orders
 end

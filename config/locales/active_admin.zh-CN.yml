@@ -1,0 +1,8 @@
+"zh-CN":
+  active_admin:
+      scopes:
+        all: '全部'
+        unpaid: '未付款'
+        paid: '已付款'
+        completed: '已完成'
+        canceled: '已取消'

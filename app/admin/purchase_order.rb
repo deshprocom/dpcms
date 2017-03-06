@@ -37,7 +37,10 @@ ActiveAdmin.register PurchaseOrder do
     column :status do |order|
       ORDER_STATUS[:"#{order.status}"]
     end
-    actions name: '操作'
+    actions name:'操作', defaults: false do |resource|
+      link_to('编辑', edit_admin_purchase_order_path(resource)) + ' | ' +
+      link_to('删除', admin_purchase_order_path(resource), data: { confirm: "确定取消吗？" }, method: :delete)
+    end
   end
 
   controller do

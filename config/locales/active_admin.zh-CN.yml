@@ -2,7 +2,7 @@
   active_admin:
       scopes:
         all: '全部'
-        unpaid: '未付款'
-        paid: '已付款'
+        unpaid: '待付款'
+        paid: '待发货'
         completed: '已完成'
         canceled: '已取消'

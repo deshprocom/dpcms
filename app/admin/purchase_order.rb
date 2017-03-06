@@ -3,6 +3,7 @@ ActiveAdmin.register PurchaseOrder do
 
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
+  actions :all, :except => [:new]
 
   scope :all, default: 'true'
   scope :unpaid
@@ -33,7 +34,7 @@ ActiveAdmin.register PurchaseOrder do
     end
     actions name:'操作', defaults: false do |resource|
       link_to('编辑', edit_admin_purchase_order_path(resource)) + ' | ' +
-      link_to('删除', admin_purchase_order_path(resource), data: { confirm: "确定取消吗？" }, method: :delete)
+      link_to('取消', admin_purchase_order_path(resource), data: { confirm: "确定取消吗？" }, method: :delete)
     end
   end
 

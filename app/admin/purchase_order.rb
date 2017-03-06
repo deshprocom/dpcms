@@ -1,4 +1,5 @@
 ActiveAdmin.register PurchaseOrder do
+  # include Admin::PurchaseOrderHelper
 
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
@@ -11,7 +12,7 @@ ActiveAdmin.register PurchaseOrder do
 
   filter :order_number
   filter :created_at
-  filter :status, as: :select, collection: Admin::PurchaseOrderHelper.t_order_status
+  filter :status, as: :select, collection: Admin::PurchaseOrderHelper.order_status_collection
 
   index do
     id_column

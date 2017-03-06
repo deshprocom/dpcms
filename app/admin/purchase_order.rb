@@ -1,14 +1,8 @@
 ActiveAdmin.register PurchaseOrder do
+  # include Admin::PurchaseOrderHelper
 
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
-
-  ORDER_STATUS = {
-    unpaid: '未付款',
-    paid: '已付款',
-    completed: '已完成',
-    canceled: '已取消'
-  }.freeze
 
   scope :all, default: 'true'
   scope :unpaid
@@ -18,7 +12,7 @@ ActiveAdmin.register PurchaseOrder do
 
   filter :order_number
   filter :created_at
-  filter :status, as: :select, collection: %w(unpaid paid completed canceled)
+  filter :status, as: :select, collection: Admin::PurchaseOrderHelper.order_status_collection
 
   index do
     id_column
@@ -35,7 +29,7 @@ ActiveAdmin.register PurchaseOrder do
     column :original_price
     column :price
     column :status do |order|
-      ORDER_STATUS[:"#{order.status}"]
+      Admin::PurchaseOrderHelper.order_status[:"#{order.status}"]
     end
     actions name:'操作', defaults: false do |resource|
       link_to('编辑', edit_admin_purchase_order_path(resource)) + ' | ' +

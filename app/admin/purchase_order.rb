@@ -46,4 +46,6 @@ ActiveAdmin.register PurchaseOrder do
       redirect_to action: 'index'
     end
   end
+
+  form partial: 'edit_order'
 end

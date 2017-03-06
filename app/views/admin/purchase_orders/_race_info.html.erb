@@ -1,0 +1,12 @@
+<table>
+  <tr>
+    <td><img src="<%= race.logo %>"></td>
+    <td>赛事标题：<%= race.name %><br>
+      时间: <%= race.begin_date %><br>
+      地点：<%= race.location %><br>
+      <span style="color: red">剩余<%= race.ticket_info.e_ticket_number %>张电子票，<%= race.ticket_info.entity_ticket_number %>张实体票
+      </span>
+    </td>
+    <td>订单总金额：<%= @purchase_order.original_price %></td>
+  </tr>
+</table>

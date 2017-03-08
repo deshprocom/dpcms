@@ -3,27 +3,31 @@ ActiveAdmin.register Race do
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description]
-  config.filters = false
-  scope :all, default: true
+  RACE_STATUS = Race.statuses.keys
+  config.per_page = 20
 
-  RACE_STATUS_MAPPING = %w(未开始 进行中 已结束 已关闭)
+  filter :name
+  filter :location
+  filter :begin_date
+  filter :status, as: :select, collection: RACE_STATUS.collect {|d| [I18n.t(d), d]}
 
   index do
-    column :logo do |race|
+    column :logo, sortable: false do |race|
       link_to race.logo.url ? image_tag(race.logo.url(:preview)) : '', admin_race_path(race)
     end
-    column :name do |race|
+    column :name, sortable: false  do |race|
       link_to race.name, admin_race_path(race)
     end
     column :prize
-    column '赛事时间' do |race|
+    column '赛事时间', sortable: :begin_date do |race|
       "#{race.begin_date} 至 #{race.end_date}"
     end
-    column :location
-    column '赛事状态' do |race|
-      RACE_STATUS_MAPPING[race.status]
+    column :location, sortable: false
+    column :status, sortable: false do |race|
+      select_tag :status, options_for_select(RACE_STATUS.collect {|d| [I18n.t(d), d]}, race.status),
+                 data: { before_val: race.status, id: race.id }, class: 'test'
     end
-    actions name: '操作'
+    actions
   end
 
   show  do
@@ -31,7 +35,7 @@ ActiveAdmin.register Race do
       row :name
       row(:prize) { "#{race.prize} 元" }
       row :location
-      row(:status) { RACE_STATUS_MAPPING[race.status] }
+      row(:status) { I18n.t(race.status) }
       row('赛事时间') { "#{race.begin_date} 至 #{race.end_date}" }
       row :logo do |race|
         link_to image_tag(race.logo.url :preview), race.logo.url, target: '_blank'
@@ -52,4 +56,5 @@ ActiveAdmin.register Race do
   end
 
   form partial: 'form'
+
 end

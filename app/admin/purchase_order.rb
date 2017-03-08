@@ -28,7 +28,7 @@ ActiveAdmin.register PurchaseOrder do
     column :original_price
     column :price
     column :status do |order|
-      Admin::PurchaseOrderHelper.order_status[:"#{order.status}"]
+      I18n.t(order.status)
     end
     actions name:'操作', defaults: false do |resource|
       link_to('编辑', edit_admin_purchase_order_path(resource)) + ' | ' +

@@ -3,4 +3,8 @@
   go_ahead: '进行中'
   ended: '已结束'
   closed: '已关闭'
+  unpaid: '待付款'
+  paid: '待发货'
+  completed: '已完成'
+  canceled: '已取消'
 

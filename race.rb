@@ -27,6 +27,6 @@ class Race < ApplicationRecord
   end
   validates :name, :prize, :location, :logo, presence: true
   # enum status: [:unbegin, :go_ahead, :ended, :closed]
-  enum status: {unbegin: 0, go_ahead: 1, ended: 2, closed: 3}
-  ransacker :status, formatter: proc {|v| statuses[v]}
+  enum status: { unbegin: 0, go_ahead: 1, ended: 2, closed: 3 }
+  ransacker :status, formatter: proc { |v| statuses[v] }
 end

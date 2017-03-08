@@ -1,6 +1,4 @@
 ActiveAdmin.register PurchaseOrder do
-  # include Admin::PurchaseOrderHelper
-
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
   actions :all, :except => [:new]

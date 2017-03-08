@@ -28,4 +28,6 @@ class PurchaseOrder < ApplicationRecord
   scope :paid, -> { where( status: 'paid' ) }
   scope :completed, -> { where( status: 'completed' ) }
   scope :canceled, -> { where( status: 'canceled' ) }
+
+  enum status: { unpaid: 'unpaid', paid: 'paid', completed: 'completed', canceled: 'canceled' }
 end

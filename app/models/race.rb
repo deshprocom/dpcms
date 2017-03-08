@@ -24,8 +24,9 @@ class Race < ApplicationRecord
   after_initialize do
     self.begin_date ||= Time.current
     self.end_date ||= Time.current
-    ticket_info || build_ticket_info
-    race_desc || build_race_desc
   end
   validates :name, :prize, :location, :logo, presence: true
+  # enum status: [:unbegin, :go_ahead, :ended, :closed]
+  enum status: { unbegin: 0, go_ahead: 1, ended: 2, closed: 3 }
+  ransacker :status, formatter: proc { |v| statuses[v] }
 end

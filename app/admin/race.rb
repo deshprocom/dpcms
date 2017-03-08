@@ -57,4 +57,12 @@ ActiveAdmin.register Race do
 
   form partial: 'form'
 
+  member_action :change_status, method: :put do
+    unless params[:status].in? RACE_STATUS
+      return render json: { error: 'ParamsError' }, status: 404
+    end
+
+    resource.send("#{params[:status]}!")
+    render json: resource
+  end
 end

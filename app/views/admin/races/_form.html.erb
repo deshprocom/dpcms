@@ -1,11 +1,13 @@
 <%= semantic_form_for [:admin, @race] do |f| %>
+    <% @race.ticket_info || @race.build_ticket_info %>
+    <% @race.race_desc   || @race.build_race_desc %>
     <%= f.inputs name: '赛事简介' do %>
         <%= f.input :name %>
         <%= f.input :prize %>
         <%= f.input :location %>
         <%= f.input :begin_date %>
         <%= f.input :end_date %>
-        <%= f.input :status, as: :select,  collection: [%w(未开始 0), %w(进行中 1), %w(已结束 2), %w(已关闭 3)] %>
+        <%= f.input :status, as: :select, collection: RACE_STATUS.collect {|d| [I18n.t(d), d]} %>
         <%= f.input :logo, as: :file,
                     hint: f.object.logo.present? ? image_tag(f.object.logo.url(:preview)) : nil %>
         <%= f.semantic_fields_for :race_desc do |desc_form| %>

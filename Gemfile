@@ -31,6 +31,7 @@ group :development, :test do
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano3-puma'
+  gem 'rubocop', require: false
 end
 
 group :development do

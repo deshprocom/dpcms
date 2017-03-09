@@ -18,7 +18,7 @@
       <span class="order_price">实付金额：<%= @purchase_order.price %></span>
 
       <div class="change_order_price">
-        <%= form_tag(admin_purchase_order_attributes_update_path(@purchase_order.id), id:'change_price', method: 'post', remote: true) do %>
+        <%= form_tag(change_status_admin_purchase_order_path(@purchase_order.id), id:'change_price', method: 'post', remote: true) do %>
           <label for="order_price">实付金额：</label>
           <%= text_field_tag(:order_price) %>
           <%= submit_tag "保存", data: { confirm: "确定更新吗？" } %><button class="order_button_cancel">取消</button>

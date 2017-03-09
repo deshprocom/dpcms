@@ -10,7 +10,7 @@
   <%= render 'user_extra', { user_extra: @purchase_order.user.user_extra } %>
 
   <h3>收货信息</h3><hr><br>
-  <div style="font-size: 16px">
+  <div class="edit_order">
     <% if @purchase_order.ticket_type.eql?('e_ticket') %>
         <tr>
           <td>电子票</td>

@@ -55,8 +55,3 @@
         ticket_type: '票务类型'
       user_extra:
         real_name: "真实姓名"
-    filters:
-      unpaid: '待付款'
-      paid: '待发货'
-      completed: '已完成'
-      canceled: '已取消'

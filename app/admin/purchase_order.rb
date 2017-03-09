@@ -1,9 +1,8 @@
 ActiveAdmin.register PurchaseOrder do
-  # include Admin::PurchaseOrderHelper
-
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
   actions :all, :except => [:new]
+  ORDER_STATUS = PurchaseOrder.statuses.keys
 
   scope :all, default: 'true'
   scope :unpaid
@@ -13,7 +12,7 @@ ActiveAdmin.register PurchaseOrder do
 
   filter :order_number
   filter :created_at
-  filter :status, as: :select, collection: Admin::PurchaseOrderHelper.order_status_collection
+  filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t(key), key] }
 
   index do
     id_column
@@ -30,22 +29,24 @@ ActiveAdmin.register PurchaseOrder do
     column :original_price
     column :price
     column :status do |order|
-      Admin::PurchaseOrderHelper.order_status[:"#{order.status}"]
+      I18n.t(order.status)
     end
-    actions name:'操作', defaults: false do |resource|
-      link_to('编辑', edit_admin_purchase_order_path(resource)) + ' | ' +
-      link_to('取消', admin_purchase_order_path(resource), data: { confirm: "确定取消吗？" }, method: :delete)
+    actions name:'操作', defaults: false do |order|
+      item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
+      item '取消', cancel_admin_purchase_order_path(order), data: { confirm: "确定取消吗？" }, method: :post
     end
   end
 
-  controller do
-    def destroy
-      @purchase_order = PurchaseOrder.find(params[:id])
-      unless @purchase_order.update(status: 'canceled')
-        flash[:alert] = "订单不可取消"
-      end
-      redirect_to action: 'index'
+  member_action :cancel, method: :post do
+    resource.canceled!
+    redirect_to action: 'index'
+  end
+
+  member_action :change_status, method: :post do
+    if params[:order_price].blank?
+      return render 'change_status_failed'
     end
+    resource.update(price: params[:order_price].to_i)
   end
 
   form partial: 'edit_order'

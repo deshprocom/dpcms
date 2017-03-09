@@ -11,13 +11,4 @@ $(function(){
         $(".order_price_modified").show();
         return false;
     })
-
-    $("#change_price").bind("ajax:complete", function(xhr, data) {
-        if(data.status == 200){
-            alert('更新成功');
-            location.reload();
-        }else{
-            alert('更新失败');
-        }
-    })
 })

@@ -44,10 +44,9 @@ ActiveAdmin.register PurchaseOrder do
 
   member_action :change_status, method: :post do
     if params[:order_price].blank?
-      return render json: { error: '参数格式不正确' }, status: 403
+      return render 'change_status_failed'
     end
     resource.update(price: params[:order_price].to_i)
-    render json: resource
   end
 
   form partial: 'edit_order'

@@ -26,7 +26,14 @@ class Race < ApplicationRecord
     self.end_date ||= Time.current
   end
   validates :name, :prize, :location, :logo, presence: true
-  # enum status: [:unbegin, :go_ahead, :ended, :closed]
-  enum status: { unbegin: 0, go_ahead: 1, ended: 2, closed: 3 }
+  enum status: [:unbegin, :go_ahead, :ended, :closed]
   ransacker :status, formatter: proc { |v| statuses[v] }
+
+  def publish!
+    update(published: true)
+  end
+
+  def unpublish!
+    update(published: false)
+  end
 end

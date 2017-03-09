@@ -1,7 +1,8 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register PurchaseOrder do
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
-  actions :all, :except => [:new]
+  actions :all, except: [:new]
   ORDER_STATUS = PurchaseOrder.statuses.keys
 
   scope :all, default: 'true'
@@ -31,9 +32,9 @@ ActiveAdmin.register PurchaseOrder do
     column :status do |order|
       I18n.t(order.status)
     end
-    actions name:'操作', defaults: false do |order|
+    actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
-      item '取消', cancel_admin_purchase_order_path(order), data: { confirm: "确定取消吗？" }, method: :post
+      item '取消', cancel_admin_purchase_order_path(order), data: { confirm: '确定取消吗？' }, method: :post
     end
   end
 
@@ -43,9 +44,7 @@ ActiveAdmin.register PurchaseOrder do
   end
 
   member_action :change_status, method: :post do
-    if params[:order_price].blank?
-      return render 'change_status_failed'
-    end
+    return render 'change_status_failed' if params[:order_price].blank?
     resource.update(price: params[:order_price].to_i)
   end
 

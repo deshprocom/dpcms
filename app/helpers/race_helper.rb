@@ -26,19 +26,22 @@ module RaceHelper
   def show_big_logo_link(race)
     link_to image_tag(race.logo.url(:preview)), race.logo.url, target: '_blank'
   end
+
   def select_to_status(race)
     select_tag :status, options_for_select(race_status_with_trans, race.status),
                data: { before_val: race.status, id: race.id }, class: 'test'
   end
 
   def index_table_actions(source, race)
-    source.item I18n.t('active_admin.edit'), edit_admin_race_path(race), title: I18n.t('active_admin.edit'),
-         class: 'edit_link member_link'
-    unless race.published?
-      source.item I18n.t('active_admin.delete'), admin_race_path(race), title: I18n.t('active_admin.delete'),
-           class: 'delete_link member_link',
-           method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
-    end
+    source.item I18n.t('active_admin.edit'), edit_admin_race_path(race),
+                title: I18n.t('active_admin.edit'),
+                class: 'edit_link member_link'
+    return if race.published?
+
+    source.item I18n.t('active_admin.delete'), admin_race_path(race),
+                title:  I18n.t('active_admin.delete'),
+                class:  'delete_link member_link',
+                method: :delete,
+                data:   { confirm: I18n.t('active_admin.delete_confirmation') }
   end
 end
-

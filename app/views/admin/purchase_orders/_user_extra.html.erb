@@ -2,8 +2,16 @@
   <tr>
     <td><img src="<%= user_extra.image %>" width="100px"/></td>
     <td>
-      <span>用户姓名：</span><span><%= user_extra.real_name %></span><br>
-      <span>身份证号：</span><span><%= user_extra.cert_no %></span>
+      <div class="user_extra_real_name"><span>用户姓名：</span><span><%= user_extra.real_name %></span></div>
+      <div class="user_extra_card_id"><span>身份证号：</span><span><%= user_extra.cert_no %></span></div>
     </td>
+    <% unless user_extra.status.eql?('passed') %>
+      <td>
+        <div class="order_audit">
+          <%= button_to '审核通过', user_audit_admin_user_path(user_extra.user_id), form_class: "audit_passed", remote: true %>
+          <%= button_to '审核不通过', user_audit_forbid_admin_user_path(user_extra.user_id), form_class: "audit_failed", remote: true %>
+        </div>
+      </td>
+    <% end %>
   </tr>
 </table>

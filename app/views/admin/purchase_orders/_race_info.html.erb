@@ -1,12 +1,34 @@
 <table>
   <tr>
-    <td><img src="<%= race.logo %>" width="150px"></td>
-    <td>赛事标题：<%= race.name %><br>
-      时间: <%= race.begin_date %><br>
-      地点：<%= race.location %><br>
-      <span style="color: red">剩余<%= race.ticket_info.e_ticket_number %>张电子票，<%= race.ticket_info.entity_ticket_number %>张实体票
+    <td>
+      <img src="<%= race.logo %>" width="150px">
+    </td>
+
+    <td>
+      <span>赛事标题：<%= race.name %></span><br>
+      <span>时间: <%= race.begin_date %></span><br>
+      <span>地点：<%= race.location %></span><br>
+      <span style="color: red">
+        剩余<%= race.ticket_info.e_ticket_number %>张电子票，<%= race.ticket_info.entity_ticket_number %>张实体票
       </span>
     </td>
-    <td>订单总金额：<%= @purchase_order.original_price %></td>
+
+    <td>
+      <span>订单总金额：<%= @purchase_order.original_price %></span><br><br>
+      <span class="order_price">实付金额：<%= @purchase_order.price %></span>
+
+      <div class="change_order_price">
+        <%= form_tag(change_status_admin_purchase_order_path(@purchase_order.id), id:'change_price', method: 'post', remote: true) do %>
+          <label for="order_price">实付金额：</label>
+          <%= text_field_tag(:order_price) %>
+          <%= submit_tag "保存", data: { confirm: "确定更新吗？" } %><button class="order_button_cancel">取消</button>
+        <% end %>
+      </div>
+
+      <% if @purchase_order.status.eql?('unpaid') %>
+        <div class="order_price_modified"><button>修改</button></div>
+      <% end %>
+
+    </td>
   </tr>
 </table>

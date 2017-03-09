@@ -1,0 +1,27 @@
+<%= semantic_form_for [:admin, @race] do |f| %>
+    <% @race.ticket_info || @race.build_ticket_info %>
+    <% @race.race_desc   || @race.build_race_desc %>
+    <%= f.inputs name: '赛事简介' do %>
+        <%= f.input :name %>
+        <%= f.input :prize %>
+        <%= f.input :location %>
+        <%= f.input :begin_date %>
+        <%= f.input :end_date %>
+        <%= f.input :status, as: :select, collection: race_status_with_trans %>
+        <%= f.input :logo, as: :file,
+                    hint: f.object.logo.present? ? image_tag(f.object.logo.url(:preview)) : nil %>
+        <%= f.semantic_fields_for :race_desc do |desc_form| %>
+            <%= desc_form.input :description %>
+        <% end %>
+    <% end %>
+
+    <%= f.semantic_fields_for :ticket_info do |info_form| %>
+        <%= f.inputs name: '门票数量信息' do %>
+            <%= info_form.input :e_ticket_number %>
+            <%= info_form.input :entity_ticket_number %>
+        <% end %>
+    <% end %>
+
+    <%= f.actions %>
+
+<% end %>

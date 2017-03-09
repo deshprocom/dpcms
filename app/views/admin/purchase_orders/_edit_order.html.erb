@@ -1,0 +1,28 @@
+<div>
+  <h3>订单信息</h3><hr>
+  <%= render 'order_info' %>
+  <%= render 'race_info', { race: @purchase_order.race } %><br>
+
+  <h3>用户账户信息</h3><hr>
+  <%= render 'user', { user: @purchase_order.user } %><br>
+
+  <h3>用户实名信息</h3><hr>
+  <%= render 'user_extra', { user_extra: @purchase_order.user.user_extra } %>
+
+  <h3>收货信息</h3><hr><br>
+  <div style="font-size: 16px">
+    <% if @purchase_order.ticket_type.eql?('e_ticket') %>
+        <tr>
+          <td>电子票</td>
+          <td>收货电子邮箱：<%= @purchase_order.email %></td>
+        </tr>
+    <% else %>
+        <tr>
+          <td>实体票</td>
+          <td>收货人：<%= @purchase_order.consignee %></td>
+          <td>联系方式：<%= @purchase_order.mobile %></td>
+          <td>收货地址：<%= @purchase_order.address %></td>
+        </tr>
+    <% end %>
+  </div>
+</div>

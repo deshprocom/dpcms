@@ -19,12 +19,20 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'dotenv-rails'
 
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'devise'
+gem 'rails-i18n'
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'redcarpet'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano3-puma'
+  gem 'rubocop', require: false
 end
 
 group :development do

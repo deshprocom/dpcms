@@ -284,3 +284,15 @@ ActiveAdmin.setup do |config|
   #
   # config.order_clause = MyOrderClause
 end
+
+module ActiveAdmin
+  module Views
+    class Tabs
+      def build_menu_item(title, options, &block)
+        id = options[:id] ? options[:id] : title.parameterize
+        options = options.reject { |key| key == :id }
+        li { link_to title, "##{id}", options }
+      end
+    end
+  end
+end

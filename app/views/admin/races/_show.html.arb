@@ -1,0 +1,27 @@
+context.instance_eval do
+  tabs do
+    tab I18n.t('race.detail'), id: :race_detail do
+      attributes_table do
+        row(:name)
+        row(:prize) { format_prize(race) }
+        row :location
+        row(:status) { I18n.t("race.#{race.status}") }
+        row(I18n.t('race.period')) { race_period(race) }
+        row(:logo){ show_big_logo_link(race) }
+        attributes_table_for race.race_desc do
+          row(:description) { markdown(race.race_desc.description) }
+        end
+      end
+    end
+    tab I18n.t('race.ticket_manage'), id: :ticket_manage do
+      panel I18n.t('race.ticket_manage') do
+        attributes_table_for race.ticket_info do
+          row :e_ticket_number
+          row :entity_ticket_number
+          row :e_ticket_sold_number
+          row :entity_ticket_sold_number
+        end
+      end
+    end
+  end
+end

@@ -17,7 +17,7 @@
 
   <div class="edit_order">
     <% if @purchase_order.ticket_type.eql?('e_ticket') %>
-        <div class="e_ticket_order">
+        <div class="ticket_order">
           <span>电子票</span>
           <span>收货电子邮箱：<%= @purchase_order.email %></span>
         </div>
@@ -25,11 +25,11 @@
           <%= form_tag(change_e_ticket_address_admin_purchase_order_path(@purchase_order.id), method: 'post', remote: true) do %>
             <label for="email">新的邮箱：</label>
             <%= text_field_tag(:email, @purchase_order.email) %>
-            <%= submit_tag "更新", data: { confirm: "确定更新吗？" } %>
+            <%= submit_tag "更新", data: { confirm: "确定更新吗？" } %><button class="order_ticket_button_cancel">取消</button>
           <% end %>
         </div>
     <% else %>
-        <div class="entity_ticket_order">
+        <div class="ticket_order">
           <span>实体票</span>
           <span>收货人：<%= @purchase_order.consignee %></span>
           <span>联系方式：<%= @purchase_order.mobile %></span>
@@ -42,7 +42,7 @@
                 <label for="consignee">收货人&nbsp;&nbsp;&nbsp;&nbsp;：</label><%= text_field_tag(:consignee, @purchase_order.consignee) %><br>
                 <label for="mobile">联系方式：</label><%= text_field_tag(:mobile, @purchase_order.mobile) %><br>
                 <label for="address">收货地址：</label><%= text_field_tag(:address, @purchase_order.address) %>
-                <%= submit_tag "更新", data: { confirm: "确定更新吗？" } %>
+                <%= submit_tag "更新", data: { confirm: "确定更新吗？" } %><button class="order_ticket_button_cancel">取消</button>
               </fieldset>
           <% end %>
         </div>

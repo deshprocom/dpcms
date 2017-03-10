@@ -7,7 +7,7 @@
         <%= f.input :location %>
         <%= f.input :begin_date %>
         <%= f.input :end_date %>
-        <%= f.input :status, as: :select, collection: RACE_STATUS.collect {|d| [I18n.t(d), d]} %>
+        <%= f.input :status, as: :select, collection: race_status_with_trans %>
         <%= f.input :logo, as: :file,
                     hint: f.object.logo.present? ? image_tag(f.object.logo.url(:preview)) : nil %>
         <%= f.semantic_fields_for :race_desc do |desc_form| %>

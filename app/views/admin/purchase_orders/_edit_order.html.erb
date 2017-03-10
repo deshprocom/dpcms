@@ -7,6 +7,7 @@
   <%= render 'user', { user: @purchase_order.user } %><br>
 
   <h3>用户实名信息</h3><hr>
+  <% @purchase_order.user.user_extra || @purchase_order.user.build_user_extra %>
   <%= render 'user_extra', { user_extra: @purchase_order.user.user_extra, purchase_order: @purchase_order } %>
 
   <br/><h3 class="order_address">收货信息</h3>

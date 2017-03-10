@@ -22,6 +22,7 @@ ActiveAdmin.register PurchaseOrder do
       order.user.user_uuid
     end
     column '真实姓名', :real_name do |order|
+      order.user.user_extra || order.user.build_user_extra
       order.user.user_extra.real_name
     end
     column '实名状态', :user_status do |order|

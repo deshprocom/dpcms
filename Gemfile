@@ -6,25 +6,30 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 gem 'rails', '~> 5.0.1'
 gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'puma', '~> 3.0'
+gem 'uglifier', '>= 1.3.0'
+gem 'dotenv-rails'
+
+# view 相关
+gem 'haml'
+gem 'jbuilder', '~> 2.5'
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3'
-gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
-gem 'dotenv-rails'
 
+# activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'devise'
 gem 'rails-i18n'
+gem 'redcarpet'
+
+# 上传组件
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'redcarpet'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

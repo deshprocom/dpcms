@@ -1,9 +1,18 @@
-<table>
+<table class="user_extra_table">
   <tr>
-    <td><img src="<%= user_extra.image %>" width="100px"/></td>
+    <td><a href="<%= user_extra.image_path %>" target="_blank"><img class="user_extra_image" src="<%= user_extra.image_path %>"/></a></td>
     <td>
-      <span>用户姓名：</span><span><%= user_extra.real_name %></span><br>
-      <span>身份证号：</span><span><%= user_extra.cert_no %></span>
+      <div class="user_extra_real_name"><span>用户姓名：</span><span><%= user_extra.real_name %></span></div>
+      <div class="user_extra_card_id"><span>身份证号：</span><span><%= user_extra.cert_no %></span></div>
+      <div class="user_extra_status"><span>实名状态：</span><span><%= user_extra.status.eql?('passed') ? '已实名' : '未实名' %></span></div>
     </td>
+    <% if %w(unpaid paid).include?(@purchase_order.status) && user_extra.status != 'passed' %>
+      <td>
+        <div class="order_audit">
+          <%= button_to '审核通过', user_audit_admin_user_path(user_extra.user_id), form_class: "audit_passed", remote: true, data: { confirm: "确定通过吗？" }%>
+          <%= button_to '审核不通过', user_audit_forbid_admin_user_path(user_extra.user_id), form_class: "audit_failed", remote: true, data: { confirm: "确定不通过吗？" } %>
+        </div>
+      </td>
+    <% end %>
   </tr>
 </table>

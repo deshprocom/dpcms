@@ -1,6 +1,6 @@
-table{
-    table-layout: fixed;
-}
+.race_info_order_table, .user_extra_table{
+     table-layout: fixed;
+ }
 
 .edit_order{
     font-size: 16px;

@@ -19,11 +19,11 @@ table{
     margin-left: 50px;
 }
 
-.user_extra_real_name, .user_extra_card_id{
+.user_extra_real_name, .user_extra_card_id, .user_extra_status{
     font-size: 14px;
 }
 
-.user_extra_card_id{
+.user_extra_card_id, .user_extra_status{
     margin-top: 20px;
 }
 
@@ -34,5 +34,17 @@ table{
 
 .order_audit .audit_passed, .audit_failed{
     display: inline-block;
+}
+
+.order_address, .update_order_address{
+    display: inline-block;
+}
+
+.update_order_address{
+    margin-left: 20px;
+}
+
+.ticket_order_edit{
+    display: none;
 }
 

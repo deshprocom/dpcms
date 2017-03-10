@@ -44,8 +44,30 @@ ActiveAdmin.register PurchaseOrder do
   end
 
   member_action :change_status, method: :post do
-    return render 'change_status_failed' if params[:order_price].blank?
+    return render 'common/params_format_error' if params[:order_price].blank?
     resource.update(price: params[:order_price].to_i)
+    render 'common/update_success'
+  end
+
+  member_action :change_e_ticket_address, method: :post do
+    email = params[:email].strip
+    unless email.present? && UserValidator.email_valid?(email)
+      return render 'common/email_format_error'
+    end
+    resource.update!(email: email)
+    render 'common/update_success'
+  end
+
+  member_action :change_entity_ticket_address, method: :post do
+    consignee = params[:consignee].strip
+    mobile = params[:mobile].strip
+    address = params[:address].strip
+    unless consignee.present? && mobile.present? && address.present?
+      return render 'common/params_format_error'
+    end
+    return render 'common/mobile_format_error' unless UserValidator.mobile_valid?(mobile)
+    resource.update!(consignee: consignee, mobile: mobile, address: address)
+    render 'common/update_success'
   end
 
   form partial: 'edit_order'

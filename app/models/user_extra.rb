@@ -31,7 +31,7 @@ class UserExtra < ApplicationRecord
   end
 
   def image_path
-    DpapiConfig.domain_path.to_s + image.to_s unless image.blank?
+    DpapiConfig.domain_path.to_s + image.to_s
   end
 
   enum status: { pending: 'pending', 'passed': 'passed', 'failed': 'failed' }

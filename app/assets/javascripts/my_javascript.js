@@ -15,7 +15,13 @@ $(function(){
     $(".update_order_address").bind('click', function(){
         $(".ticket_order_edit").show();
         $(".update_order_address").hide();
-        $(".entity_ticket_order").hide();
-        $(".e_ticket_order").hide();
+        $(".ticket_order").hide();
+    })
+
+    $(".order_ticket_button_cancel").bind('click', function(){
+        $(".ticket_order_edit").hide();
+        $(".update_order_address").show();
+        $(".ticket_order").show();
+        return false;
     })
 })

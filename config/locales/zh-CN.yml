@@ -44,7 +44,7 @@
         mobile: "手机号"
         order_number: "订单编号"
         original_price: "订单总金额"
-        price: "实付价格"
+        price: "实付金额"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"

@@ -12,7 +12,7 @@ ActiveAdmin.register AdminUser do
     column :last_sign_in_at
     column :last_sign_in_ip
     column :created_at do |obj|
-      DateTime.current.parse(obj.created_at.to_s).strftime('%Y年%m月%d日').to_s
+      DateTime.parse(obj.created_at.to_s).strftime('%Y年%m月%d日').to_s
     end
     actions
   end

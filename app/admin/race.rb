@@ -29,7 +29,7 @@ ActiveAdmin.register Race do
       return unless @race.published?
 
       flash[:error] = I18n.t('race.destroy_error')
-      redirect_to :back
+      redirect_back fallback_location: admin_races_url
     end
   end
 
@@ -43,12 +43,12 @@ ActiveAdmin.register Race do
 
   member_action :publish, method: :post do
     Race.find(params[:id]).publish!
-    redirect_to :back, notice: I18n.t('race.publish_notice')
+    redirect_back fallback_location: admin_races_url, notice: I18n.t('race.publish_notice')
   end
 
   member_action :unpublish, method: :post do
     Race.find(params[:id]).unpublish!
-    redirect_to :back, notice: I18n.t('race.unpublish_notice')
+    redirect_back fallback_location: admin_races_url, notice: I18n.t('race.unpublish_notice')
   end
 
   action_item :publish, only: :show do

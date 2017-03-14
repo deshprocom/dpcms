@@ -20,14 +20,20 @@ class Race < ApplicationRecord
   accepts_nested_attributes_for :race_desc, update_only: true
   has_many :tickets
   mount_uploader :logo, PhotoUploader
-
-  after_initialize do
-    self.begin_date ||= Time.current
-    self.end_date ||= Time.current
-  end
   validates :name, :prize, :location, :logo, presence: true
   enum status: [:unbegin, :go_ahead, :ended, :closed]
   ransacker :status, formatter: proc { |v| statuses[v] }
+
+  scope :seq_desc, -> { order(seq_id: :desc) }
+
+  after_initialize do
+    self.begin_date ||= Date.current
+    self.end_date ||= Date.current
+  end
+
+  before_save do
+    self.seq_id = ::Services::RaceSequencer.call(self) if begin_date_changed?
+  end
 
   def publish!
     update(published: true)

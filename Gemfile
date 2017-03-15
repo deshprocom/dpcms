@@ -41,6 +41,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
+  gem 'selenium-webdriver'
+  gem 'capybara-console'
 end
 
 group :development do

@@ -51,6 +51,7 @@ ActiveAdmin.register Race do
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.unpublish_notice')
   end
 
+
   action_item :publish, only: :show do
     publish_status_link(race)
   end

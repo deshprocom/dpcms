@@ -32,7 +32,7 @@ class Race < ApplicationRecord
   end
 
   before_save do
-    self.seq_id = ::Services::RaceSequencer.call(self) if begin_date_changed?
+    self.seq_id = Services::RaceSequencer.call(self) if begin_date_changed?
   end
 
   def publish!

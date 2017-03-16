@@ -41,6 +41,7 @@ group :development, :test do
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano3-puma'
+  gem 'capistrano-rvm'
   gem 'rubocop', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'

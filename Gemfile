@@ -31,6 +31,10 @@ gem 'redcarpet'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 
+# http组件
+gem 'faraday','~> 0.11.0'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -42,6 +46,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
+  gem 'cucumber-rails', :require => false
+  gem 'selenium-webdriver'
+  gem 'capybara-console'
 end
 
 group :development do

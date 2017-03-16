@@ -14,4 +14,4 @@ INPUT_MAPPING = {
 
 ELEMENT_MAPPING = {
   page_title: '页面标题',
-}
+}.invert

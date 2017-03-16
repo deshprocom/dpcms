@@ -41,6 +41,6 @@ Given(/^等待 ([^']*) 秒$/) do |second|
 end
 
 Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
-  element_id = element
-  find(element_id).to has_content?(value)
+  element_id = ELEMENT_MAPPING[element]
+  find_by_id(element_id).should have_content(value)
 end

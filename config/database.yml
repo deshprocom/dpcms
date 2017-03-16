@@ -54,5 +54,3 @@ production:
   username: <%= ENV['DP_DATABASE_USERNAME'] || 'dpapi' %>
   password: <%= ENV['DP_DATABASE_PASSWORD'] %>
 
-cucumber:
-  <<: *test

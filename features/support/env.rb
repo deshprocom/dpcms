@@ -5,8 +5,8 @@
 # newer version of cucumber-rails. Consider adding your own code to a new file
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
-
 ENV['RAILS_ENV'] = 'test'
+ENV['DP_DATABASE_TEST'] = 'deshpro_s_i_t'
 require 'cucumber/rails'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
@@ -37,7 +37,7 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.strategy = :truncation, {except: %w(affiliates affiliate_apps)}
 
 Before do
   DatabaseCleaner.clean

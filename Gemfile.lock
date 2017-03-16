@@ -148,6 +148,8 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    faraday (0.11.0)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
@@ -204,6 +206,7 @@ GEM
     minitest (5.10.1)
     multi_json (1.12.1)
     multi_test (0.1.2)
+    multipart-post (2.0.0)
     mysql2 (0.4.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -356,6 +359,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
+  faraday (~> 0.11.0)
   haml
   jbuilder (~> 2.5)
   jquery-rails

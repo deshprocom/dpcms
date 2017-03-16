@@ -13,8 +13,10 @@ require 'cucumber/rails'
 # If you'd prefer to use XPath, just uncomment this line and adjust any
 # selectors in your step definitions to use the XPath syntax.
 # Capybara.default_selector = :xpath
+
+# on mac os execute brew install ChromeDriver
 Capybara.register_driver :selenium_chrome do |app|
-  Capybara::Selenium::Driver.new app, browser: :chrome, driver_path: '/Users/breeze/Downloads/chromedriver'
+  Capybara::Selenium::Driver.new app, browser: :chrome
 end
 Capybara.default_driver = :selenium_chrome
 

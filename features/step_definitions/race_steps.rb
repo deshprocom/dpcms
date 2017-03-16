@@ -18,3 +18,8 @@ Given(/^调用api 应成功获取该赛事详情/) do
   expect(data['seq_id']).to   eq(race.seq_id)
   expect(data['logo']).to     eq("#{ENV['PHOTO_DOMAIN']}#{race.logo.url(:preview)}")
 end
+
+Given(/^访问赛事详情页$/) do
+  race = FactoryGirl.create(:whole_race, published: true)
+  visit admin_race_path(race.id)
+end

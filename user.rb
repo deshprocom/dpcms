@@ -20,6 +20,9 @@
 
 # 用户信息表
 class User < ApplicationRecord
+  # 增加二级查询缓存，缓存过期时间六小时
+  second_level_cache(version: 1, expires_in: 6.hours)
+
   has_one :user_extra
   has_many :purchase_orders
 end

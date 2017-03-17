@@ -26,6 +26,13 @@ Feature: 赛事首页
     Then '页面标题' 应看到 '2017传奇扑克超高额豪客赛'
     And 调用api 应无法获取该赛事详情
 
+  Scenario: 点击赛事列表
+    Given 访问赛事列表页 创建数据
+    Then 调用api 应成功获取该赛事详情
+    When 在'status' 的第一个下拉框选择 '已关闭'
+    And 确定alert
+    Then 调用api 应成功获取该赛事详情
+
   Scenario: 赛事详情中点击发布赛事
     Given 访问 '新建赛事页'
     When 在 '赛事标题' 填入 '2017传奇扑克超高额豪客赛'
@@ -39,8 +46,22 @@ Feature: 赛事首页
     And 点击链接 '发布赛事'
     And 调用api 应成功获取该赛事详情
 
+  Scenario: 赛事详情-取消发布
+    Given 访问赛事详情页 创建数据
+    And 调用api 应成功获取该赛事详情
+    And 点击链接 '取消发布'
+    Then 调用api 应无法获取该赛事详情
+
+  Scenario: 赛事详情-删除赛事
+    Given 访问赛事详情页 创建数据
+    And 调用api 应成功获取该赛事详情
+    And 点击链接 '取消发布'
+    And 点击链接 '删除赛事'
+    When 对话框中点击 '确定'
+    Then 调用api 应无法获取该赛事详情
+
   Scenario: 编辑赛事详情
-    Given 访问赛事详情页
+    Given 访问赛事详情页 创建数据
     And 调用api 应成功获取该赛事详情
     And 点击链接 '编辑赛事'
     When 在 '赛事标题' 填入 '2017传奇扑克超高额豪客赛'

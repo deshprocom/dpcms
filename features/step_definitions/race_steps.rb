@@ -17,6 +17,7 @@ Given(/^调用api 应成功获取该赛事详情/) do
   expect(data['name']).to     eq(race.name)
   expect(data['seq_id']).to   eq(race.seq_id)
   expect(data['logo']).to     eq("#{ENV['PHOTO_DOMAIN']}#{race.logo.url(:preview)}")
+  expect(data['big_logo']).to     eq("#{ENV['PHOTO_DOMAIN']}#{race.logo.url}")
 end
 
 Given(/^访问赛事详情页$/) do

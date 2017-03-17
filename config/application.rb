@@ -14,5 +14,7 @@ module Dpcms
     # -- all .rb files in that directory are automatically loaded.
     config.i18n.default_locale = 'zh-CN'
     config.time_zone = 'Beijing'
+
+    config.cache_store = config_for(:cache_store)
   end
 end

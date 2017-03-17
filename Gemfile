@@ -12,6 +12,10 @@ gem 'puma', '~> 3.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'dotenv-rails'
 
+# cache 相关
+gem 'redis-rails'
+gem 'second_level_cache', '~> 2.3.0'
+
 # view 相关
 gem 'haml'
 gem 'jbuilder', '~> 2.5'
@@ -27,9 +31,11 @@ gem 'devise'
 gem 'rails-i18n'
 gem 'redcarpet'
 
-# 上传组件
+# 文件处理组件
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'carrierwave-upyun'
+
 
 # http组件
 gem 'faraday','~> 0.11.0'

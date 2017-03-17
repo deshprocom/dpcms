@@ -9,4 +9,11 @@ FactoryGirl.define do
     sequence(:begin_date) { Random.rand(1..9).days.since.to_date }
     sequence(:end_date)   { Random.rand(11..19).days.since.to_date }
   end
+
+  factory :whole_race, parent: :race do
+    after(:create) do |race|
+      FactoryGirl.create(:race_desc, race: race)
+      FactoryGirl.create(:ticket_info, race: race)
+    end
+  end
 end

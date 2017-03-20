@@ -9,7 +9,7 @@
         <%= f.input :end_date %>
         <%= f.input :status, as: :select, collection: race_status_with_trans %>
         <%= f.input :logo, as: :file,
-                    hint: f.object.logo.present? ? image_tag(f.object.logo.url(:preview)) : nil %>
+                    hint: f.object.logo.present? ? image_tag(f.object.preview_logo) : nil %>
         <%= f.semantic_fields_for :race_desc do |desc_form| %>
             <%= desc_form.input :description %>
         <% end %>

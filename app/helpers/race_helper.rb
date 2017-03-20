@@ -12,7 +12,7 @@ module RaceHelper
   end
 
   def logo_link_to_show(race)
-    link_to race.logo.url ? image_tag(race.logo.url(:preview)) : '', admin_race_path(race)
+    link_to race.logo.url ? image_tag(race.preview_logo) : '', admin_race_path(race)
   end
 
   def race_period(race)
@@ -24,7 +24,7 @@ module RaceHelper
   end
 
   def show_big_logo_link(race)
-    link_to image_tag(race.logo.url(:preview)), race.logo.url, target: '_blank'
+    link_to image_tag(race.preview_logo), race.big_logo, target: '_blank'
   end
 
   def select_to_status(race)

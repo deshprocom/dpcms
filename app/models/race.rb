@@ -45,4 +45,12 @@ class Race < ApplicationRecord
   def unpublish!
     update(published: false)
   end
+
+  def preview_logo
+    ENV['PHOTO_DOMAIN'] + logo.url(:preview)
+  end
+
+  def big_logo
+    ENV['PHOTO_DOMAIN'] + logo.url
+  end
 end

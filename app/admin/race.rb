@@ -2,7 +2,7 @@
 ActiveAdmin.register Race do
   controller.include RaceHelper
   menu label: '赛事列表', priority: 1
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :ticket_price,
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description]
   RACE_STATUSES = Race.statuses.keys

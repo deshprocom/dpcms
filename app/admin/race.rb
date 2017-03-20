@@ -42,7 +42,9 @@ ActiveAdmin.register Race do
   end
 
   member_action :publish, method: :post do
-    Race.find(params[:id]).publish!
+    race = Race.find(params[:id])
+    race.publish!
+    race.update(ticket_status: 'selling')
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.publish_notice')
   end
 

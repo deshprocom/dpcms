@@ -23,6 +23,10 @@ module RaceHelper
     "#{race.prize} 元"
   end
 
+  def format_ticket_price(race)
+    "#{race.ticket_price} 元"
+  end
+
   def show_big_logo_link(race)
     link_to image_tag(race.preview_logo), race.big_logo, target: '_blank'
   end

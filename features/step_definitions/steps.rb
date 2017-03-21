@@ -44,3 +44,9 @@ Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
   element_id = ELEMENT_MAPPING[element]
   find_by_id(element_id).should have_content(value)
 end
+
+Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
+  elements.split(',').each do |element|
+    raise "页面上未找到#{element}" unless page.has_content?(element)
+  end
+end

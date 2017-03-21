@@ -4,7 +4,7 @@
     <td>
       <div class="user_extra_real_name"><span>用户姓名：</span><span><%= user_extra.real_name %></span></div>
       <div class="user_extra_card_id"><span>身份证号：</span><span><%= user_extra.cert_no %></span></div>
-      <div class="user_extra_status"><span>实名状态：</span><span><%= user_extra.status.eql?('passed') ? '已实名' : '未实名' %></span></div>
+      <div class="user_extra_status"><span>实名状态：</span><span><%= I18n.t("user_extra.#{user_extra.status}") %></span></div>
     </td>
     <% if %w(unpaid paid).include?(@purchase_order.status) && user_extra.status != 'passed' %>
       <td>

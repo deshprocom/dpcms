@@ -34,5 +34,5 @@ class UserExtra < ApplicationRecord
     DpapiConfig.domain_path.to_s + image.to_s
   end
 
-  enum status: { pending: 'pending', 'passed': 'passed', 'failed': 'failed' }
+  enum status: { init: 'init', pending: 'pending', 'passed': 'passed', 'failed': 'failed' }
 end

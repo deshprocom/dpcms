@@ -36,6 +36,18 @@ Given(/^点击按钮 '([^']*)'$/) do |button|
   click_button(button)
 end
 
+Given /^点击按钮或链接 '([^']*)'$/ do |link_button|
+  click_on(link_button)
+end
+
+Given(/^对话框中点击 '([^']*)'$/) do |text|
+  accept_confirm(text)
+end
+
+Given(/^确定alert$/) do
+  accept_alert
+end
+
 Given(/^等待 ([^']*) 秒$/) do |second|
   sleep(second.to_i)
 end
@@ -47,6 +59,10 @@ end
 
 Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
   elements.split(',').each do |element|
-    raise "页面上未找到#{element}" unless page.has_content?(element)
+    expect(page).to have_content(element)
   end
+end
+
+Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
+  first(:select, id).find(:option, text).select_option
 end

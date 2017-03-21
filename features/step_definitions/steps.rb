@@ -36,6 +36,14 @@ Given(/^点击按钮 '([^']*)'$/) do |button|
   click_button(button)
 end
 
+Given(/^对话框中点击 '([^']*)'$/) do |text|
+  accept_confirm(text)
+end
+
+Given(/^确定alert$/) do
+  accept_alert
+end
+
 Given(/^等待 ([^']*) 秒$/) do |second|
   sleep(second.to_i)
 end
@@ -43,4 +51,8 @@ end
 Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
   element_id = ELEMENT_MAPPING[element]
   find_by_id(element_id).should have_content(value)
+end
+
+Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
+  first(:select, id).find(:option, text).select_option
 end

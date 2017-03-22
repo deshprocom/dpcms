@@ -3,7 +3,8 @@ ActiveAdmin.register Race do
   controller.include RaceHelper
   config.batch_actions = false
   menu label: I18n.t('race.manage'), priority: 1
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :ticket_price,
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+                :ticket_price, :ticket_sellable, :describable,
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description]
   RACE_STATUSES = Race.statuses.keys

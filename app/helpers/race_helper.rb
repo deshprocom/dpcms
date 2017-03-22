@@ -40,7 +40,7 @@ module RaceHelper
   end
 
   def show_big_logo_link(race)
-    link_to image_tag(race.preview_logo), race.big_logo, target: '_blank'
+    link_to image_tag(race.preview_logo, height: 150), race.big_logo, target: '_blank'
   end
 
   def select_to_status(race)
@@ -73,10 +73,14 @@ module RaceHelper
                 title: I18n.t('active_admin.edit'),
                 class: 'member_link'
 
-    source.item I18n.t('active_admin.delete'), admin_race_path(race),
-                title:  I18n.t('active_admin.delete'),
-                class:  'delete_link member_link',
-                method: :delete,
-                data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+    cancel_sell_ticket_link(race)
+  end
+
+  def cancel_sell_ticket_link(race)
+    link_to I18n.t('race.cancel_sell'), admin_race_path(race),
+            title:  I18n.t('race.cancel_sell'),
+            class:  'member_link',
+            method: :post,
+            data:   { confirm: I18n.t('race.cancel_sell_confirmation') }
   end
 end

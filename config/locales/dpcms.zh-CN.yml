@@ -19,6 +19,8 @@
       selling: '售票中'
       end: '售票结束'
       sold_out: '已售完'
+    cancel_sell_confirmation: '确定取消售票？'
+    cancel_sell: '取消售票'
   unpaid: '待付款'
   paid: '待发货'
   completed: '已完成'

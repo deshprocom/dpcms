@@ -1,0 +1,38 @@
+#ticket_manage {
+  height: 500px;
+  font-size: 16px;
+  > div {
+    width: 100%;
+    border-bottom: 1px solid #D3D3D3;
+    padding-left: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    float: left;
+  }
+
+  div {
+    padding: 10px;
+  }
+
+  .float_container {
+    div {
+      width: 30%;
+      height: 100%;
+      float: left;
+      padding-right: 10px;
+    }
+  }
+
+  .vertical {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  ul {
+    list-style:none;
+    li { padding: 3px;}
+  }
+
+  .red { color:red; }
+}

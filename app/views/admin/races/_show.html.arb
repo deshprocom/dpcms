@@ -23,7 +23,8 @@ context.instance_eval do
       #     row :entity_ticket_sold_number
       #   end
       # end
-      # render 'ticket_manage'
+
+      render 'ticket_manage', race: race, ticket_info: race.ticket_info
     end
   end
 end

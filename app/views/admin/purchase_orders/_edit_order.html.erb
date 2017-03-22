@@ -1,4 +1,5 @@
-<div>
+<div class="order_container">
+  <%= render 'order_operation', { status: @purchase_order.status } %>
   <h3>订单信息</h3><hr>
   <%= render 'order_info' %>
   <%= render 'race_info', { race: @purchase_order.race } %><br>

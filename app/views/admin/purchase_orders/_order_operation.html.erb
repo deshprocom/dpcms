@@ -1,0 +1,11 @@
+<div class="order_operation">
+  <span class="oper_zero">订单状态：</span><span class="oper_one"><%= I18n.t("order.#{status}") %></span>
+  <span>
+    <% if status.eql?('unpaid') %>
+      <button class="oper_two">确认已付款</button>
+    <% elsif status.eql?('paid') %>
+      <button class="oper_two">完成订单</button>
+    <% end %>
+  </span>
+</div>
+<br><br>

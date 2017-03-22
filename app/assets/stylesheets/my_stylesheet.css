@@ -52,3 +52,18 @@
     max-width:400px;
 }
 
+.order_operation{
+    margin-left: 73%;
+}
+
+.order_operation .oper_zero, .oper_one{
+    font-size: 14px;
+}
+
+.order_operation .oper_one{
+    color: blue;
+}
+
+.order_operation .oper_two{
+    margin-left:37px;
+}

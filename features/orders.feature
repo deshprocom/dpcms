@@ -45,3 +45,14 @@ Feature: 订单首页
     And 确定alert
     And 等待 2 秒
     Then 应该能找到 '已实名' 这些信息
+
+  Scenario: 修改收货信息
+    When 访问 '订单列表页'
+    When 点击链接 '编辑'
+    And 点击按钮或链接 '修改'
+    And 在 '邮箱' 填入 'test@deshpro.com'
+    And 点击按钮或链接 '更新'
+    And 对话框中点击 '确定'
+    And 确定alert
+    And 等待 2 秒
+    Then 应该能找到 'test@deshpro.com' 这些信息

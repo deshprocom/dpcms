@@ -12,6 +12,7 @@ INPUT_MAPPING = {
   race_race_desc_attributes_description: '赛事描述',
   race_ticket_info_attributes_e_ticket_number: '总电子票数',
   order_price: '实付金额',
+  email: '邮箱'
 }.invert
 
 ELEMENT_MAPPING = {

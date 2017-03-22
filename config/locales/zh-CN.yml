@@ -54,5 +54,7 @@
         completed: '已完成'
         canceled: '已取消'
         ticket_type: '票务类型'
+        user_user_uuid: '用户ID'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
       user_extra:
         real_name: "真实姓名"

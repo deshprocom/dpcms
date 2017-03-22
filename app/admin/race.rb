@@ -1,19 +1,25 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Race do
   controller.include RaceHelper
-  menu label: '赛事列表', priority: 1
+  config.batch_actions = false
+  menu label: I18n.t('race.manage'), priority: 1
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :ticket_price,
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description]
   RACE_STATUSES = Race.statuses.keys
+  TICKET_STATUSES = Race.ticket_statuses.keys
 
   filter :name
-  filter :location
-  filter :begin_date
-  filter :status, as: :select, collection: RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
+  filter :location, if: :in_race_list?
+  filter :begin_date, if: :in_race_list?
+  filter :status, as: :select, collection: RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }, if: :in_race_list?
 
-  index do
+  index title: I18n.t('race.list'), as: RacesIndex do
     render 'index', context: self
+  end
+
+  index title: I18n.t('race.ticket_manage'), as: TicketManageIndex do
+    render 'ticket_manage_index', context: self
   end
 
   show do
@@ -22,8 +28,9 @@ ActiveAdmin.register Race do
 
   form partial: 'form'
 
-  before_action :unpublished?, only: [:destroy]
   controller do
+    before_action :unpublished?, only: [:destroy]
+
     def unpublished?
       @race = Race.find(params[:id])
       return unless @race.published?
@@ -34,9 +41,6 @@ ActiveAdmin.register Race do
   end
 
   member_action :change_status, method: :put do
-    unless params[:status].in? RACE_STATUSES
-      return render json: { error: 'ParamsError' }, status: 404
-    end
     resource.send("#{params[:status]}!")
     render json: resource
   end

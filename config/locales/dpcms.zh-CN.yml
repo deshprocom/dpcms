@@ -1,5 +1,4 @@
 "zh-CN":
-  票务管理: 'ticket_manage'
   race:
     unbegin: '未开始'
     go_ahead: '进行中'
@@ -12,7 +11,14 @@
     destroy_error: '已发布的赛事，不允许删除'
     period: '赛事时间'
     detail: '赛事详情'
+    list:   '赛事列表'
+    manage: '赛事管理'
     ticket_manage: '票务管理'
+    ticket_status:
+      unsold: '未售票'
+      selling: '售票中'
+      end: '售票结束'
+      sold_out: '已售完'
   unpaid: '待付款'
   paid: '待发货'
   completed: '已完成'

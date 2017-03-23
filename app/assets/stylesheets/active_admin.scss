@@ -1,3 +1,4 @@
+//= require_tree ./admin
 // SASS variable overrides must be declared before loading up Active Admin's styles.
 //
 // To view the variables that Active Admin provides, take a look at
@@ -13,5 +14,6 @@
 
 // Overriding any non-variable SASS must be done after the fact.
 // For example, to change the default status-tag color:
-//
-//   .status_tag { background: #6090DB; }
+.indexes {
+  float: none;
+}

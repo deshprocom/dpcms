@@ -41,6 +41,10 @@ Given(/^点击按钮 '([^']*)'$/) do |button|
   click_button(button)
 end
 
+Given /^点击按钮或链接 '([^']*)'$/ do |link_button|
+  click_on(link_button)
+end
+
 Given(/^对话框中点击 '([^']*)'$/) do |text|
   accept_confirm(text)
 end
@@ -56,6 +60,12 @@ end
 Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
   element_id = ELEMENT_MAPPING[element]
   find_by_id(element_id).should have_content(value)
+end
+
+Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
+  elements.split(',').each do |element|
+    expect(page).to have_content(element)
+  end
 end
 
 Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|

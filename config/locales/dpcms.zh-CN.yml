@@ -28,4 +28,13 @@
   paid: '待发货'
   completed: '已完成'
   canceled: '已取消'
-
+  order:
+    unpaid: '待付款'
+    paid: '待发货'
+    completed: '已完成'
+    canceled: '已取消'
+  user_extra:
+    init: '未提交'
+    pending: '审核中'
+    passed: '已实名'
+    failed: '未通过'

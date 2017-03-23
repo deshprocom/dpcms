@@ -13,7 +13,7 @@ ActiveAdmin.register PurchaseOrder do
 
   filter :order_number
   filter :created_at
-  filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t(key), key] }
+  filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }
 
   index do
     id_column
@@ -26,16 +26,16 @@ ActiveAdmin.register PurchaseOrder do
       order.user.user_extra.real_name
     end
     column '实名状态', :user_status do |order|
-      order.user.user_extra.status.eql?('passed') ? '已实名' : '未实名'
+      I18n.t("user_extra.#{order.user.user_extra.status}")
     end
     column :original_price
     column :price
     column :status do |order|
-      I18n.t(order.status)
+      I18n.t("order.#{order.status}")
     end
     actions name: '操作', defaults: false do |order|
-      item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
-      item '取消', cancel_admin_purchase_order_path(order), data: { confirm: '确定取消吗？' }, method: :post
+      item '编辑', edit_admin_purchase_order_path(order), class: 'member_link', id: 'edit'
+      item '取消', cancel_admin_purchase_order_path(order), id: 'cancer', data: { confirm: '确定取消吗？' }, method: :post
     end
   end
 

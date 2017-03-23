@@ -12,9 +12,14 @@ Given(/^访问 '([^']*)'$/) do |location|
   expect(page).to have_current_path(path)
 end
 
+Given(/^前往 '([^']*)'$/) do |location|
+  path = TARGET_PATH_MAPPING[location].to_s
+  visit URI.escape(path)
+  expect(page).to have_current_path(path)
+end
+
 Given(/^应到达 '([^']*)'$/) do |location|
-  path = send(PATH_MAPPING[location])
-  page.current_path
+  path = TARGET_PATH_MAPPING[location].to_s
   expect(page).to have_current_path(path)
 end
 
@@ -55,4 +60,20 @@ end
 
 Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
   first(:select, id).find(:option, text).select_option
+end
+
+Then(/^列表中应只有 '([^']*)' 条数据$/) do |number|
+  expect(first('tbody').all('tr').size).to eq(number.to_i)
+end
+
+Given(/^不勾选 '([^']*)'$/) do |text|
+  uncheck(text)
+end
+
+Then(/^应有提示暂无相应内容$/) do
+  expect(page).to have_css('.blank_slate_container .blank_slate')
+end
+
+Then(/^应得到错误提示 '([^']*)'$/) do |text|
+  expect(find('.flash_error')).to  have_text(text)
 end

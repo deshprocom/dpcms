@@ -28,5 +28,16 @@ Given(/^调用api 应成功获取该赛事详情/) do
   expect(data['status']).to   eq(race.status)
   expect(data['logo']).to     eq(race.preview_logo)
   expect(data['big_logo']).to eq(race.big_logo)
+  expect(data['ticket_status']).to eq(race.ticket_status)
 end
 
+Given(/^调用api 应取消售票成功/) do
+  sleep 0.5
+  race = Race.first
+  result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body
+  puts result['msg']
+  expect(result['code']).to   eq(0)
+  data = result['data']
+  expect(data['ticket_sellable']).to  eq(race.ticket_sellable)
+  expect(data['ticket_sellable']).to  eq(false)
+end

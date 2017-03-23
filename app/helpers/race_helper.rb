@@ -15,14 +15,6 @@ module RaceHelper
     end
   end
 
-  def race_status_with_trans
-    RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
-  end
-
-  def ticket_status_with_trans
-    TICKET_STATUSES.collect { |d| [I18n.t("race.ticket_status.#{d}"), d] }
-  end
-
   def logo_link_to_show(race)
     link_to race.logo.url ? image_tag(race.preview_logo, height: 150) : '', admin_race_path(race)
   end
@@ -36,7 +28,7 @@ module RaceHelper
   end
 
   def format_ticket_price(race)
-    "#{race.ticket_price} 元"
+    "RMB #{race.ticket_price} 元"
   end
 
   def show_big_logo_link(race)
@@ -44,13 +36,17 @@ module RaceHelper
   end
 
   def select_to_status(race)
-    select_tag :status, options_for_select(race_status_with_trans, race.status),
+    select_tag :status, options_for_select(TRANS_RACE_STATUSES, race.status),
                data: { before_val: race.status, id: race.id },
                class: 'ajax_change_status'
   end
 
+  def surplus_ticket(ticket_info)
+    content_tag :span, "剩余#{ticket_info.surplus_e_ticket}张电子票，#{ticket_info.surplus_e_ticket}张实体票", class: :red
+  end
+
   def select_to_ticket_status(race)
-    select_tag :ticket_status, options_for_select(ticket_status_with_trans, race.ticket_status),
+    select_tag :ticket_status, options_for_select(TRANS_TICKET_STATUSES, race.ticket_status),
                data: { before_val: race.ticket_status, id: race.id },
                class: 'ajax_change_status'
   end
@@ -77,7 +73,7 @@ module RaceHelper
   end
 
   def cancel_sell_ticket_link(race)
-    link_to I18n.t('race.cancel_sell'), admin_race_path(race),
+    link_to I18n.t('race.cancel_sell'), cancel_sell_admin_race_path(race),
             title:  I18n.t('race.cancel_sell'),
             class:  'member_link',
             method: :post,

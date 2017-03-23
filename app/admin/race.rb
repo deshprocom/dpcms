@@ -1,6 +1,5 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Race do
-  controller.include RaceHelper
   config.batch_actions = false
   menu label: I18n.t('race.manage'), priority: 1
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
@@ -8,12 +7,15 @@ ActiveAdmin.register Race do
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description]
   RACE_STATUSES = Race.statuses.keys
+  TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
   TICKET_STATUSES = Race.ticket_statuses.keys
+  TRANS_TICKET_STATUSES = TICKET_STATUSES.collect { |d| [I18n.t("race.ticket_status.#{d}"), d] }
 
   filter :name
-  filter :location, if: :in_race_list?
-  filter :begin_date, if: :in_race_list?
-  filter :status, as: :select, collection: RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }, if: :in_race_list?
+  filter :location
+  filter :begin_date
+  filter :status, as: :select, collection: TRANS_RACE_STATUSES, if: :in_race_list?
+  filter :ticket_status, as: :select, collection: TRANS_TICKET_STATUSES, if: :in_ticket_manage?
 
   index title: I18n.t('race.list'), as: RacesIndex do
     render 'index', context: self
@@ -30,6 +32,7 @@ ActiveAdmin.register Race do
   form partial: 'form'
 
   controller do
+    include RaceHelper
     before_action :unpublished?, only: [:destroy]
 
     def unpublished?
@@ -38,6 +41,12 @@ ActiveAdmin.register Race do
 
       flash[:error] = I18n.t('race.destroy_error')
       redirect_back fallback_location: admin_races_url
+    end
+
+    def scoped_collection
+      return super.ticket_sellable if in_ticket_manage?
+
+      super
     end
   end
 
@@ -49,7 +58,6 @@ ActiveAdmin.register Race do
   member_action :publish, method: :post do
     race = Race.find(params[:id])
     race.publish!
-    race.update(ticket_status: 'selling')
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.publish_notice')
   end
 
@@ -58,6 +66,15 @@ ActiveAdmin.register Race do
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.unpublish_notice')
   end
 
+  member_action :cancel_sell, method: :post do
+    race = Race.find(params[:id])
+    unless race.ticket_status == 'unsold'
+      flash[:error] = I18n.t('race.cancel_sell_error')
+      return redirect_back fallback_location: admin_races_url
+    end
+    race.cancel_sell!
+    redirect_back fallback_location: admin_races_url, notice: I18n.t('race.cancel_sell_notice')
+  end
 
   action_item :publish, only: :show do
     publish_status_link(race)

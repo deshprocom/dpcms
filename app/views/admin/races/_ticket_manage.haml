@@ -6,7 +6,7 @@
       %li= Race.human_attribute_name(:name) + ': ' + race.name
       %li= I18n.t('race.period') + ': ' + race_period(race)
       %li= Race.human_attribute_name(:location) + ': ' + race.location
-      %li.red= "剩余#{ticket_info.surplus_e_ticket}张电子票，#{ticket_info.surplus_e_ticket}张实体票"
+      %li= surplus_ticket(ticket_info)
   %div
     %div
       %ul
@@ -17,7 +17,7 @@
     %span 票务金额管理
   %div
     %span 票金额：
-    %span.red=race.ticket_price
+    %span.red= format_ticket_price(race)
 %div
   %div
     %div 票数管理

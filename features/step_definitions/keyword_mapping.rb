@@ -3,6 +3,12 @@ PATH_MAPPING = {
     new_admin_race_path: '新建赛事页'
 }.invert
 
+TARGET_PATH_MAPPING = {
+  '/admin/races': '赛事列表页',
+  '/admin/races/new': '新建赛事页',
+  '/admin/races?as=票务管理': '票务管理列表页',
+}.invert
+
 INPUT_MAPPING = {
   race_name: '赛事标题',
   race_prize: '奖池',

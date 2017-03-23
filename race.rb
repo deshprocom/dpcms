@@ -34,6 +34,7 @@ class Race < ApplicationRecord
   ransacker :status, formatter: proc { |v| statuses[v] }
 
   scope :seq_desc, -> { order(seq_id: :desc) }
+  scope :ticket_sellable, -> { where(ticket_sellable: true) }
 
   after_initialize do
     self.begin_date ||= Date.current
@@ -50,6 +51,10 @@ class Race < ApplicationRecord
 
   def unpublish!
     update(published: false)
+  end
+
+  def cancel_sell!
+    update(ticket_sellable: false)
   end
 
   def preview_logo

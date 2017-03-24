@@ -1,8 +1,0 @@
-<table>
-  <tr>
-    <td>商品信息：<%= @purchase_order.ticket_type.eql?('e_ticket') ? '电子票' : '实体票' %></td>
-    <td>订单编号：<%= @purchase_order.order_number %></td>
-    <td>订单状态：<%= I18n.t("order.#{@purchase_order.status}") %></td>
-    <td>下单时间：<%= @purchase_order.created_at %></td>
-  </tr>
-</table>

@@ -1,0 +1,17 @@
+.order_info{
+  .operation{
+    margin-left: 73%;
+
+    .label, .status{
+      font-size: 14px;
+    }
+
+    .status{
+      color: blue;
+    }
+
+    .paid, .success{
+      margin-left:37px;
+    }
+  }
+}

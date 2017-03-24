@@ -42,7 +42,7 @@ module RaceHelper
   end
 
   def surplus_ticket(ticket_info)
-    content_tag :span, "剩余#{ticket_info.surplus_e_ticket}张电子票，#{ticket_info.surplus_e_ticket}张实体票", class: :red
+    content_tag :span, "剩余#{ticket_info.surplus_e_ticket}张电子票，#{ticket_info.surplus_entity_ticket}张实体票", class: :red
   end
 
   def select_to_ticket_status(race)

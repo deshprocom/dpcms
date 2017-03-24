@@ -1,0 +1,60 @@
+module Services
+  class TicketNumberModifier
+    include Serviceable
+    attr_accessor :ticket_info
+
+    def initialize(ticket_info, params)
+      self.ticket_info = ticket_info
+      @e_ticket_increment      = params[:e_ticket_increment].to_i
+      @e_ticket_decrement      = params[:e_ticket_decrement].to_i
+      @entity_ticket_increment = params[:entity_ticket_increment].to_i
+      @entity_ticket_decrement = params[:entity_ticket_decrement].to_i
+    end
+
+    def call
+      if @e_ticket_increment > 0
+        increase_e_ticket
+      elsif @e_ticket_decrement > 0
+        decrease_e_ticket
+      elsif @entity_ticket_increment > 0
+        increase_entity_ticket
+      elsif @entity_ticket_decrement > 0
+        decrease_entity_ticket
+      else
+        ApiResult.error_result(1, '不能为空或为零')
+      end
+    end
+
+    def increase_e_ticket
+      ticket_info.increment!(:e_ticket_number, @e_ticket_increment)
+      race.update(ticket_status: 'selling') if race.ticket_status == 'sold_out'
+      ApiResult.success_result
+    end
+
+    def decrease_e_ticket
+      return ApiResult.error_result(1, '减去的票数大于剩余的票数') if ticket_info.surplus_e_ticket < @e_ticket_decrement
+
+      ticket_info.decrement!(:e_ticket_number, @e_ticket_decrement)
+      race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
+      ApiResult.success_result
+    end
+
+    def increase_entity_ticket
+      ticket_info.increment!(:entity_ticket_number, @entity_ticket_increment)
+      race.update(ticket_status: 'selling') if race.ticket_status == 'sold_out'
+      ApiResult.success_result
+    end
+
+    def decrease_entity_ticket
+      return ApiResult.error_result(1, '减去的票数大于剩余的票数')  if ticket_info.surplus_entity_ticket < @entity_ticket_decrement
+
+      ticket_info.decrement!(:entity_ticket_number, @entity_ticket_decrement)
+      race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
+      ApiResult.success_result
+    end
+
+    def race
+      ticket_info.race
+    end
+  end
+end

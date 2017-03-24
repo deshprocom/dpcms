@@ -8,19 +8,18 @@
         <%= f.input :location %>
         <%= f.input :begin_date %>
         <%= f.input :end_date %>
-        <%= f.input :status, as: :select, collection: race_status_with_trans %>
+        <%= f.input :status, as: :select, collection: TRANS_RACE_STATUSES %>
         <%= f.input :logo, as: :file,
                     hint: f.object.logo.present? ? image_tag(f.object.preview_logo) : nil %>
+        <%= f.input :ticket_sellable %>
+        <%= f.input :describable %>
         <%= f.semantic_fields_for :race_desc do |desc_form| %>
             <%= desc_form.input :description %>
         <% end %>
     <% end %>
 
     <%= f.semantic_fields_for :ticket_info do |info_form| %>
-        <%= f.inputs name: '门票数量信息' do %>
-            <%= info_form.input :e_ticket_number %>
-            <%= info_form.input :entity_ticket_number %>
-        <% end %>
+            <%= info_form.hidden_field :e_ticket_number %>
     <% end %>
 
     <%= f.actions %>

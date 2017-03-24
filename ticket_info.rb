@@ -23,4 +23,12 @@ class TicketInfo < ApplicationRecord
   def surplus_entity_ticket
     entity_ticket_number - entity_ticket_sold_number
   end
+
+  def e_ticket_sold_out?
+    e_ticket_sold_number >= e_ticket_number
+  end
+
+  def sold_out?
+    e_ticket_sold_number >= e_ticket_number && entity_ticket_sold_number >= entity_ticket_number
+  end
 end

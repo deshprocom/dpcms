@@ -15,4 +15,20 @@
 =end
 class TicketInfo < ApplicationRecord
   belongs_to :race
+
+  def surplus_e_ticket
+    e_ticket_number - e_ticket_sold_number
+  end
+
+  def surplus_entity_ticket
+    entity_ticket_number - entity_ticket_sold_number
+  end
+
+  def e_ticket_sold_out?
+    e_ticket_sold_number >= e_ticket_number
+  end
+
+  def sold_out?
+    e_ticket_sold_number >= e_ticket_number && entity_ticket_sold_number >= entity_ticket_number
+  end
 end

@@ -20,6 +20,8 @@
         ticket_status: "售票状态"
         ticket_price: "门票金额"
         published: "发布情况"
+        ticket_sellable: "是否可以售票"
+        describable: "是否有详情内容"
       ticket_info:
         e_ticket_number: "总电子票数"
         entity_ticket_number: "总实体票数"

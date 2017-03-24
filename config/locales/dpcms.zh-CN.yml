@@ -1,5 +1,4 @@
 "zh-CN":
-  票务管理: 'ticket_manage'
   race:
     unbegin: '未开始'
     go_ahead: '进行中'
@@ -9,10 +8,26 @@
     unpublish: '取消发布'
     publish_notice: '已发布赛事成功'
     unpublish_notice: '已取消发布赛事'
+    cancel_sell_notice: '已成功取消售票'
+    cancel_sell_error: '非未售票状态下，不允许取消售票'
     destroy_error: '已发布的赛事，不允许删除'
     period: '赛事时间'
     detail: '赛事详情'
+    list:   '赛事列表'
+    manage: '赛事管理'
     ticket_manage: '票务管理'
+    ticket_status:
+      unsold: '未售票'
+      selling: '售票中'
+      end: '售票结束'
+      sold_out: '已售完'
+    cancel_sell_confirmation: '确定取消售票？'
+    cancel_sell: '取消售票'
+    surplus_ticket: '剩余的票'
+  unpaid: '待付款'
+  paid: '待发货'
+  completed: '已完成'
+  canceled: '已取消'
   order:
     unpaid: '待付款'
     paid: '待发货'
@@ -23,5 +38,3 @@
     pending: '审核中'
     passed: '已实名'
     failed: '未通过'
-
-

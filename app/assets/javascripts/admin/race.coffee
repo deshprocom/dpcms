@@ -1,5 +1,5 @@
 $ ->
-  $(".col-status select").on("change", (e) ->
+  $("select.ajax_change_status").on("change", (e) ->
     this_select = $(this)
     before_val = this_select.data('before-val')
     after_val  = this_select.val()

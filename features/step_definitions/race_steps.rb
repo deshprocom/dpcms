@@ -41,3 +41,44 @@ Given(/^调用api 应取消售票成功/) do
   expect(data['ticket_sellable']).to  eq(race.ticket_sellable)
   expect(data['ticket_sellable']).to  eq(false)
 end
+
+When(/^新增电子票 '([^']*)' 张$/) do |number|
+  input_id = INPUT_MAPPING['新增电子票']
+  fill_in(input_id, with: number)
+  all(:button, '保存')[0].click
+  accept_alert
+end
+
+When(/^减少电子票 '([^']*)' 张$/) do |number|
+  input_id = INPUT_MAPPING['减少电子票']
+  fill_in(input_id, with: number)
+  all(:button, '保存')[1].click
+  accept_alert
+end
+
+When(/^新增实体票 '([^']*)' 张$/) do |number|
+  input_id = INPUT_MAPPING['新增实体票']
+  fill_in(input_id, with: number)
+  all(:button, '保存')[2].click
+  accept_alert
+end
+
+When(/^减少实体票 '([^']*)' 张$/) do |number|
+  input_id = INPUT_MAPPING['减少实体票']
+  fill_in(input_id, with: number)
+  all(:button, '保存')[3].click
+  accept_alert
+end
+
+
+When(/^电子票票数应变成 '([^']*)' 张$/) do |number|
+  sleep 0.5
+  ticket_info = TicketInfo.last
+  expect(ticket_info.e_ticket_number) .to eq(number.to_i)
+end
+
+When(/^实体票票数应变成 '([^']*)' 张$/) do |number|
+  sleep 0.5
+  ticket_info = TicketInfo.last
+  expect(ticket_info.entity_ticket_number) .to eq(number.to_i)
+end

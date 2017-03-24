@@ -15,3 +15,24 @@
     }
   }
 }
+
+.order_race_info{
+  table{
+    table-layout: fixed;
+  }
+
+  .change_price{
+
+  }
+
+  .update_price{
+    .order_price_modified{
+      display: inline-block;
+      margin-left: 50px;
+    }
+  }
+
+  .number{
+    color:red;
+  }
+}

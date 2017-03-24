@@ -12,6 +12,9 @@ module Services
     end
 
     def call
+      if race.ticket_status == 'selling'
+        return ApiResult.error_result(1, '处于售票中，不允许进行票数更改。请先将状态更改为售票结束。')
+      end
       if @e_ticket_increment > 0
         increase_e_ticket
       elsif @e_ticket_decrement > 0
@@ -32,8 +35,9 @@ module Services
     end
 
     def decrease_e_ticket
-      return ApiResult.error_result(1, '减去的票数大于剩余的票数') if ticket_info.surplus_e_ticket < @e_ticket_decrement
-
+      if ticket_info.surplus_e_ticket < @e_ticket_decrement
+        return ApiResult.error_result(1, '减去的票数不允许大于剩余的票数')
+      end
       ticket_info.decrement!(:e_ticket_number, @e_ticket_decrement)
       race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
       ApiResult.success_result
@@ -46,8 +50,9 @@ module Services
     end
 
     def decrease_entity_ticket
-      return ApiResult.error_result(1, '减去的票数大于剩余的票数')  if ticket_info.surplus_entity_ticket < @entity_ticket_decrement
-
+      if ticket_info.surplus_entity_ticket < @entity_ticket_decrement
+        return ApiResult.error_result(1, '减去的票数不允许大于剩余的票数')
+      end
       ticket_info.decrement!(:entity_ticket_number, @entity_ticket_decrement)
       race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
       ApiResult.success_result

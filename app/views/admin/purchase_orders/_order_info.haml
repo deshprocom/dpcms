@@ -1,0 +1,31 @@
+- order = @purchase_order
+
+.order_info
+  .operation
+    %span.label 订单状态：
+    %span.status= I18n.t("order.#{order.status}")
+    %span
+      - if order.status.eql? 'unpaid'
+        %button.paid 确认已付款
+      - elsif order.status.eql? 'paid'
+        %button.success 完成订单
+
+  %h3 订单信息
+  %hr
+
+  .detail
+    %table.detail_table
+      %tr
+        %td
+          %span 商品信息：
+          %span= order.ticket_type.eql?('e_ticket') ? '电子票' : '实体票'
+        %td
+          %span 订单编号：
+          %span= order.order_number
+        %td
+          %span 订单状态：
+          %span= I18n.t("order.#{order.status}")
+        %td
+          %span 下单时间：
+          %span= order.created_at
+

@@ -1,7 +1,5 @@
-<div>
-  <h3>订单信息</h3><hr>
+<div class="container">
   <%= render 'order_info' %>
-  <%= render 'race_info', { race: @purchase_order.race } %><br>
 
   <h3>用户账户信息</h3><hr>
   <%= render 'user', { user: @purchase_order.user } %><br>

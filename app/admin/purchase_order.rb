@@ -44,7 +44,11 @@ ActiveAdmin.register PurchaseOrder do
   member_action :cancel, method: :post do
     change_status = params[:change_status]
     resource.update!(status: change_status)
-    redirect_to action: 'index'
+    if change_status.eql? 'canceled'
+      redirect_to action: 'index'
+    else
+      render 'cancel_order'
+    end
   end
 
   member_action :change_status, method: :post do

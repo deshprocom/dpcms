@@ -35,11 +35,21 @@
             .status
               %span 实名状态：
               %span= I18n.t("user_extra.#{user_extra.status}")
+            - if user_extra.status.eql?('failed') && user_extra.memo.present?
+              .user_memo
+                %span 备忘信息：
+                %span= user_extra.memo
           - if %w(unpaid paid).include?(order.status) && user_extra.status != 'passed'
             %td
               .order_audit
                 = button_to '审核通过', user_audit_admin_user_path(user_extra.user_id), form_class: "audit_passed", remote: true, data: { confirm: "确定通过吗？" }
-                = button_to '审核不通过', user_audit_forbid_admin_user_path(user_extra.user_id), form_class: "audit_failed", remote: true, data: { confirm: "确定不通过吗？"}
+                %button.audit_failed 审核不通过
+              .order_audit_hidden
+                = form_tag(user_audit_forbid_admin_user_path(user_extra.user_id), method: 'post', remote: true) do
+                  = text_area_tag 'memo', nil, rows: 6, cols: 6, placeholder: '请输入不通过的理由！'
+                  .submit_box
+                    = submit_tag '提交', data: { confirm: '确定不通过吗？' }
+                    %button.cancel_audit 取消
 
 
 

@@ -66,11 +66,11 @@
         width: 400px;
       }
 
-      .real_name, .card_id, .status{
+      .real_name, .card_id, .status, .user_memo{
         font-size: 14px;
       }
 
-      .card_id, .status{
+      .card_id, .status, .user_memo{
         margin-top: 20px;
       }
 
@@ -83,6 +83,10 @@
         display: inline-block;
       }
     }
+  }
+
+  .order_audit_hidden{
+    display: none;
   }
 }
 

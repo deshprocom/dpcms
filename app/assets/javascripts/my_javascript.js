@@ -24,4 +24,15 @@ $(function(){
         $(".ticket_order").show();
         return false;
     })
+
+    $(".order_audit .audit_failed").bind('click', function(){
+        $(".order_audit_hidden").show();
+        $(".order_audit").hide();
+    })
+
+    $(".order_audit_hidden .cancel_audit").bind('click', function(){
+        $(".order_audit").show();
+        $(".order_audit_hidden").hide();
+        return false
+    })
 })

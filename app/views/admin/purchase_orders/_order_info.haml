@@ -6,9 +6,11 @@
     %span.status= I18n.t("order.#{order.status}")
     %span
       - if order.status.eql? 'unpaid'
-        %button.paid 确认已付款
+        = form_tag(cancel_admin_purchase_order_path(order, change_status: 'paid'), method: 'post') do
+          = submit_tag '确认已付款', data: { confirm: '确定操作吗？' }
       - elsif order.status.eql? 'paid'
-        %button.success 完成订单
+        = form_tag(cancel_admin_purchase_order_path(order, change_status: 'completed'), method: 'post') do
+          = submit_tag '完成订单', data: { confirm: '确定操作吗？' }
 
   %h3 订单信息
   %hr

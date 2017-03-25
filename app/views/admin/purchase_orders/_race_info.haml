@@ -32,7 +32,7 @@
             %label{ for: 'order_price' } 实付金额：
             = text_field_tag(:order_price)
             = submit_tag '保存', data: { confirm: '确定更新吗？' }
-            %button.order_cancel 取消
+            %button.order_button_cancel 取消
         .update_price
           - if order.status.eql? 'unpaid'
             .order_price_modified

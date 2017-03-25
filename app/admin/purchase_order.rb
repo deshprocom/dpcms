@@ -36,13 +36,14 @@ ActiveAdmin.register PurchaseOrder do
       I18n.t("order.#{order.status}")
     end
     actions name: '操作', defaults: false do |order|
-      item '编辑', edit_admin_purchase_order_path(order), class: 'member_link', id: 'edit'
-      item '取消', cancel_admin_purchase_order_path(order), id: 'cancer', data: { confirm: '确定取消吗？' }, method: :post
+      item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
+      item '取消', cancel_admin_purchase_order_path(order, change_status: 'canceled'), data: { confirm: '确定取消吗？' }, method: :post
     end
   end
 
   member_action :cancel, method: :post do
-    resource.canceled!
+    change_status = params[:change_status]
+    resource.update!(status: change_status)
     redirect_to action: 'index'
   end
 

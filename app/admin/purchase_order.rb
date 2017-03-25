@@ -11,6 +11,8 @@ ActiveAdmin.register PurchaseOrder do
   scope :completed
   scope :canceled
 
+  filter :user_user_uuid, :as => :string
+  filter :user_email_or_user_mobile, :as => :string
   filter :order_number
   filter :created_at
   filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }

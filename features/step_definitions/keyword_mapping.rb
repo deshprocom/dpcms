@@ -19,6 +19,7 @@ INPUT_MAPPING = {
   race_ticket_info_attributes_e_ticket_number: '总电子票数',
   order_price: '实付金额',
   email: '邮箱',
+  memo: '备忘',
   e_ticket_increment: '新增电子票',
   e_ticket_decrement: '减少电子票',
   entity_ticket_increment: '新增实体票',

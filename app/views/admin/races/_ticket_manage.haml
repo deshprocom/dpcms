@@ -23,7 +23,7 @@
     %div 票数管理
     %div
       电子票：
-      %span.red= "剩余#{ticket_info.surplus_e_ticket}张"
+      %span.red= "共#{ticket_info.e_ticket_number}张，已售#{ticket_info.e_ticket_sold_number}张，剩余#{ticket_info.surplus_e_ticket}张"
     %div
       = form_tag(change_number_admin_ticket_info_path(ticket_info), method: :post) do
         %label 新增票数：
@@ -38,7 +38,7 @@
     %div &nbsp;
     %div
       实体票：
-      %span.red= "剩余#{ticket_info.surplus_entity_ticket}张"
+      %span.red= "共#{ticket_info.entity_ticket_number}张，已售#{ticket_info.entity_ticket_sold_number}张，剩余#{ticket_info.surplus_entity_ticket}张"
     %div
       = form_tag(change_number_admin_ticket_info_path(ticket_info), method: :post) do
         %label 新增票数：

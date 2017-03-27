@@ -24,9 +24,16 @@ class PurchaseOrder < ApplicationRecord
   belongs_to :race
   belongs_to :ticket
   has_one :snapshot, class_name: OrderSnapshot
+
   scope :formal_order, -> { where.not(status: 'canceled') }
+  scope :unpaid, -> { where(status: 'unpaid') }
+  scope :paid, -> { where(status: 'paid') }
+  scope :completed, -> { where(status: 'completed') }
+  scope :canceled, -> { where(status: 'canceled') }
 
   validates :order_number, presence: true
+
+  enum status: { unpaid: 'unpaid', paid: 'paid', completed: 'completed', canceled: 'canceled' }
 
   after_initialize do
     self.order_number ||= Services::UniqueNumberGenerator.call(PurchaseOrder)

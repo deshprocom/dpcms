@@ -1,4 +1,5 @@
 ActiveAdmin.register TicketInfo do
+  menu false
   member_action :change_number, method: :post do
     result = Services::TicketNumberModifier.call(resource, params)
     if result.failure?

@@ -30,16 +30,18 @@ Feature: 订单首页
 
   Scenario: 审核不通过
     When 访问 '订单列表页'
-    When 点击链接 '编辑'
+    And 点击链接 '编辑'
     And 点击按钮或链接 '审核不通过'
+    And 在 '备忘' 填入 '任性不让通过'
+    And 点击按钮或链接 '提交'
     And 对话框中点击 '确定'
     And 确定alert
     And 等待 2 秒
-    Then 应该能找到 '未通过' 这些信息
+    Then 应该能找到 '任性不让通过' 这些信息
 
   Scenario: 审核通过
     When 访问 '订单列表页'
-    When 点击链接 '编辑'
+    And 点击链接 '编辑'
     And 点击按钮或链接 '审核通过'
     And 对话框中点击 '确定'
     And 确定alert
@@ -48,7 +50,7 @@ Feature: 订单首页
 
   Scenario: 修改收货信息
     When 访问 '订单列表页'
-    When 点击链接 '编辑'
+    And 点击链接 '编辑'
     And 点击按钮或链接 '修改'
     And 在 '邮箱' 填入 'test@deshpro.com'
     And 点击按钮或链接 '更新'
@@ -56,3 +58,17 @@ Feature: 订单首页
     And 确定alert
     And 等待 2 秒
     Then 应该能找到 'test@deshpro.com' 这些信息
+
+  Scenario: 待付款 -> 已付款   已付款 -> 已完成
+    When 访问 '订单列表页'
+    And 点击链接 '编辑'
+    And 点击按钮或链接 '确认已付款'
+    And 对话框中点击 '确定'
+    And 确定alert
+    And 等待 2 秒
+    Then 应该能找到 '待发货' 这些信息
+    And 点击按钮或链接 '完成订单'
+    And 对话框中点击 '确定'
+    And 确定alert
+    And 等待 2 秒
+    Then 应该能找到 '已完成' 这些信息

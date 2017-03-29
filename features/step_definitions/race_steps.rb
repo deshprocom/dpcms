@@ -11,14 +11,14 @@ end
 
 Given(/^调用api 应无法获取该赛事详情$/) do
   race = Race.last
-  result = DpApiRemote.get("u/0/races/#{race.id}")
+  result = DpApiRemote.get("u/0/races/#{race.id}/detail")
   puts result.parsed_body
   expect(result.parsed_body['code']).to eq 1100006
 end
 
 Given(/^调用api 应成功获取该赛事详情/) do
   race = Race.first
-  result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body
+  result = DpApiRemote.get("u/0/races/#{race.id}/detail").parsed_body
   puts result['msg']
   expect(result['code']).to   eq(0)
   data = result['data']
@@ -34,7 +34,7 @@ end
 Given(/^调用api 应取消售票成功/) do
   sleep 0.5
   race = Race.first
-  result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body
+  result = DpApiRemote.get("u/0/races/#{race.id}/detail").parsed_body
   puts result['msg']
   expect(result['code']).to   eq(0)
   data = result['data']

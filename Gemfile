@@ -54,7 +54,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
-  gem 'capybara-console'
+  gem 'poltergeist'
 end
 
 group :development do

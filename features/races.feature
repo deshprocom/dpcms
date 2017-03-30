@@ -56,7 +56,7 @@ Feature: 赛事首页
     And 点击链接 '取消发布'
     And 点击链接 '删除赛事'
     When 对话框中点击 '确定'
-    Then 调用api 应无法获取该赛事详情
+    Then 应到达 '赛事列表页'
 
   Scenario: 编辑赛事详情
     Given 访问赛事详情页 创建数据

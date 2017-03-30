@@ -2,7 +2,7 @@ module Services
   class TicketNumberModifier
     include Serviceable
     attr_accessor :ticket_info
-
+    delegate :race, to: :ticket_info
     def initialize(ticket_info, params)
       self.ticket_info = ticket_info
       @e_ticket_increment      = params[:e_ticket_increment].to_i
@@ -15,13 +15,13 @@ module Services
       if race.ticket_status == 'selling'
         return ApiResult.error_result(1, '处于售票中，不允许进行票数更改。请先将状态更改为售票结束。')
       end
-      if @e_ticket_increment > 0
+      if @e_ticket_increment.positive?
         increase_e_ticket
-      elsif @e_ticket_decrement > 0
+      elsif @e_ticket_decrement.positive?
         decrease_e_ticket
-      elsif @entity_ticket_increment > 0
+      elsif @entity_ticket_increment.positive?
         increase_entity_ticket
-      elsif @entity_ticket_decrement > 0
+      elsif @entity_ticket_decrement.positive?
         decrease_entity_ticket
       else
         ApiResult.error_result(1, '不能为空或为零')
@@ -56,10 +56,6 @@ module Services
       ticket_info.decrement!(:entity_ticket_number, @entity_ticket_decrement)
       race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
       ApiResult.success_result
-    end
-
-    def race
-      ticket_info.race
     end
   end
 end

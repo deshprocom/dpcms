@@ -85,5 +85,5 @@ Then(/^应有提示暂无相应内容$/) do
 end
 
 Then(/^应得到错误提示 '([^']*)'$/) do |text|
-  expect(find('.flash_error')).to  have_text(text)
+  expect(find('.flash_error')).to have_text(text)
 end

@@ -13,6 +13,6 @@ ActiveAdmin.register User do
     memo = params[:memo] || user_extra.memo
     user_extra = resource.user_extra
     return render 'user_audit_failed' if user_extra.blank?
-    user_extra.update!({ memo: memo, status: 'failed' })
+    user_extra.update!(memo: memo, status: 'failed')
   end
 end

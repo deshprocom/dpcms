@@ -6,8 +6,9 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 ENV['RAILS_ENV'] = 'test'
-ENV['DP_DATABASE_TEST'] = 'deshpro_s_i_t'
+ENV['DP_DATABASE_TEST'] ||= 'deshpro_s_i_t'
 require 'cucumber/rails'
+require 'capybara/poltergeist'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -18,8 +19,21 @@ require 'cucumber/rails'
 Capybara.register_driver :selenium_chrome do |app|
   Capybara::Selenium::Driver.new app, browser: :chrome
 end
-Capybara.default_driver = :selenium_chrome
-
+Capybara.register_driver :poltergeist do |app|
+  options = {
+    js_errors: true,
+    timeout:   120,
+    debug:     false,
+    phantomjs_options: ['--load-images=no', '--disk-cache=false'],
+    inspector: true,
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+if ENV['CAPYBARA_DRIVER'] == 'chrome'
+  Capybara.default_driver = :selenium_chrome
+else
+  Capybara.default_driver = :poltergeist
+end
 # By default, any exception happening in your Rails application will bubble up
 # to Cucumber so that your scenario will fail. This is a different from how
 # your application behaves in the production environment, where an error page will

@@ -6,7 +6,7 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 ENV['RAILS_ENV'] = 'test'
-ENV['DP_DATABASE_TEST'] = 'deshpro_s_i_t'
+ENV['DP_DATABASE_TEST'] ||= 'deshpro_s_i_t'
 require 'cucumber/rails'
 require 'capybara/poltergeist'
 

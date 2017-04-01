@@ -1,4 +1,5 @@
 - order = @purchase_order
+- auth_status = order.user.user_extra.present? && order.user.user_extra.status.eql?('passed')
 
 .order_info
   .operation
@@ -7,10 +8,10 @@
     %span
       - if order.status.eql? 'unpaid'
         = form_tag(cancel_admin_purchase_order_path(order, change_status: 'paid'), method: 'post', remote: true) do
-          = submit_tag '确认已付款', data: { confirm: '确定操作吗？' }
+          = submit_tag '确认已付款', data: { confirm: '确定操作吗？', status: auth_status }
       - elsif order.status.eql? 'paid'
         = form_tag(cancel_admin_purchase_order_path(order, change_status: 'completed'), method: 'post', remote: true) do
-          = submit_tag '完成订单', data: { confirm: '确定操作吗？' }
+          = submit_tag '完成订单', data: { confirm: '确定操作吗？', status: auth_status }
 
   %h3 订单信息
   %hr

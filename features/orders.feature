@@ -59,6 +59,7 @@ Feature: 订单首页
     And 点击按钮或链接 '审核通过'
     And 对话框中点击 '确定'
     And 确定alert
+    And 等待 1 秒
     And 点击按钮或链接 '确认已付款'
     And 对话框中点击 '确定'
     And 确定alert

@@ -56,6 +56,9 @@ Feature: 订单首页
   Scenario: 待付款 -> 已付款   已付款 -> 已完成
     When 访问 '订单列表页'
     And 点击链接 '编辑'
+    And 点击按钮或链接 '审核通过'
+    And 对话框中点击 '确定'
+    And 确定alert
     And 点击按钮或链接 '确认已付款'
     And 对话框中点击 '确定'
     And 确定alert

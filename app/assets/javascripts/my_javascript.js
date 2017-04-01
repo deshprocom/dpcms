@@ -35,4 +35,11 @@ $(function(){
         $(".order_audit_hidden").hide();
         return false
     })
+
+    $(".operation input[type='submit']").bind('click', function(){
+        if(!$(".operation input[data-status]").data('status')){
+            alert('用户尚未通过实名审核!')
+            return false;
+        }
+    })
 })

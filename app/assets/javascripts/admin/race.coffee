@@ -24,41 +24,45 @@ $ ->
       return
 
   if $('.ticket_number_manage').length > 0
-    class shake_ticketing
+    class ShakeTicketing
       constructor: ->
         @ticket_info_id = $('#ticket_info_id').val();
         @shake_font_size = '25px'
         @original_font_size = '16px'
         @start()
 
-      timer: ->
-        console.log 'do something'
-
-      setInterval: ->
-        setInterval @start, 1000
-
-      test: ->
-        return 'test'
       start: ->
         shake_ticketing = @
         $.ajax
           url: "/admin/ticket_infos/" + @ticket_info_id + ".json"
           type: "get"
           success: (res) ->
-            console.log(222)
             shake_ticketing.shake_entity_ticket(res)
-      shake_e_ticket: ->
-        't'
+            shake_ticketing.shake_e_ticket(res)
+            shake_ticketing.refresh_ticket(res)
 
-      shake_entity_ticket: (data) ->
-        ori_surplus_entity_ticket = $('#surplus_entity_ticket').data('surplus-entity-ticket')
-        unless ori_surplus_entity_ticket == data.surplus_entity_ticket
-          entity_ticket_text = "共#{data.entity_ticket_number}张，已售#{data.entity_ticket_sold_number}张，剩余#{data.surplus_entity_ticket}"
-          $('#surplus_entity_ticket').text(entity_ticket_text)
+      refresh_ticket: (data) ->
+        surplus_ticket_text = "剩余#{data.surplus_e_ticket}张电子票，#{data.surplus_entity_ticket}张实体票"
+        $('#surplus_ticket').text(surplus_ticket_text)
+
+      shake_e_ticket: (data) ->
+        ori_surplus_e_ticket = $('#e_ticket_text').data('surplus-e-ticket')
+        unless ori_surplus_e_ticket == data.surplus_e_ticket
+          e_ticket_text = "共#{data.e_ticket_number}张，已售#{data.e_ticket_sold_number}张，剩余#{data.surplus_e_ticket}"
+          $('#e_ticket_text').text(e_ticket_text)
             .animate({fontSize: @shake_font_size},"fast")
             .animate({fontSize: @original_font_size},"fast")
-          $('#surplus_entity_ticket').data('surplus-entity-ticket', data.surplus_entity_ticket)
+          $('#e_ticket_text').data('surplus-e-ticket', data.surplus_e_ticket)
 
-    new_shake_ticketing = -> new shake_ticketing()
-    setInterval(new_shake_ticketing, 1000)
+      shake_entity_ticket: (data) ->
+        ori_surplus_entity_ticket = $('#entity_ticket_text').data('surplus-entity-ticket')
+        unless ori_surplus_entity_ticket == data.surplus_entity_ticket
+          entity_ticket_text = "共#{data.entity_ticket_number}张，已售#{data.entity_ticket_sold_number}张，剩余#{data.surplus_entity_ticket}"
+          $('#entity_ticket_text').text(entity_ticket_text)
+            .animate({fontSize: @shake_font_size},"fast")
+            .animate({fontSize: @original_font_size},"fast")
+          $('#entity_ticket_text').data('surplus-entity-ticket', data.surplus_entity_ticket)
+
+    new_shake_ticketing = -> new ShakeTicketing()
+    setInterval(new_shake_ticketing, 2000)
 

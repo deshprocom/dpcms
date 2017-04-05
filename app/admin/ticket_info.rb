@@ -5,7 +5,7 @@ ActiveAdmin.register TicketInfo do
     if result.failure?
       flash[:error] = result.msg
     else
-      flash[:success] = '修改成功，请将售票状态更改回售票中'
+      flash[:success] = '票数修改成功'
     end
     redirect_to admin_race_path(resource.race, anchor: 'ticket_manage')
   end

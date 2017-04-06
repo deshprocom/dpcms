@@ -27,6 +27,7 @@ $ ->
     class ShakeTicketing
       constructor: ->
         @ticket_info_id = $('#ticket_info_id').val();
+        @race_id = $('#race_id').val();
         @shake_font_size = '25px'
         @original_font_size = '16px'
         @start()
@@ -34,7 +35,7 @@ $ ->
       start: ->
         shake_ticketing = @
         $.ajax
-          url: "/admin/ticket_infos/" + @ticket_info_id + ".json"
+          url: "/admin/races/#{@race_id}/ticket_infos/#{@ticket_info_id}.json"
           type: "get"
           success: (res) ->
             shake_ticketing.shake_entity_ticket(res)

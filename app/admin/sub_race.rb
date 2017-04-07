@@ -1,12 +1,12 @@
-# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Race, as: 'sub_races' do
   config.filters = false
   config.batch_actions = false
+
   belongs_to :race
   navigation_menu :default
   menu false
 
-  index title: '边赛列表' do
+  index title:  proc{ @race.name } do
     render 'index', context: self
   end
 
@@ -17,5 +17,4 @@ ActiveAdmin.register Race, as: 'sub_races' do
   form do |f|
     render 'form', f: f
   end
-
 end

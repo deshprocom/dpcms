@@ -1,5 +1,4 @@
 context.instance_eval do
-  h2 { race.name }
   column(:name, sortable: false) { |sub_race| link_to sub_race.name, admin_race_path(sub_race)}
   column(I18n.t('race.period'), sortable: :begin_date) { |sub_race| race_period(sub_race) }
   column(:location, sortable: false)

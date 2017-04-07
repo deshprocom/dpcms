@@ -38,3 +38,7 @@
     pending: '审核中'
     passed: '已实名'
     failed: '未通过'
+  player:
+    list: '牌手管理'
+
+

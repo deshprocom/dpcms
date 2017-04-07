@@ -6,7 +6,7 @@ ActiveAdmin.register Race, as: 'sub_races' do
   navigation_menu :default
   menu false
 
-  index title:  proc{ @race.name } do
+  index title: proc { @race.name } do
     render 'index', context: self
   end
 

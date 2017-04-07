@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Race, as: 'sub_races' do
   config.filters = false
   config.batch_actions = false
@@ -8,6 +9,22 @@ ActiveAdmin.register Race, as: 'sub_races' do
 
   index title: proc { @race.name } do
     render 'index', context: self
+  end
+
+  show do
+    render 'show', context: self
+  end
+
+  controller do
+    before_action :unpublished?, only: [:destroy]
+
+    def unpublished?
+      @sub_race = Race.find(params[:id])
+      return unless @sub_race.published?
+
+      flash[:error] = I18n.t('race.destroy_error')
+      redirect_back fallback_location: admin_races_url
+    end
   end
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :roy,

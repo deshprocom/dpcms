@@ -7,6 +7,7 @@ context.instance_eval do
   column('买入', :ticket_price, sortable: false)
   column(:participants, sortable: false)
   column(:roy, sortable: false)
+  column(:published, sortable: false) { |race| publish_status_link(race) }
   actions
 end
 

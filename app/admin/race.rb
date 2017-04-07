@@ -2,10 +2,7 @@
 ActiveAdmin.register Race do
   config.batch_actions = false
   menu label: I18n.t('race.manage'), priority: 1
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
-                :ticket_price, :ticket_sellable, :describable,
-                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
-                race_desc_attributes: [:description]
+
   RACE_STATUSES = Race.statuses.keys
   TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
   TICKET_STATUSES = Race.ticket_statuses.keys
@@ -29,6 +26,10 @@ ActiveAdmin.register Race do
     render 'show', context: self
   end
 
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+                :ticket_price, :ticket_sellable, :describable,
+                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
+                race_desc_attributes: [:description]
   form partial: 'form'
 
   controller do
@@ -44,9 +45,10 @@ ActiveAdmin.register Race do
     end
 
     def scoped_collection
-      return super.ticket_sellable if in_ticket_manage?
+      chain = super.main
+      return chain.ticket_sellable if in_ticket_manage?
 
-      super
+      chain
     end
   end
 

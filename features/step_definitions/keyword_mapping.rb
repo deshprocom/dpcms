@@ -1,13 +1,15 @@
 PATH_MAPPING = {
     admin_races_path: '赛事列表页',
     new_admin_race_path: '新建赛事页',
-    admin_purchase_orders_path: '订单列表页'
+    admin_purchase_orders_path: '订单列表页',
+    admin_players_path: '牌手管理页'
 }.invert
 
 TARGET_PATH_MAPPING = {
   '/admin/races': '赛事列表页',
   '/admin/races/new': '新建赛事页',
-  '/admin/races?as=票务管理': '票务管理列表页'
+  '/admin/races?as=票务管理': '票务管理列表页',
+  '/admin/players': '牌手管理页'
 }.invert
 
 INPUT_MAPPING = {

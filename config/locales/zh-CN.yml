@@ -8,6 +8,7 @@
       ticket: "用户的门票"
       ticket_info: "门票数量信息"
       purchase_order: "订单"
+      player: '牌手'
     attributes:
       race:
         name: "赛事标题"
@@ -67,3 +68,14 @@
         user_email_or_user_mobile: '用户账户(手机或邮箱)'
       user_extra:
         real_name: "真实姓名"
+      player:
+        name: '姓名'
+        avatar: '头像'
+        gender: '性别'
+        country: '国籍'
+        dpi_total_earning: 'DPI总奖金'
+        gpi_total_earning: 'GPI总奖金'
+        dpi_total_score: 'DPI总积分'
+        gpi_total_score: 'GPI总积分'
+        memo: '备注'
+

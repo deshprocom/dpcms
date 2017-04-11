@@ -1,12 +1,11 @@
 # rubocop:disable Metrics/BlockLength
+RACE_STATUSES = Race.statuses.keys
+TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
+TICKET_STATUSES = Race.ticket_statuses.keys
+TRANS_TICKET_STATUSES = TICKET_STATUSES.collect { |d| [I18n.t("race.ticket_status.#{d}"), d] }
 ActiveAdmin.register Race do
   config.batch_actions = false
   menu label: I18n.t('race.manage'), priority: 1
-
-  RACE_STATUSES = Race.statuses.keys
-  TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
-  TICKET_STATUSES = Race.ticket_statuses.keys
-  TRANS_TICKET_STATUSES = TICKET_STATUSES.collect { |d| [I18n.t("race.ticket_status.#{d}"), d] }
 
   filter :name
   filter :location

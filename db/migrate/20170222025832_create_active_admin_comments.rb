@@ -2,6 +2,8 @@
 
 class CreateActiveAdminComments < ActiveRecord::Migration::Current
   def self.up
+    return if table_exists? :admin_users
+
     create_table :active_admin_comments do |t|
       t.string :namespace
       t.text   :body

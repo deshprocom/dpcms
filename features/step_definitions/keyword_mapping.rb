@@ -18,6 +18,7 @@ INPUT_MAPPING = {
   race_prize: '奖池',
   race_location: '比赛地点',
   race_logo: '赛事图片',
+  race_participants: '参赛人数',
   race_race_desc_attributes_description: '赛事描述',
   race_ticket_info_attributes_e_ticket_number: '总电子票数',
   order_price: '实付金额',

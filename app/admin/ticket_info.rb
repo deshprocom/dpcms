@@ -1,5 +1,21 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register TicketInfo do
+  belongs_to :race
+  navigation_menu :default
   menu false
+  config.breadcrumb = false
+
+  show title: I18n.t('race.ticket_manage') do
+    render 'show', race: race, ticket_info: race.ticket_info
+  end
+
+  controller do
+    def find_resource
+      @race ||= Race.find(params[:race_id])
+      @race.ticket_info
+    end
+  end
+
   member_action :change_number, method: :post do
     result = Services::TicketNumberModifier.call(resource, params)
     if result.failure?
@@ -7,6 +23,11 @@ ActiveAdmin.register TicketInfo do
     else
       flash[:success] = '票数修改成功'
     end
-    redirect_to admin_race_path(resource.race, anchor: 'ticket_manage')
+    redirect_to admin_race_ticket_info_path(@race, resource)
+  end
+
+  config.clear_action_items!
+  action_item :back, only: :show do
+    link_to '返回', admin_race_path(race)
   end
 end

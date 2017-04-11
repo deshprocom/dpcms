@@ -66,7 +66,7 @@ module RaceHelper
   end
 
   def ticket_table_actions(source, race)
-    source.item I18n.t('active_admin.edit'), admin_race_path(race) + '#ticket_manage',
+    source.item I18n.t('active_admin.edit'), admin_race_ticket_info_path(race, race.ticket_info),
                 title: I18n.t('active_admin.edit'),
                 class: 'member_link'
 

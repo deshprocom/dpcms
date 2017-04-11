@@ -10,3 +10,6 @@
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'
+    status_tag:
+          "yes": "是"
+          "no": "否"

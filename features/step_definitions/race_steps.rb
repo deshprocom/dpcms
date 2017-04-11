@@ -1,7 +1,7 @@
 # coding: utf-8
 Given(/^访问赛事详情页 创建数据$/) do
-  race = FactoryGirl.create(:whole_race, published: true)
-  visit admin_race_path(race.id)
+  @race = FactoryGirl.create(:whole_race, published: true)
+  visit admin_race_path(@race.id)
   sleep 0.05
 end
 

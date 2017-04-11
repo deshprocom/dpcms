@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/BlockLength
+# rubocop:disable Style/GlobalVars
 ActiveAdmin.register PurchaseOrder do
   menu label: '订单列表', priority: 3
   permit_params :price, :email, :address, :consignee, :mobile, :status
@@ -44,7 +45,21 @@ ActiveAdmin.register PurchaseOrder do
 
   member_action :cancel, method: :post do
     change_status = params[:change_status]
-    resource.update!(status: change_status)
+    old_status = resource.status
+    mobile = resource.mobile || resource.user.mobile
+    template = if change_status.eql?('canceled')
+                 $settings['cancel_order_template']
+               elsif change_status.eql?('paid')
+                 $settings['payment_template']
+               elsif change_status.eql?('completed')
+                 $settings['shipping_template']
+               end
+    content = format(template, resource.order_number)
+    resource.update!(status: change_status) unless old_status.eql? change_status
+    # 手机号不为空 并且 状态不相等的时候 才会去发短信
+    unless old_status.eql?(change_status) || mobile.blank? || Rails.env.test?
+      SmsJob.send_mobile(change_status, mobile, content)
+    end
     if change_status.eql? 'canceled'
       redirect_to action: 'index'
     else

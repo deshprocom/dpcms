@@ -17,6 +17,8 @@ module Dpcms
 
     config.cache_store = config_for(:cache_store)
 
+    $settings = config_for(:settings)
+
     # auto_load
     config.autoload_paths += [
         Rails.root.join('lib')

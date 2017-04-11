@@ -16,5 +16,17 @@ module Dpcms
     config.time_zone = 'Beijing'
 
     config.cache_store = config_for(:cache_store)
+
+    $settings = config_for(:settings)
+
+    # auto_load
+    config.autoload_paths += [
+        Rails.root.join('lib')
+    ]
+
+    # eager_load
+    config.eager_load_paths += [
+        Rails.root.join('lib/qcloud')
+    ]
   end
 end

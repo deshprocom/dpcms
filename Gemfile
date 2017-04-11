@@ -36,6 +36,8 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'carrierwave-upyun'
 
+# resque
+gem 'resque'
 
 # http组件
 gem 'faraday','~> 0.11.0'

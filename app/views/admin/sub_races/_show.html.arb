@@ -1,0 +1,15 @@
+context.instance_eval do
+  attributes_table do
+    row('边赛标题') { resource.name }
+    row('买入') { format_ticket_price(resource) }
+    row(:blind)
+    row(:prize) { format_prize(resource) }
+    row :participants
+    row :location
+    row(I18n.t('race.period')) { race_period(resource) }
+    row :roy
+    attributes_table_for resource.race_desc do
+      row(:schedule) { markdown(resource.race_desc.schedule) }
+    end
+  end
+end

@@ -1,6 +1,9 @@
 context.instance_eval do
-  tabs do
-    tab I18n.t('race.detail'), id: :race_detail do
+    ul class: 'ui-tabs-nav' do
+      li link_to I18n.t('race.ticket_manage'), admin_race_ticket_info_path(race, race.ticket_info)
+      li link_to '边赛管理', admin_race_sub_races_path(race)
+    end
+    div class: 'tab-content' do
       attributes_table do
         row(:name)
         row(:prize) { format_prize(race) }
@@ -10,14 +13,8 @@ context.instance_eval do
         row(I18n.t('race.period')) { race_period(race) }
         row(:logo){ show_big_logo_link(race) }
         attributes_table_for race.race_desc do
-          row(:description) { markdown(race.race_desc.description) }
+          row(:description) { markdown(race.race_desc.description) } if race.describable
         end
       end
-    end
-    if race.ticket_sellable
-      tab I18n.t('race.ticket_manage'), id: :ticket_manage do
-        render 'ticket_manage', race: race, ticket_info: race.ticket_info
-      end
-    end
   end
 end

@@ -19,6 +19,8 @@ module Dpcms
 
     $settings = config_for(:settings)
 
+    config.active_job.queue_adapter = :resque
+
     # auto_load
     config.autoload_paths += [
         Rails.root.join('lib')

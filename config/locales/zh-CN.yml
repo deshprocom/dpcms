@@ -3,6 +3,7 @@
     models:
       admin_user: "管理员"
       race: "赛事"
+      race_rank: "排行榜"
       sub_races: "边赛"
       sub_race: "边赛"
       ticket: "用户的门票"
@@ -78,4 +79,8 @@
         dpi_total_score: 'DPI总积分'
         gpi_total_score: 'GPI总积分'
         memo: '备注'
+      race_rank:
+        ranking: '名次'
+        score: '得分'
+        earning: '赢入奖金'
 

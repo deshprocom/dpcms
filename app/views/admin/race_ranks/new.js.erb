@@ -1,0 +1,8 @@
+var html = "<%= j(render('form', remote: true)) %>";
+$(html).appendTo('body');
+$('<div class="ui-widget-overlay ui-front form_dialog_overlay"></div>').appendTo('body');
+$('.cancel_form_dialog').click(function(e) {
+    e.preventDefault();
+    $('.form_dialog').remove();
+    $('.form_dialog_overlay').remove();
+});

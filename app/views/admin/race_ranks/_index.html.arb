@@ -1,0 +1,9 @@
+context.instance_eval do
+  column(:ranking)
+  column('参赛人', sortable: false)   { |rank| rank.player.name }
+  column(:earning, sortable: false)
+  column(:score, sortable: false)
+  actions
+end
+
+

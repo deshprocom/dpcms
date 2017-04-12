@@ -98,7 +98,11 @@ module Qcloud
       end
 
       def app_config
-        raise '需要配置sdkappid或appkey' if ENV['APPID'].blank? || ENV['APPKEY'].blank?
+        if ENV['APPID'].blank? || ENV['APPKEY'].blank?
+          logger = Resque.logger
+          logger.info '需要配置sdkappid或appkey'
+          raise '需要配置sdkappid或appkey'
+        end
         {
           appid: ENV['APPID'],
           appkey: ENV['APPKEY']

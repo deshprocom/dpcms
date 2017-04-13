@@ -66,4 +66,3 @@ $ ->
 
     new_shake_ticketing = -> new ShakeTicketing()
     setInterval(new_shake_ticketing, 2000)
-

@@ -2,8 +2,11 @@
   = semantic_form_for [:admin, @race, @race_rank], remote: true do |f|
     = f.inputs  do
       = f.input :race, collection: [[@race.name, @race.id]], prompt: true
-      = f.input :player, as: :string
-      = f.input :player
+      = f.input :player, collection: [], prompt: true
+      %li
+        %label 所属选手
+        =link_to '搜索选手', player_table_admin_race_race_rank_path(1,1), remote: true
+
       = f.input :ranking
       = f.input :earning
       = f.input :score

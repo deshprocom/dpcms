@@ -70,6 +70,7 @@
       user_extra:
         real_name: "真实姓名"
       player:
+        player_id: '牌手id'
         name: '姓名'
         avatar: '头像'
         gender: '性别'

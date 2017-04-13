@@ -6,32 +6,57 @@ ActiveAdmin.register RaceRank do
   navigation_menu :default
   menu false
 
-  permit_params :ranking, :earning, :score, :player_id, :race_id
   index title: proc { "#{@race.name} - 排行榜" }, download_links: false do
     render 'index', context: self
   end
 
   controller do
-    before_action :set_race, only: [:new, :create]
+    before_action :set_race, only: [:new, :create, :edit, :update]
+    before_action :set_race_rank, only: [:edit, :update]
     def new
       @race_rank = @race.race_ranks.build
     end
 
+    def edit
+      render :new
+    end
+
     def create
-      @race_rank = @race.race_ranks.build(permitted_params[:race_rank])
+      @race_rank = @race.race_ranks.build(rank_params)
       respond_to do |format|
         if @race_rank.save
-          format.html { redirect_to admin_race_race_ranks_path(@race), notice: 'rank新增成功。' }
           format.js
         else
-          format.html { render :new }
           format.js
         end
       end
     end
 
+    def update
+      @race_rank.assign_attributes(rank_params)
+      respond_to do |format|
+        if @race_rank.save
+          format.js { render :create }
+        else
+          format.js { render :create }
+        end
+      end
+    end
+
+    private
+    def rank_params
+      params.require(:race_rank).permit(:ranking,
+                                        :earning,
+                                        :score,
+                                        :player_id)
+    end
+
     def set_race
       @race = Race.find(params[:race_id])
+    end
+
+    def set_race_rank
+      @race_rank = @race.race_ranks.find(params[:id])
     end
   end
 

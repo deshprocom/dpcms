@@ -1,10 +1,10 @@
-= semantic_form_for [:admin, @race, @race_rank], remote: true do |f|
-  = f.inputs name: '排行榜' do
-    = f.input :race, collection: [[@race.name, @race.id]], prompt: true
-    = f.input :player
-    = f.input :ranking
-    = f.input :earning
-    = f.input :score
-    %li#form_buttons
+%div{title: '排行榜'}
+  = semantic_form_for [:admin, @race, @race_rank], remote: true do |f|
+    = f.inputs  do
+      = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+      = f.input :player, as: :string
+      = f.input :player
+      = f.input :ranking
+      = f.input :earning
+      = f.input :score
       = f.submit
-      %button{class: 'cancel_form_dialog'} 取消

@@ -1,2 +1,5 @@
 var html = "<%= j(render('form', remote: true)) %>";
-FormDialog.popup(html);
+$(html).dialog({
+    modal: true,
+    width: '40%'
+});

@@ -3,6 +3,7 @@ ActiveAdmin.register RaceRank do
   config.filters = false
   config.batch_actions = false
   config.sort_order = 'ranking_asc'
+  config.breadcrumb = false
 
   belongs_to :race
   navigation_menu :default
@@ -26,7 +27,7 @@ ActiveAdmin.register RaceRank do
     def create
       @race_rank = @race.race_ranks.build(rank_params)
       respond_to do |format|
-        flash[:notice] = '新建rank成功' if @race_rank.save
+        flash[:notice] = '新建排名成功' if @race_rank.save
         format.js
       end
     end
@@ -34,7 +35,7 @@ ActiveAdmin.register RaceRank do
     def update
       @race_rank.assign_attributes(rank_params)
       respond_to do |format|
-        flash[:notice] = '更新rank成功' if @race_rank.save
+        flash[:notice] = '更新排名成功' if @race_rank.save
         format.js { render :create }
       end
     end

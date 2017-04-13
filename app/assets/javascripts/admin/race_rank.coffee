@@ -1,4 +1,3 @@
 $ ->
-#  $('#cancel_rank_dialog').click (e) ->
-#    e.preventDefault();
-#    alert('test')
+  if $('.admin_race_ranks').length > 0 && $('.blank_slate').length > 0
+    $('.blank_slate').find('a').attr('data-remote', true)

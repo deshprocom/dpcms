@@ -1,6 +1,7 @@
 ActiveAdmin.register RaceRank do
   config.filters = false
   config.batch_actions = false
+  config.sort_order = 'ranking_asc'
 
   belongs_to :race
   navigation_menu :default
@@ -25,6 +26,7 @@ ActiveAdmin.register RaceRank do
       @race_rank = @race.race_ranks.build(rank_params)
       respond_to do |format|
         if @race_rank.save
+          flash[:notice] = '新建rank成功'
           format.js
         else
           format.js
@@ -36,6 +38,7 @@ ActiveAdmin.register RaceRank do
       @race_rank.assign_attributes(rank_params)
       respond_to do |format|
         if @race_rank.save
+          flash[:notice] = '更新rank成功'
           format.js { render :create }
         else
           format.js { render :create }

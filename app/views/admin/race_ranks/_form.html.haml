@@ -1,11 +1,10 @@
-%div{class: 'form_dialog',style: 'position: fixed; height: auto; width: 40%; top: 20%; left: 30%; display: block; z-index: 1002;'}
-  = semantic_form_for [:admin, @race, @race_rank], remote: true do |f|
-    = f.inputs name: '排行榜' do
-      = f.input :race, collection: [[@race.name, @race.id]], prompt: true
-      = f.input :player
-      = f.input :ranking
-      = f.input :earning
-      = f.input :score
-      %li
-        = f.submit
-        %button{class: 'cancel_form_dialog'} 取消
+= semantic_form_for [:admin, @race, @race_rank], remote: true do |f|
+  = f.inputs name: '排行榜' do
+    = f.input :race, collection: [[@race.name, @race.id]], prompt: true
+    = f.input :player
+    = f.input :ranking
+    = f.input :earning
+    = f.input :score
+    %li#form_buttons
+      = f.submit
+      %button{class: 'cancel_form_dialog'} 取消

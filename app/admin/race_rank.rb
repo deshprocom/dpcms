@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register RaceRank do
   config.filters = false
   config.batch_actions = false
@@ -25,28 +26,21 @@ ActiveAdmin.register RaceRank do
     def create
       @race_rank = @race.race_ranks.build(rank_params)
       respond_to do |format|
-        if @race_rank.save
-          flash[:notice] = '新建rank成功'
-          format.js
-        else
-          format.js
-        end
+        flash[:notice] = '新建rank成功' if @race_rank.save
+        format.js
       end
     end
 
     def update
       @race_rank.assign_attributes(rank_params)
       respond_to do |format|
-        if @race_rank.save
-          flash[:notice] = '更新rank成功'
-          format.js { render :create }
-        else
-          format.js { render :create }
-        end
+        flash[:notice] = '更新rank成功' if @race_rank.save
+        format.js { render :create }
       end
     end
 
     private
+
     def rank_params
       params.require(:race_rank).permit(:ranking,
                                         :earning,

@@ -61,6 +61,9 @@ server '106.75.134.18',
            # password: 'please use keys'
        }
 
+role :resque_worker, %w{106.75.134.18}
+set :workers, {send_mobile_sms: 1}
+
 set :deploy_to, '/deploy/dpcms'
 set :branch, ENV.fetch('REVISION', ENV.fetch('BRANCH', 'test'))
 set :rails_env, 'production'

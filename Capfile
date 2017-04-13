@@ -24,6 +24,7 @@ require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/puma'
 require 'capistrano/puma/workers'
+require 'capistrano-resque'
 require 'capistrano/rvm' if ENV['USE_RVM']
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined

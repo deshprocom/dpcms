@@ -14,8 +14,8 @@ window.FormDialog =
     @bind_close()
     return
 
-  replaceForm: (selector, form) ->
-    selector.replaceWith(form);
+  replaceForm: (form) ->
+    $(".#{@dialogClass}").find('form').replaceWith(form);
     @bind_close()
     return
 

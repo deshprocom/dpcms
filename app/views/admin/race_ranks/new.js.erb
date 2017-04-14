@@ -1,2 +1,9 @@
+// remove all dialog before new form dialog
+$('.ui-dialog').remove();
 var html = "<%= j(render('form', remote: true)) %>";
-FormDialog.popup(html);
+// 为了dialog有标题
+html = '<div title="排行榜" >' + html + '</div>';
+$(html).dialog({
+    modal: true,
+    width: '40%'
+});

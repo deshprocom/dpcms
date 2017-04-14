@@ -11,7 +11,10 @@ Feature: 排行榜
     And 点击链接 '新增排名'
     When 点击按钮 '新增排名'
     And 表单应提醒不能为空 'new_race_rank'
-    And 在'race_rank_player_id' 的第一个下拉框选择 'poker'
+    And 点击链接 '搜索牌手'
+    And 点击按钮 '搜索'
+    And 等待 0.1 秒
+    And 点击第一个按钮 '选择'
     And 在 '名次' 填入 '1'
     And 在 '赢入奖金' 填入 '89000'
     And 在 '得分' 填入 '200'

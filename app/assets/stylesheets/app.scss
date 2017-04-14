@@ -7,3 +7,24 @@
   display: block;
   z-index: 1002;
 }
+
+.ui-dialog {
+  .ui-dialog-titlebar {
+    height: 30px;
+    line-height: 30px;
+
+    button { float: right; }
+  }
+
+  form label {
+    margin-right: 0px;
+  }
+
+  fieldset.inputs {
+    box-shadow: none;
+  }
+
+  tbody tr:hover {
+    background-color: #b3b3b3;
+  }
+}

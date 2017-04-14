@@ -1,0 +1,6 @@
+var html = "<%= j(render('player_table', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '50%'
+});
+SearchPlayer.bindEents();

@@ -70,6 +70,7 @@
       user_extra:
         real_name: "真实姓名"
       player:
+        player_id: '牌手id'
         name: '姓名'
         avatar: '头像'
         gender: '性别'
@@ -84,6 +85,6 @@
         score: '得分'
         earning: '赢入奖金'
         race: "所属赛事"
-        player: "所属选手"
+        player: "所属牌手"
 
 

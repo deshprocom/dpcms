@@ -16,6 +16,7 @@ ActiveAdmin.register RaceRank do
   controller do
     before_action :set_race, only: [:new, :create, :edit, :update]
     before_action :set_race_rank, only: [:edit, :update]
+
     def new
       @race_rank = @race.race_ranks.build
     end
@@ -56,6 +57,10 @@ ActiveAdmin.register RaceRank do
     def set_race_rank
       @race_rank = @race.race_ranks.find(params[:id])
     end
+  end
+
+  member_action :player_table, method: :get do
+    render 'player_table'
   end
 
   config.clear_action_items!

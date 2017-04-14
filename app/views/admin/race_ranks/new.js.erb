@@ -1,4 +1,6 @@
+$('.ui-dialog').remove();
 var html = "<%= j(render('form', remote: true)) %>";
+html = '<div title="排行榜" >' + html + '</div>';
 $(html).dialog({
     modal: true,
     width: '40%'

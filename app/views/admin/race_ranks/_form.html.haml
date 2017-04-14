@@ -3,10 +3,10 @@
     = f.input :race, collection: [[@race.name, @race.id]], prompt: true
     = f.input :player_id, as: :hidden
     %li#search_player_input
-      %label 所属选手
-      %input{type: 'text', disabled: 'disabled'}
+      %label 所属牌手
+      %input{type: 'text', disabled: 'disabled', value: @race_rank.player&.name}
       %label &nbsp;
-      =link_to '搜索选手', player_table_admin_race_race_rank_path(1,1), remote: true
+      =link_to '搜索牌手', player_table_admin_race_race_rank_path(1,1), remote: true
       - @race_rank.errors[:player_id].each do |err|
         %p.inline-errors=err
 

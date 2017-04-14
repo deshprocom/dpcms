@@ -16,7 +16,7 @@ module RaceHelper
   end
 
   def logo_link_to_show(race)
-    link_to race.logo.url ? image_tag(race.preview_logo, height: 150) : '', admin_race_path(race)
+    link_to race.logo.url ? image_tag(race.preview_logo, height: 150, width: 105) : '', admin_race_path(race)
   end
 
   def race_period(race)

@@ -2,5 +2,5 @@
 window.location.reload();
 <% else %>
 var html = "<%= j(render('form', remote: true)) %>";
-FormDialog.replaceForm($('#new_race_rank'), html);
+$('.formtastic').replaceWith(html);
 <% end %>

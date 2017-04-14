@@ -2,7 +2,6 @@ $ ->
   if $('.admin_race_ranks').length > 0 && $('.blank_slate').length > 0
     $('.blank_slate').find('a').attr('data-remote', true)
 
-
   window.SearchPlayer =
     bindEents: ->
       @bindSuccessCallback();
@@ -22,8 +21,6 @@ $ ->
         $('#race_rank_player_id').val(id)
         $('#search_player_input input').val(name)
         $(@).closest(".ui-dialog").find('.ui-dialog-titlebar-close').click();
-
-
 
     createTrs: (ranks) ->
       trs = ''

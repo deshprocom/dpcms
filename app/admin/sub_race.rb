@@ -34,4 +34,8 @@ ActiveAdmin.register Race, as: 'sub_races' do
   form do |f|
     render 'form', f: f
   end
+
+  action_item :publish, only: :show do
+    publish_status_link(race)
+  end
 end

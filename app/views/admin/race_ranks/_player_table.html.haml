@@ -1,0 +1,14 @@
+%div
+  %div
+    %form{class: 'search_player_form', action: admin_players_path(format: :json), data: { remote: true }}
+      %input{name: 'q[name_contains]', type: 'search'}
+      %input{name: 'submit', type: 'submit', value: '搜索'}
+
+  %table.players
+    %thead
+      %tr
+        %th 牌手ID
+        %th 姓名
+        %th 国籍
+        %th 操作
+    %tbody

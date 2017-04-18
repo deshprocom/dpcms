@@ -31,8 +31,10 @@ INPUT_MAPPING = {
   player_name: '牌手姓名',
   player_country: '牌手国籍',
   player_dpi_total_earning: '牌手奖金',
-  player_dpi_total_score: '牌手积分'
-
+  player_dpi_total_score: '牌手积分',
+  race_rank_ranking: '名次',
+  race_rank_earning: '赢入奖金',
+  race_rank_score: '得分'
 }.invert
 
 ELEMENT_MAPPING = {

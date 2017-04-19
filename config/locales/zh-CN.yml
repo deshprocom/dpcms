@@ -10,6 +10,7 @@
       ticket_info: "门票数量信息"
       purchase_order: "订单"
       player: '牌手'
+      info: '资讯'
     attributes:
       race:
         name: "赛事标题"
@@ -86,5 +87,17 @@
         earning: '赢入奖金'
         race: "所属赛事"
         player: "所属牌手"
+      info:
+        title: '名称'
+        source_type: '来源类别'
+        source: '来源内容'
+        date: '日期'
+        top: '是否置顶'
+        published: '是否发布'
+        image: '图片'
+        image_thumb: '图片缩略图'
+        description: '图文内容'
+        created_at: '创建日期'
+        updated_at: '更新日期'
 
 

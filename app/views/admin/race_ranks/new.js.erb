@@ -1,9 +1,8 @@
-// remove all dialog before new form dialog
-$('.ui-dialog').remove();
+$('form.race_rank').parents(".ui-dialog").remove();
 var html = "<%= j(render('form', remote: true)) %>";
 // 为了dialog有标题
-html = '<div title="排行榜" >' + html + '</div>';
 $(html).dialog({
     modal: true,
-    width: '40%'
+    width: '40%',
+    title: '排行榜'
 });

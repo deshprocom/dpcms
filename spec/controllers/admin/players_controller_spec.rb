@@ -36,7 +36,7 @@ RSpec.describe Admin::PlayersController, type: :controller do
   describe ":create" do
     it "should create a player data" do
       sign_in admin_user
-      post :create, params: create_params
+      post :create, params: create_params, format: :html
       last_insert = Player.last
       expect(last_insert.name).to eq('superman')
       expect(last_insert.country).to eq('美国')

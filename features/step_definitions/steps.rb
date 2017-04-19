@@ -98,5 +98,5 @@ end
 
 When(/^表单应提醒不能为空 '([^']*)'$/) do |id|
   @form = find_by_id(id)
-  expect(@form).to have_text('不能为空字符')
+  expect(@form).to have_text('不能为空')
 end

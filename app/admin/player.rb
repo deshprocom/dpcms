@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Player do
   menu label: '牌手管理', priority: 4
   permit_params :name, :avatar, :country, :dpi_total_earning, :dpi_total_score, :memo

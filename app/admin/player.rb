@@ -57,6 +57,15 @@ ActiveAdmin.register Player do
       end
     end
 
+    def destroy
+      if resource.race_ranks.exists?
+        flash[:notice] = '排名表中已存在的牌手不可删除'
+      else
+        resource.destroy
+      end
+      redirect_back fallback_location: admin_players_url
+    end
+
     def player_params
       params.require(:player).permit(:name,
                                      :avatar,

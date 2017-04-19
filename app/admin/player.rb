@@ -19,6 +19,17 @@ ActiveAdmin.register Player do
     actions name: '操作'
   end
 
+  controller do
+    def destroy
+      if resource.race_ranks.exists?
+        flash[:notice] = '排名表中已存在的牌手不可删除'
+      else
+        resource.destroy
+      end
+      redirect_back fallback_location: admin_players_url
+    end
+  end
+
   form partial: 'form'
 
   sidebar :'牌手数量', only: :index do

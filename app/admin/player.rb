@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Player do
   menu label: '牌手管理', priority: 4
   permit_params :name, :avatar, :country, :dpi_total_earning, :dpi_total_score, :memo
@@ -17,6 +18,17 @@ ActiveAdmin.register Player do
     column :dpi_total_score
     column :memo
     actions name: '操作'
+  end
+
+  controller do
+    def destroy
+      if resource.race_ranks.exists?
+        flash[:notice] = '排名表中已存在的牌手不可删除'
+      else
+        resource.destroy
+      end
+      redirect_back fallback_location: admin_players_url
+    end
   end
 
   form partial: 'form'

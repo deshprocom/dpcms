@@ -45,6 +45,14 @@ Given(/^点击第一个按钮 '([^']*)'$/) do |button|
   first(:button, button).click
 end
 
+Given(/^点击元素 '([^']*)'$/) do |selector|
+  first(selector).click
+end
+
+Given(/^'([^']*)' 该选择器的值应为 '([^']*)'$/) do |selector, value|
+  expect(first(selector).value).to eq(value)
+end
+
 Given /^点击按钮或链接 '([^']*)'$/ do |link_button|
   click_on(link_button)
 end
@@ -98,5 +106,5 @@ end
 
 When(/^表单应提醒不能为空 '([^']*)'$/) do |id|
   @form = find_by_id(id)
-  expect(@form).to have_text('不能为空字符')
+  expect(@form).to have_text('不能为空')
 end

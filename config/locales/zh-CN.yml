@@ -86,5 +86,8 @@
         earning: '赢入奖金'
         race: "所属赛事"
         player: "所属牌手"
-
+  errors:
+      format: "%{attribute}%{message}"
+      messages:
+        blank: 不能为空
 

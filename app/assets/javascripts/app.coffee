@@ -1,7 +1,4 @@
 $ ->
-  $(document).on 'click', '.ui-dialog-titlebar-close', (e) ->
-    $(@).parents(".ui-dialog").remove()
-
   window.FormDialog =
     dialogClass: 'cms_form_dialog'
     overlayId: 'form_dialog_overlay'

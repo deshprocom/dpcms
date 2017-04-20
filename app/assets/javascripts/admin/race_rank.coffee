@@ -11,24 +11,27 @@ $ ->
       that = @
       $('.search_player_form').on 'ajax:success', (e, data) ->
         $('.players tbody tr').remove();
-        $(that.createTrs(data)).appendTo('.players tbody')
+        $(that.createPlayers(data)).appendTo('.players tbody')
         that.bindSelected()
 
     bindSelected: ->
-      $('.players tr button').on 'click', (e) ->
+      $('.players tbody td:not(.action)').on 'click', (e) ->
         id = $(@).closest("tr").data('id')
         name = $(@).closest("tr").data('name')
         $('#race_rank_player_id').val(id)
         $('#search_player_input input').val(name)
         $(@).closest(".ui-dialog").find('.ui-dialog-titlebar-close').click();
 
-    createTrs: (ranks) ->
-      trs = ''
-      for rank in ranks
-        trs += "<tr data-id=#{rank.id} data-name=#{rank.name}>"
-        trs += "<td>#{rank.player_id}</td>"
-        trs += "<td>#{rank.name}</td>"
-        trs += "<td>#{rank.country}</td>"
-        trs += '<td><button>选择</button></td>'
+    createPlayers: (players) ->
+      if players.length == 0
+        trs = '<tr><td>没有相关数据</td></tr>'
+      else
+        trs = ''
+      for player in players
+        trs += "<tr data-id=#{player.id} data-name=#{player.name}>"
+        trs += "<td>#{player.player_id}</td>"
+        trs += "<td>#{player.name}</td>"
+        trs += "<td>#{player.country}</td>"
+        trs += "<td class='action'><a href='/admin/players/#{player.id}/edit' data-remote='true'>编辑</a></td>"
         trs += '/<tr>'
       trs

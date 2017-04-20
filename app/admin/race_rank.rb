@@ -27,18 +27,13 @@ ActiveAdmin.register RaceRank do
 
     def create
       @race_rank = @race.race_ranks.build(rank_params)
-      respond_to do |format|
-        flash[:notice] = '新建排名成功' if @race_rank.save
-        format.js
-      end
+      flash[:notice] = '新建排名成功' if @race_rank.save
     end
 
     def update
       @race_rank.assign_attributes(rank_params)
-      respond_to do |format|
-        flash[:notice] = '更新排名成功' if @race_rank.save
-        format.js { render :create }
-      end
+      flash[:notice] = '更新排名成功' if @race_rank.save
+      render :create
     end
 
     private

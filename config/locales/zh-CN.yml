@@ -11,6 +11,7 @@
       purchase_order: "订单"
       player: '牌手'
       info: '资讯'
+      info_type: '资讯类别'
     attributes:
       race:
         name: "赛事标题"
@@ -100,6 +101,12 @@
         description: '图文内容'
         created_at: '创建日期'
         updated_at: '更新日期'
+      info_type:
+        name: '名称'
+        published: '是否发布'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+        level: '级别'
 
   errors:
       format: "%{attribute}%{message}"

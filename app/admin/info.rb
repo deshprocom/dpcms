@@ -5,10 +5,10 @@ ActiveAdmin.register Info do
   filter :date
   filter :published
 
-  index title: '资讯列表' do
-    column '资讯图片', :image do |info|
-      link_to image_tag('http://localhost/example', height: 60)
-    end
+  index title: '资讯管理' do
+    # column '资讯图片', :image do |info|
+    #   link_to image_tag('http://localhost/example', height: 60)
+    # end
     column :title
     column :source_type do |info|
       info.source_type.eql?('source') ? '来源' : '作者'

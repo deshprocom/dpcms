@@ -4,6 +4,7 @@ ActiveAdmin.register Info do
   filter :title
   filter :date
   filter :published
+  filter :info_type_id, as: :select
 
   index title: '资讯管理' do
     # column '资讯图片', :image do |info|

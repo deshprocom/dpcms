@@ -101,4 +101,8 @@
         created_at: '创建日期'
         updated_at: '更新日期'
 
+  errors:
+      format: "%{attribute}%{message}"
+      messages:
+        blank: 不能为空
 

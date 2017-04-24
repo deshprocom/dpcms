@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Info do
   SOURCE_TYPE = %w(source author).freeze
   INFO_TYPES = InfoType.where(published: true).collect { |type| [type.name, type.id] }
@@ -53,13 +54,17 @@ ActiveAdmin.register Info do
   end
 
   member_action :top, method: :post do
-    resource.top!
-    redirect_back fallback_location: admin_infos_url, notice: '发布成功'
+    if resource.info_type.infos.where(published: true).where(top: true).blank?
+      resource.top!
+      redirect_back fallback_location: admin_infos_url, notice: '置顶成功'
+    else
+      redirect_back fallback_location: admin_infos_url, notice: '一个类别只能有一条资讯置顶，请先取消该类别其它置顶信息后再操作'
+    end
   end
 
   member_action :untop, method: :post do
     resource.untop!
-    redirect_back fallback_location: admin_infos_url, notice: '取消发布成功'
+    redirect_back fallback_location: admin_infos_url, notice: '取消置顶成功'
   end
 
   sidebar :'资讯数目', only: :index do

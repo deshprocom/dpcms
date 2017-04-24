@@ -3,7 +3,8 @@ PATH_MAPPING = {
     new_admin_race_path: '新建赛事页',
     admin_purchase_orders_path: '订单列表页',
     admin_players_path: '牌手管理页',
-    new_admin_player_path: '新建牌手页'
+    new_admin_player_path: '新建牌手页',
+    new_admin_info_type_path: '新建资讯类别'
 }.invert
 
 TARGET_PATH_MAPPING = {
@@ -34,7 +35,10 @@ INPUT_MAPPING = {
   player_dpi_total_score: '牌手积分',
   race_rank_ranking: '名次',
   race_rank_earning: '赢入奖金',
-  race_rank_score: '得分'
+  race_rank_score: '得分',
+  info_type_name: '资讯类别名称',
+  info_type_published: '资讯是否发布',
+  info_type_level: '资讯级别'
 }.invert
 
 ELEMENT_MAPPING = {

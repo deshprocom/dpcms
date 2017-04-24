@@ -89,7 +89,7 @@
         race: "所属赛事"
         player: "所属牌手"
       info:
-        title: '名称'
+        title: '资讯名称'
         source_type: '来源类别'
         source: '来源内容'
         date: '日期'
@@ -102,7 +102,7 @@
         created_at: '创建日期'
         updated_at: '更新日期'
       info_type:
-        name: '名称'
+        name: '类别名称'
         published: '是否发布'
         created_at: '创建时间'
         updated_at: '修改时间'

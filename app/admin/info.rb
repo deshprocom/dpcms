@@ -16,9 +16,9 @@ ActiveAdmin.register Info do
   filter :info_type_id, as: :select, collection: INFO_TYPES
 
   index title: '资讯管理' do
-    # column '资讯图片', :image do |info|
-    #   link_to image_tag('http://localhost/example', height: 60)
-    # end
+    column '资讯图片', :image do |info|
+      link_to image_tag(info.image_thumb)
+    end
     column :title
     column :source_type do |info|
       info.source_type.eql?('source') ? '来源' : '作者'

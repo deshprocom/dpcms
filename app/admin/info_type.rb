@@ -1,5 +1,5 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register InfoType do
-
   permit_params :name, :level, :published
 
   filter :name

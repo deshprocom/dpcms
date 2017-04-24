@@ -12,7 +12,7 @@ Feature: 牌手管理
     When 访问牌手管理页 创建数据
     Then 应该能找到 'poker,中国' 这些信息
 
-  Scenario: 牌手管理-删除
+  Scenario: 牌手管理-新建
     When 访问牌手管理页 创建数据
     And 访问 '新建牌手页'
     And 在 '牌手姓名' 填入 '超人'
@@ -22,7 +22,7 @@ Feature: 牌手管理
     And 点击按钮或链接 '新建牌手'
     Then 应该能找到 '超人,美国,2000000,566' 这些信息
 
-  Scenario: 牌手管理-新增
+  Scenario: 牌手管理-删除
     When 访问牌手管理页 创建数据
     And 点击按钮或链接 '删除'
     And 确定alert

@@ -1,6 +1,6 @@
 ActiveAdmin.register Info do
   SOURCE_TYPE = %w(source author).freeze
-  INFO_TYPES = InfoType.all.collect { |type| [type.name, type.id] }
+  INFO_TYPES = InfoType.where(published: true).collect { |type| [type.name, type.id] }
   menu label: '资讯管理', priority: 5
 
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,

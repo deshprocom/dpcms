@@ -10,6 +10,7 @@ ActiveAdmin.register Info do
   filter :title
   filter :date
   filter :published
+  filter :top
   filter :info_type_id, as: :select, collection: INFO_TYPES
 
   index title: '资讯管理' do
@@ -39,7 +40,13 @@ ActiveAdmin.register Info do
         item '取消置顶', untop_admin_info_path(type),
              data: { confirm: '确定取消置顶吗？' }, method: :post
       else
-        message = type.published ? '确定置顶吗？' : '置顶之前会先发布该资讯，继续吗？'
+        # 如果该资讯下已有其它已发布的是置顶状态，那么会先取消其它的，然后将这条资讯置顶
+        type_info_type = type.info_type || type.build_info_type
+        if type_info_type.infos.where(published: true).where(top: true).present?
+          message = type.published ? '置顶之前会先取消该类别下其它资讯置顶，确定吗？' : '置顶之前会先取消该类别下其它资讯置顶并发布该条资讯，继续吗？'
+        else
+          message = type.published ? '确定置顶吗？' : '置顶之前会先发布该资讯，继续吗？'
+        end
         item '置顶', top_admin_info_path(type),
              data: { confirm: message }, method: :post
       end
@@ -61,13 +68,14 @@ ActiveAdmin.register Info do
   end
 
   member_action :top, method: :post do
-    if resource.info_type.infos.where(published: true).where(top: true).blank?
-      resource.top!
-      resource.publish! unless resource.published
-      redirect_back fallback_location: admin_infos_url, notice: '置顶成功'
-    else
-      redirect_back fallback_location: admin_infos_url, notice: '一个类别只能有一条资讯置顶，请先取消该类别其它置顶信息后再操作'
+    type_info_type = resource.info_type || resource.build_info_type
+    list = type_info_type.infos.where(published: true).where(top: true)
+    if list.present?
+      list.map{ |item| item.untop! }
     end
+    resource.top!
+    resource.publish! unless resource.published
+    redirect_back fallback_location: admin_infos_url, notice: '置顶成功'
   end
 
   member_action :untop, method: :post do

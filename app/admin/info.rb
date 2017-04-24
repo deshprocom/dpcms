@@ -8,6 +8,8 @@ ActiveAdmin.register Info do
                 :published, :description, :info_type_id
 
   filter :title
+  filter :source_type, as: :select, collection: SOURCE_TYPE
+  filter :source
   filter :date
   filter :published
   filter :top

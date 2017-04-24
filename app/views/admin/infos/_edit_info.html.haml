@@ -1,12 +1,11 @@
 = semantic_form_for [:admin, @info] do |f|
   = f.inputs name: '资讯管理' do
-    -#= f.input :avatar, as: :file, hint: f.object.avatar.present? ? image_tag(f.object.avatar, height: 60) : nil
+    = f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image_thumb) : nil
     = f.input :title
     = f.input :date, as: :date_select
     = f.input :source_type, as: :select, collection: SOURCE_TYPE
     = f.input :source
     = f.input :info_type_id, as: :select, collection: INFO_TYPES
-    = f.input :top
     = f.input :published
     = f.input :description
     = f.actions

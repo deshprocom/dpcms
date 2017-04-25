@@ -1,7 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Info do
   SOURCE_TYPE = %w(source author).freeze
-  INFO_TYPES = InfoType.where(published: true).collect { |type| [type.name, type.id] }
   menu label: '资讯管理', priority: 5
 
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
@@ -13,7 +12,7 @@ ActiveAdmin.register Info do
   filter :date
   filter :published
   filter :top
-  filter :info_type_id, as: :select, collection: INFO_TYPES
+  filter :info_type_id, as: :select, collection: InfoType.where(published: true).collect { |type| [type.name, type.id] }
 
   index title: '资讯管理' do
     column '资讯图片', :image do |info|

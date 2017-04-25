@@ -12,7 +12,7 @@ ActiveAdmin.register InfoType do
     column :published, sortable: false
     column :topped do |type|
       info_item = type.infos.topped.first
-      link_to info_item.title, admin_info_url(info_item), target: "_blank" if info_item
+      link_to info_item.title, admin_info_url(info_item), target: '_blank' if info_item
     end
     column :created_at, sortable: false
 

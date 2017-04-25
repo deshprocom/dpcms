@@ -10,6 +10,10 @@ ActiveAdmin.register InfoType do
     column :name, sortable: false
     column :level, sortable: :level
     column :published, sortable: false
+    column :topped do |type|
+      info_item = type.infos.topped.first
+      link_to info_item.title, admin_info_url(info_item), target: "_blank" if info_item
+    end
     column :created_at, sortable: false
 
     actions name: '操作', class: 'info_actions', defaults: false do |type|

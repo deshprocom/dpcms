@@ -53,15 +53,17 @@ ActionController::Base.allow_rescue = false
 
 # Remove/comment out the lines below if your app doesn't have a database.
 # For some databases (like MongoDB and CouchDB) you may need to use :truncation instead.
-DatabaseCleaner.strategy = :truncation, { except: %w(affiliates affiliate_apps) }
+DatabaseCleaner.strategy = :deletion, { except: %w(affiliates affiliate_apps) }
+# DatabaseCleaner.strategy = :transaction
 
 Before do
-  DatabaseCleaner.clean
-  Rails.cache.clear
+  DatabaseCleaner.start
 end
 
 include Warden::Test::Helpers
 After do
+  DatabaseCleaner.clean
+  Rails.cache.clear
   Warden.test_reset!
 end
 

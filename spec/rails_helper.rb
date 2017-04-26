@@ -55,11 +55,20 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
+  DatabaseCleaner.strategy = :transaction
   config.before(:each) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean
-    Rails.cache.clear
+    DatabaseCleaner.start
   end
+
+  config.after(:each) do
+    Rails.cache.clear
+    DatabaseCleaner.clean
+  end
+  # DatabaseCleaner.strategy = :truncation
+  # config.before(:each) do
+  #   DatabaseCleaner.clean
+  #   Rails.cache.clear
+  # end
 
   config.include Devise::Test::ControllerHelpers, type: :controller
 end

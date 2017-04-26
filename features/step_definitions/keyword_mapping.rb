@@ -4,7 +4,8 @@ PATH_MAPPING = {
     admin_purchase_orders_path: '订单列表页',
     admin_players_path: '牌手管理页',
     new_admin_player_path: '新建牌手页',
-    new_admin_info_type_path: '新建资讯类别'
+    new_admin_info_type_path: '新建资讯类别',
+    new_admin_info_path: '新建资讯页'
 }.invert
 
 TARGET_PATH_MAPPING = {
@@ -38,7 +39,10 @@ INPUT_MAPPING = {
   race_rank_score: '得分',
   info_type_name: '资讯类别名称',
   info_type_published: '资讯是否发布',
-  info_type_level: '资讯级别'
+  info_type_level: '资讯级别',
+  info_image: '资讯图片',
+  info_title: '资讯名称',
+
 }.invert
 
 ELEMENT_MAPPING = {

@@ -2,6 +2,7 @@
     <% @race.ticket_info || @race.build_ticket_info %>
     <% @race.race_desc   || @race.build_race_desc %>
     <%= f.inputs name: '赛事简介' do %>
+        <%= f.input :race_host, prompt: true %>
         <%= f.input :name %>
         <%= f.input :prize %>
         <%= f.input :ticket_price %>

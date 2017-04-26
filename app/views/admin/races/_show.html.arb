@@ -6,6 +6,7 @@ context.instance_eval do
     end
     div class: 'tab-content' do
       attributes_table do
+        row(:race_host)
         row(:name)
         row(:prize) { format_prize(race) }
         row(:ticket_price) { format_ticket_price(race) }

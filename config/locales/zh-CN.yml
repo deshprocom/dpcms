@@ -4,6 +4,7 @@
       admin_user: "管理员"
       race: "赛事"
       race_rank: "排名"
+      race_host: "主办方"
       sub_races: "边赛"
       sub_race: "边赛"
       ticket: "用户的门票"
@@ -32,6 +33,7 @@
         parent: "所属主赛"
         blind: "盲注"
         participants: "参数人数"
+        race_host: "主办方"
       ticket_info:
         e_ticket_number: "总电子票数"
         entity_ticket_number: "总实体票数"
@@ -88,6 +90,10 @@
         earning: '赢入奖金'
         race: "所属赛事"
         player: "所属牌手"
+      race_host:
+        name: '主办方名称'
+        created_at: "创建时间"
+        updated_at: "更新时间"
       info:
         title: '资讯名称'
         source_type: '来源类别'
@@ -108,9 +114,8 @@
         updated_at: '修改时间'
         level: '级别'
         topped: '置顶的资讯'
-
   errors:
       format: "%{attribute}%{message}"
       messages:
-        blank: 不能为空
+        blank: '不能为空'
 

@@ -10,6 +10,7 @@ ActiveAdmin.register Race do
   filter :name
   filter :location
   filter :begin_date
+  filter :race_host
   filter :status, as: :select, collection: TRANS_RACE_STATUSES, if: :in_race_list?
   filter :ticket_status, as: :select, collection: TRANS_TICKET_STATUSES, if: :in_ticket_manage?
 
@@ -26,7 +27,7 @@ ActiveAdmin.register Race do
   end
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
-                :ticket_price, :ticket_sellable, :describable,
+                :ticket_price, :ticket_sellable, :describable, :race_host_id,
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description, :schedule]
   form partial: 'form'

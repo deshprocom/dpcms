@@ -24,6 +24,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'simditor'
 
 # activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'

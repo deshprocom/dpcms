@@ -13,7 +13,7 @@ Feature: 排行榜
     And 表单应提醒不能为空 'new_race_rank'
     And 点击链接 '搜索牌手'
     And 点击按钮 '搜索'
-    And 等待 0.1 秒
+    And 等待 0.4 秒
     And 点击元素 '.players tbody tr'
     And 在 '名次' 填入 '1'
     And 在 '赢入奖金' 填入 '89000'
@@ -39,7 +39,7 @@ Feature: 排行榜
     And 在 '牌手姓名' 填入 'breezy'
     And 在 '牌手国籍' 填入 'china'
     And 点击按钮 '新增牌手'
-    And 等待 0.2 秒
+    And 等待 0.4 秒
     And 点击元素 '.players tbody tr'
     And '#search_player_input input' 该选择器的值应为 'breezy'
     And 在 '名次' 填入 '1'
@@ -55,11 +55,11 @@ Feature: 排行榜
     And 点击链接 '新增排名'
     And 点击链接 '搜索牌手'
     And 点击按钮 '搜索'
-    And 等待 0.1 秒
+    And 等待 0.2 秒
     And 点击链接 '编辑'
     And 在 '牌手姓名' 填入 'candy'
     And 点击按钮 '更新牌手'
-    And 等待 0.2 秒
+    And 等待 0.4 秒
     And 点击元素 '.players tbody tr'
     And '#search_player_input input' 该选择器的值应为 'candy'
     And 在 '名次' 填入 '1'

@@ -26,28 +26,28 @@
       <% end %>
 
       <%= f.actions %>
-
-      <section class="pull-right">
-        <%= f.submit :class => 'btn-u btn-lg' %>
-      </section>
-
 <% end %>
 </div>
 <script type="text/javascript">
-    var editor = new Simditor({
-        textarea: $('#race_race_desc_attributes_description'),
-        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough', '|', 'ol', 'ul', 'blockquote', 'link','image', '|','hr','indent','outdent','alignment', 'markdown'],
-        placeholder: '这里输入文字...',
-        pasteImage: true,
-        fileKey: 'file',
-        upload: {
-            url: '/photos', params: null, connectionCount: 3,
-            leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
-        }
-    });
-//  var editor = new Simditor({
-//      textarea: $('#race_race_desc_attributes_description'),
-//      pasteImage: true,
-//      toolbar: ['bold', 'italic', 'underline', 'color', '|', 'ol', 'ul', '|', 'markdown']
-//  });
+  var textarea, val;
+  textarea = $('#race_race_desc_attributes_description');
+  val = textarea.val();
+  textarea.val(marked(val));
+  var editor = new Simditor({
+      textarea: textarea,
+      toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'link','image', '|', 'markdown'],
+      placeholder: '这里输入文字...',
+      pasteImage: true,
+      fileKey: 'file',
+      submitContentType: 'markdown',
+      upload: {
+          url: '/photos', params: null, connectionCount: 3,
+          leaveConfirm: 'Uploading is in progress, are you sure to leave this page?'
+      }
+  });
+  $("form.race").submit(function(){
+      var fillValue;
+      fillValue = toMarkdown(editor.getValue(), { gfm: true });
+      editor.textarea.val(fillValue);
+  });
 </script>

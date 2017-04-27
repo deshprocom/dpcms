@@ -6,7 +6,7 @@ class DpApiRemote
   def initialize
     self.conn = Faraday.new(url: remote_path) do |faraday|
       faraday.request  :url_encoded             # form-encode POST params
-      faraday.response :logger                  # log requests to STDOUT
+      # faraday.response :logger                  # log requests to STDOUT
       faraday.adapter  Faraday.default_adapter  # make requests with Net::HTTP
     end
   end

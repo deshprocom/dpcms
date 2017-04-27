@@ -40,5 +40,8 @@
     failed: '未通过'
   player:
     list: '牌手管理'
+  info:
+    source: '来源'
+    author: '作者'
 
 

@@ -1,5 +1,4 @@
 class RacePhotoUploader < BaseUploader
-
   version :preview do
     process resize_to_fit: [200, 200]
   end

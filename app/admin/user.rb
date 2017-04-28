@@ -10,8 +10,9 @@ ActiveAdmin.register User do
 
   # 用户审核不通过
   member_action :user_audit_forbid, method: :post do
+    memo = params[:memo] || user_extra.memo
     user_extra = resource.user_extra
     return render 'user_audit_failed' if user_extra.blank?
-    user_extra.failed!
+    user_extra.update!(memo: memo, status: 'failed')
   end
 end

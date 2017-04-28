@@ -1,0 +1,12 @@
+= semantic_form_for [:admin, @info] do |f|
+  = f.inputs name: '资讯管理' do
+    = f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image_thumb) : nil
+    = f.input :title
+    = f.input :date, as: :date_picker, size: 20
+    = f.input :source_type, as: :select, collection: SOURCE_TYPE
+    = f.input :source
+    = f.input :info_type_id, as: :select, collection: InfoType.where(published: true).collect { |type| [type.name, type.id] }
+    = f.input :published
+    = f.input :description
+    = f.actions
+

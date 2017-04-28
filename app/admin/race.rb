@@ -1,29 +1,41 @@
 # rubocop:disable Metrics/BlockLength
+RACE_STATUSES = Race.statuses.keys
+TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
+TICKET_STATUSES = Race.ticket_statuses.keys
+TRANS_TICKET_STATUSES = TICKET_STATUSES.collect { |d| [I18n.t("race.ticket_status.#{d}"), d] }
 ActiveAdmin.register Race do
-  controller.include RaceHelper
-  menu label: '赛事列表', priority: 1
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :ticket_price,
-                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
-                race_desc_attributes: [:description]
-  RACE_STATUSES = Race.statuses.keys
+  config.batch_actions = false
+  menu label: I18n.t('race.manage'), priority: 1
 
   filter :name
   filter :location
   filter :begin_date
-  filter :status, as: :select, collection: RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
+  filter :race_host
+  filter :status, as: :select, collection: TRANS_RACE_STATUSES, if: :in_race_list?
+  filter :ticket_status, as: :select, collection: TRANS_TICKET_STATUSES, if: :in_ticket_manage?
 
-  index do
+  index title: I18n.t('race.list'), as: RacesIndex do
     render 'index', context: self
+  end
+
+  index title: I18n.t('race.ticket_manage'), as: TicketManageIndex do
+    render 'ticket_manage_index', context: self
   end
 
   show do
     render 'show', context: self
   end
 
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+                :ticket_price, :ticket_sellable, :describable, :race_host_id,
+                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
+                race_desc_attributes: [:description, :schedule]
   form partial: 'form'
 
-  before_action :unpublished?, only: [:destroy]
   controller do
+    include RaceHelper
+    before_action :unpublished?, only: [:destroy]
+
     def unpublished?
       @race = Race.find(params[:id])
       return unless @race.published?
@@ -31,12 +43,16 @@ ActiveAdmin.register Race do
       flash[:error] = I18n.t('race.destroy_error')
       redirect_back fallback_location: admin_races_url
     end
+
+    def scoped_collection
+      chain = super.main
+      return chain.ticket_sellable if in_ticket_manage?
+
+      chain
+    end
   end
 
   member_action :change_status, method: :put do
-    unless params[:status].in? RACE_STATUSES
-      return render json: { error: 'ParamsError' }, status: 404
-    end
     resource.send("#{params[:status]}!")
     render json: resource
   end
@@ -44,7 +60,6 @@ ActiveAdmin.register Race do
   member_action :publish, method: :post do
     race = Race.find(params[:id])
     race.publish!
-    race.update(ticket_status: 'selling')
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.publish_notice')
   end
 
@@ -53,6 +68,15 @@ ActiveAdmin.register Race do
     redirect_back fallback_location: admin_races_url, notice: I18n.t('race.unpublish_notice')
   end
 
+  member_action :cancel_sell, method: :post do
+    race = Race.find(params[:id])
+    unless race.ticket_status == 'unsold'
+      flash[:error] = I18n.t('race.cancel_sell_error')
+      return redirect_back fallback_location: admin_races_url
+    end
+    race.cancel_sell!
+    redirect_back fallback_location: admin_races_url, notice: I18n.t('race.cancel_sell_notice')
+  end
 
   action_item :publish, only: :show do
     publish_status_link(race)

@@ -12,9 +12,14 @@ Given(/^访问 '([^']*)'$/) do |location|
   expect(page).to have_current_path(path)
 end
 
+Given(/^前往 '([^']*)'$/) do |location|
+  path = TARGET_PATH_MAPPING[location].to_s
+  visit URI.escape(path)
+  expect(page).to have_current_path(path)
+end
+
 Given(/^应到达 '([^']*)'$/) do |location|
-  path = send(PATH_MAPPING[location])
-  page.current_path
+  path = TARGET_PATH_MAPPING[location].to_s
   expect(page).to have_current_path(path)
 end
 
@@ -36,6 +41,22 @@ Given(/^点击按钮 '([^']*)'$/) do |button|
   click_button(button)
 end
 
+Given(/^点击第一个按钮 '([^']*)'$/) do |button|
+  first(:button, button).click
+end
+
+Given(/^点击元素 '([^']*)'$/) do |selector|
+  first(selector).click
+end
+
+Given(/^'([^']*)' 该选择器的值应为 '([^']*)'$/) do |selector, value|
+  expect(first(selector).value).to eq(value)
+end
+
+Given /^点击按钮或链接 '([^']*)'$/ do |link_button|
+  click_on(link_button)
+end
+
 Given(/^对话框中点击 '([^']*)'$/) do |text|
   accept_confirm(text)
 end
@@ -45,7 +66,7 @@ Given(/^确定alert$/) do
 end
 
 Given(/^等待 ([^']*) 秒$/) do |second|
-  sleep(second.to_i)
+  sleep(second.to_f)
 end
 
 Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
@@ -53,6 +74,37 @@ Given(/^'([^']*)' 应看到 '([^']*)'$/) do |element, value|
   find_by_id(element_id).should have_content(value)
 end
 
+Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
+  elements.split(',').each do |element|
+    expect(page).to have_content(element)
+  end
+end
+
 Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
   first(:select, id).find(:option, text).select_option
+end
+
+Then(/^列表中应只有 '([^']*)' 条数据$/) do |number|
+  expect(first('tbody').all('tr').size).to eq(number.to_i)
+end
+
+Given(/^不勾选 '([^']*)'$/) do |text|
+  uncheck(text)
+end
+
+Then(/^应有提示暂无相应内容$/) do
+  expect(page).to have_css('.blank_slate_container .blank_slate')
+end
+
+Then(/^应得到错误提示 '([^']*)'$/) do |text|
+  expect(find('.flash_error')).to have_text(text)
+end
+
+Then(/^应得到成功提示 '([^']*)'$/) do |text|
+  expect(find('.flashes')).to have_text(text)
+end
+
+When(/^表单应提醒不能为空 '([^']*)'$/) do |id|
+  @form = find_by_id(id)
+  expect(@form).to have_text('不能为空')
 end

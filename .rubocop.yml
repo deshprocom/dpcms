@@ -8,6 +8,8 @@ AllCops:
     - 'test/**/*'
     - 'vendor/bundle/**/*'
     - 'Gemfile'
+    - 'lib/tasks/cucumber.rake'
+    - 'features/**/*'
 
 Rails:
   Enabled: true

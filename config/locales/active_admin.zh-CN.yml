@@ -1,5 +1,6 @@
 "zh-CN":
   active_admin:
+    empty: "空"
     scopes:
       all: '全部'
       unpaid: '待付款'
@@ -9,3 +10,6 @@
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'
+    status_tag:
+          "yes": "是"
+          "no": "否"

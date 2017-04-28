@@ -13,7 +13,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'dotenv-rails'
 
 # cache 相关
-gem 'redis-rails'
+gem 'redis-rails', '~> 5.0', '>= 5.0.2'
 gem 'second_level_cache', '~> 2.3.0'
 
 # view 相关
@@ -24,6 +24,7 @@ gem 'bootstrap-sass', '~> 3.3'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
+gem 'simditor'
 
 # activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
@@ -36,10 +37,11 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'carrierwave-upyun'
 
+# resque
+gem 'resque'
 
 # http组件
 gem 'faraday','~> 0.11.0'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,13 +50,14 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano3-puma'
   gem 'capistrano-rvm'
+  gem 'capistrano-resque', require: false
   gem 'rubocop', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
-  gem 'capybara-console'
+  gem 'poltergeist'
 end
 
 group :development do

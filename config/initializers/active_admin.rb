@@ -4,7 +4,7 @@ ActiveAdmin.setup do |config|
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Dpcms"
+  config.site_title = '德尚后台管理系统'
 
   # Set the link url for the title. For example, to take
   # users to your main site. Defaults to no link.
@@ -186,7 +186,7 @@ ActiveAdmin.setup do |config|
   # and feel.
   #
   # To load a stylesheet:
-     config.register_stylesheet 'my_stylesheet.css'
+  #    config.register_stylesheet 'my_stylesheet.css'
   #
   # You can provide an options hash for more control, which is passed along to stylesheet_link_tag():
   #   config.register_stylesheet 'my_print_stylesheet.css', media: :print

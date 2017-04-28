@@ -1,0 +1,10 @@
+= semantic_form_for [:admin, @player] do |f|
+  = f.inputs name: '牌手管理' do
+    = f.input :avatar, as: :file, hint: f.object.avatar.present? ? image_tag(f.object.avatar, height: 60) : nil
+    = f.input :name
+    = f.input :country, as: :string
+    = f.input :dpi_total_earning
+    = f.input :dpi_total_score
+    = f.input :memo
+    = f.actions
+

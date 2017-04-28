@@ -60,6 +60,9 @@ server '192.168.2.231',
     # password: 'please use keys'
   }
 
+role :resque_worker, %w{192.168.2.231}
+set :workers, {send_mobile_sms: 1}
+
 set :branch, ENV.fetch('REVISION', ENV.fetch('BRANCH', 'dev'))
 set :rails_env, 'development'
 set :bundle_without, %w{test}.join(' ')

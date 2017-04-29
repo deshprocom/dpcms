@@ -97,6 +97,9 @@ ActiveAdmin.register Info do
         # 说明更换了类别 那么不管 反正你要换类别，你先取消置顶再说
         resource.untop!
       end
+      # 如果取消发布，也会先取消置顶
+      resource.untop! if update_params['published'].to_i.zero?
+
       # 保存数据
       flash[:notice] = if resource.update!(update_params)
                          '资讯更新成功'

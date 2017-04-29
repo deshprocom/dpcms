@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       post '/attributes/update', to: 'purchase_orders/attributes#update'
     end
   end
+
+  resources :photos, only: [:create]
 end

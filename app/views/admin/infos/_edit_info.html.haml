@@ -5,7 +5,7 @@
     = f.input :date, as: :date_picker, size: 20
     = f.input :source_type, as: :select, collection: SOURCE_TYPE
     = f.input :source
-    = f.input :info_type_id, as: :select, collection: InfoType.where(published: true).collect { |type| [type.name, type.id] }
+    = f.input :info_type_id, as: :select, collection: InfoType.all.collect { |type| [type.name, type.id] }
     = f.input :published
     = f.input :description
     = f.actions

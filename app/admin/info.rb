@@ -16,7 +16,7 @@ ActiveAdmin.register Info do
 
   index title: '资讯管理' do
     column '资讯图片', :image do |info|
-      link_to image_tag(info.image_thumb)
+      link_to image_tag(info.image_thumb), info.image_thumb, target: '_blank'
     end
     column :title
     column :source_type do |info|

@@ -26,6 +26,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'simditor'
 
+
 # activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'devise'
@@ -36,6 +37,10 @@ gem 'redcarpet'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'carrierwave-upyun'
+# 压缩图片
+gem 'image_optim'
+gem 'image_optim_pack'
+gem 'carrierwave-imageoptim'
 
 # resque
 gem 'resque'

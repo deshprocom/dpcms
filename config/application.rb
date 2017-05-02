@@ -31,6 +31,8 @@ module Dpcms
     config.eager_load_paths += [
         Rails.root.join('lib/qcloud')
     ]
+
+    config.middleware.use Rack::SslEnforcer if ENV['USE_HTTPS']
   end
 
 end

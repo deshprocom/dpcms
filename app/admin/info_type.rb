@@ -1,5 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register InfoType do
+  menu label: '资讯类别', priority: 6
   permit_params :name, :level, :published
 
   filter :name

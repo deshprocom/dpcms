@@ -253,7 +253,6 @@ GEM
     public_suffix (2.0.5)
     puma (3.6.2)
     rack (2.0.1)
-    rack-ssl-enforcer (0.2.9)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.1)
@@ -444,7 +443,6 @@ DEPENDENCIES
   mysql2 (>= 0.3.18, < 0.5)
   poltergeist
   puma (~> 3.0)
-  rack-ssl-enforcer
   rails (~> 5.0.1)
   rails-i18n
   redcarpet

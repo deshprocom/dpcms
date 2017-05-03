@@ -1,3 +1,11 @@
+- types = InfoType.all.collect do |type|
+  - type_name = type.published ? type.name + ' [已发布]' : type.name
+  - [type_name, type.id]
+
+- selected = types.collect do |val, key|
+  - break [val, key] if params[:id].present? && key.eql?(Info.find(params[:id]).info_type.id.to_i)
+  - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
+
 = semantic_form_for [:admin, @info] do |f|
   = f.inputs name: '资讯管理' do
     = f.input :image, as: :file, hint: f.object.image.present? ? image_tag(f.object.image_thumb) : nil
@@ -5,7 +13,7 @@
     = f.input :date, as: :date_picker, size: 20
     = f.input :source_type, as: :select, collection: SOURCE_TYPE
     = f.input :source
-    = f.input :info_type_id, as: :select, collection: InfoType.all.collect { |type| [type.name, type.id] }
+    = f.input :info_type_id, as: :select, collection: options_for_select(types, selected)
     = f.input :published
     = f.input :description
     = f.actions

@@ -6,13 +6,18 @@ ActiveAdmin.register Info do
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
                 :published, :description, :info_type_id
 
+  @types = InfoType.all.collect do |type|
+    type_name = type.published ? type.name + ' [已发布]' : type.name
+    [type_name, type.id]
+  end
+
   filter :title
   filter :source_type, as: :select, collection: SOURCE_TYPE
   filter :source
   filter :date
   filter :published
   filter :top
-  filter :info_type_id, as: :select, collection: InfoType.all.collect { |type| [type.name, type.id] }
+  filter :info_type_id, as: :select, collection: @types
 
   index title: '资讯管理' do
     column '资讯图片', :image do |info|

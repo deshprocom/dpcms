@@ -18,7 +18,6 @@ ActiveAdmin.register InfoType do
     column :created_at, sortable: false
 
     actions name: '操作', class: 'info_actions', defaults: false do |type|
-
       if type.published
         item '取消发布', unpublish_admin_info_type_path(type),
              data: { confirm: '确定取消吗？' }, method: :post

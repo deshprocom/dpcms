@@ -13,4 +13,5 @@ CarrierWave.configure do |config|
   config.private_key = '6a0d76a6d5f7be5248ed4745626aa04fe82d4ef2'
   config.ucloud_bucket = 'deshpro-ci2'
   config.ucloud_bucket_host = 'http://deshpro-ci2.cn-gd.ufileos.com'
+  config.ucloud_cdn_host = 'http://deshpro-ci2.ufile.ucloud.com.cn'
 end

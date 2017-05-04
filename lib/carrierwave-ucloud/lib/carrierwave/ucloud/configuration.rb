@@ -7,6 +7,7 @@ module CarrierWave
         add_config :private_key
         add_config :ucloud_bucket
         add_config :ucloud_bucket_host
+        add_config :ucloud_cdn_host
       end
     end
     

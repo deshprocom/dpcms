@@ -1,5 +1,5 @@
 class PhotoUploader < BaseUploader
-  include CarrierWave::ImageOptim
+  # include CarrierWave::ImageOptim
 
   process resize_to_limit: [900, nil]
   # process :optimize

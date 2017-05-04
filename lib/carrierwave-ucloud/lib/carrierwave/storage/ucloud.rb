@@ -10,6 +10,7 @@ module CarrierWave
     #       config.private_key = "my_bucket"
     #       config.ucloud_bucket = "my_bucket"
     #       config.ucloud_bucket_host = "https://my_bucket.files.example.com"
+    #       config.ucloud_cdn_host = "https://my_bucket.files.example.com"
     #     end
     #
     #
@@ -71,8 +72,9 @@ module CarrierWave
         # [String] file's url
         #
         def url
-          return nil unless @uploader.ucloud_bucket_host
-          [@uploader.ucloud_bucket_host, @path].join("/")
+          host = @uploader.ucloud_cdn_host || @uploader.ucloud_bucket_host
+          return nil unless host
+          [host, @path].join("/")
         end
 
         def content_type

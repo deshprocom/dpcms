@@ -4,13 +4,11 @@ module CarrierWave
       class << self
         def authorization(uploader, req)
           sign = sign(uploader, req)
-          puts sign
           "UCloud #{uploader.public_key}:#{sign}"
         end
 
         def sign(uploader, req)
           string = string_to_sign(uploader, req)
-          puts string
           digest = OpenSSL::Digest.new('sha1')
           Base64.encode64(OpenSSL::HMAC.digest(digest, uploader.private_key, string))
         end

@@ -4,7 +4,7 @@ class PhotosController < ApplicationController
     @photo.image = params[:image]
     @photo.user = current_admin_user
     if @photo.save
-      render json: { success: true, msg: '上传成功', file_path: @photo.real_url }
+      render json: { success: true, msg: '上传成功', file_path: @photo.image.url }
     else
       render json: { success: false }
     end

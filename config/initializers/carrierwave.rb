@@ -1,4 +1,3 @@
-require 'carrierwave-ucloud/lib/carrierwave-ucloud'
 CarrierWave.configure do |config|
   config.storage = :ucloud
   config.public_key = 'wtzkb/5oUfZoeDgrz5r0fc85/krg7UkS8OLLwSVPuvtxd0RX9Vm/+w=='

@@ -4,12 +4,5 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root 'admin/dashboard#index'
 
-  namespace :admin do
-    resources :purchase_orders, only:[] do
-      get '/attributes/edit', to: 'purchase_orders/attributes#edit'
-      post '/attributes/update', to: 'purchase_orders/attributes#update'
-    end
-  end
-
   resources :photos, only: [:create]
 end

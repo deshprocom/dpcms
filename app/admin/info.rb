@@ -6,17 +6,22 @@ ActiveAdmin.register Info do
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
                 :published, :description, :info_type_id
 
+  @types = InfoType.all.collect do |type|
+    type_name = type.published ? type.name + ' [已发布]' : type.name
+    [type_name, type.id]
+  end
+
   filter :title
   filter :source_type, as: :select, collection: SOURCE_TYPE
   filter :source
   filter :date
   filter :published
   filter :top
-  filter :info_type_id, as: :select, collection: InfoType.where(published: true).collect { |type| [type.name, type.id] }
+  filter :info_type_id, as: :select, collection: @types
 
   index title: '资讯管理' do
     column '资讯图片', :image do |info|
-      link_to image_tag(info.image_thumb)
+      link_to image_tag(info.image_thumb), info.image_thumb, target: '_blank'
     end
     column :title
     column :source_type do |info|
@@ -53,6 +58,7 @@ ActiveAdmin.register Info do
       end
     end
   end
+
   # 逻辑说明：
   # 1，一个类别下的资讯只能有一条资讯是置顶状态
   # 2，取消发布之前会先将该资讯取消置顶
@@ -89,4 +95,37 @@ ActiveAdmin.register Info do
   end
 
   form partial: 'edit_info'
+
+  controller do
+    def update
+      unless resource.info_type_id.eql? update_params['info_type_id'].to_i
+        # 说明更换了类别 那么不管 反正你要换类别，你先取消置顶再说
+        resource.untop!
+      end
+      # 如果取消发布，也会先取消置顶
+      resource.untop! if update_params['published'].to_i.zero?
+
+      # 保存数据
+      flash[:notice] = if resource.update!(update_params)
+                         '资讯更新成功'
+                       else
+                         '资讯更新失败'
+                       end
+      redirect_to admin_infos_url
+    end
+
+    private
+
+    def update_params
+      params.require(:info).permit(:image,
+                                   :title,
+                                   :date,
+                                   :source_type,
+                                   :source,
+                                   :info_type_id,
+                                   :published,
+                                   :top,
+                                   :description)
+    end
+  end
 end

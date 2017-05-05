@@ -32,4 +32,5 @@ module Dpcms
         Rails.root.join('lib/qcloud')
     ]
   end
+
 end

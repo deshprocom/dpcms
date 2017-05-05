@@ -1,16 +1,21 @@
 context.instance_eval do
-  attributes_table do
-    row('主赛标题') { resource.parent.name }
-    row('边赛标题') { resource.name }
-    row('买入') { format_ticket_price(resource) }
-    row(:blind)
-    row(:prize) { format_prize(resource) }
-    row :participants
-    row :location
-    row(I18n.t('race.period')) { race_period(resource) }
-    row :roy
-    attributes_table_for resource.race_desc do
-      row(:schedule) { markdown(resource.race_desc.schedule) }
+  ul class: 'ui-tabs-nav' do
+    li link_to '赛程表', admin_race_race_schedules_path(sub_races)
+  end
+  div class: 'tab-content' do
+    attributes_table do
+      row('主赛标题') { resource.parent.name }
+      row('边赛标题') { resource.name }
+      row('买入') { format_ticket_price(resource) }
+      row(:blind)
+      row(:prize) { format_prize(resource) }
+      row :participants
+      row :location
+      row(I18n.t('race.period')) { race_period(resource) }
+      row :roy
+      attributes_table_for resource.race_desc do
+        row(:schedule) { markdown(resource.race_desc.schedule) }
+      end
     end
   end
 end

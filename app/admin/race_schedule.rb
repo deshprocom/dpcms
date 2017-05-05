@@ -4,6 +4,7 @@ ActiveAdmin.register RaceSchedule do
 
   config.filters = false
   config.batch_actions = false
+  config.sort_order = 'schedule_asc'
 
   navigation_menu :default
   menu false

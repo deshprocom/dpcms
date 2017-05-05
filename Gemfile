@@ -35,8 +35,8 @@ gem 'redcarpet'
 
 # 文件处理组件
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-ucloud', '~> 0.0.2'
 gem 'mini_magick'
-gem 'carrierwave-upyun'
 # 压缩图片
 gem 'image_optim'
 gem 'image_optim_pack'

@@ -54,6 +54,8 @@ RSpec.describe Admin::RacesController, type: :controller do
       expect(response).to redirect_to(admin_race_url(race.id))
       expect(race.race_desc).to be_truthy
       expect(race.ticket_info).to be_truthy
+      logo = open(race.logo.url)
+      expect(logo.status[0]).to eq('200')
     end
   end
 

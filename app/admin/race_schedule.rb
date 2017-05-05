@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register RaceSchedule do
   belongs_to :race
 
@@ -20,6 +21,9 @@ ActiveAdmin.register RaceSchedule do
       if @race_schedule.save
         flash[:notice] = '新建赛程表成功'
         redirect_to admin_race_race_schedules_url
+      else
+        flash[:notice] = '新建赛程表失败'
+        render :new
       end
     end
 
@@ -28,6 +32,9 @@ ActiveAdmin.register RaceSchedule do
       if @race_schedule.save
         flash[:notice] = '更新赛程表成功'
         redirect_to admin_race_race_schedules_url
+      else
+        flash[:notice] = '更新赛程表失败'
+        render :edit
       end
     end
 

@@ -13,6 +13,7 @@
       player: '牌手'
       info: '资讯'
       info_type: '资讯类别'
+      race_schedule: '赛程表'
     attributes:
       race:
         name: "赛事标题"
@@ -114,6 +115,12 @@
         updated_at: '修改时间'
         level: '级别'
         topped: '置顶的资讯'
+      race_schedule:
+        schedule: 'Day'
+        begin_date: '日期'
+        begin_time: '开始时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
   errors:
       format: "%{attribute}%{message}"
       messages:

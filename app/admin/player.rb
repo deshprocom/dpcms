@@ -8,7 +8,9 @@ ActiveAdmin.register Player do
   index title: I18n.t('player.list') do
     column :player_id
     column '头像', :avatar do |player|
-      image_tag(player.avatar_path, height: 60) if player.avatar_path.present?
+      if player.avatar_path.present?
+        link_to image_tag(player.avatar_path, height: 60), player.avatar_path, target: '_blank'
+      end
     end
     column :name
     column :country

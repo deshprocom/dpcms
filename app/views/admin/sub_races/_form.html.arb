@@ -11,8 +11,5 @@ f.inputs do
   f.input :begin_date
   f.input :end_date
   f.input :roy
-  f.semantic_fields_for :race_desc do |desc_form|
-    desc_form.input :schedule
-  end
 end
 f.actions

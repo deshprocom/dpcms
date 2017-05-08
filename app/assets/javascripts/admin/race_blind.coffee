@@ -1,4 +1,7 @@
 $ ->
+  if $('.admin_race_blinds').length > 0 && $('.blank_slate').length > 0
+    $('.blank_slate').find('a').attr('data-remote', true)
+
   window.SwtichBlindTypeInputs =
     call: ->
       @init_display()

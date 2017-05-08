@@ -1,6 +1,8 @@
 context.instance_eval do
   ul class: 'ui-tabs-nav' do
+    li link_to '赛事排行榜', admin_race_race_ranks_path(sub_races)
     li link_to '赛程表', admin_race_race_schedules_path(sub_races)
+    li link_to '盲注结构', admin_race_race_blinds_path(sub_races)
   end
   div class: 'tab-content' do
     attributes_table do

@@ -26,7 +26,7 @@
     surplus_ticket: '剩余的票'
   race_blind:
     blind_struct: '盲注结构'
-    content: '文字说明'
+    blind_content: '文字说明'
   unpaid: '待付款'
   paid: '待发货'
   completed: '已完成'

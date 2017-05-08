@@ -17,7 +17,7 @@ $ ->
         that.swith_display(this.value)
 
     swith_display: (type) ->
-      if type == 'content'
+      if type == 'blind_content'
         $('.struct_inputs').hide()
         $('.content_inputs').show()
       else

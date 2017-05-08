@@ -24,7 +24,7 @@ Given(/^应到达 '([^']*)'$/) do |location|
 end
 
 When(/^在 '([^']*)' 填入 '([^']*)'$/) do |input_txt, value|
-  input_id = INPUT_MAPPING[input_txt]
+  input_id = INPUT_MAPPING[input_txt] ? INPUT_MAPPING[input_txt] : input_txt
   fill_in(input_id, with: value)
 end
 
@@ -81,6 +81,7 @@ Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
 end
 
 Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
+  sleep(0.1)
   first(:select, id).find(:option, text).select_option
 end
 
@@ -107,4 +108,9 @@ end
 When(/^表单应提醒不能为空 '([^']*)'$/) do |id|
   @form = find_by_id(id)
   expect(@form).to have_text('不能为空')
+end
+
+When(/^表单应提醒'([^']*)' '([^']*)'$/) do |text, id|
+  @form = find_by_id(id)
+  expect(@form).to have_text(text)
 end

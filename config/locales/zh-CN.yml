@@ -100,7 +100,7 @@
         race_time: '时间'
         content: '文字说明'
         race: "所属赛事"
-        bind_type: "类型"
+        blind_type: "类型"
       race_host:
         name: '主办方名称'
         created_at: "创建时间"

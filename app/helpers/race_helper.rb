@@ -80,4 +80,8 @@ module RaceHelper
             method: :post,
             data:   { confirm: I18n.t('race.cancel_sell_confirmation') }
   end
+
+  def blind_text(blind)
+    "#{blind.small_blind} - #{blind.big_blind}"
+  end
 end

@@ -24,6 +24,9 @@
     cancel_sell_confirmation: '确定取消售票？'
     cancel_sell: '取消售票'
     surplus_ticket: '剩余的票'
+  race_blind:
+    blind_struct: '盲注结构'
+    content: '文字说明'
   unpaid: '待付款'
   paid: '待发货'
   completed: '已完成'

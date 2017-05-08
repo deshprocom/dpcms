@@ -14,6 +14,7 @@
       info: '资讯'
       info_type: '资讯类别'
       race_schedule: '赛程表'
+      race_blind: '盲注结构'
     attributes:
       race:
         name: "赛事标题"
@@ -91,6 +92,15 @@
         earning: '赢入奖金'
         race: "所属赛事"
         player: "所属牌手"
+      race_blind:
+        level: '级别'
+        small_blind: '小盲注'
+        big_blind: '大盲注'
+        ante: '前注'
+        race_time: '时间'
+        content: '文字说明'
+        race: "所属赛事"
+        bind_type: "类型"
       race_host:
         name: '主办方名称'
         created_at: "创建时间"

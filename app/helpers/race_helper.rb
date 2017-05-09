@@ -28,7 +28,7 @@ module RaceHelper
   end
 
   def format_ticket_price(race)
-    "RMB #{race.ticket_price} 元"
+    "RMB #{race.ticket_price}"
   end
 
   def show_big_logo_link(race)

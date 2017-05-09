@@ -28,7 +28,7 @@ module RaceHelper
   end
 
   def format_ticket_price(race)
-    "RMB #{race.ticket_price} 元"
+    "RMB #{race.ticket_price}"
   end
 
   def show_big_logo_link(race)
@@ -79,5 +79,9 @@ module RaceHelper
             class:  'member_link',
             method: :post,
             data:   { confirm: I18n.t('race.cancel_sell_confirmation') }
+  end
+
+  def blind_text(blind)
+    "#{blind.small_blind} - #{blind.big_blind}"
   end
 end

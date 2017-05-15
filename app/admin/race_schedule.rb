@@ -1,7 +1,5 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register RaceSchedule do
-  belongs_to :race
-
   config.filters = false
   config.batch_actions = false
   config.sort_order = 'schedule_asc'
@@ -9,10 +7,13 @@ ActiveAdmin.register RaceSchedule do
     if race.main?
       breadcrumb_links
     else
-      path = "/races/#{race.parent.id}/races/#{race.id}/race_blinds"
+      path = admin_race_sub_race_race_blinds_path(race.parent, race)
       breadcrumb_links(path)
     end
   end
+
+  belongs_to :race
+  belongs_to :sub_race, optional: true
 
   navigation_menu :default
   menu false

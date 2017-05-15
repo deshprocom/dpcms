@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register Race, as: 'sub_races' do
+ActiveAdmin.register Race, as: 'SubRace' do
   config.filters = false
   config.batch_actions = false
 

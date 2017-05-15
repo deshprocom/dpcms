@@ -3,7 +3,14 @@ ActiveAdmin.register RaceRank do
   config.filters = false
   config.batch_actions = false
   config.sort_order = 'ranking_asc'
-  config.breadcrumb = false
+  breadcrumb do
+    if race.main?
+      breadcrumb_links
+    else
+      path = "/races/#{race.parent.id}/races/#{race.id}/race_blinds"
+      breadcrumb_links(path)
+    end
+  end
 
   belongs_to :race
   navigation_menu :default

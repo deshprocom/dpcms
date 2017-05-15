@@ -4,15 +4,22 @@ TRANS_BLIND_TYPES = RACE_BLIND_TYPES.collect { |d| [I18n.t("race_blind.#{d}"), d
 ActiveAdmin.register RaceBlind do
   config.filters = false
   config.batch_actions = false
-  config.breadcrumb = false
   config.paginate = false
   config.sort_order = ''
+  breadcrumb do
+    if race.main?
+      breadcrumb_links
+    else
+      path = "/races/#{race.parent.id}/races/#{race.id}/race_blinds"
+      breadcrumb_links(path)
+    end
+  end
 
   belongs_to :race
   navigation_menu :default
   menu false
 
-  index title: proc { "#{@race.name} - 盲注结构" }, download_links: false do
+  index download_links: false do
     render 'custom_index', race_blinds: race_blinds
   end
   form partial: 'form'

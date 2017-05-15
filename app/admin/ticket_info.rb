@@ -3,7 +3,10 @@ ActiveAdmin.register TicketInfo do
   belongs_to :race
   navigation_menu :default
   menu false
-  config.breadcrumb = false
+  breadcrumb do
+    path = admin_race_ticket_infos_path(race)
+    breadcrumb_links(path)
+  end
 
   show title: I18n.t('race.ticket_manage') do
     render 'show', race: race, ticket_info: race.ticket_info

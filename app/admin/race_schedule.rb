@@ -4,13 +4,20 @@ ActiveAdmin.register RaceSchedule do
 
   config.filters = false
   config.batch_actions = false
-  config.breadcrumb = false
   config.sort_order = 'schedule_asc'
+  breadcrumb do
+    if race.main?
+      breadcrumb_links
+    else
+      path = "/races/#{race.parent.id}/races/#{race.id}/race_blinds"
+      breadcrumb_links(path)
+    end
+  end
 
   navigation_menu :default
   menu false
 
-  index title: proc { "#{@race.name} - 赛程表" }, download_links: false do
+  index download_links: false do
     render 'index', context: self
   end
 

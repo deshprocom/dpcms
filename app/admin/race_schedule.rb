@@ -2,7 +2,7 @@
 ActiveAdmin.register RaceSchedule do
   config.filters = false
   config.batch_actions = false
-  config.sort_order = 'schedule_asc'
+  config.sort_order = ''
   breadcrumb do
     if race.main?
       breadcrumb_links
@@ -46,6 +46,10 @@ ActiveAdmin.register RaceSchedule do
         flash[:notice] = '更新赛程表失败'
         render :edit
       end
+    end
+
+    def scoped_collection
+      super.default_asc
     end
 
     private

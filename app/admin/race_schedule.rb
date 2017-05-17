@@ -1,16 +1,24 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register RaceSchedule do
-  belongs_to :race
-
   config.filters = false
   config.batch_actions = false
-  config.breadcrumb = false
   config.sort_order = ''
+  breadcrumb do
+    if race.main?
+      breadcrumb_links
+    else
+      path = admin_race_sub_race_race_blinds_path(race.parent, race)
+      breadcrumb_links(path)
+    end
+  end
+
+  belongs_to :race
+  belongs_to :sub_race, optional: true
 
   navigation_menu :default
   menu false
 
-  index title: proc { "#{@race.name} - 赛程表" }, download_links: false do
+  index download_links: false do
     render 'index', context: self
   end
 

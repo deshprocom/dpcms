@@ -26,7 +26,6 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'simditor'
 
-
 # activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 gem 'devise'
@@ -47,6 +46,8 @@ gem 'resque'
 
 # http组件
 gem 'faraday','~> 0.11.0'
+
+gem 'jpush', '~> 4.0', '>= 4.0.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -76,4 +76,4 @@ set :puma_env, fetch(:rails_env, 'production')
 set :puma_threads, [0, 16]
 set :puma_workers, 0
 
-
+set :project_url, 'http://106.75.134.18:8900'

@@ -138,6 +138,7 @@
         video_link: '视频链接'
         cover_link: '封面链接'
         description: '视频描述'
+        video_type_id: '视频类别'
         top: '置顶'
         published: '发布'
         created_at: "创建时间"

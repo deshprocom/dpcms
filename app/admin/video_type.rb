@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register VideoType do
   menu false
   permit_params :name, :level, :published

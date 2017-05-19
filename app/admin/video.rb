@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Video do
   menu label: '视频管理', priority: 7
   permit_params :name, :video_link, :cover_link, :top, :published, :description, :video_type_id
@@ -104,10 +105,10 @@ ActiveAdmin.register Video do
 
     def update_params
       params.require(:video).permit(:name,
-                                   :video_type_id,
-                                   :published,
-                                   :top,
-                                   :description)
+                                    :video_type_id,
+                                    :published,
+                                    :top,
+                                    :description)
     end
   end
 end

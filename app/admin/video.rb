@@ -14,11 +14,13 @@ ActiveAdmin.register Video do
   filter :video_type_id, as: :select, collection: @types
 
   index title: '视频管理' do
-    column '封面图片', :cover_link do |video|
-      link_to image_tag(video.cover_link), video.cover_link, target: '_blank'
-    end
     column :name, sortable: false
-    column :video_link, sortable: false
+    column '封面图片', :cover_link do |video|
+      link_to image_tag(video.image_thumb), video.image_thumb, target: '_blank'
+    end
+    column '视频播放', :video_link do |video|
+      video_tag(video.video_path, controls: true, autobuffer: true, height: 200) if video.video_path.present?
+    end
     column :video_type_id, sortable: false
     column :top
     column :published
@@ -106,6 +108,8 @@ ActiveAdmin.register Video do
     def update_params
       params.require(:video).permit(:name,
                                     :video_type_id,
+                                    :video_link,
+                                    :cover_link,
                                     :published,
                                     :top,
                                     :description)

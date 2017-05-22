@@ -10,6 +10,8 @@
   = f.inputs name: '视频管理' do
     = f.input :name
     = f.input :video_type_id, as: :select, collection: options_for_select(types, selected)
+    = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
+    = f.input :video_link, as: :file, hint: f.object.video_path.present? ? f.object.video_path : nil
     = f.input :published
     ~ f.input :description
     = f.actions

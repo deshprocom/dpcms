@@ -15,6 +15,8 @@
       info_type: '资讯类别'
       race_schedule: '赛程表'
       race_blind: '盲注结构'
+      video: '视频'
+      video_type: '视频类别'
     attributes:
       race:
         name: "赛事标题"
@@ -129,6 +131,22 @@
         schedule: 'Day'
         begin_date: '日期'
         begin_time: '开始时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video:
+        name: '名称'
+        video_link: '视频链接'
+        cover_link: '封面链接'
+        description: '视频描述'
+        video_type_id: '视频类别'
+        top: '置顶'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video_type:
+        name: '名称'
+        level: '级别'
+        published: '发布'
         created_at: "创建时间"
         updated_at: "更新时间"
   errors:

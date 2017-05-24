@@ -12,6 +12,8 @@ module DpPush
 
     def call
       @push.push(push_payload)
+    rescue => e
+      Rails.logger.error "DpPush: #{e}"
     end
 
     def push_payload
@@ -28,12 +30,17 @@ module DpPush
     end
 
     def audience
-      jpush_alias = "#{ENV['CURRENT_PROJECT_ENV']}_#{@user.user_uuid}"
-      @push.audience.set_alias(jpush_alias)
+      push_alias = "#{ENV['CURRENT_PROJECT_ENV']}_#{@user.user_uuid}"
+      @push.audience.set_alias(push_alias)
     end
 
     def notification
-      @push.notification.set_alert(@msg)
+      @push.notification
+           .set_alert(@msg)
+           .set_ios(sound: 'sound',
+                    alert: @msg,
+                    contentavailable: true,
+                    badge: '+1')
     end
   end
 end

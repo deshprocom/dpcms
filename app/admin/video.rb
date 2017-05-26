@@ -19,7 +19,7 @@ ActiveAdmin.register Video do
       link_to image_tag(video.image_thumb), video.image_thumb, target: '_blank'
     end
     column '视频播放', :video_link do |video|
-      video_tag(video.video_path, controls: true, autobuffer: true, height: 200) if video.video_path.present?
+      video_tag(video.video_link, controls: true, autobuffer: true, height: 200) if video.video_link.present?
     end
     column :video_type_id, sortable: false
     column :top

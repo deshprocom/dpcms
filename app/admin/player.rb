@@ -8,8 +8,8 @@ ActiveAdmin.register Player do
   index title: I18n.t('player.list') do
     column :player_id
     column '头像', :avatar do |player|
-      if player.avatar_path.present?
-        link_to image_tag(player.avatar_path, height: 60), player.avatar_path, target: '_blank'
+      if player.avatar_thumb.present?
+        link_to image_tag(player.avatar_thumb, height: 100), player.avatar_thumb, target: '_blank'
       end
     end
     column :name
@@ -34,15 +34,16 @@ ActiveAdmin.register Player do
     end
 
     def create
-      @player = Player.create(player_params)
-      flash[:notice] = '新建牌手成功' if @player.save
-      respond_to do |format|
-        if @player.save
-          format.html { redirect_to admin_player_url(@player) }
+      @player = Player.new(player_params)
+      if @player.save
+        if player_params[:avatar].present?
+          render :crop
         else
-          format.html { render :new }
+          flash[:notice] = '新建牌手成功'
+          redirect_to admin_player_url(@player)
         end
-        format.js
+      else
+        render :new
       end
     end
 
@@ -52,10 +53,15 @@ ActiveAdmin.register Player do
 
     def update
       @player.assign_attributes(player_params)
-      flash[:notice] = '更新牌手成功' if @player.save
-      respond_to do |format|
-        format.html { redirect_to admin_player_url(@player) }
-        format.js { render :create }
+      if @player.save
+        if player_params[:avatar].present?
+          render :crop
+        else
+          flash[:notice] = '更新牌手成功'
+          redirect_to admin_player_url(@player)
+        end
+      else
+        render :new
       end
     end
 
@@ -74,7 +80,8 @@ ActiveAdmin.register Player do
                                      :country,
                                      :dpi_total_earning,
                                      :dpi_total_score,
-                                     :memo)
+                                     :memo,
+                                     :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def set_player

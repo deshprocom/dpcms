@@ -2,8 +2,8 @@ context.instance_eval do
   attributes_table do
     row(:player_id)
     row(:avatar) do |player|
-      if player.avatar_path.present?
-        link_to image_tag(player.avatar_path, height: 60), player.avatar_path, target: '_blank'
+      if player.avatar_thumb.present?
+        link_to image_tag(player.avatar_thumb, height: 100), player.avatar_thumb, target: '_blank'
       end
     end
     row(:name)

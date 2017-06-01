@@ -16,6 +16,7 @@ class PlayerUploader < BaseUploader
     %w(jpg jpeg gif png)
   end
 
+  # rubocop:disable Style/GuardClause
   def crop
     if model.crop_x.present?
       resize_to_limit(600, 600)

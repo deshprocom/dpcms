@@ -13,7 +13,8 @@ FactoryGirl.define do
   factory :whole_race, parent: :race do
     after(:create) do |race|
       FactoryGirl.create(:race_desc, race: race)
-      FactoryGirl.create(:ticket_info, race: race)
+      ticket =  FactoryGirl.create(:ticket, race: race, status: 'selling')
+      FactoryGirl.create(:ticket_info, race: race, ticket: ticket)
     end
   end
 end

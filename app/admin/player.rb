@@ -35,35 +35,65 @@ ActiveAdmin.register Player do
 
     def create
       @player = Player.new(player_params)
-      if @player.save
-        if player_params[:avatar].present?
-          render :crop
-        else
+      respond_to do |format|
+        if @player.save
           flash[:notice] = '新建牌手成功'
-          redirect_to admin_player_url(@player)
+          format.html { redirect_to admin_player_url(@player) }
+        else
+          format.html { render :new }
         end
-      else
-        render :new
+        format.js
       end
     end
+
+    # def create
+    #   @player = Player.new(player_params)
+    #   if @player.save
+    #     if player_params[:avatar].present?
+    #       render :crop
+    #     else
+    #       flash[:notice] = '新建牌手成功'
+    #       redirect_to admin_player_url(@player)
+    #     end
+    #   else
+    #     render :new
+    #   end
+    # end
 
     def edit
       render :new
     end
 
     def update
+      @player.crop_x = player_params[:crop_x]
+      @player.crop_y = player_params[:crop_y]
+      @player.crop_w = player_params[:crop_w]
+      @player.crop_h = player_params[:crop_h]
       @player.assign_attributes(player_params)
-      if @player.save
-        if player_params[:avatar].present?
-          render :crop
-        else
+      respond_to do |format|
+        if @player.save
           flash[:notice] = '更新牌手成功'
-          redirect_to admin_player_url(@player)
+          format.html { redirect_to admin_player_url(@player) }
+        else
+          format.html { render :edit }
         end
-      else
-        render :new
+        format.js { render :create }
       end
     end
+
+    # def update
+    #   @player.assign_attributes(player_params)
+    #   if @player.save
+    #     if player_params[:avatar].present?
+    #       render :crop
+    #     else
+    #       flash[:notice] = '更新牌手成功'
+    #       redirect_to admin_player_url(@player)
+    #     end
+    #   else
+    #     render :new
+    #   end
+    # end
 
     def destroy
       if resource.race_ranks.exists?

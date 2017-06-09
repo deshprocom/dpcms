@@ -14,7 +14,7 @@ FactoryGirl.define do
     after(:create) do |race|
       FactoryGirl.create(:race_desc, race: race)
       ticket =  FactoryGirl.create(:ticket, race: race, status: 'selling')
-      FactoryGirl.create(:ticket_info, race: race, ticket: ticket)
+      FactoryGirl.create(:ticket_info, ticket: ticket)
     end
   end
 end

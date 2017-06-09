@@ -1,10 +1,10 @@
 module Services
   class TicketNumberModifier
     include Serviceable
-    attr_accessor :ticket_info
-    delegate :race, to: :ticket_info
-    def initialize(ticket_info, params)
-      self.ticket_info = ticket_info
+    attr_accessor :ticket
+    delegate :ticket_info, to: :ticket
+    def initialize(ticket, params)
+      self.ticket = ticket
       @e_ticket_increment      = params[:e_ticket_increment].to_i
       @e_ticket_decrement      = params[:e_ticket_decrement].to_i
       @entity_ticket_increment = params[:entity_ticket_increment].to_i
@@ -29,7 +29,7 @@ module Services
 
     def increase_e_ticket
       ticket_info.increment_with_lock!(:e_ticket_number, @e_ticket_increment)
-      race.update(ticket_status: 'selling') if race.ticket_status == 'sold_out'
+      ticket.update(status: 'selling') if ticket.status == 'sold_out'
       ApiResult.success_result
     end
 
@@ -38,13 +38,13 @@ module Services
         return ApiResult.error_result(1, '减去的票数不允许大于剩余的票数')
       end
       ticket_info.decrement_with_lock!(:e_ticket_number, @e_ticket_decrement)
-      race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
+      ticket.update(status: 'sold_out') if ticket_info.sold_out?
       ApiResult.success_result
     end
 
     def increase_entity_ticket
       ticket_info.increment_with_lock!(:entity_ticket_number, @entity_ticket_increment)
-      race.update(ticket_status: 'selling') if race.ticket_status == 'sold_out'
+      ticket.update(status: 'selling') if ticket.status == 'sold_out'
       ApiResult.success_result
     end
 
@@ -53,7 +53,7 @@ module Services
         return ApiResult.error_result(1, '减去的票数不允许大于剩余的票数')
       end
       ticket_info.decrement_with_lock!(:entity_ticket_number, @entity_ticket_decrement)
-      race.update(ticket_status: 'sold_out') if ticket_info.sold_out?
+      ticket.update(status: 'sold_out') if ticket_info.sold_out?
       ApiResult.success_result
     end
   end

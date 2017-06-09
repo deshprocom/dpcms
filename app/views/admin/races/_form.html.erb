@@ -1,6 +1,5 @@
 <div class="sky-form">
   <%= semantic_form_for [:admin, @race] do |f| %>
-      <% @race.ticket_info || @race.build_ticket_info %>
       <% @race.race_desc   || @race.build_race_desc %>
       <%= f.inputs name: '赛事简介' do %>
           <%= f.input :race_host, prompt: true %>
@@ -18,10 +17,6 @@
           <%= f.semantic_fields_for :race_desc do |desc_form| %>
               <%= desc_form.input :description %>
           <% end %>
-      <% end %>
-
-      <%= f.semantic_fields_for :ticket_info do |info_form| %>
-          <%= info_form.hidden_field :e_ticket_number %>
       <% end %>
 
       <%= f.actions %>

@@ -1,4 +1,6 @@
 ActiveAdmin.register TicketInfo do
+  menu false
+
   # navigation_menu :default
   # menu false
   # breadcrumb do

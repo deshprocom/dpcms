@@ -3,6 +3,7 @@ f.semantic_errors *f.object.errors.keys
 f.inputs do
   f.input :parent, collection: [[race.name, race.id]], prompt: true
   f.input :name
+  f.input :logo, as: :file, hint: f.object.logo.present? ? image_tag(f.object.preview_logo) : nil
   f.input :ticket_price, label: '买入'
   f.input :blind
   f.input :prize

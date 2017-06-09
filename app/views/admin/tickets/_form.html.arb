@@ -8,9 +8,8 @@ f.inputs do
   f.input :ticket_class, collection: TRANS_TICKET_CLASSES, prompt: true
   f.input :description
   f.semantic_fields_for :ticket_info do |info_form|
-    info_form.input :e_ticket_number
-    info_form.input :entity_ticket_number
+    info_form.hidden_field :e_ticket_number
   end
 end
-
 f.actions
+render 'new_editor'

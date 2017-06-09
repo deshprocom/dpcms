@@ -42,7 +42,9 @@ INPUT_MAPPING = {
   info_type_level: '资讯级别',
   info_image: '资讯图片',
   info_title: '资讯名称',
-
+  ticket_title: '赛票标题',
+  ticket_price: '应付价格',
+  ticket_original_price: '原始价格',
 }.invert
 
 ELEMENT_MAPPING = {

@@ -13,10 +13,6 @@ RSpec.describe Admin::RacesController, type: :controller do
         logo: fixture_file_upload(Rails.root.join('spec/factories/foo.png')),
         race_desc_attributes:{
           description:'test description test description'
-        },
-        ticket_info_attributes:{
-          e_ticket_number:'20',
-          entity_ticket_number:'0'
         }
       }
     }
@@ -53,7 +49,6 @@ RSpec.describe Admin::RacesController, type: :controller do
       race = Race.last
       expect(response).to redirect_to(admin_race_url(race.id))
       expect(race.race_desc).to be_truthy
-      expect(race.ticket_info).to be_truthy
       logo = open(race.logo.url)
       expect(logo.status[0]).to eq('200')
     end
@@ -83,7 +78,6 @@ RSpec.describe Admin::RacesController, type: :controller do
       race.reload
       expect(response).to         redirect_to(admin_race_url(race.id))
       expect(race.race_desc).to   be_truthy
-      expect(race.ticket_info).to be_truthy
     end
   end
 

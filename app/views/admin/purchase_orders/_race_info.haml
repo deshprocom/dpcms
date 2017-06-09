@@ -1,5 +1,6 @@
 - order = @purchase_order
 - race = order.race
+- ticket = order.ticket
 
 .order_race_info
   %table
@@ -18,7 +19,7 @@
           %span 地点：
           %span #{race.location}
         .number
-          %span 剩余#{race.ticket_info.e_ticket_number}张电子票, #{race.ticket_info.entity_ticket_number}张实体票
+          %span 剩余#{ticket.ticket_info.e_ticket_number}张电子票, #{ticket.ticket_info.entity_ticket_number}张实体票
       %td
         .order_amount
           .amount

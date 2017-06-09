@@ -17,6 +17,7 @@ class DpApiRemote
       req.options.timeout = 10
       req.headers['X-DP-APP-KEY'] = '467109f4b44be6398c17f6c058dfa7ee'
       req.headers['X_DP_CLIENT_IP'] = '127.0.0.1:8900'
+      req.headers['X_DP_ACCESS_TOKEN'] = params[:token] if params[:token].present?
     end
     self
   end

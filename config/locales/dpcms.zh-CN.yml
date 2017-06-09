@@ -50,6 +50,6 @@
       end: '售票结束'
       sold_out: '已售完'
     ticket_class:
-      race: '主票'
-      race_extra: '套票'
+      single_ticket: '主票'
+      package_ticket: '套票'
 

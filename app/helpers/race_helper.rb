@@ -106,4 +106,13 @@ module RaceHelper
   def blind_text(blind)
     "#{blind.small_blind} - #{blind.big_blind}"
   end
+
+  def ticket_breadcrumb_path
+    return request.path if @race.main?
+
+    if params[:id].present?
+      return admin_race_sub_race_ticket_path(@race.parent, @race, @ticket)
+    end
+    admin_race_sub_race_tickets_path(@race.parent, @race)
+  end
 end

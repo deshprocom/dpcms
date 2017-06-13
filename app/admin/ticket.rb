@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/BlockLength
-
 TICKET_CLASSES = Ticket.ticket_classes.keys
 TRANS_TICKET_CLASSES = TICKET_CLASSES.collect { |d| [I18n.t("ticket.ticket_class.#{d}"), d] }
 TICKET_STATUSES = Ticket.statuses.keys
@@ -12,12 +11,7 @@ ActiveAdmin.register Ticket do
   config.filters = false
   config.batch_actions = false
   breadcrumb do
-    if race.main?
-      breadcrumb_links
-    else
-      path = admin_race_sub_race_race_blinds_path(race.parent, race)
-      breadcrumb_links(path)
-    end
+    breadcrumb_links(ticket_breadcrumb_path)
   end
 
   permit_params :title, :description, :price, :original_price, :ticket_class, :status,

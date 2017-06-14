@@ -5,5 +5,6 @@
 #= require to-markdown
 #= require simditor
 #= require simditor-markdown
+#= require jquery.Jcrop
 
 

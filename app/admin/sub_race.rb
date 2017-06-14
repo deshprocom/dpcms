@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register Race, as: 'sub_races' do
+ActiveAdmin.register Race, as: 'SubRace' do
   config.filters = false
   config.batch_actions = false
 
@@ -29,7 +29,7 @@ ActiveAdmin.register Race, as: 'sub_races' do
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :roy,
                 :ticket_price, :ticket_sellable, :describable, :parent_id, :blind, :participants,
-                ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
+                # ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
                 race_desc_attributes: [:description, :schedule]
   form do |f|
     render 'form', f: f

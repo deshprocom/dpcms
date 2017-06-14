@@ -27,8 +27,12 @@ module RaceHelper
     "#{race.prize} 元"
   end
 
+  def rmb_format(number)
+    "RMB #{number}"
+  end
+
   def format_ticket_price(race)
-    "RMB #{race.ticket_price} 元"
+    "RMB #{race.ticket_price}"
   end
 
   def show_big_logo_link(race)
@@ -37,7 +41,7 @@ module RaceHelper
 
   def select_to_status(race)
     select_tag :status, options_for_select(TRANS_RACE_STATUSES, race.status),
-               data: { before_val: race.status, id: race.id },
+               data: { before_val: race.status, url: change_status_admin_race_url(race) },
                class: 'ajax_change_status'
   end
 
@@ -46,9 +50,19 @@ module RaceHelper
                 class: :red, id: :surplus_ticket
   end
 
-  def select_to_ticket_status(race)
-    select_tag :ticket_status, options_for_select(TRANS_TICKET_STATUSES, race.ticket_status),
-               data: { before_val: race.ticket_status, id: race.id },
+  def surplus_e_ticket(ticket_info)
+    content_tag :span, "剩余 #{ticket_info.surplus_e_ticket} 张",
+                class: :red
+  end
+
+  def surplus_entity_ticket(ticket_info)
+    content_tag :span, "剩余 #{ticket_info.surplus_entity_ticket} 张",
+                class: :red
+  end
+
+  def select_to_ticket_status(ticket)
+    select_tag :ticket_status, options_for_select(TRANS_TICKET_STATUSES, ticket.status),
+               data: { before_val: ticket.status, url: change_status_admin_ticket_url(ticket) },
                class: 'ajax_change_status'
   end
 
@@ -56,6 +70,7 @@ module RaceHelper
     source.item I18n.t('active_admin.edit'), edit_admin_race_path(race),
                 title: I18n.t('active_admin.edit'),
                 class: 'edit_link member_link'
+    ticket_sellable_link(source, race)
     return if race.published?
 
     source.item I18n.t('active_admin.delete'), admin_race_path(race),
@@ -70,14 +85,34 @@ module RaceHelper
                 title: I18n.t('active_admin.edit'),
                 class: 'member_link'
 
-    cancel_sell_ticket_link(race)
+    ticket_sellable_link(source, race)
   end
 
-  def cancel_sell_ticket_link(race)
-    link_to I18n.t('race.cancel_sell'), cancel_sell_admin_race_path(race),
-            title:  I18n.t('race.cancel_sell'),
-            class:  'member_link',
-            method: :post,
-            data:   { confirm: I18n.t('race.cancel_sell_confirmation') }
+  def ticket_sellable_link(source, race)
+    if race.ticket_sellable
+      source.item I18n.t('race.cancel_sell'), cancel_sell_admin_race_path(race),
+                  title:  I18n.t('race.cancel_sell'),
+                  class:  'member_link',
+                  method: :post,
+                  data:   { confirm: I18n.t('race.cancel_sell_confirmation') }
+    else
+      source.item I18n.t('race.sellable'), sellable_admin_race_path(race),
+                  title:  I18n.t('race.sellable'),
+                  class:  'member_link',
+                  method: :post
+    end
+  end
+
+  def blind_text(blind)
+    "#{blind.small_blind} - #{blind.big_blind}"
+  end
+
+  def ticket_breadcrumb_path
+    return request.path if @race.main?
+
+    if params[:id].present?
+      return admin_race_sub_race_ticket_path(@race.parent, @race, @ticket)
+    end
+    admin_race_sub_race_tickets_path(@race.parent, @race)
   end
 end

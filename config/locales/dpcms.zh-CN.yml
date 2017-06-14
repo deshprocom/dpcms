@@ -9,6 +9,7 @@
     publish_notice: '已发布赛事成功'
     unpublish_notice: '已取消发布赛事'
     cancel_sell_notice: '已成功取消售票'
+    sellable_notice: '已成功开始售票'
     cancel_sell_error: '非未售票状态下，不允许取消售票'
     destroy_error: '已发布的赛事，不允许删除'
     period: '赛事时间'
@@ -16,14 +17,13 @@
     list:   '赛事列表'
     manage: '赛事管理'
     ticket_manage: '票务管理'
-    ticket_status:
-      unsold: '未售票'
-      selling: '售票中'
-      end: '售票结束'
-      sold_out: '已售完'
     cancel_sell_confirmation: '确定取消售票？'
     cancel_sell: '取消售票'
+    sellable: '开始售票'
     surplus_ticket: '剩余的票'
+  race_blind:
+    blind_struct: '盲注结构'
+    blind_content: '文字说明'
   unpaid: '待付款'
   paid: '待发货'
   completed: '已完成'
@@ -43,5 +43,13 @@
   info:
     source: '来源'
     author: '作者'
-
+  ticket:
+    status:
+      unsold: '未售票'
+      selling: '售票中'
+      end: '售票结束'
+      sold_out: '已售完'
+    ticket_class:
+      single_ticket: '主票'
+      package_ticket: '套票'
 

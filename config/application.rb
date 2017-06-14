@@ -29,7 +29,8 @@ module Dpcms
 
     # eager_load
     config.eager_load_paths += [
-        Rails.root.join('lib/qcloud')
+        Rails.root.join('lib/qcloud'),
+        Rails.root.join('lib/dp_push')
     ]
   end
 

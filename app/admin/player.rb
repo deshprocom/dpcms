@@ -8,8 +8,8 @@ ActiveAdmin.register Player do
   index title: I18n.t('player.list') do
     column :player_id
     column '头像', :avatar do |player|
-      if player.avatar_path.present?
-        link_to image_tag(player.avatar_path, height: 60), player.avatar_path, target: '_blank'
+      if player.avatar_thumb.present?
+        link_to image_tag(player.avatar_thumb, height: 100), player.avatar_thumb, target: '_blank'
       end
     end
     column :name
@@ -34,10 +34,10 @@ ActiveAdmin.register Player do
     end
 
     def create
-      @player = Player.create(player_params)
-      flash[:notice] = '新建牌手成功' if @player.save
+      @player = Player.new(player_params)
       respond_to do |format|
         if @player.save
+          flash[:notice] = '新建牌手成功'
           format.html { redirect_to admin_player_url(@player) }
         else
           format.html { render :new }
@@ -46,18 +46,54 @@ ActiveAdmin.register Player do
       end
     end
 
+    # def create
+    #   @player = Player.new(player_params)
+    #   if @player.save
+    #     if player_params[:avatar].present?
+    #       render :crop
+    #     else
+    #       flash[:notice] = '新建牌手成功'
+    #       redirect_to admin_player_url(@player)
+    #     end
+    #   else
+    #     render :new
+    #   end
+    # end
+
     def edit
       render :new
     end
 
     def update
+      @player.crop_x = player_params[:crop_x]
+      @player.crop_y = player_params[:crop_y]
+      @player.crop_w = player_params[:crop_w]
+      @player.crop_h = player_params[:crop_h]
       @player.assign_attributes(player_params)
-      flash[:notice] = '更新牌手成功' if @player.save
       respond_to do |format|
-        format.html { redirect_to admin_player_url(@player) }
+        if @player.save
+          flash[:notice] = '更新牌手成功'
+          format.html { redirect_to admin_player_url(@player) }
+        else
+          format.html { render :edit }
+        end
         format.js { render :create }
       end
     end
+
+    # def update
+    #   @player.assign_attributes(player_params)
+    #   if @player.save
+    #     if player_params[:avatar].present?
+    #       render :crop
+    #     else
+    #       flash[:notice] = '更新牌手成功'
+    #       redirect_to admin_player_url(@player)
+    #     end
+    #   else
+    #     render :new
+    #   end
+    # end
 
     def destroy
       if resource.race_ranks.exists?
@@ -74,7 +110,8 @@ ActiveAdmin.register Player do
                                      :country,
                                      :dpi_total_earning,
                                      :dpi_total_score,
-                                     :memo)
+                                     :memo,
+                                     :crop_x, :crop_y, :crop_w, :crop_h)
     end
 
     def set_player

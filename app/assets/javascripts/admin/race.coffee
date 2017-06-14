@@ -4,7 +4,7 @@ $ ->
     before_val = this_select.data('before-val')
     after_val  = this_select.val()
     $.ajax
-      url: "/admin/races/#{this_select.data('id')}/change_status"
+      url: this_select.data('url')
       type: "PUT"
       data:
         status : after_val
@@ -35,7 +35,7 @@ $ ->
       start: ->
         shake_ticketing = @
         $.ajax
-          url: "/admin/races/#{@race_id}/ticket_infos/#{@ticket_info_id}.json"
+          url: "/admin/ticket_infos/#{@ticket_info_id}.json"
           type: "get"
           success: (res) ->
             shake_ticketing.shake_entity_ticket(res)

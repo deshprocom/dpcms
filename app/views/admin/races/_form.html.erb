@@ -1,6 +1,5 @@
-<div class="sky-form">
+<div>
   <%= semantic_form_for [:admin, @race] do |f| %>
-      <% @race.ticket_info || @race.build_ticket_info %>
       <% @race.race_desc   || @race.build_race_desc %>
       <%= f.inputs name: '赛事简介' do %>
           <%= f.input :race_host, prompt: true %>
@@ -17,36 +16,14 @@
           <%= f.input :describable %>
           <%= f.semantic_fields_for :race_desc do |desc_form| %>
               <%= desc_form.input :description %>
-              <%= desc_form.input :schedule %>
           <% end %>
-      <% end %>
-
-      <%= f.semantic_fields_for :ticket_info do |info_form| %>
-          <%= info_form.hidden_field :e_ticket_number %>
       <% end %>
 
       <%= f.actions %>
 <% end %>
 </div>
 <script type="text/javascript">
-  var textarea, val;
-  textarea = $('#race_race_desc_attributes_description');
-  val = textarea.val();
-  textarea.val(marked(val));
-  var editor = new Simditor({
-      textarea: textarea,
-      toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'link','image', '|', 'markdown'],
-      placeholder: '这里输入文字...',
-      pasteImage: true,
-      upload: {
-          url: '/photos',
-          fileKey: 'image',
-          leaveConfirm: '正在上传文件，如果离开上传会自动取消'
-      }
-  });
-  $("form.race").submit(function(){
-      var fillValue;
-      fillValue = toMarkdown(editor.getValue(), { gfm: true });
-      editor.textarea.val(fillValue);
-  });
+    $(function() {
+        dpEditor.call($('#race_race_desc_attributes_description'), $('form.race'));
+    });
 </script>

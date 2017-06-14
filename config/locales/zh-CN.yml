@@ -7,13 +7,16 @@
       race_host: "主办方"
       sub_races: "边赛"
       sub_race: "边赛"
-      ticket: "用户的门票"
+      ticket: "赛票"
       ticket_info: "门票数量信息"
       purchase_order: "订单"
       player: '牌手'
       info: '资讯'
       info_type: '资讯类别'
       race_schedule: '赛程表'
+      race_blind: '盲注结构'
+      video: '视频'
+      video_type: '视频类别'
     attributes:
       race:
         name: "赛事标题"
@@ -40,6 +43,14 @@
         entity_ticket_number: "总实体票数"
         e_ticket_sold_number: "已售电子票数"
         entity_ticket_sold_number: "已售实体票数"
+      ticket:
+        race: "所属赛事"
+        title: "赛票标题"
+        price: "应付价格"
+        original_price: "原始价格"
+        ticket_class: "赛票类型"
+        description: "赛票描述"
+        status: "状态"
       race_desc:
         description: "赛事描述"
         schedule: "日程信息"
@@ -91,6 +102,15 @@
         earning: '赢入奖金'
         race: "所属赛事"
         player: "所属牌手"
+      race_blind:
+        level: '级别'
+        small_blind: '小盲注'
+        big_blind: '大盲注'
+        ante: '前注'
+        race_time: '时间'
+        content: '文字说明'
+        race: "所属赛事"
+        blind_type: "类型"
       race_host:
         name: '主办方名称'
         created_at: "创建时间"
@@ -119,6 +139,22 @@
         schedule: 'Day'
         begin_date: '日期'
         begin_time: '开始时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video:
+        name: '名称'
+        video_link: '视频链接'
+        cover_link: '封面链接'
+        description: '视频描述'
+        video_type_id: '视频类别'
+        top: '置顶'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video_type:
+        name: '名称'
+        level: '级别'
+        published: '发布'
         created_at: "创建时间"
         updated_at: "更新时间"
   errors:

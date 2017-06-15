@@ -41,7 +41,7 @@ module RaceHelper
 
   def select_to_status(race)
     select_tag :status, options_for_select(TRANS_RACE_STATUSES, race.status),
-               data: { before_val: race.status, url: change_status_admin_race_url(race) },
+               data: { before_val: race.status, url: change_status_admin_race_path(race) },
                class: 'ajax_change_status'
   end
 
@@ -62,7 +62,7 @@ module RaceHelper
 
   def select_to_ticket_status(ticket)
     select_tag :ticket_status, options_for_select(TRANS_TICKET_STATUSES, ticket.status),
-               data: { before_val: ticket.status, url: change_status_admin_ticket_url(ticket) },
+               data: { before_val: ticket.status, url: change_status_admin_ticket_path(ticket) },
                class: 'ajax_change_status'
   end
 

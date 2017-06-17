@@ -5,6 +5,9 @@ ActiveAdmin.register AdminSysLog do
   index do
     column :id
     column :operation_type
+    column :operation_id do |operation|
+      operation.operation_id
+    end
     column :action
     column :admin_user_id
     column :mark

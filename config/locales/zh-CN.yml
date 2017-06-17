@@ -159,7 +159,8 @@
         created_at: "创建时间"
         updated_at: "更新时间"
       admin_sys_log:
-        operation_type: '操作类型'
+        operation_type: '操作模块'
+        operation_id: '操作ID'
         action: '动作'
         admin_user_id: '操作人'
         mark: '操作信息'

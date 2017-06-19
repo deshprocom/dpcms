@@ -6,7 +6,7 @@ Given(/^创建用户订单$/) do
   race = FactoryGirl.create(:whole_race, published: true)
   ticket = race.tickets.first
   race.publish!
-  race.update!(ticket_status: 'selling')
+  # race.update!(ticket_status: 'selling')
   result = DpApiRemote.post "races/#{race.id}/tickets/#{ticket.id}/orders",
                             { ticket_type: 'e_ticket', email: user['email'] },
                             user['access_token']

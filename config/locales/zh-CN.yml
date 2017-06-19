@@ -17,6 +17,7 @@
       race_blind: '盲注结构'
       video: '视频'
       video_type: '视频类别'
+      admin_sys_log: '日志管理'
     attributes:
       race:
         name: "赛事标题"
@@ -157,6 +158,14 @@
         published: '发布'
         created_at: "创建时间"
         updated_at: "更新时间"
+      admin_sys_log:
+        operation_type: '操作模块'
+        operation_id: '操作ID'
+        action: '动作'
+        admin_user_id: '操作人'
+        mark: '操作信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
   errors:
       format: "%{attribute}%{message}"
       messages:

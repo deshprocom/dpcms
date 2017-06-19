@@ -16,7 +16,7 @@ context.instance_eval do
       row :location
       row(I18n.t('race.period')) { race_period(resource) }
       row :roy
-      row(:logo){ show_big_logo_link(race) }
+      row(:logo){ show_big_logo_link(resource) }
     end
   end
 end

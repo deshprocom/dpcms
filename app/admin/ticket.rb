@@ -10,6 +10,7 @@ ActiveAdmin.register Ticket do
   belongs_to :sub_race, optional: true
   config.filters = false
   config.batch_actions = false
+  config.sort_order = 'ticket_class_desc'
   breadcrumb do
     breadcrumb_links(ticket_breadcrumb_path)
   end

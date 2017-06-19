@@ -18,12 +18,17 @@ ActiveAdmin.register Race, as: 'SubRace' do
   controller do
     before_action :unpublished?, only: [:destroy]
 
+    def destroy
+      @sub_race.destroy
+      redirect_to admin_race_sub_races_url
+    end
+
     def unpublished?
       @sub_race = Race.find(params[:id])
       return unless @sub_race.published?
 
       flash[:error] = I18n.t('race.destroy_error')
-      redirect_back fallback_location: admin_races_url
+      redirect_back fallback_location: admin_race_sub_races_url
     end
   end
 
@@ -36,6 +41,6 @@ ActiveAdmin.register Race, as: 'SubRace' do
   end
 
   action_item :publish, only: :show do
-    publish_status_link(race)
+    publish_status_link(sub_race)
   end
 end

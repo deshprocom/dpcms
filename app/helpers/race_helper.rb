@@ -16,7 +16,7 @@ module RaceHelper
   end
 
   def logo_link_to_show(race)
-    link_to race.logo.url ? image_tag(race.preview_logo, height: 150, width: 105) : '', admin_race_path(race)
+    link_to race.logo.url ? image_tag(race.preview_logo, height: 150, width: 105) : '', resource_path(race)
   end
 
   def race_period(race)
@@ -24,7 +24,7 @@ module RaceHelper
   end
 
   def format_prize(race)
-    "#{race.prize} 元"
+    race.prize
   end
 
   def rmb_format(number)
@@ -67,13 +67,13 @@ module RaceHelper
   end
 
   def index_table_actions(source, race)
-    source.item I18n.t('active_admin.edit'), edit_admin_race_path(race),
+    source.item I18n.t('active_admin.edit'), edit_resource_path(race),
                 title: I18n.t('active_admin.edit'),
                 class: 'edit_link member_link'
     ticket_sellable_link(source, race)
     return if race.published?
 
-    source.item I18n.t('active_admin.delete'), admin_race_path(race),
+    source.item I18n.t('active_admin.delete'), resource_path(race),
                 title:  I18n.t('active_admin.delete'),
                 class:  'delete_link member_link',
                 method: :delete,

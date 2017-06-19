@@ -55,7 +55,11 @@ ActiveAdmin.register PurchaseOrder do
                  $settings['shipping_template']
                end
     content = format(template, resource.order_number)
-    resource.update!(status: change_status) unless old_status.eql? change_status
+    return redirect_to(action: 'index') if old_status.eql? change_status
+    resource.update!(status: change_status)
+    # 记录操作日志
+    Services::SysLog.call(current_admin_user, resource, 'change',
+                          "订单状态被修改：#{I18n.t("order.#{old_status}")} -> #{I18n.t("order.#{change_status}")}")
     # 手机号不为空 并且 状态不相等的时候 才会去发短信
     unless old_status.eql?(change_status) || mobile.blank? || Rails.env.test?
       SmsJob.send_mobile(change_status, mobile, content)
@@ -69,6 +73,8 @@ ActiveAdmin.register PurchaseOrder do
 
   member_action :change_status, method: :post do
     return render 'common/params_format_error' if params[:order_price].blank?
+    Services::SysLog.call(current_admin_user, resource, 'change_status',
+                          "订单价格被修改：#{resource.price} -> #{params[:order_price]}")
     resource.update(price: params[:order_price].to_i)
     render 'common/update_success'
   end
@@ -78,6 +84,7 @@ ActiveAdmin.register PurchaseOrder do
     unless email.present? && UserValidator.email_valid?(email)
       return render 'common/email_format_error'
     end
+    Services::SysLog.call(current_admin_user, resource, 'change_e_ticket_address', "收货邮箱被修改：#{resource.email} -> #{email}")
     resource.update!(email: email)
     render 'common/update_success'
   end
@@ -90,6 +97,8 @@ ActiveAdmin.register PurchaseOrder do
       return render 'common/params_format_error'
     end
     return render 'common/mobile_format_error' unless UserValidator.mobile_valid?(mobile)
+    mark = "收货人:#{resource.consignee}->#{consignee}, 手机:#{resource.mobile}->#{mobile}, 地址:#{resource.address}->#{address}"
+    Services::SysLog.call(current_admin_user, resource, 'change_entity_ticket_address', mark)
     resource.update!(consignee: consignee, mobile: mobile, address: address)
     render 'common/update_success'
   end

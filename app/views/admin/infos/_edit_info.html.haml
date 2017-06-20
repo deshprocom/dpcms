@@ -3,7 +3,7 @@
   - [type_name, type.id]
 
 - selected = types.collect do |val, key|
-  - break [val, key] if params[:id].present? && key.eql?(Info.find(params[:id]).info_type.id.to_i)
+  - break [val, key] if params[:id].present? && key.eql?(Info.find(params[:id]).info_type.try(:id).to_i)
   - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
 
 = semantic_form_for [:admin, @info] do |f|

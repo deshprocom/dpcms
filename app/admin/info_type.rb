@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register InfoType do
   menu label: '资讯类别', priority: 6
-  permit_params :name, :level, :published
+  permit_params :name, :level, :published, info_type_en_attributes: [:name]
 
   filter :name
   filter :published
@@ -47,4 +47,6 @@ ActiveAdmin.register InfoType do
   show do
     render 'show', context: self
   end
+
+  form partial: 'form'
 end

@@ -1,0 +1,30 @@
+- @race.race_desc   || @race.build_race_desc
+- @race.race_en   || @race.build_race_en
+= semantic_form_for [:admin, @race] do |f|
+  = f.inputs name: '赛事简介' do
+    = f.input :race_host, prompt: true
+    = f.input :name, as: :embedded_string, embedded_html: :with_en
+    = f.input :prize, as: :embedded_string, embedded_html: :with_en
+    = f.input :location, as: :embedded_string, embedded_html: :with_en
+    = f.input :begin_date
+    = f.input :end_date
+    = f.input :status, as: :select, collection: TRANS_RACE_STATUSES
+    = f.input :logo, as: :attachment, required: true,
+                     hint: '图片最大为 2MB',
+                     image: proc { |o| o.preview_logo }
+    = f.input :ticket_sellable
+    = f.input :describable
+    = multilingual_editor_switch
+    %li#markdown_cn
+      = f.semantic_fields_for :race_desc do |form|
+        ~ form.text_area :description
+    %li#markdown_en
+      = f.semantic_fields_for :race_en do |form|
+        ~ form.text_area :description
+  = f.actions
+:javascript
+    $(function() {
+        dpEditor.call($('#race_race_desc_attributes_description'), $('form.race'));
+        dpEditor.call($('#race_race_en_attributes_description'), $('form.race'),
+         { placeholder: 'Here to enter text...' });
+    });

@@ -1,6 +1,6 @@
 $ ->
   $('.common_radio_lang input[type=radio]').click ->
-    checked_value = $(".common_radio_lang input[name=info_lang]:checked").val()
+    checked_value = $(".common_radio_lang input[name=common_lang]:checked").val()
     if checked_value == 'yes'
       $('#common_markdown_style_en').hide()
       $('#common_markdown_style_cn').show()

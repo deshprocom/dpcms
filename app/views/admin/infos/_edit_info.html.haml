@@ -32,10 +32,10 @@
     = f.input :published
     %li{class: 'common_radio_lang'}
       %div
-        = radio_button_tag(:info_lang, 'yes')
+        = radio_button_tag(:common_lang, 'yes')
         %span 中文
         %span{class: 'common_input_style_en'}
-          = radio_button_tag(:info_lang, 'no')
+          = radio_button_tag(:common_lang, 'no')
         %span 英文
     %li#common_markdown_style_cn
       ~ f.text_area :description

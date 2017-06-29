@@ -1,3 +1,4 @@
+- @video.video_en || @video.build_video_en
 - types = VideoType.all.collect do |type|
   - type_name = type.published ? type.name + ' [已发布]' : type.name
   - [type_name, type.id]
@@ -8,32 +9,36 @@
 
 = semantic_form_for [:admin, @video] do |f|
   = f.inputs name: '视频管理' do
-    = f.input :name
+    %li
+      %div
+        %label 视频名称
+        %span 中文：
+        = f.text_field :name
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_en do |en|
+          = en.text_field :name
     = f.input :video_type_id, as: :select, collection: options_for_select(types, selected)
     = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
     = f.input :video_link
     = f.input :published
-    ~ f.input :description
+    %li{class: 'common_radio_lang'}
+      %div
+        = radio_button_tag(:common_lang, 'yes')
+        %span 中文
+        %span{class: 'common_input_style_en'}
+          = radio_button_tag(:common_lang, 'no')
+        %span 英文
+    %li#common_markdown_style_cn
+      ~ f.text_area :description
+    %li#common_markdown_style_en
+      = f.semantic_fields_for :video_en do |en|
+        ~ en.text_area :description
     = f.actions
 
 :javascript
-  var textarea, val;
-  textarea = $('#video_description');
-  val = textarea.val();
-  textarea.val(marked(val));
-  var editor = new Simditor({
-      textarea: textarea,
-      toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'link','image', '|', 'markdown'],
-      placeholder: '这里输入文字...',
-      pasteImage: true,
-      upload: {
-          url: '/photos',
-          fileKey: 'image',
-          leaveConfirm: '正在上传文件，如果离开上传会自动取消'
-      }
+  $(function() {
+        dpEditor.call($('#video_description'), $('form.video'));
   });
-  $("form.video").submit(function(){
-      var fillValue;
-      fillValue = toMarkdown(editor.getValue(), { gfm: true });
-      editor.textarea.val(fillValue);
+  $(function() {
+        dpEditor.call($('#video_video_en_attributes_description'), $('form.video'));
   });

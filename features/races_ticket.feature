@@ -13,6 +13,7 @@ Feature: 票务管理
     And 在 '应付价格' 填入 '10000'
     And 在'ticket_ticket_class' 的第一个下拉框选择 '套票'
     And 点击按钮 '新建赛票'
+    And 在'ticket_status' 的第一个下拉框选择 '售票中'
     Then 调用api 应成功获取该票务详情
 #
 #  Scenario: 创建有售票的的赛事

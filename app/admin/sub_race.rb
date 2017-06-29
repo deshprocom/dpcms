@@ -34,7 +34,7 @@ ActiveAdmin.register Race, as: 'SubRace' do
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :roy,
                 :ticket_price, :ticket_sellable, :describable, :parent_id, :blind, :participants,
-                # ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
+                race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :blind],
                 race_desc_attributes: [:description, :schedule]
   form do |f|
     render 'form', f: f

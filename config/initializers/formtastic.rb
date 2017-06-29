@@ -111,3 +111,66 @@ Formtastic::FormBuilder.action_class_finder = Formtastic::ActionClassFinder
 
 # Which columns to skip when automatically rendering a form without any fields specified.
 # Formtastic::FormBuilder.skipped_columns = [:created_at, :updated_at, :created_on, :updated_on, :lock_version, :version]
+
+class AttachmentInput < Formtastic::Inputs::FileInput
+  def image_html_options
+    {:class => 'attachment'}.merge(options[:image_html] || {})
+  end
+
+  def to_html
+    input_wrapping do
+      label_html <<
+        image_html <<
+        builder.file_field(method, input_html_options)
+    end
+  end
+
+  protected
+
+  def image_html
+    return ''.html_safe if builder.object.new_record?
+
+    url = case options[:image]
+            when Symbol
+              builder.object.send(options[:image])
+            when Proc
+              options[:image].call(builder.object)
+            else
+              options[:image].to_s
+          end
+
+    builder.template.image_tag(url, image_html_options).html_safe
+  end
+end
+
+class EmbeddedStringInput < Formtastic::Inputs::StringInput
+  def to_html
+    input_wrapping do
+      label_html <<
+        builder.text_field(method, input_html_options) <<
+        embedded_html
+    end
+  end
+
+  protected
+  def embedded_html
+    if options[:embedded_html].is_a?(Proc)
+      options[:embedded_html].call
+    elsif options[:embedded_html] == :with_en
+      default_en_html
+    end
+  end
+
+  def default_en_html
+    object_name = "#{object_param_key}[#{default_object_en}_attributes]"
+    template.text_field(object_name, method, object: object.send(default_object_en))
+  end
+
+  def object_param_key
+    template.model_name_from_record_or_class(object).param_key
+  end
+
+  def default_object_en
+    "#{object_param_key}_en"
+  end
+end

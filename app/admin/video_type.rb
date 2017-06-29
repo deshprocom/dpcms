@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register VideoType do
   menu false
-  permit_params :name, :level, :published
+  permit_params :name, :level, :published, video_type_en_attributes: [:name]
 
   filter :name
   filter :published
@@ -32,6 +32,8 @@ ActiveAdmin.register VideoType do
       item '新建视频', new_admin_video_path + "?type_id=#{type.id}"
     end
   end
+
+  form partial: 'form'
 
   member_action :publish, method: :post do
     resource.publish!

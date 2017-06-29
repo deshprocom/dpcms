@@ -30,13 +30,7 @@
           = en.text_field :source
     = f.input :info_type_id, as: :select, collection: options_for_select(types, selected)
     = f.input :published
-    %li{class: 'common_radio_lang'}
-      %div
-        = radio_button_tag(:info_lang, 'cn')
-        %span 中文
-        %span{class: 'common_input_style_en'}
-          = radio_button_tag(:info_lang, 'en')
-        %span 英文
+    = multilingual_editor_switch
     %li#markdown_cn
       ~ f.text_area :description
     %li#markdown_en

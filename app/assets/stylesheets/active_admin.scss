@@ -23,15 +23,11 @@
   float: none;
 }
 
-form input[type=text],
-form input[type=password],
-form input[type=email],
-form input[type=number],
-form input[type=url],
-form input[type=tel],
-form input[type=date],
-form input[type=time],
-form textarea {
+form.video input[type=text],
+form.video_type input[type=text],
+form.info_type input[type=text],
+form.info input[type=text]
+{
   width: calc(30% - 22px);
 }
 

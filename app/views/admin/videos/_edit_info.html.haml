@@ -4,7 +4,7 @@
   - [type_name, type.id]
 
 - selected = types.collect do |val, key|
-  - break [val, key] if params[:id].present? && key.eql?(Video.find(params[:id]).video_type.id.to_i)
+  - break [val, key] if params[:id].present? && key.eql?(Video.find(params[:id]).video_type.try(:id).to_i)
   - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
 
 = semantic_form_for [:admin, @video] do |f|
@@ -20,6 +20,7 @@
     = f.input :video_type_id, as: :select, collection: options_for_select(types, selected)
     = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
     = f.input :video_link
+    = f.input :video_duration
     = f.input :published
     = multilingual_editor_switch
     %li#markdown_cn

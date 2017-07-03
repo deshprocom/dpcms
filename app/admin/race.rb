@@ -26,8 +26,8 @@ ActiveAdmin.register Race do
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
                 :ticket_price, :ticket_sellable, :describable, :race_host_id,
-                # ticket_info_attributes: [:e_ticket_number, :entity_ticket_number],
-                race_desc_attributes: [:description, :schedule]
+                race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :description],
+                race_desc_attributes: [:description]
   form partial: 'form'
 
   controller do

@@ -30,7 +30,7 @@
         created_at: "创建时间"
         updated_at: "更新时间"
         ticket_status: "售票状态"
-        ticket_price: "门票金额"
+        ticket_price: "买入"
         published: "发布情况"
         ticket_sellable: "是否有售票功能"
         describable: "是否有详情内容"

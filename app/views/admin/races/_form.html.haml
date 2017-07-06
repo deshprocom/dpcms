@@ -6,6 +6,8 @@
     = f.input :name, as: :embedded_string, embedded_html: :with_en
     = f.input :prize, as: :embedded_string, embedded_html: :with_en
     = f.input :location, as: :embedded_string, embedded_html: :with_en
+    = f.input :ticket_price, as: :embedded_string, embedded_html: :with_en
+    = f.input :participants
     = f.input :begin_date
     = f.input :end_date
     = f.input :status, as: :select, collection: TRANS_RACE_STATUSES

@@ -1,7 +1,7 @@
 context.instance_eval do
   column(:ranking)
   column('参赛人', sortable: false)   { |rank| rank.player.name }
-  column(:earning, sortable: false)
+  column(:earning, sortable: false) { |rank| number_with_delimiter rank.earning }
   column(:score, sortable: false) { |rank| rank.score.blank? ? '--' : rank.score }
   actions(defaults: false) do |rank|
     item I18n.t('active_admin.edit'), edit_resource_path(rank),

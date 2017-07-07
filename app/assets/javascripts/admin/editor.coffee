@@ -13,6 +13,7 @@ $ ->
       new Simditor(
         textarea: textarea,
         toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'link','image', '|', 'markdown'],
+        toolbarFloat: false,
         placeholder: placeholder,
         pasteImage: true,
         upload: {

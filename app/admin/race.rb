@@ -25,7 +25,7 @@ ActiveAdmin.register Race do
   end
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
-                :ticket_price, :ticket_sellable, :describable, :race_host_id,
+                :ticket_price, :ticket_sellable, :describable, :race_host_id, :blind,
                 race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :description],
                 race_desc_attributes: [:description]
   form partial: 'form'

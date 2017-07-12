@@ -30,8 +30,12 @@
               %span 用户姓名：
               %span= user_extra.real_name
             .card_id
-              %span 身份证号：
+              - if user_extra.cert_type.eql?('chinese_id')
+                %span 身份证号：
+              - else
+                %span 用户护照：
               %span= user_extra.cert_no
+
             .status
               %span 实名状态：
               %span= I18n.t("user_extra.#{user_extra.status}")

@@ -3,8 +3,9 @@ RACE_STATUSES = Race.statuses.keys
 TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
 ActiveAdmin.register Race do
   config.batch_actions = false
-  menu label: I18n.t('race.manage'), priority: 1
+  config.sort_order = 'begin_date_desc'
 
+  menu label: I18n.t('race.manage'), priority: 1
   filter :name
   filter :location
   filter :begin_date

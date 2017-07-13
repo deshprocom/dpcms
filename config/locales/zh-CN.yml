@@ -36,7 +36,7 @@
         describable: "是否有详情内容"
         roy: "是否结算积分"
         parent: "所属主赛"
-        blind: "盲注"
+        blind: "起始筹码"
         participants: "参数人数"
         race_host: "主办方"
       ticket_info:

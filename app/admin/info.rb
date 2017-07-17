@@ -4,7 +4,7 @@ ActiveAdmin.register Info do
   menu label: '资讯管理', priority: 5
 
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
-                :published, :description, :info_type_id, info_en_attributes: [:title, :source, :description]
+                :published, :description, :info_type_id, info_en_attributes: [:id, :title, :source, :description]
 
   @types = InfoType.all.collect do |type|
     type_name = type.published ? type.name + ' [已发布]' : type.name
@@ -127,6 +127,10 @@ ActiveAdmin.register Info do
                                    :top,
                                    :description,
                                    info_en_attributes: [:id, :title, :source, :description])
+    end
+
+    def tst
+      puts 'ass'
     end
   end
 end

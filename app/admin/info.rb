@@ -128,9 +128,5 @@ ActiveAdmin.register Info do
                                    :description,
                                    info_en_attributes: [:id, :title, :source, :description])
     end
-
-    def tst
-      puts 'ass'
-    end
   end
 end

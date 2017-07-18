@@ -1,5 +1,6 @@
-- @race.race_desc   || @race.build_race_desc
+- @race.race_desc || @race.build_race_desc
 - @race.race_en   || @race.build_race_en
+- @race.race_desc_en || @race.build_race_desc_en
 = semantic_form_for [:admin, @race] do |f|
   = f.inputs name: '赛事简介' do
     = f.input :race_host, prompt: true
@@ -22,12 +23,12 @@
       = f.semantic_fields_for :race_desc do |form|
         ~ form.text_area :description
     %li#markdown_en
-      = f.semantic_fields_for :race_en do |form|
+      = f.semantic_fields_for :race_desc_en do |form|
         ~ form.text_area :description
   = f.actions
 :javascript
     $(function() {
         dpEditor.call($('#race_race_desc_attributes_description'), $('form.race'));
-        dpEditor.call($('#race_race_en_attributes_description'), $('form.race'),
+        dpEditor.call($('#race_race_desc_en_attributes_description'), $('form.race'),
          { placeholder: 'Here to enter text...' });
     });

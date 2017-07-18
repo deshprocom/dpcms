@@ -17,3 +17,14 @@ Given(/^调用api 应成功获取该票务详情/) do
   expect(tickets[1]['title']).to eq('飞机票 + 017APT启航站主票')
   expect(tickets[1]['price']).to eq(ticket.price)
 end
+
+
+Given(/^应创建了对应的英文票务$/) do
+  race = Race.last
+  ticket = race.tickets[1]
+  expect(ticket.title).to eq('飞机票 + 017APT启航站主票')
+  expect(ticket.description).to eq('中国澳门')
+  ticket_en = ticket.ticket_en
+  expect(ticket_en.title).to eq('air ticket and event ticket')
+  expect(ticket_en.description).to eq('macau, china')
+end

@@ -17,6 +17,15 @@ Given(/^调用api 应无法获取该赛事详情$/) do
   expect(result.parsed_body['code']).to eq 1100006
 end
 
+Given(/^应创建了对应的英文赛事$/) do
+  race = Race.last
+  expect(race.name).not_to eq(race.race_en.name)
+  expect(race.prize).to eq(race.race_en.prize)
+  expect(race[:logo]).to eq(race.race_en.logo)
+  expect(race.race_desc.description).to eq('中国澳门')
+  expect(race.race_desc_en.description).to eq('macau, china')
+end
+
 Given(/^调用api 应成功获取该赛事详情/) do
   race = Race.first
   result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body

@@ -9,12 +9,34 @@ Feature: 票务管理
     And 点击链接 '票务管理'
     And 点击链接 '新建赛票'
     When 在 '赛票标题' 填入 '飞机票 + 017APT启航站主票'
+    And 在 'ticket_ticket_en_attributes_title' 填入 'air ticket and event ticket'
+    And 在 '原始价格' 填入 '10000'
+    And 在 '应付价格' 填入 '10000'
+    And 在'ticket_ticket_class' 的第一个下拉框选择 '套票'
+    And 在编辑器中 '#markdown_cn .simditor-body' 填入 '中国澳门'
+    And 在编辑器中 '#markdown_en .simditor-body' 填入 'macau, china'
+    And 点击按钮 '新建赛票'
+    And 在'ticket_status' 的第一个下拉框选择 '售票中'
+    Then 调用api 应成功获取该票务详情
+    And 应创建了对应的英文票务
+
+  Scenario: 修改票务详情
+    Given 访问赛事详情页 创建数据
+    And 点击链接 '票务管理'
+    And 点击链接 '新建赛票'
+    And 在 '赛票标题' 填入 '飞机票 + 017APT启航站主票'
     And 在 '原始价格' 填入 '10000'
     And 在 '应付价格' 填入 '10000'
     And 在'ticket_ticket_class' 的第一个下拉框选择 '套票'
     And 点击按钮 '新建赛票'
+    When 点击链接 '编辑赛票'
+    And 在 'ticket_ticket_en_attributes_title' 填入 'air ticket and event ticket'
+    And 在编辑器中 '#markdown_cn .simditor-body' 填入 '中国澳门'
+    And 在编辑器中 '#markdown_en .simditor-body' 填入 'macau, china'
+    And 点击按钮 '更新赛票'
     And 在'ticket_status' 的第一个下拉框选择 '售票中'
     Then 调用api 应成功获取该票务详情
+    And 应创建了对应的英文票务
 #
 #  Scenario: 创建有售票的的赛事
 #    Given 访问 '新建赛事页'

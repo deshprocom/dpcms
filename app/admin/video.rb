@@ -1,8 +1,8 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Video do
   menu label: '视频管理', priority: 7
-  permit_params :name, :video_link, :cover_link, :video_duration, :top, :published,
-                :description, :video_type_id, video_en_attributes: [:name, :description]
+  permit_params :name, :video_link, :title_desc, :cover_link, :video_duration, :top, :published,
+                :description, :video_type_id, video_en_attributes: [:name, :title_desc, :description]
 
   @types = VideoType.all.collect do |type|
     type_name = type.published ? type.name + ' [已发布]' : type.name
@@ -16,6 +16,7 @@ ActiveAdmin.register Video do
 
   index title: '视频管理' do
     column :name, sortable: false
+    column :title_desc, sortable: false
     column '封面图片', :cover_link do |video|
       link_to image_tag(video.image_thumb), video.image_thumb, target: '_blank'
     end
@@ -112,11 +113,12 @@ ActiveAdmin.register Video do
                                     :video_type_id,
                                     :video_link,
                                     :cover_link,
+                                    :title_desc,
                                     :video_duration,
                                     :published,
                                     :top,
                                     :description,
-                                    video_en_attributes: [:id, :name, :description])
+                                    video_en_attributes: [:id, :name, :title_desc, :description])
     end
   end
 end

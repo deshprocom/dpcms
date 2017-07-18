@@ -28,12 +28,20 @@ ActiveAdmin.register Race do
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
                 :ticket_price, :ticket_sellable, :describable, :race_host_id, :blind,
                 race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :description],
-                race_desc_attributes: [:description]
+                race_desc_attributes: [:description],
+                race_desc_en_attributes: [:description]
   form partial: 'form'
 
   controller do
     include RaceHelper
     before_action :unpublished?, only: [:destroy]
+    before_action :syn_description, only: [:create, :update]
+
+    def syn_description
+      return unless params[:race][:race_desc_en_attributes][:description].blank?
+
+      params[:race][:race_desc_en_attributes][:description] = params[:race][:race_desc_attributes][:description]
+    end
 
     def unpublished?
       @race = Race.find(params[:id])

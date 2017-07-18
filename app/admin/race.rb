@@ -38,9 +38,9 @@ ActiveAdmin.register Race do
     before_action :syn_description, only: [:create, :update]
 
     def syn_description
-      if params[:race][:race_desc_en_attributes][:description].blank?
-        params[:race][:race_desc_en_attributes][:description] = params[:race][:race_desc_attributes][:description]
-      end
+      return unless params[:race][:race_desc_en_attributes][:description].blank?
+
+      params[:race][:race_desc_en_attributes][:description] = params[:race][:race_desc_attributes][:description]
     end
 
     def unpublished?

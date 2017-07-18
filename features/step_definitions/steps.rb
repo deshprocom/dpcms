@@ -28,6 +28,16 @@ When(/^在 '([^']*)' 填入 '([^']*)'$/) do |input_txt, value|
   fill_in(input_id, with: value)
 end
 
+When(/^在不可见元素中 '([^']*)' 填入 '([^']*)'$/) do |input_txt, value|
+  input_id = INPUT_MAPPING[input_txt] ? INPUT_MAPPING[input_txt] : input_txt
+  page.execute_script("$('#{input_id}').val('#{value}')")
+  # find(input_id, visible: false).set(value)
+end
+
+When(/^在编辑器中 '([^']*)' 填入 '([^']*)'$/) do |input_txt, value|
+  page.execute_script("$('#{input_txt}').html('#{value}')")
+end
+
 When(/^在 '([^']*)' 上传图片$/) do |input_txt|
   input_id = INPUT_MAPPING[input_txt]
   attach_file(input_id, Rails.root.join('spec/factories/foo.png'))

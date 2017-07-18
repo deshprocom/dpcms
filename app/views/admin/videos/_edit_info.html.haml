@@ -17,6 +17,14 @@
         %span{class: 'common_input_style_en'} 英文：
         = f.semantic_fields_for :video_en do |en|
           = en.text_field :name
+    %li
+      %div
+        %label 标题描述
+        %span 中文：
+        = f.text_field :title_desc
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :video_en do |en|
+          = en.text_field :title_desc
     = f.input :video_type_id, as: :select, collection: options_for_select(types, selected)
     = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
     = f.input :video_link

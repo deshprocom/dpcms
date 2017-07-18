@@ -16,6 +16,7 @@ ActiveAdmin.register Ticket do
   end
 
   permit_params :title, :description, :price, :original_price, :ticket_class, :status,
+                ticket_en_attributes: [:title, :description, :price, :original_price],
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number]
 
   form do |f|

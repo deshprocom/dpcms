@@ -151,6 +151,7 @@
         updated_at: "更新时间"
       video:
         name: '名称'
+        title_desc: '标题描述'
         video_link: '视频链接'
         cover_link: '封面链接'
         description: '视频描述'

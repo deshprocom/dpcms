@@ -2,14 +2,19 @@ class RacePhotoUploader < BaseUploader
   process resize_to_limit: [900, nil]
 
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "uploads/race/#{mounted_as}/#{model.id}"
   end
 
   def filename
+    return @set_filename if @set_filename
     return if super.nil?
 
-    @name ||= Digest::MD5.hexdigest(current_path)
-    "#{@name}.#{file.extension.downcase}"
+    @md5_name ||= Digest::MD5.hexdigest(current_path)
+    "#{@md5_name}.#{file.extension.downcase}"
+  end
+
+  def set_filename(name)
+    @set_filename = name
   end
 
   ALLOW_VERSION_MAPPING = {

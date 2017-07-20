@@ -16,6 +16,10 @@
     = f.input :logo, as: :attachment, required: true,
                      hint: '图片最大为 2MB',
                      image: proc { |o| o.preview_logo }
+    = f.semantic_fields_for :race_en do |form|
+      = form.input :logo, as: :attachment, required: true,
+                          hint: '图片最大为 2MB',
+                          image: proc { |o| o.preview_logo }
     = f.input :ticket_sellable
     = f.input :describable
     = multilingual_editor_switch

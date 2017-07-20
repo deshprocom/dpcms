@@ -4,8 +4,8 @@
   = f.inputs do
     = f.input :race, collection: [[@race.name, @race.id]], prompt: true
     = f.input :title, as: :embedded_string, embedded_html: :with_en
-    = f.input :price, as: :embedded_string, embedded_html: :with_en
-    = f.input :original_price, as: :embedded_string, embedded_html: :with_en
+    = f.input :price
+    = f.input :original_price
     = f.input :ticket_class, collection: TRANS_TICKET_CLASSES, prompt: true
     = multilingual_editor_switch
     %li#markdown_cn

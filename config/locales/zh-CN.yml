@@ -19,6 +19,8 @@
       video_type: '视频类别'
       admin_sys_log: '日志管理'
     attributes:
+      race_en:
+        logo: "赛事英文图片"
       race:
         name: "赛事标题"
         logo: "赛事图片"

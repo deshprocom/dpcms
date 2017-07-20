@@ -46,7 +46,12 @@
         entity_ticket_number: "总实体票数"
         e_ticket_sold_number: "已售电子票数"
         entity_ticket_sold_number: "已售实体票数"
+      ticket_en:
+        logo: "英文票务竖图"
+        banner: "英文票务横图"
       ticket:
+        logo: "票务竖图"
+        banner: "票务横图"
         race: "所属赛事"
         title: "赛票标题"
         price: "应付价格"

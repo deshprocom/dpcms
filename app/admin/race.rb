@@ -36,19 +36,17 @@ ActiveAdmin.register Race do
     include RaceHelper
     before_action :unpublished?, only: [:destroy]
     before_action :syn_description, only: [:create, :update]
-    after_action :syn_logo, only: [:create, :update]
+    before_action :syn_logo, only: [:create]
+
+    def syn_logo
+      en_logo = params[:race][:race_en_attributes][:logo] || params[:race][:logo]
+      params[:race][:race_en_attributes][:logo] = en_logo
+    end
 
     def syn_description
       return unless params[:race][:race_desc_en_attributes][:description].blank?
 
       params[:race][:race_desc_en_attributes][:description] = params[:race][:race_desc_attributes][:description]
-    end
-
-    def syn_logo
-      return unless @race.race_en.logo.url.blank?
-
-      @race.race_en.logo.set_filename(@race.read_attribute(:logo))
-      @race.race_en.save
     end
 
     def unpublished?

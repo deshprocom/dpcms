@@ -2,6 +2,7 @@
 - @race.race_en   || @race.build_race_en
 - @race.race_desc_en || @race.build_race_desc_en
 = semantic_form_for [:admin, @race] do |f|
+  = f.semantic_errors *f.object.errors.keys
   = f.inputs name: '赛事简介' do
     = f.input :race_host, prompt: true
     = f.input :name, as: :embedded_string, embedded_html: :with_en

@@ -6,15 +6,10 @@ class RacePhotoUploader < BaseUploader
   end
 
   def filename
-    return @set_filename if @set_filename
     return if super.nil?
 
     @md5_name ||= Digest::MD5.hexdigest(current_path)
     "#{@md5_name}.#{file.extension.downcase}"
-  end
-
-  def set_filename(name)
-    @set_filename = name
   end
 
   ALLOW_VERSION_MAPPING = {

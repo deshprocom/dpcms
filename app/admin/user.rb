@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
   menu label: '会员管理', priority: 1
   permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark
@@ -5,20 +6,20 @@ ActiveAdmin.register User do
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new]
 
-  batch_action :'批量禁用', confirm: "确定操作吗?" do |ids|
+  batch_action :'批量禁用', confirm: '确定操作吗?' do |ids|
     User.find(ids).each do |user|
       user.update(role: 'banned') unless user.role.eql?('banned')
     end
     Services::SysLog.call(current_admin_user, User.find(ids.first), 'batch_banned', "被禁用的id为->: #{ids.join(', ')}")
-    redirect_back fallback_location: admin_users_url, notice: "批量禁用操作成功！"
+    redirect_back fallback_location: admin_users_url, notice: '批量禁用操作成功！'
   end
 
-  batch_action :'批量启用', confirm: "确定操作吗?" do |ids|
+  batch_action :'批量启用', confirm: '确定操作吗?' do |ids|
     User.find(ids).each do |user|
       user.update(role: 'basic') if user.role.eql?('banned')
     end
     Services::SysLog.call(current_admin_user, User.find(ids.first), 'batch_unbanned', "被启用的id为->: #{ids.join(', ')}")
-    redirect_back fallback_location: admin_users_url, notice: "批量启用操作成功！"
+    redirect_back fallback_location: admin_users_url, notice: '批量启用操作成功！'
   end
 
   batch_action :destroy, false
@@ -30,9 +31,8 @@ ActiveAdmin.register User do
   filter :mobile
   filter :reg_date
   filter :last_visit
-  filter :role, as: :select, collection: USER_STATUS.collect{ |key| [I18n.t("user.#{key}"), key] }
-  filter :user_extra_status, as: :select,
-         collection: CERTIFY_STATUS.collect { |key| [I18n.t("user_extra.#{key}"), key] }
+  filter :role, as: :select, collection: USER_STATUS.collect { |key| [I18n.t("user.#{key}"), key] }
+  filter :user_extra_status, as: :select, collection: CERTIFY_STATUS.collect { |key| [I18n.t("user_extra.#{key}"), key] }
 
   index do
     render 'index', context: self
@@ -48,11 +48,11 @@ ActiveAdmin.register User do
     success_count = UserExtra.where(status: 'success').count
     bind_count = User.where.not(mobile: nil).count
     ul do
-      li "会员数量：#{ User.count }名"
-      li "已实名数量：#{ success_count }名"
-      li "未实名数量：#{ User.count - success_count }名"
-      li "已绑手机用户：#{ bind_count }名"
-      li "未绑手机用户：#{ User.count - bind_count }名"
+      li "会员数量：#{User.count}名"
+      li "已实名数量：#{success_count}名"
+      li "未实名数量：#{User.count - success_count}名"
+      li "已绑手机用户：#{bind_count}名"
+      li "未绑手机用户：#{User.count - bind_count}名"
     end
   end
 

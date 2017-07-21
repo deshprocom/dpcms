@@ -15,13 +15,12 @@ ActiveAdmin.register Ticket do
     breadcrumb_links(ticket_breadcrumb_path)
   end
 
-  permit_params :title, :description, :price, :original_price, :ticket_class, :status,
-                ticket_en_attributes: [:title, :description, :price, :original_price],
+  permit_params :title, :description, :price, :original_price, :ticket_class,
+                :status, :banner, :logo,
+                ticket_en_attributes: [:title, :description, :price, :original_price, :banner, :logo],
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number]
 
-  form do |f|
-    render 'form', f: f
-  end
+  form partial: 'form'
 
   index download_links: false do
     render 'index', context: self
@@ -29,6 +28,17 @@ ActiveAdmin.register Ticket do
 
   show do
     render 'show', race: race, ticket: ticket, ticket_info: ticket.ticket_info
+  end
+
+  controller do
+    before_action :syn_image, only: [:create]
+
+    def syn_image
+      en_logo = params[:ticket][:ticket_en_attributes][:logo] || params[:ticket][:logo]
+      params[:ticket][:ticket_en_attributes][:logo] = en_logo
+      en_banner = params[:ticket][:ticket_en_attributes][:banner] || params[:ticket][:banner]
+      params[:ticket][:ticket_en_attributes][:banner] = en_banner
+    end
   end
 
   member_action :change_number, method: :post do

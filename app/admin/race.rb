@@ -36,6 +36,12 @@ ActiveAdmin.register Race do
     include RaceHelper
     before_action :unpublished?, only: [:destroy]
     before_action :syn_description, only: [:create, :update]
+    before_action :syn_logo, only: [:create]
+
+    def syn_logo
+      en_logo = params[:race][:race_en_attributes][:logo] || params[:race][:logo]
+      params[:race][:race_en_attributes][:logo] = en_logo
+    end
 
     def syn_description
       return unless params[:race][:race_desc_en_attributes][:description].blank?

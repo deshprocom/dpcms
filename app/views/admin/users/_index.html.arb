@@ -1,0 +1,23 @@
+context.instance_eval do
+  selectable_column
+  column(:id)
+  column(:user_uuid, sortable: false)
+  column(:avatar, sortable: false) do |user|
+    user.avatar.url ? image_tag(user.avatar, height: 100, width: 100) : ''
+  end
+  column(:mobile, sortable: false)
+  column(:email, sortable: false)
+  column(:signature, sortable: false)
+  column(:last_visit)
+  column(:login_count)
+  column(:mark)
+  actions(defaults: false) do |user|
+    item '详情', admin_user_path(user), class: 'member_link'
+    item '编辑', edit_admin_user_path(user), class: 'member_link'
+    if user.role.eql?('banned')
+      item '启用', user_banned_admin_user_path(user), data: { confirm: '确定取消禁用该用户吗？' }, method: :post
+    else
+      item '禁用', user_banned_admin_user_path(user), data: { confirm: '确定禁用该用户吗？' }, method: :post
+    end
+  end
+end

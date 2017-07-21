@@ -1,0 +1,9 @@
+= semantic_form_for [:admin, @user] do |f|
+  = f.inputs name: '用户管理' do
+    = f.input :nick_name, input_html: { readonly: true }
+    = f.input :email, input_html: { readonly: true }
+    = f.input :mobile
+    = f.input :mark
+    = f.fields_for :user_extra do |t|
+      = t.input :real_name
+    = f.actions

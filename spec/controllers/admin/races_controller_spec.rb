@@ -11,6 +11,9 @@ RSpec.describe Admin::RacesController, type: :controller do
         location:'北京',
         status:'unbegin',
         logo: fixture_file_upload(Rails.root.join('spec/factories/foo.png')),
+        race_en_attributes:{
+          logo:''
+        },
         race_desc_en_attributes:{
           description:'test description test description'
         },

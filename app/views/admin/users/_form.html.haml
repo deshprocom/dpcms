@@ -1,7 +1,41 @@
+- @user_extra_info = @user.user_extra || @user.build_user_extra
 = semantic_form_for [:admin, @user] do |f|
   = f.inputs name: '用户管理' do
-    = f.input :nick_name, input_html: { readonly: true }
-    = f.input :email, input_html: { readonly: true }
+    %li
+      %span
+        昵称：
+      %span
+        = @user.nick_name
+    %li
+      %span
+        邮箱：
+      %span
+        = @user.email
     = f.input :mobile
     = f.input :mark
     = f.actions
+
+  = f.inputs name: '实名管理' do
+    = f.semantic_fields_for :user_extra do |t|
+      %li
+        %span
+          真实姓名：
+        %span
+          = @user_extra_info.real_name
+      %li
+        %span
+          证件图片：
+        %span
+          = image_tag(@user_extra_info.image, height: 200, width: 200)
+      %li
+        %span
+          证件类型：
+        %span
+          = CERT_TYPE[@user_extra_info.cert_type.to_sym]
+      %li
+        %span
+          证件号码：
+        %span
+          = @user_extra_info.cert_no
+      = t.input :status, as: :select, collection: CERTIFY_STATUS.collect { |key| [I18n.t("user_extra.#{key}"), key] }
+      = f.actions

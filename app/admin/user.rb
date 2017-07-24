@@ -1,11 +1,11 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
   menu label: '会员管理', priority: 1
-  permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:real_name]
+  permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
-  CERT_TYPE = { passport_id: '护照', chinese_id: '身份证' }
+  CERT_TYPE = { passport_id: '护照', chinese_id: '身份证' }.freeze
   USER_STATUS = User.statuses.keys
-  actions :all, except: [:new]
+  actions :all, except: [:new, :destroy]
 
   batch_action :'批量禁用', confirm: '确定操作吗?' do |ids|
     User.find(ids).each do |user|
@@ -58,10 +58,20 @@ ActiveAdmin.register User do
   end
 
   controller do
+    before_action :init_params, only: [:update]
+
     def update
+      Services::SysLog.call(current_admin_user, resource, '编辑用户', "被修改的用户id为->: #{resource.id}")
       update! do |format|
-        format.html { redirect_to admin_users_url }
+        format.html { redirect_to admin_users_url + "#user_#{resource.id}" }
       end
+    end
+
+    private
+
+    def init_params
+      params[:user][:mobile] = nil if params[:user][:mobile].blank?
+      params[:user][:email] = nil if params[:user][:email].blank?
     end
   end
 

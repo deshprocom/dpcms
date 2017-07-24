@@ -8,6 +8,10 @@ context.instance_eval do
   column(:mobile, sortable: false)
   column(:email, sortable: false)
   column(:signature, sortable: false)
+  column(:user_extra_status, sortable: false) do |user|
+    status = user.user_extra.try(:status)
+    status.eql?('passed') ? '已实名' : '未实名'
+  end
   column(:last_visit)
   column(:login_count)
   column(:mark)

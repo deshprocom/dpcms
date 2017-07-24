@@ -15,8 +15,13 @@ context.instance_eval do
       row :participants
       row :location
       row(I18n.t('race.period')) { race_period(resource) }
+      row :schedule_begin_time
       row :roy
       row(:logo){ show_big_logo_link(resource) }
+      attributes_table_for resource.race_desc do
+        row(:schedules)
+      end
     end
   end
+  render 'marked_script'
 end

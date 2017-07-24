@@ -39,7 +39,8 @@ When(/^在编辑器中 '([^']*)' 填入 '([^']*)'$/) do |input_txt, value|
 end
 
 When(/^在 '([^']*)' 上传图片$/) do |input_txt|
-  input_id = INPUT_MAPPING[input_txt]
+  input_id = INPUT_MAPPING[input_txt] ? INPUT_MAPPING[input_txt] : input_txt
+
   attach_file(input_id, Rails.root.join('spec/factories/foo.png'))
 end
 

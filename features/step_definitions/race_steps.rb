@@ -21,7 +21,8 @@ Given(/^应创建了对应的英文赛事$/) do
   race = Race.last
   expect(race.name).not_to eq(race.race_en.name)
   expect(race.prize).to eq(race.race_en.prize)
-  expect(race[:logo]).to eq(race.race_en.logo.url)
+  expect(race.logo.url.blank?).to be_falsey
+  expect(race.race_en.logo.url.blank?).to be_falsey
   expect(race.race_desc.description).to eq('中国澳门')
   expect(race.race_desc_en.description).to eq('macau, china')
 end

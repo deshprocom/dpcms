@@ -35,7 +35,7 @@ ActiveAdmin.register Race do
   controller do
     include RaceHelper
     before_action :unpublished?, only: [:destroy]
-    before_action :syn_description, only: [:create, :update]
+    before_action :syn_description, only: [:create]
     before_action :syn_logo, only: [:create]
 
     def syn_logo

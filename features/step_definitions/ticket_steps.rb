@@ -15,7 +15,7 @@ Given(/^调用api 应成功获取该票务详情/) do
   ticket = race.tickets[1]
   expect(tickets[1]['title']).to eq(ticket.title)
   expect(tickets[1]['title']).to eq('飞机票 + 017APT启航站主票')
-  expect(tickets[1]['price']).to eq(ticket.price)
+  expect(tickets[1]['price']).to eq(ActiveSupport::NumberHelper::number_to_delimited ticket.price)
 end
 
 

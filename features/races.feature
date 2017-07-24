@@ -65,6 +65,7 @@ Feature: 赛事首页
     And 调用api 应成功获取该赛事详情
     And 点击链接 '编辑赛事'
     When 在 '赛事标题' 填入 '2017传奇扑克超高额豪客赛'
+    And 在 'race_race_en_attributes_logo' 上传图片
     And 在 'race_race_en_attributes_name' 填入 '2017 poker event'
     And 在编辑器中 '#markdown_cn .simditor-body' 填入 '中国澳门'
     And 在编辑器中 '#markdown_en .simditor-body' 填入 'macau, china'

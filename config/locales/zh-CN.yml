@@ -19,13 +19,16 @@
       video_type: '视频类别'
       admin_sys_log: '日志管理'
     attributes:
+      race_en:
+        logo: "赛事英文图片"
       race:
         name: "赛事标题"
         logo: "赛事图片"
         prize: "奖池"
         location: "比赛地点"
-        begin_date: "开始时间"
-        end_date: "结束时间"
+        schedule_begin_time: "赛程开始时间"
+        begin_date: "开始日期"
+        end_date: "结束日期"
         status: "赛事状态"
         created_at: "创建时间"
         updated_at: "更新时间"
@@ -44,7 +47,12 @@
         entity_ticket_number: "总实体票数"
         e_ticket_sold_number: "已售电子票数"
         entity_ticket_sold_number: "已售实体票数"
+      ticket_en:
+        logo: "英文票务竖图"
+        banner: "英文票务横图"
       ticket:
+        logo: "票务竖图"
+        banner: "票务横图"
         race: "所属赛事"
         title: "赛票标题"
         price: "应付价格"
@@ -54,7 +62,7 @@
         status: "状态"
       race_desc:
         description: "赛事描述"
-        schedule: "日程信息"
+        schedules: "日程信息"
 
       admin_user:
         email: "邮箱"

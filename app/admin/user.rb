@@ -25,7 +25,7 @@ ActiveAdmin.register User do
 
   batch_action :destroy, false
 
-  filter :user_uuid
+  filter :id
   filter :user_name
   filter :nick_name
   filter :email

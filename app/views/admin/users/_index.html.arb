@@ -1,10 +1,11 @@
 context.instance_eval do
   selectable_column
   column(:id)
-  column(:user_uuid, sortable: false)
+  column(:user_name, sortable: false)
   column(:avatar, sortable: false) do |user|
     user.avatar.url ? image_tag(user.avatar, height: 100, width: 100) : ''
   end
+  column(:nick_name, sortable: false)
   column(:mobile, sortable: false)
   column(:email, sortable: false)
   column(:signature, sortable: false)
@@ -15,7 +16,7 @@ context.instance_eval do
   column(:last_visit)
   column(:login_count)
   column(:mark)
-  actions(defaults: false) do |user|
+  actions(name: '操作', defaults: false) do |user|
     item '详情', admin_user_path(user), class: 'member_link'
     item '编辑', edit_admin_user_path(user), class: 'member_link'
     if user.role.eql?('banned')

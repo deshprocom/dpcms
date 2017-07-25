@@ -38,6 +38,10 @@
     pending: '审核中'
     passed: '已实名'
     failed: '未通过'
+  user:
+    basic: '普通'
+    banned: '禁用'
+
   player:
     list: '牌手管理'
   info:

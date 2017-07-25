@@ -183,8 +183,7 @@
         created_at: "创建时间"
         updated_at: "修改时间"
       user:
-        user_uuid: '扑客ID'
-        user_name: '姓名'
+        user_name: '扑客ID'
         nick_name: '昵称'
         gender: '性别'
         mobile: '手机号'

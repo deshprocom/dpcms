@@ -97,7 +97,7 @@ ActiveAdmin.register User do
   # 禁用用户和启用用户
   member_action :user_banned, method: :post do
     resource.role.eql?('banned') ? resource.update!(role: 'basic') : resource.update!(role: 'banned')
-    notice_str = resource.role.eql?('banned') ? '取消禁用' : '禁用'
+    notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
   end

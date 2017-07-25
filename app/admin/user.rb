@@ -46,7 +46,7 @@ ActiveAdmin.register User do
   form partial: 'form'
 
   sidebar :'数量统计', only: :index do
-    success_count = UserExtra.where(status: 'success').count
+    success_count = UserExtra.where(status: 'passed').count
     bind_count = User.where.not(mobile: nil).count
     ul do
       li "会员数量：#{User.count}名"

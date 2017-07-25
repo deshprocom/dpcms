@@ -18,6 +18,8 @@
       video: '视频'
       video_type: '视频类别'
       admin_sys_log: '日志管理'
+      user: '用户'
+      user_extra: '用户实名'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -94,6 +96,10 @@
         user_email_or_user_mobile: '用户账户(手机或邮箱)'
       user_extra:
         real_name: "真实姓名"
+        image: '图片'
+        cert_no: '证件号'
+        cert_type: '证件类型'
+        status: '实名状态'
       player:
         player_id: '牌手id'
         name: '姓名'
@@ -176,7 +182,27 @@
         mark: '操作信息'
         created_at: "创建时间"
         updated_at: "修改时间"
-  errors:
+      user:
+        user_uuid: '扑客ID'
+        user_name: '姓名'
+        nick_name: '昵称'
+        gender: '性别'
+        mobile: '手机号'
+        email: '邮箱'
+        password: '密码'
+        password_confirmation: '确认密码'
+        password_salt: '盐值'
+        avatar: '头像'
+        birthday: '生日'
+        reg_date: '注册日期'
+        last_visit: '上次登录时间'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+        login_count: "登录次数"
+        signature: "签名"
+        role: "角色"
+        mark: "备注"
+        user_extra_status: "实名状态"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

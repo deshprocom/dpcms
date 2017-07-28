@@ -15,6 +15,10 @@ module RaceHelper
     end
   end
 
+  def link_to_race(race)
+    link_to race.name, admin_race_path(race)
+  end
+
   def logo_link_to_show(race)
     link_to race.logo.url ? image_tag(race.preview_logo, height: 150, width: 105) : '', resource_path(race)
   end
@@ -32,7 +36,7 @@ module RaceHelper
   end
 
   def format_ticket_price(race)
-    "RMB #{race.ticket_price}"
+    race.ticket_price
   end
 
   def show_big_logo_link(race)

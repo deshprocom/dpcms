@@ -96,6 +96,7 @@
         real_name: "真实姓名"
       player:
         player_id: '牌手id'
+        year: '年份'
         name: '姓名'
         avatar: '头像'
         gender: '性别'

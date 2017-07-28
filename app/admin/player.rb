@@ -1,6 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Player do
   menu label: '牌手管理', priority: 4
+  filter :year, lable: '年份'
   filter :player_id
   filter :name
   filter :country
@@ -29,6 +30,15 @@ ActiveAdmin.register Player do
   controller do
     before_action :set_player, only: [:edit, :update]
 
+    def find_collection
+      filter_params =  params[:q] || {}
+      return super if filter_params[:year_contains].blank?
+
+      filter_params[:year] = filter_params[:year_contains]
+      Services::Players::FilteringService.call(super.unscoped, filter_params)
+                                         .page(params[:page]).per(30)
+    end
+
     def new
       @player = Player.new
     end
@@ -45,20 +55,6 @@ ActiveAdmin.register Player do
         format.js
       end
     end
-
-    # def create
-    #   @player = Player.new(player_params)
-    #   if @player.save
-    #     if player_params[:avatar].present?
-    #       render :crop
-    #     else
-    #       flash[:notice] = '新建牌手成功'
-    #       redirect_to admin_player_url(@player)
-    #     end
-    #   else
-    #     render :new
-    #   end
-    # end
 
     def edit
       render :new
@@ -80,20 +76,6 @@ ActiveAdmin.register Player do
         format.js { render :create }
       end
     end
-
-    # def update
-    #   @player.assign_attributes(player_params)
-    #   if @player.save
-    #     if player_params[:avatar].present?
-    #       render :crop
-    #     else
-    #       flash[:notice] = '更新牌手成功'
-    #       redirect_to admin_player_url(@player)
-    #     end
-    #   else
-    #     render :new
-    #   end
-    # end
 
     def destroy
       if resource.race_ranks.exists?

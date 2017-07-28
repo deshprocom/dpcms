@@ -11,10 +11,12 @@ module Services
     end
 
     def call
-      AdminSysLog.create!(admin_user: admin_user,
-                          operation: operation,
-                          action: action,
-                          mark: mark)
+      create_params = { admin_user: admin_user,
+                        action: action,
+                        mark: mark }
+      selectable_params = { operation: operation }
+      create_params.merge! selectable_params if operation.present?
+      AdminSysLog.create!(create_params)
     end
   end
 end

@@ -14,8 +14,8 @@ module Services
         join_where = "INNER JOIN races ON races.begin_date >= '#{year_first_day}'
 AND races.begin_date <= '#{year_last_day}' AND races.id = race_ranks.race_id"
         players = @collection.joins(join_where).joins(:race_ranks).group(:id)
-                        .select('players.*', 'SUM(earning) AS dpi_total_earning')
-                        .earn_order
+                             .select('players.*', 'SUM(earning) AS dpi_total_earning')
+                             .earn_order
         filtering_region players
       end
 

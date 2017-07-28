@@ -31,7 +31,7 @@ ActiveAdmin.register Player do
     before_action :set_player, only: [:edit, :update]
 
     def find_collection
-      filter_params =  params[:q] || {}
+      filter_params = params[:q] || {}
       return super if filter_params[:year_contains].blank?
 
       filter_params[:year] = filter_params[:year_contains]

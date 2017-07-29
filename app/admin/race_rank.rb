@@ -45,6 +45,11 @@ ActiveAdmin.register RaceRank do
       render :create
     end
 
+    def destroy
+      resource.destroy
+      redirect_back fallback_location: admin_race_race_ranks_path(@race)
+    end
+
     private
 
     def rank_params

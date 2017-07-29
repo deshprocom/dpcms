@@ -102,6 +102,7 @@
         status: '实名状态'
       player:
         player_id: '牌手id'
+        year: '年份'
         name: '姓名'
         avatar: '头像'
         gender: '性别'

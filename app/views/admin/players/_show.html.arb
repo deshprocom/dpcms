@@ -10,6 +10,7 @@ context.instance_eval do
     row(:country)
     row(:dpi_total_earning)
     row(:dpi_total_score)
+    row(:follows_count)
     row(:memo)
   end
 

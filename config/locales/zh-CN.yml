@@ -103,6 +103,7 @@
       player:
         player_id: '牌手id'
         year: '年份'
+        follows_count: '关注度'
         name: '姓名'
         avatar: '头像'
         gender: '性别'

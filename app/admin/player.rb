@@ -17,6 +17,7 @@ ActiveAdmin.register Player do
     column :country
     column :dpi_total_earning
     column :dpi_total_score
+    column :follows_count
     column :memo
     actions name: '操作'
   end

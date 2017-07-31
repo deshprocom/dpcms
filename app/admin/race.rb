@@ -25,7 +25,7 @@ ActiveAdmin.register Race do
     render 'show', context: self
   end
 
-  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status,
+  permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :participants,
                 :ticket_price, :ticket_sellable, :describable, :race_host_id, :blind,
                 race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :description],
                 race_desc_attributes: [:description],

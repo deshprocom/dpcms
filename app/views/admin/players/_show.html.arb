@@ -26,8 +26,8 @@ context.instance_eval do
       column(I18n.t('activerecord.attributes.race.location')) { |rank| rank.race.location }
       column('') do |rank|
         link_to(I18n.t('active_admin.edit'),
-                edit_admin_race_race_rank_path(rank.race, rank)) <<
-        ' | ' <<
+                edit_admin_race_race_rank_path(rank.race, rank),
+                remote: true) <<' | ' <<
         link_to(I18n.t('active_admin.delete'),
                 admin_race_race_rank_path(rank.race, rank),
                 data: { confirm: I18n.t('active_admin.delete_confirmation') },

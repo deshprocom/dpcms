@@ -16,7 +16,11 @@ module RaceHelper
   end
 
   def link_to_race(race)
-    link_to race.name, admin_race_path(race)
+    if race.parent
+      link_to race.name, admin_race_sub_race_path(race.parent, race)
+    else
+      link_to race.name, admin_race_path(race)
+    end
   end
 
   def logo_link_to_show(race)

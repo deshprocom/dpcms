@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ModuleLength
 module RaceHelper
   def in_ticket_manage?
     params[:as] == I18n.t('race.ticket_manage')

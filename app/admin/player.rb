@@ -105,4 +105,29 @@ ActiveAdmin.register Player do
   sidebar :'牌手数量', only: :index do
     "牌手总数量：#{Player.count}名"
   end
+
+  action_item :import, only: :index do
+    link_to '批量导入', import_admin_player_path(0), remote: true
+  end
+
+  member_action :import, method: [:get, :post] do
+    return render :import unless request.post?
+
+    file = params[:file]
+    if file.blank? || !File.extname(file.original_filename).in?(%w(.xls .xlsx))
+      flash[:error] = '文件格式有误， 只能为xls 或 xlsx'
+    else
+      success_num = 0
+      total_num = 0
+      spreadsheet = Roo::Spreadsheet.open(file.path)
+      (2..spreadsheet.last_row).each do |i|
+        row = spreadsheet.row(i)
+        player = Player.new(name: row[0], country: row[1])
+        success_num += 1 if player.save
+        total_num += 1
+      end
+      flash[:notice] = "总计 #{total_num} 个牌手， 成功导入 #{success_num} 个牌手"
+    end
+    redirect_to action: :index
+  end
 end

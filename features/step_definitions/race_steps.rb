@@ -32,7 +32,7 @@ Given(/^调用api 应成功获取该赛事详情/) do
   result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body
   puts result['msg']
   expect(result['code']).to   eq(0)
-  data = result['data']
+  data = result['data']['race']
   expect(data['race_id']).to  eq(race.id)
   expect(data['name']).to     eq(race.name)
   expect(data['seq_id']).to   eq(race.seq_id)

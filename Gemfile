@@ -37,6 +37,9 @@ gem 'redcarpet'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-ucloud', '~> 0.0.2'
 gem 'mini_magick'
+gem 'roo'
+gem 'roo-xls'
+
 # 压缩图片
 gem 'image_optim'
 gem 'image_optim_pack'

@@ -76,4 +76,34 @@ ActiveAdmin.register RaceRank do
   action_item :add, only: :index do
     link_to '新增排名', new_admin_race_race_rank_path(race), remote: true
   end
+
+  action_item :import, only: :index do
+    link_to '批量导入', import_admin_race_race_ranks_path(race), remote: true
+  end
+
+  collection_action :import, method: [:get, :post] do
+    @race = Race.find(params[:race_id])
+    return render :import unless request.post?
+
+    file = params[:file]
+    if file.blank? || !File.extname(file.original_filename).in?(%w(.xls .xlsx))
+      flash[:error] = '文件格式有误， 只能为xls 或 xlsx'
+    else
+      success_num = 0
+      total_num = 0
+      spreadsheet = Roo::Spreadsheet.open(file.path)
+      (2..spreadsheet.last_row).each do |i|
+        total_num += 1
+        row = spreadsheet.row(i)
+        player = Player.find_by(name: row[0])
+        next unless player
+
+        rank = RaceRank.new(race: @race, player: player,
+                            ranking: row[1], earning: row[2], score: row[3])
+        success_num += 1 if rank.save
+      end
+      flash[:notice] = "总计 #{total_num} 个排名， 成功导入 #{success_num} 个排名"
+    end
+    redirect_to action: :index
+  end
 end

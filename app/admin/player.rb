@@ -107,10 +107,10 @@ ActiveAdmin.register Player do
   end
 
   action_item :import, only: :index do
-    link_to '批量导入', import_admin_player_path(0), remote: true
+    link_to '批量导入', import_admin_players_path, remote: true
   end
 
-  member_action :import, method: [:get, :post] do
+  collection_action :import, method: [:get, :post] do
     return render :import unless request.post?
 
     file = params[:file]

@@ -53,7 +53,7 @@ Feature: 订单首页
     And 确定alert
     Then 应该能找到 'test@deshpro.com' 这些信息
 
-  Scenario: 待付款 -> 已付款   已付款 -> 已完成
+  Scenario: 待付款 -> 已付款   已付款 -> 已发货
     When 访问 '订单列表页'
     And 点击链接 '编辑'
     And 点击按钮或链接 '审核通过'
@@ -64,7 +64,7 @@ Feature: 订单首页
     And 对话框中点击 '确定'
     And 确定alert
     Then 应该能找到 '待发货' 这些信息
-    And 点击按钮或链接 '完成订单'
+    And 点击按钮或链接 '确认发货'
     And 对话框中点击 '确定'
     And 确定alert
-    Then 应该能找到 '已完成' 这些信息
+    Then 应该能找到 '已发货' 这些信息

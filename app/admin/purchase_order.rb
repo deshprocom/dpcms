@@ -9,6 +9,7 @@ ActiveAdmin.register PurchaseOrder do
   scope :all, default: 'true'
   scope :unpaid
   scope :paid
+  scope :delivered
   scope :completed
   scope :canceled
 
@@ -38,12 +39,12 @@ ActiveAdmin.register PurchaseOrder do
     end
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
-      item '取消', cancel_admin_purchase_order_path(order, change_status: 'canceled'),
+      item '取消', change_status_admin_purchase_order_path(order, change_status: 'canceled'),
            data: { confirm: '确定取消吗？' }, method: :post
     end
   end
 
-  member_action :cancel, method: :post do
+  member_action :change_status, method: :post do
     change_status = params[:change_status]
     old_status = resource.status
     mobile = resource.mobile || resource.user.mobile
@@ -51,7 +52,7 @@ ActiveAdmin.register PurchaseOrder do
                  $settings['cancel_order_template']
                elsif change_status.eql?('paid')
                  $settings['payment_template']
-               elsif change_status.eql?('completed')
+               elsif change_status.eql?('delivered')
                  $settings['shipping_template']
                end
     content = format(template, resource.order_number)
@@ -67,11 +68,11 @@ ActiveAdmin.register PurchaseOrder do
     if change_status.eql? 'canceled'
       redirect_to action: 'index'
     else
-      render 'cancel_order'
+      render 'refresh_order'
     end
   end
 
-  member_action :change_status, method: :post do
+  member_action :change_price, method: :post do
     return render 'common/params_format_error' if params[:order_price].blank?
     Services::SysLog.call(current_admin_user, resource, 'change_status',
                           "订单价格被修改：#{resource.price} -> #{params[:order_price]}")
@@ -101,6 +102,17 @@ ActiveAdmin.register PurchaseOrder do
     Services::SysLog.call(current_admin_user, resource, 'change_entity_ticket_address', mark)
     resource.update!(consignee: consignee, mobile: mobile, address: address)
     render 'common/update_success'
+  end
+
+  member_action :courier, method: :patch do
+    courier_params = params[:purchase_order]
+    if courier_params[:courier].blank? || courier_params[:tracking_no].blank?
+      return render js: "alert('快递公司与快递单号不能为空');"
+    end
+
+    courier_params[:status] = 'delivered' if resource.paid?
+    resource.update! courier_params.as_json
+    render 'refresh_order'
   end
 
   form partial: 'edit_order'

@@ -30,7 +30,7 @@
             %span 实付金额：
             %span #{order.price}
         .change_price
-          = form_tag(change_status_admin_purchase_order_path(order.id), id: 'change_price', method: 'post', remote: true) do
+          = form_tag(change_price_admin_purchase_order_path(order.id), id: 'change_price', method: 'post', remote: true) do
             %label{ for: 'order_price' } 实付金额：
             = text_field_tag(:order_price)
             = submit_tag '保存', data: { confirm: '确定更新吗？' }

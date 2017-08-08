@@ -84,7 +84,7 @@ ActiveAdmin.register Player do
       else
         resource.destroy
       end
-      redirect_back fallback_location: admin_players_url
+      redirect_to admin_players_url
     end
 
     def player_params

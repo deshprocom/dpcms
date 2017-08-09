@@ -89,6 +89,7 @@
         updated_at: "更新时间"
         unpaid: '待付款'
         paid: '待发货'
+        delivered: '已发货'
         completed: '已完成'
         canceled: '已取消'
         ticket_type: '票务类型'

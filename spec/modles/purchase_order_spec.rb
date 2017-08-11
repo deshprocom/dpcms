@@ -23,11 +23,11 @@ RSpec.describe PurchaseOrder, type: :model do
       end
     end
 
-    it '当订单取消时不触发通知' do
+    it '当订单取消时触发通知' do
       order = FactoryGirl.create(:purchase_order)
       order.canceled!
       notifications = order.user.notifications
-      expect(notifications.size).to eq(1)
+      expect(notifications.size).to eq(2)
     end
 
   end

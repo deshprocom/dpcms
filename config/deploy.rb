@@ -35,3 +35,4 @@ set :default_env, { path: '/home/deploy/engine/ruby/bin:/home/deploy/engine/node
 
 # Default value for keep_releases is 5
 set :keep_releases, 10
+set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }

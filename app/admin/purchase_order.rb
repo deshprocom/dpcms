@@ -111,6 +111,7 @@ ActiveAdmin.register PurchaseOrder do
     end
 
     courier_params[:status] = 'delivered' if resource.paid?
+    courier_params[:delivery_time] = Time.now
     resource.update! courier_params.as_json
     render 'refresh_order'
   end

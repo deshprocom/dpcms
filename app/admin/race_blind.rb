@@ -76,4 +76,36 @@ ActiveAdmin.register RaceBlind do
   action_item :add, only: :index do
     link_to '新增盲注结构', new_admin_race_race_blind_path(race), remote: true
   end
+
+  action_item :import, only: :index do
+    link_to '批量导入', import_admin_race_race_blinds_path(race), remote: true
+  end
+
+  collection_action :import, method: [:get, :post] do
+    @race = Race.find(params[:race_id])
+    return render :import unless request.post?
+
+    file = params[:file]
+    if file.blank? || !File.extname(file.original_filename).in?(%w(.xls .xlsx))
+      flash[:error] = '文件格式有误， 只能为xls 或 xlsx'
+    else
+      success_num = 0
+      total_num = 0
+      spreadsheet = Roo::Spreadsheet.open(file.path)
+      (2..spreadsheet.last_row).each do |i|
+        row = spreadsheet.row(i)
+        if row[0] == '盲注结构'
+          attrs = { blind_type: 0, level: row[1], small_blind: row[2],
+                    big_blind: row[3], ante: row[4], race_time: row[5] }
+        else
+          attrs = { blind_type: 1, level: row[1], content: row[2] }
+        end
+        blind = RaceBlind.new(attrs.merge(race: @race))
+        success_num += 1 if blind.save
+        total_num += 1
+      end
+      flash[:notice] = "总计 #{total_num} 个盲注， 成功导入 #{success_num} 个盲注"
+    end
+    redirect_to action: :index
+  end
 end

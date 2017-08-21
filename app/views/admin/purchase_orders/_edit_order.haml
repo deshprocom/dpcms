@@ -1,4 +1,5 @@
 .container
+  = render 'courier' if @purchase_order.ticket_type.eql?('entity_ticket')
   = render 'order_info'
   = render 'race_info'
   = render 'user_info'

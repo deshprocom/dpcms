@@ -20,6 +20,7 @@
       admin_sys_log: '日志管理'
       user: '用户'
       user_extra: '用户实名'
+      feedback: '意见反馈'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -89,6 +90,7 @@
         updated_at: "更新时间"
         unpaid: '待付款'
         paid: '待发货'
+        delivered: '已发货'
         completed: '已完成'
         canceled: '已取消'
         ticket_type: '票务类型'
@@ -204,6 +206,10 @@
         role: "角色"
         mark: "备注"
         user_extra_status: "实名状态"
+      feedback:
+        content: '反馈内容'
+        contact: '联系方式'
+        dealt: '已处理'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

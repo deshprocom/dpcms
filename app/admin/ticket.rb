@@ -32,12 +32,21 @@ ActiveAdmin.register Ticket do
 
   controller do
     before_action :syn_image, only: [:create]
+    before_action :exist_orders?, only: [:destroy]
 
     def syn_image
       en_logo = params[:ticket][:ticket_en_attributes][:logo] || params[:ticket][:logo]
       params[:ticket][:ticket_en_attributes][:logo] = en_logo
       en_banner = params[:ticket][:ticket_en_attributes][:banner] || params[:ticket][:banner]
       params[:ticket][:ticket_en_attributes][:banner] = en_banner
+    end
+
+    def exist_orders?
+      @ticket = Ticket.find(params[:id])
+      return unless @ticket.orders.exists?
+
+      flash[:error] = '该票务已有订单，不允许删除'
+      redirect_back fallback_location: admin_race_tickets_url(params[:race_id])
     end
   end
 

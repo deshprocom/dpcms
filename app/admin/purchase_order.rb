@@ -34,14 +34,23 @@ ActiveAdmin.register PurchaseOrder do
     end
     column :original_price
     column :price
-    column :status do |order|
+    column :status, sortable: false do |order|
       I18n.t("order.#{order.status}")
     end
+    column :created_at
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
       item '取消', change_status_admin_purchase_order_path(order, change_status: 'canceled'),
            data: { confirm: '确定取消吗？' }, method: :post
     end
+  end
+
+  action_item :add, only: :index do
+    link_to '易联账单', admin_video_types_path
+  end
+
+  action_item :add, only: :index do
+    link_to '微信账单', admin_video_types_path
   end
 
   member_action :change_status, method: :post do

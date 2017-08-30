@@ -22,6 +22,10 @@
       user: '用户'
       user_extra: '用户实名'
       feedback: '意见反馈'
+      bill: '易联支付'
+      wx_bill: '微信支付'
+      weixin_user: '微信用户'
+      sms_log: '短信日志'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -92,8 +96,8 @@
         consignee: "收货人"
         mobile: "手机号"
         order_number: "订单编号"
-        original_price: "订单总金额"
-        price: "实付金额"
+        original_price: "订单总金额(元)"
+        price: "实付金额(元)"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"
@@ -219,6 +223,51 @@
         content: '反馈内容'
         contact: '联系方式'
         dealt: '已处理'
+      bill:
+        order_number: '订单编号'
+        amount: '付款金额(元)'
+        pay_time: '支付时间'
+        trade_number: '交易流水号'
+        trade_status: '交易状态码'
+        trade_msg: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      wx_bill:
+        bank_type: '付款银行'
+        cash_fee: '现金支付金额(元)'
+        fee_type: '货币类型'
+        out_trade_no: '订单编号'
+        time_end: '支付时间'
+        total_fee: '付款金额(元)'
+        transaction_id: '交易流水号'
+        trade_type: '交易方式'
+        result_code: '交易状态码'
+        return_code: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        open_id: '微信ID'
+      weixin_user:
+        user_id: '绑定用户'
+        open_id: '微信ID'
+        nick_name: '微信昵称'
+        sex: '性别'
+        province: '省份'
+        city: '城市'
+        country: '国家'
+        head_img: '头像'
+        privilege: '权限'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      sms_log:
+        mobile: '手机号'
+        content: '短信内容'
+        error_msg: '返回信息'
+        fee: '计费次数'
+        send_time: '发送时间'
+        arrival_time: '到达时间'
+        created_at: '创建时间'
+        updated_at: "修改时间"
+        status: '发送状态'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

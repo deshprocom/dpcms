@@ -1,6 +1,7 @@
 ActiveAdmin.register WxBill do
   menu parent: '账单管理'
   config.batch_actions = false
+  config.clear_action_items!
 
   filter :open_id
   filter :bank_type

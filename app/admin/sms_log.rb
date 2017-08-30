@@ -1,6 +1,7 @@
 ActiveAdmin.register SmsLog do
   config.batch_actions = false
   config.clear_action_items!
+  config.sort_order = 'send_time_desc'
 
   filter :mobile
   filter :content

@@ -23,6 +23,7 @@
       feedback: '意见反馈'
       bill: '易联支付'
       wx_bill: '微信支付'
+      weixin_user: '微信用户'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -234,7 +235,19 @@
         return_code: '交易信息'
         created_at: "创建时间"
         updated_at: "修改时间"
-        open_id: 'OpenId'
+        open_id: '微信ID'
+      weixin_user:
+        user_id: '用户ID'
+        open_id: '微信ID'
+        nick_name: '昵称'
+        sex: '性别'
+        province: '省份'
+        city: '城市'
+        country: '国家'
+        head_img: '头像'
+        privilege: '权限'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

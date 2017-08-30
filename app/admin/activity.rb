@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Activity do
   config.batch_actions = false
   config.filters = false

@@ -237,9 +237,9 @@
         updated_at: "修改时间"
         open_id: '微信ID'
       weixin_user:
-        user_id: '用户ID'
+        user_id: '绑定用户'
         open_id: '微信ID'
-        nick_name: '昵称'
+        nick_name: '微信昵称'
         sex: '性别'
         province: '省份'
         city: '城市'

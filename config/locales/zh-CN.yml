@@ -237,7 +237,7 @@
         updated_at: "修改时间"
         open_id: '微信ID'
       weixin_user:
-        user_id: '用户ID'
+        user_id: '用户'
         open_id: '微信ID'
         nick_name: '昵称'
         sex: '性别'

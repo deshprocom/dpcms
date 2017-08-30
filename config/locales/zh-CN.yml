@@ -20,6 +20,7 @@
       admin_sys_log: '日志管理'
       user: '用户'
       user_extra: '用户实名'
+      feedback: '意见反馈'
       bill: '易联支付'
       wx_bill: '微信支付'
     attributes:
@@ -67,6 +68,7 @@
       race_desc:
         description: "赛事描述"
         schedules: "日程信息"
+
       admin_user:
         email: "邮箱"
         sign_in_count: "登陆次数"
@@ -206,6 +208,10 @@
         role: "角色"
         mark: "备注"
         user_extra_status: "实名状态"
+      feedback:
+        content: '反馈内容'
+        contact: '联系方式'
+        dealt: '已处理'
       bill:
         order_number: '订单编号'
         amount: '付款金额(元)'

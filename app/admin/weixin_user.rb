@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register WeixinUser do
   config.batch_actions = false
   config.clear_action_items!
@@ -15,8 +16,12 @@ ActiveAdmin.register WeixinUser do
     column '微信头像', :image do |info|
       link_to image_tag(info.head_img, height: '100px'), info.head_img, target: '_blank'
     end
-    column :user_id
     column :nick_name
+    column :user_id do |wx_user|
+      if wx_user.try(:user).present?
+        link_to wx_user.user.nick_name, admin_user_url(wx_user.user), target: '_blank'
+      end
+    end
     column :sex do |info|
       info.sex.eql?(1) ? '男' : '女'
     end

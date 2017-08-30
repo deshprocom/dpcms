@@ -1,0 +1,15 @@
+= semantic_form_for [:admin, resource] do |f|
+  = f.semantic_errors *f.object.errors.keys
+  = f.inputs do
+    = f.input :title
+    = f.input :activity_time
+    = f.input :pushed_img, as: :attachment, required: true,
+                     image: proc { |o| o.preview_pushed_img }
+    = f.input :banner, as: :attachment, required: true,
+                     image: proc { |o| o.preview_banner }
+    = f.text_area :description
+  = f.actions
+:javascript
+  $(function() {
+    dpEditor.call($('#activity_description'), $('form.activity'));
+  });

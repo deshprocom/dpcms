@@ -20,6 +20,8 @@
       admin_sys_log: '日志管理'
       user: '用户'
       user_extra: '用户实名'
+      bill: '易联支付'
+      wx_bill: '微信支付'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -65,7 +67,6 @@
       race_desc:
         description: "赛事描述"
         schedules: "日程信息"
-
       admin_user:
         email: "邮箱"
         sign_in_count: "登陆次数"
@@ -82,8 +83,8 @@
         consignee: "收货人"
         mobile: "手机号"
         order_number: "订单编号"
-        original_price: "订单总金额"
-        price: "实付金额"
+        original_price: "订单总金额(元)"
+        price: "实付金额(元)"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"
@@ -205,6 +206,29 @@
         role: "角色"
         mark: "备注"
         user_extra_status: "实名状态"
+      bill:
+        order_number: '订单编号'
+        amount: '付款金额(元)'
+        pay_time: '支付时间'
+        trade_number: '交易流水号'
+        trade_status: '交易状态码'
+        trade_msg: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      wx_bill:
+        bank_type: '付款银行'
+        cash_fee: '现金支付金额(元)'
+        fee_type: '货币类型'
+        out_trade_no: '订单编号'
+        time_end: '支付时间'
+        total_fee: '付款金额(元)'
+        transaction_id: '交易流水号'
+        trade_type: '交易方式'
+        result_code: '交易状态码'
+        return_code: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        open_id: 'OpenId'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

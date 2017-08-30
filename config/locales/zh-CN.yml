@@ -37,6 +37,7 @@
         link: "h5链接"
         activity_time: "活动时间"
         pushed: "推送到首页"
+        level: "排序"
       race:
         name: "赛事标题"
         logo: "赛事图片"

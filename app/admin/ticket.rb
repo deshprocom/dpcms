@@ -10,13 +10,13 @@ ActiveAdmin.register Ticket do
   belongs_to :sub_race, optional: true
   config.filters = false
   config.batch_actions = false
-  config.sort_order = 'ticket_class_desc'
+  config.sort_order = 'level_asc'
   breadcrumb do
     breadcrumb_links(ticket_breadcrumb_path)
   end
 
   permit_params :title, :description, :price, :original_price, :ticket_class,
-                :status, :banner, :logo,
+                :status, :banner, :logo, :level,
                 ticket_en_attributes: [:title, :description, :price, :original_price, :banner, :logo],
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number]
 

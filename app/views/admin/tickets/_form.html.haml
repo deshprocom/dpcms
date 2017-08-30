@@ -7,6 +7,7 @@
     = f.input :title, as: :embedded_string, embedded_html: :with_en
     = f.input :price
     = f.input :original_price
+    = f.input :level
     = f.input :ticket_class, collection: TRANS_TICKET_CLASSES, prompt: true
     = f.input :logo, as: :attachment, required: true,
                      hint: '图片最大为 2MB',

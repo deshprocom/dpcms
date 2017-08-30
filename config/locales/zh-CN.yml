@@ -3,6 +3,7 @@
     models:
       admin_user: "管理员"
       race: "赛事"
+      activity: "活动"
       race_rank: "排名"
       race_host: "主办方"
       sub_races: "边赛"
@@ -28,6 +29,15 @@
     attributes:
       race_en:
         logo: "赛事英文图片"
+      activity:
+        title: "活动标题"
+        pushed_img: "首页竖图"
+        banner: "活动横图"
+        description: "活动描述"
+        link: "h5链接"
+        activity_time: "活动时间"
+        pushed: "推送到首页"
+        level: "排序"
       race:
         name: "赛事标题"
         logo: "赛事图片"

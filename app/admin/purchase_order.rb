@@ -22,8 +22,8 @@ ActiveAdmin.register PurchaseOrder do
   index do
     id_column
     column :order_number
-    column '用户id', :user_id do |order|
-      order.user.user_uuid
+    column :user_id do |order|
+      link_to order.user.nick_name, admin_user_url(order.user), target: '_blank'
     end
     column '真实姓名', :real_name do |order|
       order.user.user_extra || order.user.build_user_extra

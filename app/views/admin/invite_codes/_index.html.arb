@@ -1,0 +1,11 @@
+context.instance_eval do
+  id_column
+  column :name, sortable: false
+  column :mobile, sortable: false
+  column :email, sortable: false
+  column :code, sortable: false
+  actions(name: '操作', defaults: false) do |code|
+    item '编辑', edit_admin_invite_code_path(code), class: 'member_link'
+    item '删除', admin_invite_code_path(code), data: { confirm: '确定删除吗？' }, method: :DELETE
+  end
+end

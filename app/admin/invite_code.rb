@@ -25,6 +25,7 @@ ActiveAdmin.register InviteCode do
     def sms_log_field(data)
       return '' if data.blank?
       {
+        id: data.id,
         name: data.name,
         mobile: data.mobile,
         email: data.email,

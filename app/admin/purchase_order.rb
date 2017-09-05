@@ -16,6 +16,7 @@ ActiveAdmin.register PurchaseOrder do
   filter :user_user_uuid, as: :string
   filter :user_email_or_user_mobile, as: :string
   filter :order_number
+  filter :invite_code
   filter :created_at
   filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }
 
@@ -38,6 +39,15 @@ ActiveAdmin.register PurchaseOrder do
       I18n.t("order.#{order.status}")
     end
     column :created_at
+    column :invite_code, sortable: false do |order|
+      invite_code = order.invite_code
+      invite_id = InviteCode.where(code: invite_code).first.try(:id)
+      link_to(invite_code, admin_invite_code_url(invite_id), target: '_blank') unless invite_id.nil?
+    end
+    column :invite_person, sortable: false do |order|
+      invite_code = order.invite_code
+      InviteCode.where(code: invite_code).first.try(:name)
+    end
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
       item '取消', change_status_admin_purchase_order_path(order, change_status: 'canceled'),
@@ -46,11 +56,11 @@ ActiveAdmin.register PurchaseOrder do
   end
 
   action_item :add, only: :index do
-    link_to '易联账单', admin_video_types_path
+    link_to '易联账单', admin_bills_path
   end
 
   action_item :add, only: :index do
-    link_to '微信账单', admin_video_types_path
+    link_to '微信账单', admin_wx_bills_path
   end
 
   member_action :change_status, method: :post do

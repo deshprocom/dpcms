@@ -28,3 +28,14 @@ Given(/^应创建了对应的英文票务$/) do
   expect(ticket_en.title).to eq('air ticket and event ticket')
   expect(ticket_en.description).to eq('macau, china')
 end
+
+Given(/^英文票务与中文票务的价格应一致，都应为 '([^']*)'$/) do |value|
+  ticket = Ticket.last
+  ticket_en = ticket.ticket_en
+  expect(ticket.price).to eq(ticket_en.price)
+  expect(ticket.original_price).to eq(ticket_en.original_price)
+  expect(ticket.price).to             eq(value.to_i)
+  expect(ticket.original_price).to    eq(value.to_i)
+  expect(ticket_en.price).to          eq(value.to_i)
+  expect(ticket_en.original_price).to eq(value.to_i)
+end

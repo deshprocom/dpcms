@@ -12,5 +12,26 @@ ActiveAdmin.register InviteCode do
     render 'show', context: self
   end
 
+  # 删除
+  controller do
+    def destroy
+      Services::SysLog.call(current_admin_user, resource, '邀请码',
+                            "邀请码被删除：删除的信息 -> #{sms_log_field(resource)}")
+      super
+    end
+
+    private
+
+    def sms_log_field(data)
+      return '' if data.blank?
+      {
+        name: data.name,
+        mobile: data.mobile,
+        email: data.email,
+        code: data.code
+      }
+    end
+  end
+
   form partial: 'form'
 end

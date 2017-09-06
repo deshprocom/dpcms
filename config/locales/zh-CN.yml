@@ -26,10 +26,12 @@
       wx_bill: '微信支付'
       weixin_user: '微信用户'
       sms_log: '短信日志'
+      invite_code: '邀请码'
     attributes:
       race_en:
         logo: "赛事英文图片"
       activity:
+        tag: "活动标签"
         title: "活动标题"
         pushed_img: "首页竖图"
         banner: "活动横图"
@@ -111,6 +113,8 @@
         user_id: '用户'
         user_user_uuid: '用户ID'
         user_email_or_user_mobile: '用户账户(手机或邮箱)'
+        invite_code: '邀请码'
+        invite_person: '邀请人'
       user_extra:
         real_name: "真实姓名"
         image: '图片'
@@ -271,6 +275,13 @@
         created_at: '创建时间'
         updated_at: "修改时间"
         status: '发送状态'
+      invite_code:
+        name: '姓名'
+        mobile: '手机号'
+        email: '邮箱'
+        code: '邀请码'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

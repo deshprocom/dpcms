@@ -4,7 +4,7 @@ ActiveAdmin.register Activity do
   config.filters = false
   config.sort_order = 'pushed_desc'
 
-  permit_params :title, :pushed_img, :banner, :description, :activity_time
+  permit_params :title, :pushed_img, :banner, :description, :activity_time, :link, :tag
 
   form partial: 'form'
 

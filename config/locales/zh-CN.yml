@@ -31,6 +31,7 @@
       race_en:
         logo: "赛事英文图片"
       activity:
+        tag: "活动标签"
         title: "活动标题"
         pushed_img: "首页竖图"
         banner: "活动横图"

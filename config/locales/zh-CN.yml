@@ -2,6 +2,7 @@
   activerecord:
     models:
       admin_user: "管理员"
+      app_version: "app版本管理"
       race: "赛事"
       activity: "活动"
       race_rank: "排名"
@@ -30,6 +31,10 @@
     attributes:
       race_en:
         logo: "赛事英文图片"
+      app_version:
+        version: "版本号"
+        platform: "app平台"
+        force_upgrade: "强制升级"
       activity:
         tag: "活动标签"
         title: "活动标题"

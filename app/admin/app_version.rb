@@ -4,5 +4,4 @@ ActiveAdmin.register AppVersion do
 
   permit_params :platform, :version, :force_upgrade
   form partial: 'form'
-
 end

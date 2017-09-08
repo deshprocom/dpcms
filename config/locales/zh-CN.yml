@@ -35,6 +35,8 @@
         version: "版本号"
         platform: "app平台"
         force_upgrade: "强制升级"
+        content: "更新内容"
+        title: "更新标题"
       activity:
         tag: "活动标签"
         title: "活动标题"

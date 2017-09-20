@@ -11,8 +11,6 @@ RSpec.describe PhotosController, type: :controller do
       
       json = JSON.parse(response.body)
       expect(json['success']).to eq(true)
-      image = open(json['file_path'])
-      expect(image.status[0]).to eq('200')
     end
   end
 end

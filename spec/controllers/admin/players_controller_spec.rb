@@ -44,8 +44,6 @@ RSpec.describe Admin::PlayersController, type: :controller do
       expect(last_insert.dpi_total_score).to eq(333)
       expect(last_insert.memo).to eq('备注')
       expect(last_insert.avatar).to be_truthy
-      avatar = open(last_insert.avatar_thumb)
-      expect(avatar.status[0]).to eq('200')
     end
   end
 

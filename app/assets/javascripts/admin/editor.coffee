@@ -12,7 +12,7 @@ $ ->
       placeholder = if options['placeholder'] then options['placeholder'] else '这里输入文字...'
       new Simditor(
         textarea: textarea,
-        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'link','image', '|', 'markdown'],
+        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', '|', 'markdown'],
         toolbarFloat: true,
         placeholder: placeholder,
         pasteImage: true,

@@ -31,7 +31,9 @@ append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/syst
 
 # Default value for default_env is {}
 # set :default_env, { path: '/opt/ruby/bin:$PATH' }
-set :default_env, { path: '/home/deploy/engine/ruby/bin:/home/deploy/engine/node/bin:$PATH' }
+
+# 可使用 gem 'capistrano/nvm' 代替 设置node的env
+set :default_env, { path: '$PATH:/home/deploy/.nvm/v8.5.0/bin' }
 
 # Default value for keep_releases is 5
 set :keep_releases, 10

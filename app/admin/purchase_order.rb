@@ -22,6 +22,9 @@ ActiveAdmin.register PurchaseOrder do
 
   index do
     id_column
+    column :ticket_name do |order|
+      order.ticket.title
+    end
     column :order_number
     column :user_id do |order|
       link_to order.user.nick_name, admin_user_url(order.user), target: '_blank'

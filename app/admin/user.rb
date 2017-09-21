@@ -3,7 +3,6 @@ ActiveAdmin.register User do
   menu label: '会员管理', priority: 1
   permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
-  CERT_TYPE = { passport_id: '护照', chinese_id: '身份证' }.freeze
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 
@@ -100,5 +99,9 @@ ActiveAdmin.register User do
     notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
+  end
+
+  action_item :user_extras, only: :index do
+    link_to '实名列表', admin_user_extras_path
   end
 end

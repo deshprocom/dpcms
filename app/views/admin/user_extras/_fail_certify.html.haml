@@ -1,0 +1,4 @@
+%div#fail_certify
+  = form_tag fail_certify_admin_user_extra_path(@user_extra), multipart: true do
+    = text_area_tag 'memo', nil, rows: 6, cols: 6, placeholder: '请输入不通过的理由！'
+    = submit_tag '提交'

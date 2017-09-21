@@ -7,6 +7,8 @@
                      image: proc { |o| o.preview_pushed_img }
     = f.input :banner, as: :attachment, required: true,
                      image: proc { |o| o.preview_banner }
+    = f.input :tag
+    = f.input :link
     = f.text_area :description
   = f.actions
 :javascript

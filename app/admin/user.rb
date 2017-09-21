@@ -101,4 +101,8 @@ ActiveAdmin.register User do
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
   end
+
+  action_item :user_extras, only: :index do
+    link_to '实名管理', admin_user_extras_path
+  end
 end

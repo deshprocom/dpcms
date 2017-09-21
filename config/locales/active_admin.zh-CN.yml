@@ -8,6 +8,8 @@
       delivered: '已发货'
       completed: '已完成'
       canceled: '已取消'
+      chinese_id: '身份证'
+      passport_id: '护照'
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'

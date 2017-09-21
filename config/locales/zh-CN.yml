@@ -21,7 +21,7 @@
       video_type: '视频类别'
       admin_sys_log: '日志管理'
       user: '用户管理'
-      user_extra: '实名管理'
+      user_extra: '实名认证'
       feedback: '意见反馈'
       bill: '易联支付'
       wx_bill: '微信支付'
@@ -123,6 +123,7 @@
         invite_code: '邀请码'
         invite_person: '邀请人'
       user_extra:
+        user: '用户'
         user_user_uuid: 'UUID'
         user_nick_name: '用户昵称'
         user_id: '用户'
@@ -132,6 +133,7 @@
         cert_type: '证件类型'
         status: '实名状态'
         memo: '审核信息'
+        default: '默认实名'
         created_at: '创建时间'
         updated_at: '修改时间'
       player:

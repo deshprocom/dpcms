@@ -25,4 +25,7 @@ context.instance_eval do
       item '禁用', user_banned_admin_user_path(user), data: { confirm: '确定禁用该用户吗？' }, method: :post
     end
   end
+  actions(name: '实名操作', defaults: false) do |user|
+    item '实名管理', admin_user_user_extras_path(user)
+  end
 end

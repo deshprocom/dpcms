@@ -1,14 +1,16 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register UserExtra do
-
   CERT_STATUS = UserExtra.statuses.keys
   CERT_TYPE = %w(chinese_id passport_id).collect { |d| [I18n.t("cert_type.#{d}"), d] }
+  belongs_to :user, optional: true
   actions :all, except: [:show]
+  menu false
 
   permit_params :user_id, :real_name, :cert_type, :cert_no, :memo, :image, :status
 
   scope :all
-  scope("chinese_id"){ |scope| scope.where(cert_type: 'chinese_id') }
-  scope("passport_id"){ |scope| scope.where(cert_type: 'passport_id') }
+  scope('chinese_id') { |scope| scope.where(cert_type: 'chinese_id') }
+  scope('passport_id') { |scope| scope.where(cert_type: 'passport_id') }
 
   batch_action :'审核通过', confirm: '确定操作吗?' do |ids|
     UserExtra.find(ids).each do |user_extra|
@@ -44,6 +46,7 @@ ActiveAdmin.register UserExtra do
     column :status, sortable: false do |user_extra|
       I18n.t("user_extra.#{user_extra.status}")
     end
+    column :default
     column :created_at
     column :memo
     actions name: '审核操作', defaults: false do |user_extra|
@@ -68,24 +71,23 @@ ActiveAdmin.register UserExtra do
       @user_extra.update(memo: memo, status: 'failed')
       Services::SysLog.call(current_admin_user, resource, '实名审核',
                             "拒绝：#{resource.real_name}的审核请求")
-      redirect_to action: :index
+      redirect_back fallback_location: admin_user_extras_url, notice: '审核操作成功'
     else
       render :fail_certify
     end
   end
 
+  member_action :user_table, method: :get do
+    render 'user_table'
+  end
+
   action_item :users, only: :index do
-    link_to '用户管理', admin_users_path
+    link_to '会员管理', admin_users_path
   end
 
   form partial: 'edit_user_extra'
 
   controller do
-    def new
-      @user_extra = UserExtra.new(user: User.first)
-      render :new
-    end
-
     def destroy
       resource.update(is_delete: 1)
       Services::SysLog.call(current_admin_user, resource, '实名审核',

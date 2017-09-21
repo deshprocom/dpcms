@@ -103,6 +103,6 @@ ActiveAdmin.register User do
   end
 
   action_item :user_extras, only: :index do
-    link_to '实名管理', admin_user_extras_path
+    link_to '实名列表', admin_user_extras_path
   end
 end

@@ -32,7 +32,7 @@
           %span
             证件类型：
           %span
-            = CERT_TYPE[@user_extra_info.cert_type.to_sym]
+            = @user_extra_info.cert_type.eql?('chinese_id') ? '身份证' : '护照'
         %li
           %span
             证件号码：

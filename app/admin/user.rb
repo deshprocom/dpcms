@@ -3,7 +3,6 @@ ActiveAdmin.register User do
   menu label: '会员管理', priority: 1
   permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
-  CERT_TYPE = { passport_id: '护照', chinese_id: '身份证' }.freeze
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 

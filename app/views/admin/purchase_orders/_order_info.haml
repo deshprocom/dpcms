@@ -1,5 +1,5 @@
 - order = @purchase_order
-- auth_status = order.user.user_extra.present? && order.user.user_extra.status.eql?('passed')
+- auth_status = order.user_extra.present? && order.user_extra.status.eql?('passed')
 
 .order_info
   .operation

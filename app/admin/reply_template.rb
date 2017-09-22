@@ -14,7 +14,7 @@ ActiveAdmin.register ReplyTemplate do
       @template = ReplyTemplate.new(reply_template_params)
       respond_to do |format|
         if @template.save
-          flash[:notice] = '新建牌手成功'
+          flash[:notice] = '新建模版成功'
           format.html { redirect_to admin_reply_templates_url(@template) }
         else
           format.html { render :new }

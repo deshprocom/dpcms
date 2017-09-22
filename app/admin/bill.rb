@@ -1,11 +1,12 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Bill do
   menu parent: '账单管理'
   config.batch_actions = false
   config.clear_action_items!
 
   scope :all
-  scope('trade_success') { |scope| scope.success_bills }
-  scope('trade_fail') { |scope| scope.fail_bills }
+  scope :trade_success, &:success_bills
+  scope :trade_fail, &:fail_bills
 
   filter :order_number
   filter :amount

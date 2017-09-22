@@ -13,7 +13,8 @@
     = f.input :participants
     = f.input :begin_date
     = f.input :end_date
-    = f.input :status, as: :select, collection: TRANS_RACE_STATUSES
+    = f.input :status, as: :select, collection: TRANS_RACE_STATUSES, prompt: true
+    = f.input :required_id_type, as: :select, collection: TRANS_REQUIRED_ID_TYPES, prompt: true
     = f.input :logo, as: :attachment, required: true,
                      hint: '图片最大为 2MB',
                      image: proc { |o| o.preview_logo }

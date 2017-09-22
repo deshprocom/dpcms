@@ -16,6 +16,7 @@ context.instance_eval do
       row :location
       row :blind
       row(:status) { I18n.t("race.#{race.status}") }
+      row(:required_id_type) { I18n.t("required_id_type.#{race.required_id_type}") }
       row(I18n.t('race.period')) { race_period(race) }
       row(:logo){ image_tag(race.preview_logo, height: 150, width: 105) }
       attributes_table_for race.race_desc do

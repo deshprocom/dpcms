@@ -28,6 +28,7 @@
       weixin_user: '微信用户'
       sms_log: '短信日志'
       invite_code: '邀请码'
+      reply_template: '回复模版'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -134,6 +135,11 @@
         status: '实名状态'
         memo: '审核信息'
         default: '默认实名'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      reply_template:
+        source: '类别'
+        content: '内容'
         created_at: '创建时间'
         updated_at: '修改时间'
       player:

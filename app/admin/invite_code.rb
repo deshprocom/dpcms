@@ -4,6 +4,12 @@ ActiveAdmin.register InviteCode do
   config.batch_actions = false
   permit_params :name, :mobile, :email
 
+  filter :name
+  filter :mobile
+  filter :email
+  filter :code
+  filter :created_at
+
   index do
     render 'index', context: self
   end

@@ -124,7 +124,7 @@
         user_user_uuid: '用户ID'
         user_email_or_user_mobile: '用户账户(手机或邮箱)'
         invite_code: '邀请码'
-        invite_person: '邀请人'
+        invite_person_name: '邀请人'
       user_extra:
         user: '用户'
         user_user_uuid: 'UUID'
@@ -307,6 +307,8 @@
         code: '邀请码'
         created_at: "创建时间"
         updated_at: "修改时间"
+        order_count: "订单数(单)"
+        success_count: "已付款订单(单)"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

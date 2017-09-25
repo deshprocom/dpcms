@@ -30,11 +30,10 @@ ActiveAdmin.register PurchaseOrder do
       link_to order.user.nick_name, admin_user_url(order.user), target: '_blank'
     end
     column '真实姓名', :real_name do |order|
-      order.user.user_extra || order.user.build_user_extra
-      order.user.user_extra.real_name
+      order.user_extra&.real_name
     end
     column '实名状态', :user_status do |order|
-      I18n.t("user_extra.#{order.user.user_extra.status}")
+      I18n.t("user_extra.#{order.user_extra.status}")
     end
     column :original_price
     column :price
@@ -136,6 +135,25 @@ ActiveAdmin.register PurchaseOrder do
     courier_params[:delivery_time] = Time.now
     resource.update! courier_params.as_json
     render 'refresh_order'
+  end
+
+  # 用户认证审核通过
+  member_action :user_audit, method: :post do
+    user_extra = resource.user_extra
+    return render 'user_audit_failed' if user_extra.blank?
+    Services::SysLog.call(current_admin_user, resource, 'user_audit',
+                          "通过了用户#{resource.user_extra.real_name}的审核认证")
+    user_extra.passed!
+  end
+
+  # 用户审核不通过
+  member_action :user_audit_forbid, method: :post do
+    memo = params[:memo] || user_extra.memo
+    user_extra = resource.user_extra
+    return render 'user_audit_failed' if user_extra.blank?
+    Services::SysLog.call(current_admin_user, resource, 'user_audit',
+                          "拒绝了用户#{resource.user_extra.real_name}的审核认证")
+    user_extra.update!(memo: memo, status: 'failed')
   end
 
   form partial: 'edit_order'

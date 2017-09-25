@@ -102,6 +102,7 @@
         password: "密码"
         password_confirmation: "确认密码"
       purchase_order:
+        ticket_name: '票务名称'
         ticket_type: "票务类型"
         email: "邮箱"
         address: "地址"
@@ -261,7 +262,9 @@
         trade_msg: '交易信息'
         created_at: "创建时间"
         updated_at: "修改时间"
+        ticket_name: '票务名称'
       wx_bill:
+        ticket_name: '票务名称'
         bank_type: '付款银行'
         cash_fee: '现金支付金额(元)'
         fee_type: '货币类型'

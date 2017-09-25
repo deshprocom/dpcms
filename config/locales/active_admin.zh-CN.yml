@@ -12,6 +12,7 @@
       passport_id: '护照'
       trade_success: '交易成功'
       trade_fail: '交易失败'
+      race_order_succeed: '已购票'
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'

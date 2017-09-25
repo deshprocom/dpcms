@@ -6,6 +6,11 @@ ActiveAdmin.register User do
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 
+  scope :all
+  scope('race_order_succeed') do |scope|
+    scope.joins(:orders).where('purchase_orders.status NOT IN (?)', ['unpaid', 'canceled']).distinct
+  end
+
   batch_action :'批量禁用', confirm: '确定操作吗?' do |ids|
     User.find(ids).each do |user|
       user.update(role: 'banned') unless user.role.eql?('banned')

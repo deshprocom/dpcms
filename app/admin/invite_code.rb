@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register InviteCode do
+  menu priority: 2, parent: '赛事管理'
   config.batch_actions = false
-
   permit_params :name, :mobile, :email
 
   index do

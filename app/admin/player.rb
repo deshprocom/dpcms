@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Player do
-  menu label: '牌手管理', priority: 5
+  menu priority: 2, parent: '赛事管理', label: '牌手管理'
   filter :year, lable: '年份'
   filter :player_id
   filter :name

@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Bill do
-  menu parent: '账单管理'
+  menu priority: 4, parent: '订单管理'
   config.batch_actions = false
   config.clear_action_items!
 

@@ -92,7 +92,7 @@ Given(/^应该能找到 '([^']*)' 这些信息$/) do |elements|
 end
 
 Given(/^在'([^']*)' 的第一个下拉框选择 '([^']*)'$/) do |id, text|
-  sleep(0.1)
+  sleep(0.3)
   first(:select, id).find(:option, text).select_option
 end
 

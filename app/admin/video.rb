@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Video do
-  menu label: '视频管理', priority: 8
+  menu priority: 3, parent: '资讯管理', label: '视频列表'
   permit_params :name, :video_link, :title_desc, :cover_link, :video_duration, :top, :published,
                 :description, :video_type_id, video_en_attributes: [:name, :title_desc, :description]
 

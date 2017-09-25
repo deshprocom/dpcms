@@ -1,4 +1,3 @@
-- @user_extra_info = @user.user_extra
 = semantic_form_for [:admin, @user] do |f|
   = f.inputs name: '用户管理' do
     %li
@@ -14,29 +13,3 @@
     = f.input :mobile
     = f.input :mark
     = f.actions
-
-  - if @user_extra_info
-    = f.inputs name: '实名管理' do
-      = f.semantic_fields_for :user_extra do |t|
-        %li
-          %span
-            真实姓名：
-          %span
-            = @user_extra_info.real_name
-        %li
-          %span
-            证件图片：
-          %span
-            = image_tag(@user_extra_info.image, height: 200, width: 200)
-        %li
-          %span
-            证件类型：
-          %span
-            = @user_extra_info.cert_type.eql?('chinese_id') ? '身份证' : '护照'
-        %li
-          %span
-            证件号码：
-          %span
-            = @user_extra_info.cert_no
-        = t.input :status, as: :select, include_blank: false, collection: CERTIFY_STATUS.collect { |key| [I18n.t("user_extra.#{key}"), key] }
-        = f.actions

@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  menu label: '管理员列表', priority: 1
+  menu priority: 1, parent: '用户管理', label: '管理员列表'
   actions :all, except: [:show]
 
   permit_params :email, :password, :password_confirmation

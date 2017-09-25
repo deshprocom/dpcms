@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 # rubocop:disable Style/GlobalVars
 ActiveAdmin.register PurchaseOrder do
-  menu label: '订单列表', priority: 3
+  menu priority: 4, parent: '订单管理', label: '订单列表'
   permit_params :price, :email, :address, :consignee, :mobile, :status
   actions :all, except: [:new]
   ORDER_STATUS = PurchaseOrder.statuses.keys
@@ -17,6 +17,7 @@ ActiveAdmin.register PurchaseOrder do
   filter :user_email_or_user_mobile, as: :string
   filter :order_number
   filter :invite_code
+  filter :invite_person_name, as: :string
   filter :created_at
   filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }
 
@@ -43,12 +44,11 @@ ActiveAdmin.register PurchaseOrder do
     column :created_at
     column :invite_code, sortable: false do |order|
       invite_code = order.invite_code
-      invite_id = InviteCode.where(code: invite_code).first.try(:id)
+      invite_id = order.invite_person&.id
       link_to(invite_code, admin_invite_code_url(invite_id), target: '_blank') unless invite_id.nil?
     end
-    column :invite_person, sortable: false do |order|
-      invite_code = order.invite_code
-      InviteCode.where(code: invite_code).first.try(:name)
+    column :invite_person_name, sortable: false do |order|
+      order.invite_person&.name
     end
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'

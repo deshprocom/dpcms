@@ -25,7 +25,6 @@ $ ->
       for reply in replies
         trs += "<tr data-id=#{reply.id} data-name=#{reply.content}>"
         trs += "<td>#{reply.id}</td>"
-        trs += "<td>#{reply.source}</td>"
         trs += "<td>#{reply.content}</td>"
         trs += '/<tr>'
       trs

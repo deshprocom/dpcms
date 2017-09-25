@@ -8,7 +8,7 @@ ActiveAdmin.register User do
 
   scope :all
   scope('race_order_succeed') do |scope|
-    scope.joins(:orders).where('purchase_orders.status NOT IN (?)', ['unpaid', 'canceled']).distinct
+    scope.joins(:orders).where('purchase_orders.status NOT IN (?)', %w(unpaid canceled)).distinct
   end
 
   batch_action :'批量禁用', confirm: '确定操作吗?' do |ids|

@@ -1,6 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
-  menu label: '会员管理', priority: 1
+  menu priority: 1, parent: '用户管理', label: 'app用户'
+
   permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
   USER_STATUS = User.statuses.keys

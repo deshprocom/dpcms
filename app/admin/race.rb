@@ -3,10 +3,11 @@ RACE_STATUSES = Race.statuses.keys
 TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
 TRANS_REQUIRED_ID_TYPES = Race.required_id_types.keys.collect { |d| [I18n.t("required_id_type.#{d}"), d] }
 ActiveAdmin.register Race do
+  menu priority: 2, parent: '赛事管理', label: '赛事列表'
+
   config.batch_actions = false
   config.sort_order = 'begin_date_desc'
 
-  menu label: I18n.t('race.manage'), priority: 1
   filter :name
   filter :location
   filter :begin_date

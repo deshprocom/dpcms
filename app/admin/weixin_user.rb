@@ -1,5 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register WeixinUser do
+  menu priority: 1, parent: '用户管理'
   config.batch_actions = false
   config.clear_action_items!
 

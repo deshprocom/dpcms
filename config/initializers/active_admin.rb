@@ -295,4 +295,20 @@ module ActiveAdmin
       end
     end
   end
+
+  class Menu
+    module MenuNode
+      def add(options)
+        item = if parent = options.delete(:parent)
+                 (self[parent] || add(label: parent, priority: options[:priority])).add options
+               else
+                 _add options.merge parent: self
+               end
+
+        yield(item) if block_given?
+
+        item
+      end
+    end
+  end
 end

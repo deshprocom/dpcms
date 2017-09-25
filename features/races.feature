@@ -4,11 +4,6 @@ Feature: 赛事首页
   Background:
     Given 已使用 'admin@deshpro.com'登录
 
-  Scenario: 点击赛事管理
-    Given 访问 '新建赛事页'
-    And 点击链接 '赛事管理'
-    Then 应到达 '赛事列表页'
-
   Scenario: 赛事列表中点击新建赛事
     Given 访问 '赛事列表页'
     When 点击链接 '新建赛事'

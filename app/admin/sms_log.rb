@@ -1,4 +1,5 @@
 ActiveAdmin.register SmsLog do
+  menu priority: 20, parent: '日志管理'
   config.batch_actions = false
   config.clear_action_items!
   config.sort_order = 'send_time_desc'

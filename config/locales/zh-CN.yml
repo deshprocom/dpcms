@@ -248,6 +248,8 @@
         role: "角色"
         mark: "备注"
         user_extra_status: "实名状态"
+        total_number: '购票次数'
+        total_fee: '消费金额'
       feedback:
         content: '反馈内容'
         contact: '联系方式'

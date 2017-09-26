@@ -29,6 +29,7 @@
       sms_log: '短信日志'
       invite_code: '邀请码'
       reply_template: '回复模版'
+      template_type: '模版管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -311,6 +312,11 @@
         updated_at: "修改时间"
         order_count: "订单数(单)"
         success_count: "已付款订单(单)"
+        invite_fee: "推荐成功总额(元)"
+      template_type:
+        name: '类别名称'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

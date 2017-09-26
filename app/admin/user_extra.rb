@@ -25,6 +25,7 @@ ActiveAdmin.register UserExtra do
   filter :user_nick_name, as: :string
   filter :real_name
   filter :cert_no
+  filter :is_delete, as: :select, collection: [['使用中', 0], ['已删除', 1]]
   filter :status, as: :select, collection: CERT_STATUS.collect { |key| [I18n.t("user_extra.#{key}"), key] }
 
   index do
@@ -48,6 +49,9 @@ ActiveAdmin.register UserExtra do
     end
     column :default
     column :created_at
+    column :is_delete do |user_extra|
+      user_extra.is_delete.eql?(1) ? '已删除' : '使用中'
+    end
     column :memo
     actions name: '审核操作', defaults: false do |user_extra|
       item '通过', success_certify_admin_user_extra_path(user_extra),

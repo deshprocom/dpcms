@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ReplyTemplate do
   menu false
-  permit_params :source, :content
+  permit_params :type_id, :content
 
   form partial: 'form'
 
@@ -26,7 +26,7 @@ ActiveAdmin.register ReplyTemplate do
     private
 
     def reply_template_params
-      params.require(:reply_template).permit(:source, :content)
+      params.require(:reply_template).permit(:type_id, :content)
     end
   end
 

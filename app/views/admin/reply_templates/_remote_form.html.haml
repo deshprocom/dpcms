@@ -1,6 +1,6 @@
 %div
   = semantic_form_for [:admin, @template], remote: true do |f|
     = f.inputs do
-      = f.input :source
+      = f.input :type_id, as: :select, include_blank: false, collection: TemplateType.all, require: true
       = f.input :content, require: true
       = f.submit

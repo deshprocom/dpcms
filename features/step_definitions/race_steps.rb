@@ -37,8 +37,6 @@ Given(/^调用api 应成功获取该赛事详情/) do
   expect(data['name']).to     eq(race.name)
   expect(data['seq_id']).to   eq(race.seq_id)
   expect(data['status']).to   eq(race.status)
-  expect(data['logo']).to     eq(race.preview_logo)
-  expect(data['big_logo']).to eq(race.big_logo)
   # expect(data['ticket_status']).to eq(race.ticket_status)
 end
 

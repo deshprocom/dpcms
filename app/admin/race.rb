@@ -1,11 +1,13 @@
 # rubocop:disable Metrics/BlockLength
 RACE_STATUSES = Race.statuses.keys
 TRANS_RACE_STATUSES = RACE_STATUSES.collect { |d| [I18n.t("race.#{d}"), d] }
+TRANS_REQUIRED_ID_TYPES = Race.required_id_types.keys.collect { |d| [I18n.t("required_id_type.#{d}"), d] }
 ActiveAdmin.register Race do
+  menu priority: 2, parent: '赛事管理', label: '赛事列表'
+
   config.batch_actions = false
   config.sort_order = 'begin_date_desc'
 
-  menu label: I18n.t('race.manage'), priority: 1
   filter :name
   filter :location
   filter :begin_date
@@ -26,7 +28,7 @@ ActiveAdmin.register Race do
   end
 
   permit_params :name, :logo, :prize, :location, :begin_date, :end_date, :status, :participants,
-                :ticket_price, :ticket_sellable, :describable, :race_host_id, :blind,
+                :ticket_price, :ticket_sellable, :describable, :race_host_id, :blind, :required_id_type,
                 race_en_attributes: [:name, :logo, :prize, :location, :ticket_price, :description],
                 race_desc_attributes: [:description],
                 race_desc_en_attributes: [:description]

@@ -69,6 +69,7 @@
         blind: "起始筹码"
         participants: "参数人数"
         race_host: "主办方"
+        required_id_type: "购票所需身份类型"
       ticket_info:
         e_ticket_number: "总电子票数"
         entity_ticket_number: "总实体票数"

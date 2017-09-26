@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 # rubocop:disable Style/GlobalVars
 ActiveAdmin.register PurchaseOrder do
-  menu label: '订单列表', priority: 3
+  menu priority: 4, parent: '订单管理', label: '订单列表'
   permit_params :price, :email, :address, :consignee, :mobile, :status
   actions :all, except: [:new]
   ORDER_STATUS = PurchaseOrder.statuses.keys

@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminSysLog do
-  menu label: '日志管理', priority: 20
+  menu priority: 20, label: '后台日志', parent: '日志管理'
   actions :index
 
   index do

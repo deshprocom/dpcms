@@ -1,5 +1,5 @@
 ActiveAdmin.register RaceHost do
-  menu priority: 2, parent: '赛事管理', label: '赛事列表'
+  menu priority: 2, parent: '赛事管理'
   config.batch_actions = false
 
   permit_params :name

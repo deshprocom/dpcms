@@ -19,6 +19,7 @@ Given(/^前往 '([^']*)'$/) do |location|
 end
 
 Given(/^应到达 '([^']*)'$/) do |location|
+  sleep 0.3
   path = TARGET_PATH_MAPPING[location].to_s
   expect(page).to have_current_path(path)
 end

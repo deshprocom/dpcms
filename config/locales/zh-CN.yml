@@ -140,6 +140,7 @@
         memo: '审核信息'
         default: '默认实名'
         is_delete: '使用情况'
+        need_auth: '需要审核'
         created_at: '创建时间'
         updated_at: '修改时间'
       reply_template:

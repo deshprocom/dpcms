@@ -47,19 +47,23 @@ ActiveAdmin.register UserExtra do
     column :image do |user_extra|
       user_extra.image.url ? link_to(image_tag(user_extra.image.url, height: 100), user_extra.image.url, target: '_blank') : ''
     end
-    column :status, sortable: false do |user_extra|
-      I18n.t("user_extra.#{user_extra.status}")
-    end
-    column :default
+    column :default, sortable: false
     column :created_at
     column :is_delete do |user_extra|
       user_extra.is_delete.eql?(1) ? '已删除' : '使用中'
     end
     column :memo
+    column :status, sortable: false do |user_extra|
+      I18n.t("user_extra.#{user_extra.status}")
+    end
     actions name: '审核操作', defaults: false do |user_extra|
-      item '通过', success_certify_admin_user_extra_path(user_extra),
-           data: { confirm: '确定通过审核吗？' }, method: :post, class: 'member_link'
-      item '拒绝', fail_certify_admin_user_extra_path(user_extra), remote: true
+      unless user_extra.status.eql?('passed')
+        item '通过', success_certify_admin_user_extra_path(user_extra),
+             data: { confirm: '确定通过审核吗？' }, method: :post, class: 'member_link'
+      end
+      unless user_extra.status.eql?('failed')
+        item '不通过', fail_certify_admin_user_extra_path(user_extra), remote: true
+      end
     end
     actions name: '更多操作'
   end

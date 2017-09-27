@@ -9,11 +9,11 @@ ActiveAdmin.register UserExtra do
   permit_params :user_id, :real_name, :cert_type, :cert_no, :memo, :image, :status
 
   scope :all
-  scope('chinese_id') { |scope| scope.where(cert_type: 'chinese_id') }
-  scope('passport_id') { |scope| scope.where(cert_type: 'passport_id') }
   scope('need_auth') { |scope| scope.where(is_delete: 0).where(status: %w(init pending)) }
   scope('auth_passed') { |scope| scope.where(status: 'passed') }
   scope('auth_failed') { |scope| scope.where(status: 'failed') }
+  scope('chinese_id') { |scope| scope.where(cert_type: 'chinese_id') }
+  scope('passport_id') { |scope| scope.where(cert_type: 'passport_id') }
 
   batch_action :'审核通过', confirm: '确定操作吗?' do |ids|
     UserExtra.find(ids).each do |user_extra|

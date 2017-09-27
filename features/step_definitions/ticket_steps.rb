@@ -30,6 +30,7 @@ Given(/^应创建了对应的英文票务$/) do
 end
 
 Given(/^英文票务与中文票务的价格应一致，都应为 '([^']*)'$/) do |value|
+  sleep 0.3
   ticket = Ticket.last
   ticket_en = ticket.ticket_en
   expect(ticket.price).to eq(ticket_en.price)

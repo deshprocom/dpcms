@@ -4,7 +4,7 @@ ActiveAdmin.register UserExtra do
   CERT_TYPE = %w(chinese_id passport_id).collect { |d| [I18n.t("cert_type.#{d}"), d] }
   belongs_to :user, optional: true
   actions :all, except: [:show]
-  menu false
+  menu priority: 1, parent: '用户管理'
 
   permit_params :user_id, :real_name, :cert_type, :cert_no, :memo, :image, :status
 

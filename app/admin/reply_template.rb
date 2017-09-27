@@ -1,21 +1,35 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ReplyTemplate do
-  menu false
   permit_params :type_id, :content
+  menu priority: 22, parent: '模版管理'
+
+  filter :type_id, as: :select, collection: TemplateType.all
+  filter :content
+  filter :created_at
+
+  index do
+    column :id
+    column :type_name do |reply|
+      reply.template_type&.name
+    end
+    column :content
+    column :created_at
+    actions
+  end
 
   form partial: 'form'
 
   controller do
     def new
-      @template = ReplyTemplate.new
+      @reply_template = ReplyTemplate.new
+      @reply_template.type_id = params[:type_id] unless params[:type_id].blank?
     end
 
     def create
-      @template = ReplyTemplate.new(reply_template_params)
+      @reply_template = ReplyTemplate.new(reply_template_params)
       respond_to do |format|
-        if @template.save
-          flash[:notice] = '新建模版成功'
-          format.html { redirect_to admin_reply_templates_url(@template) }
+        if @reply_template.save
+          format.html { redirect_to admin_reply_templates_url }
         else
           format.html { render :new }
         end

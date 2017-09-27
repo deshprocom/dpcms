@@ -13,6 +13,9 @@
       trade_success: '交易成功'
       trade_fail: '交易失败'
       race_order_succeed: '已购票'
+      need_auth: '需要审核'
+      auth_passed: '审核通过'
+      auth_failed: '审核拒绝'
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'

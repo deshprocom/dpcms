@@ -26,6 +26,7 @@
       bill: '易联支付'
       wx_bill: '微信支付'
       weixin_user: '微信用户'
+      test_user: '测试用户'
       sms_log: '短信日志'
       invite_code: '邀请码'
       reply_template: '回复列表'

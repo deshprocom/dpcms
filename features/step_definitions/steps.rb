@@ -45,19 +45,36 @@ When(/^在 '([^']*)' 上传图片$/) do |input_txt|
 end
 
 Given(/^点击链接 '([^']*)'$/) do |link|
-  click_link(link)
+  if ENV['CAPYBARA_DRIVER'] == 'chrome'
+    click_link(link)
+  else
+    find_link(link).trigger('click')
+  end
 end
 
 Given(/^点击按钮 '([^']*)'$/) do |button|
-  click_button(button)
+  if ENV['CAPYBARA_DRIVER'] == 'chrome'
+    click_button(button)
+  else
+    find_button(button).trigger('click')
+  end
 end
 
 Given(/^点击第一个按钮 '([^']*)'$/) do |button|
-  first(:button, button).click
+  if ENV['CAPYBARA_DRIVER'] == 'chrome'
+    first(:button, button).click
+  else
+    first(:button, button).trigger('click')
+  end
+
 end
 
 Given(/^点击元素 '([^']*)'$/) do |selector|
-  first(selector).click
+  if ENV['CAPYBARA_DRIVER'] == 'chrome'
+    first(selector).click
+  else
+    first(selector).click
+  end
 end
 
 Given(/^'([^']*)' 该选择器的值应为 '([^']*)'$/) do |selector, value|
@@ -65,7 +82,11 @@ Given(/^'([^']*)' 该选择器的值应为 '([^']*)'$/) do |selector, value|
 end
 
 Given /^点击按钮或链接 '([^']*)'$/ do |link_button|
-  click_on(link_button)
+  if ENV['CAPYBARA_DRIVER'] == 'chrome'
+    find(:link_or_button, link_button).click
+  else
+    find(:link_or_button, link_button).trigger('click')
+  end
 end
 
 Given(/^对话框中点击 '([^']*)'$/) do |text|
@@ -117,6 +138,7 @@ Then(/^应得到成功提示 '([^']*)'$/) do |text|
 end
 
 When(/^表单应提醒不能为空 '([^']*)'$/) do |id|
+  sleep 0.2
   @form = find_by_id(id)
   expect(@form).to have_text('不能为空')
 end

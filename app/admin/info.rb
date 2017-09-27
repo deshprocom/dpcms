@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Info do
+  menu priority: 3, parent: '资讯管理', label: '资讯列表'
   SOURCE_TYPE = %w(source author).collect { |d| [I18n.t("info.#{d}"), d] }
-  menu label: '资讯管理', priority: 6
 
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
                 :published, :description, :info_type_id, info_en_attributes: [:id, :title, :source, :description]

@@ -20,14 +20,16 @@
       video: '视频'
       video_type: '视频类别'
       admin_sys_log: '日志管理'
-      user: '用户'
-      user_extra: '用户实名'
+      user: '用户管理'
+      user_extra: '实名认证'
       feedback: '意见反馈'
       bill: '易联支付'
       wx_bill: '微信支付'
       weixin_user: '微信用户'
       sms_log: '短信日志'
       invite_code: '邀请码'
+      reply_template: '回复列表'
+      template_type: '模版类别'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -68,6 +70,7 @@
         blind: "起始筹码"
         participants: "参数人数"
         race_host: "主办方"
+        required_id_type: "购票所需身份类型"
       ticket_info:
         e_ticket_number: "总电子票数"
         entity_ticket_number: "总实体票数"
@@ -100,6 +103,7 @@
         password: "密码"
         password_confirmation: "确认密码"
       purchase_order:
+        ticket_name: '票务名称'
         ticket_type: "票务类型"
         email: "邮箱"
         address: "地址"
@@ -121,13 +125,29 @@
         user_user_uuid: '用户ID'
         user_email_or_user_mobile: '用户账户(手机或邮箱)'
         invite_code: '邀请码'
-        invite_person: '邀请人'
+        invite_person_name: '邀请人'
       user_extra:
+        user: '用户'
+        user_user_uuid: 'UUID'
+        user_nick_name: '用户昵称'
+        user_id: '用户'
         real_name: "真实姓名"
         image: '图片'
         cert_no: '证件号'
         cert_type: '证件类型'
         status: '实名状态'
+        memo: '审核信息'
+        default: '默认实名'
+        is_delete: '使用情况'
+        created_at: '创建时间'
+        updated_at: '修改时间'
+      reply_template:
+        source: '类别'
+        content: '内容'
+        type_id: '所属类别'
+        type_name: '所属类别'
+        created_at: '创建时间'
+        updated_at: '修改时间'
       player:
         player_id: '牌手id'
         year: '年份'
@@ -233,6 +253,8 @@
         role: "角色"
         mark: "备注"
         user_extra_status: "实名状态"
+        total_number: '购票次数'
+        total_fee: '消费金额'
       feedback:
         content: '反馈内容'
         contact: '联系方式'
@@ -246,7 +268,9 @@
         trade_msg: '交易信息'
         created_at: "创建时间"
         updated_at: "修改时间"
+        ticket_name: '票务名称'
       wx_bill:
+        ticket_name: '票务名称'
         bank_type: '付款银行'
         cash_fee: '现金支付金额(元)'
         fee_type: '货币类型'
@@ -287,6 +311,13 @@
         mobile: '手机号'
         email: '邮箱'
         code: '邀请码'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        order_count: "订单数(单)"
+        success_count: "已付款订单(单)"
+        invite_fee: "推荐成功总额(元)"
+      template_type:
+        name: '类别名称'
         created_at: "创建时间"
         updated_at: "修改时间"
       format: "%{attribute}%{message}"

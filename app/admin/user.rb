@@ -1,11 +1,16 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register User do
-  menu label: '会员管理', priority: 1
+  menu priority: 1, parent: '用户管理', label: 'app用户'
+
   permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
-  CERT_TYPE = { passport_id: '护照', chinese_id: '身份证' }.freeze
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
+
+  scope :all
+  scope('race_order_succeed') do |scope|
+    scope.joins(:orders).where('purchase_orders.status NOT IN (?)', %w(unpaid canceled)).distinct
+  end
 
   batch_action :'批量禁用', confirm: '确定操作吗?' do |ids|
     User.find(ids).each do |user|
@@ -75,30 +80,15 @@ ActiveAdmin.register User do
     end
   end
 
-  # 用户认证审核通过
-  member_action :user_audit, method: :post do
-    user_extra = resource.user_extra
-    return render 'user_audit_failed' if user_extra.blank?
-    Services::SysLog.call(current_admin_user, resource, 'user_audit',
-                          "通过了用户#{resource.user_extra.real_name}的审核认证")
-    user_extra.passed!
-  end
-
-  # 用户审核不通过
-  member_action :user_audit_forbid, method: :post do
-    memo = params[:memo] || user_extra.memo
-    user_extra = resource.user_extra
-    return render 'user_audit_failed' if user_extra.blank?
-    Services::SysLog.call(current_admin_user, resource, 'user_audit',
-                          "拒绝了用户#{resource.user_extra.real_name}的审核认证")
-    user_extra.update!(memo: memo, status: 'failed')
-  end
-
   # 禁用用户和启用用户
   member_action :user_banned, method: :post do
     resource.role.eql?('banned') ? resource.update!(role: 'basic') : resource.update!(role: 'banned')
     notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
+  end
+
+  action_item :user_extras, only: :index do
+    link_to '实名列表', admin_user_extras_path
   end
 end

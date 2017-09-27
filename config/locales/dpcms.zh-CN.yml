@@ -1,4 +1,8 @@
 "zh-CN":
+  required_id_type:
+    any: '任意一种'
+    chinese_id: '中国身份证'
+    passport_id: '护照'
   race:
     unbegin: '未开始'
     go_ahead: '进行中'
@@ -40,6 +44,9 @@
     pending: '审核中'
     passed: '已实名'
     failed: '未通过'
+  cert_type:
+    chinese_id: '身份证'
+    passport_id: '护照'
   user:
     basic: '普通'
     banned: '禁用'

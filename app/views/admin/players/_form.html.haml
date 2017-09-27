@@ -5,7 +5,7 @@
       %div= image_tag('', id: 'cropbox')
       %label 图片预览
       %div{style: 'width:100px; height:100px; overflow:hidden; margin-top: 14px;'}
-      = image_tag(@player.avatar_thumb, id: 'img_preview')
+        = image_tag(@player.avatar_thumb, id: 'img_preview')
     - %w[x y w h].each do |attr|
       = f.hidden_field "crop_#{attr}"
     = f.input :name

@@ -85,6 +85,7 @@
         banner: "票务横图"
         race: "所属赛事"
         title: "赛票标题"
+        role_group: "用户组可见"
         price: "应付价格"
         original_price: "原始价格"
         ticket_class: "赛票类型"

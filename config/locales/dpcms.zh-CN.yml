@@ -65,4 +65,7 @@
     ticket_class:
       single_ticket: '主票'
       package_ticket: '套票'
+    role_group:
+      everyone: '所有人'
+      tester: '测试人员'
 

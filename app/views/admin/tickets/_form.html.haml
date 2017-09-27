@@ -8,6 +8,7 @@
     = f.input :price
     = f.input :original_price
     = f.input :level
+    = f.input :role_group, collection: TRANS_ROLE_GROUPS, prompt: true
     = f.input :ticket_class, collection: TRANS_TICKET_CLASSES, prompt: true
     = f.input :logo, as: :attachment, required: true,
                      hint: '图片最大为 2MB',

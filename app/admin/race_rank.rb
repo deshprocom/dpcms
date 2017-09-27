@@ -37,6 +37,7 @@ ActiveAdmin.register RaceRank do
     def create
       @race_rank = @race.race_ranks.build(rank_params)
       flash[:notice] = '新建排名成功' if @race_rank.save
+      puts @race_rank.errors.as_json
     end
 
     def update

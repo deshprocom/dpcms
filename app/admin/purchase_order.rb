@@ -34,7 +34,7 @@ ActiveAdmin.register PurchaseOrder do
       order.user_extra&.real_name
     end
     column '实名状态', :user_status do |order|
-      I18n.t("user_extra.#{order.user_extra.status}")
+      I18n.t("user_extra.#{order.user_extra&.status}") unless order.user_extra.nil?
     end
     column :original_price
     column :price

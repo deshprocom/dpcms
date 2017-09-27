@@ -28,8 +28,8 @@
       weixin_user: '微信用户'
       sms_log: '短信日志'
       invite_code: '邀请码'
-      reply_template: '回复模版'
-      template_type: '模版管理'
+      reply_template: '回复列表'
+      template_type: '模版类别'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -144,6 +144,8 @@
       reply_template:
         source: '类别'
         content: '内容'
+        type_id: '所属类别'
+        type_name: '所属类别'
         created_at: '创建时间'
         updated_at: '修改时间'
       player:

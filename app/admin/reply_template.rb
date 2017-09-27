@@ -14,6 +14,7 @@ ActiveAdmin.register ReplyTemplate do
     end
     column :content
     column :created_at
+    actions
   end
 
   form partial: 'form'

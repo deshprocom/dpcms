@@ -29,6 +29,7 @@ Given(/^应创建了对应的英文赛事$/) do
 end
 
 Given(/^调用api 应成功获取该赛事详情/) do
+  sleep 0.3
   race = Race.first
   result = DpApiRemote.get("u/0/races/#{race.id}").parsed_body
   puts result['msg']

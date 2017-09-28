@@ -312,6 +312,8 @@
         mobile: '手机号'
         email: '邮箱'
         code: '邀请码'
+        coupon_type: '优惠类型'
+        coupon_number: '优惠力度'
         created_at: "创建时间"
         updated_at: "修改时间"
         order_count: "订单数(单)"

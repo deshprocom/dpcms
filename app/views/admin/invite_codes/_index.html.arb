@@ -4,6 +4,18 @@ context.instance_eval do
   column :mobile, sortable: false
   column :email, sortable: false
   column :code, sortable: false
+  column :coupon_type, sortable: false do |code|
+    I18n.t("coupon_type.#{code.coupon_type}")
+  end
+  column :coupon_number, sortable: false do |code|
+    if code.coupon_type.eql?('rebate')
+        "* #{code.coupon_number}%"
+    elsif code.coupon_type.eql?('reduce')
+        "- #{code.coupon_number}元"
+    else
+        code.coupon_number
+    end
+  end
   column :order_count, sortable: true do |code|
     code.order_count
   end

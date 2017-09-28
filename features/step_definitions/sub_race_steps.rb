@@ -1,5 +1,6 @@
 # coding: utf-8
 Given(/^应创建第一个主赛的边赛成功$/) do
+  sleep 0.3
   main_race = Race.first
   sub_race = main_race.sub_races.first
   expect(page).to have_current_path(admin_race_sub_race_path(main_race, sub_race))

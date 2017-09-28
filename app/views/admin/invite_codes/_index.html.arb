@@ -16,15 +16,15 @@ context.instance_eval do
         code.coupon_number
     end
   end
-  column :order_count, sortable: true do |code|
-    code.order_count
-  end
   column :success_count, sortable: true do |code|
     code.success_count
   end
-  column :invite_fee, sortable: true do |code|
-      code.invite_fee
+  column :offline_count, sortable: true do |code|
+      code.offline_count
     end
+  column :total_fee, sortable: true do |code|
+    code.total_fee
+  end
   actions(name: '操作', defaults: false) do |code|
     item '编辑', edit_admin_invite_code_path(code), class: 'member_link'
     item '删除', admin_invite_code_path(code), data: { confirm: '确定删除吗？' }, method: :DELETE

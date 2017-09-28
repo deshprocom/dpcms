@@ -31,6 +31,7 @@
       invite_code: '邀请码'
       reply_template: '回复列表'
       template_type: '模版类别'
+      offline_race_order: '线下订单'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -314,11 +315,23 @@
         mobile: '手机号'
         email: '邮箱'
         code: '邀请码'
+        coupon_type: '优惠类型'
+        coupon_number: '优惠力度'
         created_at: "创建时间"
         updated_at: "修改时间"
-        order_count: "订单数(单)"
-        success_count: "已付款订单(单)"
-        invite_fee: "推荐成功总额(元)"
+        success_count: "APP订单(单)"
+        offline_count: "线下订单(单)"
+        total_fee: "推荐成功总额(元)"
+      offline_race_order:
+        invite_code_id: '邀请人'
+        invite_code: '邀请码'
+        mobile: '手机号'
+        email: '邮箱'
+        name: '姓名'
+        ticket: '票务名称'
+        price: '付款价格'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       template_type:
         name: '类别名称'
         created_at: "创建时间"

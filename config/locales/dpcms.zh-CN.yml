@@ -39,6 +39,10 @@
     delivered: '已发货'
     completed: '已完成'
     canceled: '已取消'
+  coupon_type:
+    no_discount: '无优惠'
+    rebate: '折扣'
+    reduce: '减价'
   user_extra:
     init: '未提交'
     pending: '审核中'

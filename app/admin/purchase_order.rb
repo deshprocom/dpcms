@@ -19,7 +19,7 @@ ActiveAdmin.register PurchaseOrder do
   filter :invite_code
   filter :invite_person_name, as: :string
   filter :created_at
-  filter :status, as: :select, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }
+  filter :status, as: :select, multiple: true, collection: ORDER_STATUS.collect { |key| [I18n.t("order.#{key}"), key] }
 
   index do
     id_column

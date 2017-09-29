@@ -17,7 +17,7 @@ context.instance_eval do
     end
   end
   column :success_count, sortable: true do |code|
-    link_to code.success_count, admin_purchase_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc')
+    link_to code.success_count, admin_purchase_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc') + '&q[status_in][]=paid&q[status_in][]=delivered&q[status_in][]=completed'
   end
   column :offline_count, sortable: true do |code|
     link_to code.offline_count, admin_offline_race_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc')

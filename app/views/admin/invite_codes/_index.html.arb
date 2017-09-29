@@ -17,11 +17,11 @@ context.instance_eval do
     end
   end
   column :success_count, sortable: true do |code|
-    code.success_count
+    link_to code.success_count, admin_purchase_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc')
   end
   column :offline_count, sortable: true do |code|
-      code.offline_count
-    end
+    link_to code.offline_count, admin_offline_race_orders_path('q[invite_code_contains]': code.code, commit: '过滤', order: 'id_desc')
+  end
   column :total_fee, sortable: true do |code|
     code.total_fee
   end

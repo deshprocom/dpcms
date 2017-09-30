@@ -6,5 +6,7 @@
 #= require simditor
 #= require simditor-markdown
 #= require jquery.Jcrop
+#= require jquery-ui/widgets/sortable
+
 
 

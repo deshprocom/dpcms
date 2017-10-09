@@ -72,4 +72,8 @@
     role_group:
       everyone: '所有人'
       tester: '测试人员'
-
+  banner:
+    link: '外部链接'
+    race: '赛事'
+    video: '视频'
+    info: '资讯'

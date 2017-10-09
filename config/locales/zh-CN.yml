@@ -197,6 +197,12 @@
         description: '图文内容'
         created_at: '创建日期'
         updated_at: '更新日期'
+      banner:
+        image: '图片'
+        link: '链接'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
       info_type:
         name: '类别名称'
         published: '是否发布'

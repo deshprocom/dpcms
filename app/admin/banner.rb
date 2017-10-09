@@ -38,13 +38,23 @@ ActiveAdmin.register Banner do
     banner = Banner.find(params[:id])
     next_banner = params[:next_id] && Banner.find(params[:next_id][7..-1])
     prev_banner = params[:prev_id] && Banner.find(params[:prev_id][7..-1])
-    if params[:prev_id].blank?
-      position = next_banner.position / 2
-    elsif params[:next_id].blank?
-      position = prev_banner.position + 100000
-    else
-      position = (prev_banner.position + next_banner.position) / 2
-    end
+    position = if params[:prev_id].blank?
+                 next_banner.position / 2
+               elsif params[:next_id].blank?
+                 prev_banner.position + 100000
+               else
+                 (prev_banner.position + next_banner.position) / 2
+               end
     banner.update(position: position)
+  end
+
+  member_action :publish, method: :post do
+    Banner.find(params[:id]).publish!
+    redirect_back fallback_location: admin_banners_url, notice: '发布成功'
+  end
+
+  member_action :unpublish, method: :post do
+    Banner.find(params[:id]).unpublish!
+    redirect_back fallback_location: admin_banners_url, notice: '取消发布成功'
   end
 end

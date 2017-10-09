@@ -3,7 +3,7 @@
   = f.inputs name: '新增banner' do
     = f.input :image, as: :attachment, required: true,
                      hint: '图片最大为 2MB',
-                     image: proc { |o| o.image }
+                     image: proc { |o| o.image.url(:sm) }
     = f.input :source_type, as: :select, collection: TRANS_SOURCE_TYPE, prompt: true
     = f.input :link
     = f.input :source_id, as: :hidden

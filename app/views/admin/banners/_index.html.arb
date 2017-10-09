@@ -13,7 +13,18 @@ context.instance_eval do
         link_to banner.link, banner.link
     end
   end
-  actions
+  actions defaults: false do |banner|
+    item I18n.t('active_admin.edit'), edit_resource_path(banner), class: 'member_link'
+
+    if banner.published?
+      item '取消发布', unpublish_admin_banner_path(banner), method: :post, class: 'member_link'
+    else
+      item '发布', publish_admin_banner_path(banner), method: :post, class: 'member_link'
+      item I18n.t('active_admin.delete'), resource_path(banner),
+           class: 'member_link', method: :delete,
+           data:   { confirm: I18n.t('active_admin.delete_confirmation') }
+    end
+  end
 end
 
 

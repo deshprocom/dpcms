@@ -40,3 +40,10 @@
   margin-right: 10px;
   width: calc(37% - 22px);
 }
+
+.sources {
+  tbody tr:hover {
+    background-color: #b3b3b3;
+    cursor:pointer
+  }
+}

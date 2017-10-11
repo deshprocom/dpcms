@@ -17,7 +17,7 @@
       info_type: '资讯类别'
       race_schedule: '赛程表'
       race_blind: '盲注结构'
-      video: '视频'
+      video: '视频管理'
       video_type: '视频类别'
       admin_sys_log: '日志管理'
       user: '用户管理'
@@ -32,6 +32,7 @@
       reply_template: '回复列表'
       template_type: '模版类别'
       offline_race_order: '线下订单'
+      video_group: '视频组别'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -224,6 +225,8 @@
         description: '视频描述'
         video_type_id: '视频类别'
         video_duration: '视频时长'
+        is_main: '主视频'
+        video_group: '组别名'
         top: '置顶'
         published: '发布'
         created_at: "创建时间"
@@ -232,6 +235,10 @@
         name: '名称'
         level: '级别'
         published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video_group:
+        name: "名称"
         created_at: "创建时间"
         updated_at: "更新时间"
       admin_sys_log:

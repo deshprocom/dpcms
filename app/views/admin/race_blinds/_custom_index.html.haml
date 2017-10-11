@@ -9,7 +9,7 @@
         %th 操作
     %tbody
       - race_blinds.each do |blind|
-        %tr
+        %tr{'data-id': blind.id}
           - if blind.blind_struct?
             %td= blind.level
             %td= blind_text(blind)

@@ -2,6 +2,22 @@ $ ->
   if $('.admin_race_blinds').length > 0 && $('.blank_slate').length > 0
     $('.blank_slate').find('a').attr('data-remote', true)
 
+  if ($('#index_table_race_blinds').length > 0)
+    $('.blinds tbody').sortable(
+      update: (e, ui) ->
+        itemId = ui.item.data('id')
+        prevId = ui.item.prev().data('id')
+        nextId = ui.item.next().data('id')
+
+        $.ajax
+          url: "/admin/races/0/race_blinds/#{itemId}/reposition"
+          type: "POST"
+          data:
+            id      : itemId
+            prev_id : prevId
+            next_id : nextId
+    );
+
   window.SwtichBlindTypeInputs =
     call: ->
       @init_display()

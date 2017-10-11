@@ -1,4 +1,36 @@
 $ ->
+  if ($('#index_table_hot_infos').length > 0)
+    $('#index_table_hot_infos tbody').sortable(
+      update: (e, ui) ->
+        itemId = ui.item.attr('id')
+        prevId = ui.item.prev().attr('id')
+        nextId = ui.item.next().attr('id')
+
+        $.ajax
+          url: "/admin/hot_infos/#{itemId.split('_').pop()}/reposition"
+          type: "POST"
+          data:
+            id      : itemId
+            prev_id : prevId
+            next_id : nextId
+    );
+
+  if ($('#index_table_headlines').length > 0)
+    $('#index_table_headlines tbody').sortable(
+      update: (e, ui) ->
+        itemId = ui.item.attr('id')
+        prevId = ui.item.prev().attr('id')
+        nextId = ui.item.next().attr('id')
+
+        $.ajax
+          url: "/admin/headlines/#{itemId.split('_').pop()}/reposition"
+          type: "POST"
+          data:
+            id      : itemId
+            prev_id : prevId
+            next_id : nextId
+    );
+
   if ($('#index_table_banners').length > 0)
     $('#index_table_banners tbody').sortable(
       update: (e, ui) ->
@@ -7,7 +39,7 @@ $ ->
         nextId = ui.item.next().attr('id')
 
         $.ajax
-          url: "/admin/banners/#{itemId.substring(7)}/reposition"
+          url: "/admin/banners/#{itemId.split('_').pop()}/reposition"
           type: "POST"
           data:
             id      : itemId
@@ -15,13 +47,13 @@ $ ->
             next_id : nextId
     );
 
-  window.BannerEvent =
+  window.HomepageEvent =
     bindFormEvents: ->
       @bindSuccessCallback();
       @SourceTypeSelect();
 
     SourceTypeSelect: ->
-      $("select#banner_source_type").on "change", (e) ->
+      $("select.trigger_search_form").on "change", (e) ->
         switch this.value
           when 'video'
             $('div.races').hide();
@@ -67,8 +99,8 @@ $ ->
       $('.sources tbody tr').on 'click', (e) ->
         id = $(this).data('id')
         title = $(this).data('title')
-        $('#banner_source_id').val(id)
-        $('#banner_source_title').val(title)
+        $('input.source_id').val(id)
+        $('input.source_title').val(title)
 
     createRaces: (races) ->
       if races.length == 0

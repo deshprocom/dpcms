@@ -9,6 +9,8 @@
       race_host: "主办方"
       sub_races: "边赛"
       sub_race: "边赛"
+      headline: "首页头条"
+      hot_info: "热门资讯"
       ticket: "赛票"
       ticket_info: "门票数量信息"
       purchase_order: "订单"
@@ -198,6 +200,15 @@
         description: '图文内容'
         created_at: '创建日期'
         updated_at: '更新日期'
+      headline:
+        title: '头条标题'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      hot_info:
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
       banner:
         image: '图片'
         link: '链接'

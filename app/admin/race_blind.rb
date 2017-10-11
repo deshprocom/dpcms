@@ -39,7 +39,7 @@ ActiveAdmin.register RaceBlind do
     def create
       last_blind = @race.race_blinds.position_asc.last
       position = last_blind&.position.to_i + 100000
-      @race_blind = @race.race_blinds.build(blind_params.merge position: position)
+      @race_blind = @race.race_blinds.build(blind_params.merge(position: position))
       flash[:notice] = '新建成功' if @race_blind.save
     end
 

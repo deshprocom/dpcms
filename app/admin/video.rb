@@ -1,15 +1,12 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Video do
   menu priority: 3, parent: '资讯管理', label: '视频列表'
+  belongs_to :video_group, optional: true
   permit_params :name, :video_link, :title_desc, :cover_link, :video_duration, :top, :published,
                 :description, :video_type_id, video_en_attributes: [:name, :title_desc, :description]
   scope :all
   scope('main_videos') do |scope|
     scope.where(is_main: true)
-  end
-  scope('s_video_groups') do |scope|
-    gid = params[:gid].blank? ? 0 : params[:gid]
-    scope.where(video_group_id: gid)
   end
 
   @types = VideoType.all.collect do |type|

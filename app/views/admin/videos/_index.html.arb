@@ -32,7 +32,7 @@ context.instance_eval do
       item '置顶', top_admin_video_path(resource), data: { confirm: message }, method: :post
     end
     if resource.video_group.present?
-      item '同类视频', admin_videos_path(scope: 's_video_groups', gid: resource.video_group_id)
+      item '同类视频', admin_video_group_videos_path(resource.video_group_id)
     end
     if resource.video_group_id.present?
       item '修改组别名称', edit_admin_video_group_path(resource.video_group_id), remote: true

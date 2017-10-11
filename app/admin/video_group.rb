@@ -13,7 +13,7 @@ ActiveAdmin.register VideoGroup do
         if @video_group.save
           format.js { render :success }
         else
-          format.js {render :error}
+          format.js { render :error }
         end
       end
     end

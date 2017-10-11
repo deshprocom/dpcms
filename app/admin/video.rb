@@ -3,6 +3,14 @@ ActiveAdmin.register Video do
   menu priority: 3, parent: '资讯管理', label: '视频列表'
   permit_params :name, :video_link, :title_desc, :cover_link, :video_duration, :top, :published,
                 :description, :video_type_id, video_en_attributes: [:name, :title_desc, :description]
+  scope :all
+  scope('main_videos') do |scope|
+    scope.where(is_main: true)
+  end
+  scope('s_video_groups') do |scope|
+    gid = params[:gid].blank? ? 0 : params[:gid]
+    scope.where(video_group_id: gid)
+  end
 
   @types = VideoType.all.collect do |type|
     type_name = type.published ? type.name + ' [已发布]' : type.name
@@ -14,43 +22,8 @@ ActiveAdmin.register Video do
   filter :top
   filter :video_type_id, as: :select, collection: @types
 
-  index title: '视频管理' do
-    column :name, sortable: false
-    column :title_desc, sortable: false
-    column '封面图片', :cover_link do |video|
-      link_to image_tag(video.image_thumb), video.image_thumb, target: '_blank'
-    end
-    column '视频播放', :video_link do |video|
-      video_tag(video.video_link, controls: true, autobuffer: true, height: 200) if video.video_link.present?
-    end
-    column :video_duration
-    column :video_type_id, sortable: false
-    column :top
-    column :published
-    actions name: '操作', class: 'video_actions' do |resource|
-      if resource.published
-        msg = resource.top ? '取消发布之前会先取消置顶该视频，继续吗？' : '确定取消吗？'
-        item '取消发布', unpublish_admin_video_path(resource),
-             data: { confirm: msg }, method: :post
-      else
-        item '发布', publish_admin_video_path(resource),
-             data: { confirm: '确定发布吗？' }, method: :post
-      end
-
-      if resource.top
-        item '取消置顶', untop_admin_video_path(resource),
-             data: { confirm: '确定取消置顶吗？' }, method: :post
-      else
-        resource_type = resource.video_type || resource.build_video_type
-        message = if resource_type.videos.published.topped.present?
-                    resource.published ? '置顶之前会先取消该类别下其它视频置顶，确定吗？' : '置顶之前会先取消该类别下其它视频置顶、并发布该视频，继续吗？'
-                  else
-                    resource.published ? '确定置顶吗？' : '置顶之前会先发布该视频，继续吗？'
-                  end
-        item '置顶', top_admin_video_path(resource),
-             data: { confirm: message }, method: :post
-      end
-    end
+  index do
+    render 'index', context: self
   end
 
   member_action :publish, method: :post do
@@ -78,8 +51,12 @@ ActiveAdmin.register Video do
     redirect_back fallback_location: admin_videos_url, notice: '取消置顶成功'
   end
 
-  sidebar :'资讯数目', only: :index do
-    "资讯共：#{Video.count}条"
+  member_action :main_video, method: :post do
+    # 取消该类别下所有视频的主视频
+    resource&.video_group.videos.update(is_main: false)
+    # 更新当前视频为主视频
+    resource.update(is_main: true)
+    redirect_to :back, notice: '设置成功'
   end
 
   action_item :add, only: :index do

@@ -37,7 +37,9 @@ ActiveAdmin.register RaceBlind do
     end
 
     def create
-      @race_blind = @race.race_blinds.build(blind_params)
+      last_blind = @race.race_blinds.position_asc.last
+      position = last_blind&.position.to_i + 100000
+      @race_blind = @race.race_blinds.build(blind_params.merge(position: position))
       flash[:notice] = '新建成功' if @race_blind.save
     end
 
@@ -48,7 +50,7 @@ ActiveAdmin.register RaceBlind do
     end
 
     def scoped_collection
-      super.level_asc
+      super.position_asc
     end
 
     private
@@ -100,12 +102,28 @@ ActiveAdmin.register RaceBlind do
         else
           attrs = { blind_type: 1, level: row[1], content: row[2] }
         end
-        blind = RaceBlind.new(attrs.merge(race: @race))
+        last_blind = @race.race_blinds.position_asc.last
+        position = last_blind&.position.to_i + 100000
+        blind = RaceBlind.new(attrs.merge(race: @race, position: position))
         success_num += 1 if blind.save
         total_num += 1
       end
       flash[:notice] = "总计 #{total_num} 个盲注， 成功导入 #{success_num} 个盲注"
     end
     redirect_to action: :index
+  end
+
+  member_action :reposition, method: :post do
+    blind = RaceBlind.find(params[:id])
+    next_blind = params[:next_id] && RaceBlind.find(params[:next_id].split('_').last)
+    prev_blind = params[:prev_id] && RaceBlind.find(params[:prev_id].split('_').last)
+    position = if params[:prev_id].blank?
+                 next_blind.position / 2
+               elsif params[:next_id].blank?
+                 prev_blind.position + 100000
+               else
+                 (prev_blind.position + next_blind.position) / 2
+               end
+    blind.update(position: position)
   end
 end

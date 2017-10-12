@@ -39,6 +39,10 @@
     delivered: '已发货'
     completed: '已完成'
     canceled: '已取消'
+  coupon_type:
+    no_discount: '无优惠'
+    rebate: '折扣'
+    reduce: '减价'
   user_extra:
     init: '未提交'
     pending: '审核中'
@@ -65,4 +69,11 @@
     ticket_class:
       single_ticket: '主票'
       package_ticket: '套票'
-
+    role_group:
+      everyone: '所有人'
+      tester: '测试人员'
+  banner:
+    link: '外部链接'
+    race: '赛事'
+    video: '视频'
+    info: '资讯'

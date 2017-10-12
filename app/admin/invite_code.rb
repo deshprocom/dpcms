@@ -1,8 +1,9 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register InviteCode do
-  menu priority: 2, parent: '赛事管理'
+  menu priority: 2, parent: '订单管理'
   config.batch_actions = false
-  permit_params :name, :mobile, :email
+  permit_params :name, :mobile, :email, :coupon_type, :coupon_number
+  COUPON_TYPE = InviteCode.coupon_types.keys.collect { |d| [I18n.t("coupon_type.#{d}"), d] }
 
   filter :name
   filter :mobile

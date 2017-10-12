@@ -9,6 +9,8 @@
       race_host: "主办方"
       sub_races: "边赛"
       sub_race: "边赛"
+      headline: "首页头条"
+      hot_info: "热门资讯"
       ticket: "赛票"
       ticket_info: "门票数量信息"
       purchase_order: "订单"
@@ -17,7 +19,7 @@
       info_type: '资讯类别'
       race_schedule: '赛程表'
       race_blind: '盲注结构'
-      video: '视频'
+      video: '视频管理'
       video_type: '视频类别'
       admin_sys_log: '日志管理'
       user: '用户管理'
@@ -31,6 +33,8 @@
       invite_code: '邀请码'
       reply_template: '回复列表'
       template_type: '模版类别'
+      offline_race_order: '线下订单'
+      video_group: '视频组别'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -85,6 +89,7 @@
         banner: "票务横图"
         race: "所属赛事"
         title: "赛票标题"
+        role_group: "用户组可见"
         price: "应付价格"
         original_price: "原始价格"
         ticket_class: "赛票类型"
@@ -195,6 +200,21 @@
         description: '图文内容'
         created_at: '创建日期'
         updated_at: '更新日期'
+      headline:
+        title: '头条标题'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      hot_info:
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+      banner:
+        image: '图片'
+        link: '链接'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
       info_type:
         name: '类别名称'
         published: '是否发布'
@@ -216,6 +236,8 @@
         description: '视频描述'
         video_type_id: '视频类别'
         video_duration: '视频时长'
+        is_main: '主视频'
+        video_group: '组别名'
         top: '置顶'
         published: '发布'
         created_at: "创建时间"
@@ -224,6 +246,10 @@
         name: '名称'
         level: '级别'
         published: '发布'
+        created_at: "创建时间"
+        updated_at: "更新时间"
+      video_group:
+        name: "名称"
         created_at: "创建时间"
         updated_at: "更新时间"
       admin_sys_log:
@@ -313,11 +339,23 @@
         mobile: '手机号'
         email: '邮箱'
         code: '邀请码'
+        coupon_type: '优惠类型'
+        coupon_number: '优惠力度'
         created_at: "创建时间"
         updated_at: "修改时间"
-        order_count: "订单数(单)"
-        success_count: "已付款订单(单)"
-        invite_fee: "推荐成功总额(元)"
+        success_count: "APP订单(单)"
+        offline_count: "线下订单(单)"
+        total_fee: "推荐成功总额(元)"
+      offline_race_order:
+        invite_code_id: '邀请人'
+        invite_code: '邀请码'
+        mobile: '手机号'
+        email: '邮箱'
+        name: '姓名'
+        ticket: '票务名称'
+        price: '付款价格'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       template_type:
         name: '类别名称'
         created_at: "创建时间"

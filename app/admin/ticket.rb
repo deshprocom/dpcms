@@ -1,6 +1,8 @@
 # rubocop:disable Metrics/BlockLength
 TICKET_CLASSES = Ticket.ticket_classes.keys
 TRANS_TICKET_CLASSES = TICKET_CLASSES.collect { |d| [I18n.t("ticket.ticket_class.#{d}"), d] }
+TICKET_ROLE_GROUPS = Ticket.role_groups.keys
+TRANS_ROLE_GROUPS = TICKET_ROLE_GROUPS.collect { |d| [I18n.t("ticket.role_group.#{d}"), d] }
 TICKET_STATUSES = Ticket.statuses.keys
 TRANS_TICKET_STATUSES = TICKET_STATUSES.collect { |d| [I18n.t("ticket.status.#{d}"), d] }
 
@@ -16,7 +18,7 @@ ActiveAdmin.register Ticket do
   end
 
   permit_params :title, :description, :price, :original_price, :ticket_class,
-                :status, :banner, :logo, :level,
+                :status, :banner, :logo, :level, :role_group,
                 ticket_en_attributes: [:title, :description, :price, :original_price, :banner, :logo],
                 ticket_info_attributes: [:e_ticket_number, :entity_ticket_number]
 

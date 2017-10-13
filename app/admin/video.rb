@@ -111,7 +111,11 @@ ActiveAdmin.register Video do
     end
 
     def scoped_collection
-      super.position_asc
+      if request.env['REQUEST_URI'] =~ /video_groups/
+        super.position_asc
+      else
+        super.order(created_at: :desc)
+      end
     end
 
     private

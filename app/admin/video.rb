@@ -19,6 +19,8 @@ ActiveAdmin.register Video do
   filter :top
   filter :video_type_id, as: :select, collection: @types
 
+  config.sort_order = ''
+
   index do
     render 'index', context: self
   end
@@ -56,6 +58,20 @@ ActiveAdmin.register Video do
     redirect_to :back, notice: '设置成功'
   end
 
+  member_action :reposition, method: :post do
+    video = Video.find(params[:id])
+    next_video = params[:next_id] && Video.find(params[:next_id].split('_').last)
+    prev_video = params[:prev_id] && Video.find(params[:prev_id].split('_').last)
+    position = if params[:prev_id].blank?
+                 next_video.position / 2
+               elsif params[:next_id].blank?
+                 prev_video.position + 100000
+               else
+                 (prev_video.position + next_video.position) / 2
+               end
+    video.update(position: position)
+  end
+
   action_item :add, only: :index do
     link_to '视频类别', admin_video_types_path
   end
@@ -63,6 +79,20 @@ ActiveAdmin.register Video do
   form partial: 'edit_info'
 
   controller do
+    def create
+      group_id = update_params[:video_group_id]
+      position = 100000
+      # 真对组进行position排序
+      if VideoGroup.exists?(group_id)
+        last_group_video = Video.where(video_group_id: group_id).position_asc.last
+        position = last_group_video&.position.to_i + 100000
+      end
+      @video = Video.new(update_params.merge(position: position))
+      render :new unless @video.save
+      url = VideoGroup.exists?(group_id) ? admin_video_group_videos_url(group_id) : admin_videos_url
+      redirect_to url, notice: '添加成功'
+    end
+
     def update
       unless resource.video_type_id.eql? update_params['video_type_id'].to_i
         # 说明更换了类别 那么不管 反正你要换类别，你先取消置顶再说
@@ -78,6 +108,10 @@ ActiveAdmin.register Video do
                          '视频更新失败'
                        end
       redirect_to admin_videos_url
+    end
+
+    def scoped_collection
+      super.position_asc
     end
 
     private

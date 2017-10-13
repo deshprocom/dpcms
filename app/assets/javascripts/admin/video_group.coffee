@@ -1,5 +1,6 @@
 $ ->
-  if ($('#index_table_videos').length > 0)
+  check_path = window.location.pathname.indexOf('video_groups')
+  if ($('#index_table_videos').length > 0 && check_path > 0)
     $('#index_table_videos tbody').sortable(
       update: (e, ui) ->
         console.log(ui.item)

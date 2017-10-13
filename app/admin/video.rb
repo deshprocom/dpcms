@@ -110,6 +110,16 @@ ActiveAdmin.register Video do
       redirect_to admin_videos_url
     end
 
+    def destroy
+      # 先找出要删除这个组别下的某个视频设为主视频，然后删除自己
+      resource.video_group.videos.position_asc.each do |video|
+        next if video.id.eql?(resource.id)
+        video.update(is_main: true)
+        break
+      end
+      super
+    end
+
     def scoped_collection
       if request.env['REQUEST_URI'] =~ /video_groups/
         super.position_asc

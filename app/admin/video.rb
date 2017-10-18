@@ -36,6 +36,30 @@ ActiveAdmin.register Video do
     redirect_back fallback_location: admin_videos_url, notice: '取消发布成功'
   end
 
+  member_action :change_group, method: [:get, :post] do
+    @video = resource
+    # 判断原来的组别下面是否有子视频，如果子视频数量超过2个，则不可更换组别
+    old_group = @video.video_group
+    return render :group_error if @video.is_main && old_group.videos.count > 2
+
+    if request.post?
+      group_id = params[:group_id]
+      # 判断该组别是否存在
+      return render :change_error unless VideoGroup.exists?(group_id)
+      old_group.destroy if @video.is_main
+      # 查询新组别最后一个position 并且更换所属的类别
+      videos = VideoGroup.find(group_id).videos
+      last_video = videos.position_asc.last
+      type_id = videos.where(is_main: true).first.video_type_id
+      new_position = last_video.position + 100000
+      # 更新视频的组别
+      @video.update(video_group_id: group_id, video_type_id: type_id, is_main: false, position: new_position)
+      render :success
+    else
+      render :change_group
+    end
+  end
+
   member_action :top, method: :post do
     resource_type = resource.video_type || resource.build_video_type
     list = resource_type.videos.published.topped

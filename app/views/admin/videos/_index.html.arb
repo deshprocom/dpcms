@@ -40,5 +40,6 @@ context.instance_eval do
     unless resource.is_main
       item '设为主视频', main_video_admin_video_path(resource), data: { confirm: '该类别下已有的主视频将会被取消' }, method: :post
     end
+    item '更换组别', change_group_admin_video_path(resource), remote: true
   end
 end

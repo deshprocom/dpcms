@@ -1,5 +1,5 @@
 context.instance_eval do
-  column(:title)
+  # column(:title)
   column(:source_type) { |headline| I18n.t("activerecord.models.#{headline.source_type.downcase}") }
   column('来源地址') do |headline|
     case headline.source_type

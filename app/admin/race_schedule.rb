@@ -1,5 +1,7 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register RaceSchedule do
+  belongs_to :race
+  belongs_to :sub_race, optional: true
   config.filters = false
   config.batch_actions = false
   config.sort_order = ''
@@ -12,11 +14,13 @@ ActiveAdmin.register RaceSchedule do
     end
   end
 
-  belongs_to :race
-  belongs_to :sub_race, optional: true
-
   navigation_menu :default
   menu false
+
+  # permit_params :schedule, :begin_time,
+  #               race_schedule_en_attributes: [:schedule]
+
+  form partial: 'form'
 
   index download_links: false do
     render 'index', context: self
@@ -56,7 +60,8 @@ ActiveAdmin.register RaceSchedule do
 
     def schedule_params
       params.require(:race_schedule).permit(:schedule,
-                                            :begin_time)
+                                            :begin_time,
+                                            race_schedule_en_attributes: [:schedule])
     end
 
     def set_race

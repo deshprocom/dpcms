@@ -62,7 +62,8 @@ ActiveAdmin.register RaceBlind do
                                          :race_time,
                                          :content,
                                          :blind_type,
-                                         :ante)
+                                         :ante,
+                                         race_blind_en_attributes: [:content])
     end
 
     def set_race

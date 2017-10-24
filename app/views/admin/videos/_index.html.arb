@@ -3,7 +3,7 @@ context.instance_eval do
   column :name, sortable: false
   column :title_desc, sortable: false
   column '视频播放', :video_link do |video|
-    video_tag(video.video_link, controls: true, autobuffer: true, height: 200) if video.video_link.present?
+    video_tag(video.video_link, controls: true, preload: 'none', height: 200) if video.video_link.present?
   end
   column :video_type_id, sortable: false
   column :is_main

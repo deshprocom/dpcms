@@ -4,6 +4,7 @@ namespace :batch_order do
     Rails.application.eager_load!
     puts 'cancel_unpaid_one_day_ago start'
     orders = PurchaseOrder.unpaid_one_day_ago
+    puts "cancel_unpaid_one_day_ago order sum: #{orders.size}"
     orders.each do |order|
       Services::Orders::CancelOrderService.call(order)
     end

@@ -102,8 +102,10 @@ ActiveAdmin.register Info do
       if info.save
         # 添加标签
         tag_ids = params[:info][:tag_ids]
-        tag_ids&.map{ |tag_id| RaceTagMap.create(data: info, race_tag_id: tag_id) }
+        tag_ids&.map { |tag_id| RaceTagMap.create(data: info, race_tag_id: tag_id) }
         redirect_to admin_infos_url, notice: '添加成功'
+      else
+        redirect_to admin_infos_url, notice: '添加失败'
       end
     end
 
@@ -125,7 +127,7 @@ ActiveAdmin.register Info do
       tag_ids = params[:info][:tag_ids]
       # 首先删除该资讯对应的所有标签
       resource.race_tag_maps.map(&:destroy)
-      tag_ids&.map{ |tag_id| RaceTagMap.create(data: resource, race_tag_id: tag_id) }
+      tag_ids&.map { |tag_id| RaceTagMap.create(data: resource, race_tag_id: tag_id) }
       redirect_to admin_infos_url
     end
 

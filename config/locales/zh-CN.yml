@@ -35,6 +35,7 @@
       template_type: '模版类别'
       offline_race_order: '线下订单'
       video_group: '视频组别'
+      race_tag: '标签管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -358,6 +359,11 @@
         updated_at: "修改时间"
       template_type:
         name: '类别名称'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      race_tag:
+        name: '名称'
+        name_en: '英文名称'
         created_at: "创建时间"
         updated_at: "修改时间"
       format: "%{attribute}%{message}"

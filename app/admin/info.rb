@@ -97,6 +97,16 @@ ActiveAdmin.register Info do
   form partial: 'edit_info'
 
   controller do
+    def create
+      info = Info.new(update_params)
+      if info.save
+        # 添加标签
+        tag_ids = params[:info][:tag_ids]
+        tag_ids&.map{ |tag_id| RaceTagMap.create(data: info, race_tag_id: tag_id) }
+        redirect_to admin_infos_url, notice: '添加成功'
+      end
+    end
+
     def update
       unless resource.info_type_id.eql? update_params['info_type_id'].to_i
         # 说明更换了类别 那么不管 反正你要换类别，你先取消置顶再说
@@ -111,6 +121,11 @@ ActiveAdmin.register Info do
                        else
                          '资讯更新失败'
                        end
+      # 替换所有标签
+      tag_ids = params[:info][:tag_ids]
+      # 首先删除该资讯对应的所有标签
+      resource.race_tag_maps.map(&:destroy)
+      tag_ids&.map{ |tag_id| RaceTagMap.create(data: resource, race_tag_id: tag_id) }
       redirect_to admin_infos_url
     end
 
@@ -125,6 +140,7 @@ ActiveAdmin.register Info do
                                    :info_type_id,
                                    :published,
                                    :top,
+                                   :image_thumb,
                                    :description,
                                    info_en_attributes: [:id, :title, :source, :description])
     end

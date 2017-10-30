@@ -27,6 +27,9 @@ gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'turbolinks', '~> 5'
 gem 'simditor'
+gem 'awesome_nested_set'
+gem 'fancybox2-rails'
+gem 'remotipart'
 
 # activeadmin 相关
 gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'

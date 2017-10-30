@@ -7,6 +7,5 @@
 #= require simditor-markdown
 #= require jquery.Jcrop
 #= require jquery-ui/widgets/sortable
-
-
-
+#= require jquery.remotipart
+#= require fancybox

@@ -30,4 +30,25 @@ module ApplicationHelper
               content_tag(:span, ' 英文')
     content_tag(:li, content, class: 'common_radio_lang')
   end
+
+  def editable_text_column(resource, attr)
+    val = resource.send(attr)
+    val = '&nbsp;' if val.blank?
+
+    html = %{
+                  <div  id='editable_text_column_#{resource.id}'
+                        class='editable_text_column'
+                        ondblclick='quickEditable.editable_text_column_do(this)' >
+                        #{val}
+                   </div>
+                   <input
+                      data-path='#{resource_path(resource)}'
+                      data-resource-class='#{resource.class.name.downcase}'
+                      data-attr='#{attr}'
+                      class='editable_text_column admin-editable'
+                      id='editable_text_column_#{resource.id}'
+                      style='display:none;' />
+              }
+    html.html_safe
+  end
 end

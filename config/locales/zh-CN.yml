@@ -4,6 +4,7 @@
       admin_user: "管理员"
       app_version: "app版本管理"
       race: "赛事"
+      category: "分类"
       activity: "活动"
       race_rank: "排名"
       race_host: "主办方"
@@ -54,6 +55,9 @@
         activity_time: "活动时间"
         pushed: "推送到首页"
         level: "排序"
+      race:
+        name: "分类名称"
+        image: "分类图片"
       race:
         name: "赛事标题"
         logo: "赛事图片"

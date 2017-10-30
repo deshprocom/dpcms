@@ -1,7 +1,5 @@
-
 class IndexAsCategory < ActiveAdmin::Component
-
-  def build(page_presenter, collection)
+  def build(page_presenter, collection) # rubocop:disable Lint/UnusedMethodArgument
     render 'index', collection: collection
   end
 

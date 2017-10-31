@@ -1,6 +1,7 @@
 "zh-CN":
   activerecord:
     models:
+      product: "商品"
       admin_user: "管理员"
       app_version: "app版本管理"
       race: "赛事"
@@ -56,9 +57,13 @@
         activity_time: "活动时间"
         pushed: "推送到首页"
         level: "排序"
-      race:
+      category:
         name: "分类名称"
         image: "分类图片"
+      product:
+        title: "商品标题"
+        icon: "商品图标"
+        description: "商品描述"
       race:
         name: "赛事标题"
         logo: "赛事图片"
@@ -103,7 +108,6 @@
       race_desc:
         description: "赛事描述"
         schedules: "日程信息"
-
       admin_user:
         email: "邮箱"
         sign_in_count: "登陆次数"

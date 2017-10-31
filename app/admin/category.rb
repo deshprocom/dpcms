@@ -40,7 +40,10 @@ ActiveAdmin.register Category do
 
   member_action :children, method: :get do
     @category = Category.find(params[:id])
-    render 'children', layout: false
+    respond_to do |format|
+      format.js { render 'children', layout: false }
+      format.json { render json: @category.children }
+    end
   end
 
   controller do

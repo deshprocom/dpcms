@@ -1,0 +1,27 @@
+= semantic_form_for [:admin, @product] do |f|
+  = f.inputs do
+    = f.input :icon
+    = f.input :title
+    %li#search_player_input
+      %label 所属分类
+      = f.select 'category', Category.roots.collect { |c| [ c.name, c.id ] }, prompt: '主分类'
+      = f.select 'category_id', [], prompt: '子分类'
+    = f.input :description
+    = f.actions
+
+:javascript
+    $(function() {
+        dpEditor.call($('#product_description'), $('form.product'));
+        $('#product_category').change(function() {
+          $.ajax({
+            url: '/admin/categories/' + $(this).val() + '/children.json'
+          }).done(function(result){
+            var options = '';
+            result.forEach(function(category,index){
+              console.log(index + ':' + category.name);
+              options +='<option value="'+ category.id +'">' + category.name + '</option>'
+            });
+            $('#product_category_id').html(options);
+          });
+        });
+    });

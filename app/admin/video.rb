@@ -170,10 +170,11 @@ ActiveAdmin.register Video do
                                     :cover_link,
                                     :title_desc,
                                     :video_duration,
+                                    :is_show,
                                     :published,
                                     :top,
                                     :description,
-                                    video_en_attributes: [:id, :name, :title_desc, :description])
+                                    video_en_attributes: [:id, :name, :title_desc, :is_show, :description])
     end
   end
 end

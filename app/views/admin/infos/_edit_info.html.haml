@@ -35,6 +35,14 @@
         = f.semantic_fields_for :info_en do |en|
           = en.text_field :source
     = f.input :info_type_id, as: :select, collection: options_for_select(types, selected)
+    %li
+      %div
+        %label 是否显示
+        %span 中文：
+        = f.check_box :is_show
+        %span{class: 'common_input_style_en'} 英文：
+        = f.semantic_fields_for :info_en do |en|
+          = en.check_box :is_show
     = f.input :published
     = multilingual_editor_switch
     %li#markdown_cn

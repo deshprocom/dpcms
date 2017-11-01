@@ -478,7 +478,7 @@ DEPENDENCIES
   roo
   roo-xls
   rspec-rails
-  rubocop
+  rubocop (= 0.46.0)
   sass-rails (~> 5.0)
   second_level_cache (~> 2.3.0)
   selenium-webdriver

@@ -68,7 +68,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rvm'
   gem 'capistrano-resque', require: false
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46.0', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'

@@ -140,11 +140,12 @@ ActiveAdmin.register Info do
                                    :source_type,
                                    :source,
                                    :info_type_id,
+                                   :is_show,
                                    :published,
                                    :top,
                                    :image_thumb,
                                    :description,
-                                   info_en_attributes: [:id, :title, :source, :description])
+                                   info_en_attributes: [:id, :title, :is_show, :source, :description])
     end
   end
 end

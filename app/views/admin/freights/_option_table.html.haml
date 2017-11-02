@@ -1,0 +1,47 @@
+- def default_temp(obj, field)
+  - best_in_place obj, :"#{field}", type: 'input', url: [:admin, obj]
+
+%div
+  %span 设置默认邮费：
+  %span= default_temp(resource, 'first_cond')
+  件内，
+  %span= default_temp(resource, 'first_price')
+  元，
+  %span 每增加：
+  = default_temp(resource, 'add_cond')
+  件，
+  %span 增加：
+  = default_temp(resource, 'add_price')
+  元
+
+  %div 为个别城市设置邮费：
+  %div
+    %table
+      %thead
+        %tr
+          %td 运送到
+          %td 首件(件)
+          %td 首费(元)
+          %td 续件(件)
+          %td 续费(元)
+          %td 操作
+        - resource.fre_specials.each do |special|
+          %tr
+            %td
+              %span
+                - special.fre_special_provinces.each do |list|
+                  = list.province_name
+            %td
+              = default_temp(special, 'first_cond')
+            %td
+              = default_temp(special, 'first_price')
+            %td
+              = default_temp(special, 'add_cond')
+            %td
+              = default_temp(special, 'add_price')
+            %td
+              = link_to '删除', admin_fre_special_path(special),
+                      method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+  %div
+    %span
+      为指定地区设置邮费

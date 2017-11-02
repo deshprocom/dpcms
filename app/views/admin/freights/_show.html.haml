@@ -1,0 +1,12 @@
+%div.fre_detail
+  %div.fre_way
+    %span 运费计价方式：
+    %span
+      - Freight.all.each do |fr|
+        = label_tag "按#{fr.name}"
+        = radio_button_tag('money_way', fr.id, (true if fr.id.eql?(1)))
+
+  %div.fre_option
+    %div{class: 'option_name'}
+      %span 运费设置：
+    %div{class: 'option_table'}

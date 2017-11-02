@@ -38,6 +38,7 @@
       offline_race_order: '线下订单'
       video_group: '视频组别'
       race_tag: '标签管理'
+      freight: '运费管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -372,6 +373,15 @@
       race_tag:
         name: '名称'
         name_en: '英文名称'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      freight:
+        name: '计费方式'
+        first_cond: '首单位(kg|m|件)'
+        first_price: '首价格(元)'
+        add_cond: '续单位'
+        add_price: '续价格'
+        default: '是否默认'
         created_at: "创建时间"
         updated_at: "修改时间"
       format: "%{attribute}%{message}"

@@ -1,0 +1,36 @@
+%div.variants_manage
+  %div.panel
+    %h3 商品组合管理
+    %fieldset.panel_contents
+      %ol.ol_controls
+        %li
+          %div
+            %label 商品规格
+          %div.product_option_operation
+            = render 'product_option_operation', product: @product
+            %div.variants
+              %table
+                %thead
+                  %tr
+                    %th ID
+                    - @product.option_types.each do |type|
+                      %th=type.name
+                    %th 商品价格
+                    %th 实付价格
+                    %th 库存
+                %tbody
+                  - @product.variants.each do |variant|
+                    %tr
+                      %td=variant.id
+                      - @product.option_types.each do |type|
+                        %td=variant.find_option_value(type)&.name
+                      %td=variant.original_price
+                      %td=variant.price
+                      %td=variant.stock
+
+
+
+:javascript
+  $(function() {
+    $('a.fancybox').fancybox();
+  });

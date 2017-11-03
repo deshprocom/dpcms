@@ -1,18 +1,31 @@
+- @product.master   || @product.build_master
 = semantic_form_for [:admin, @product] do |f|
   = f.inputs do
-    = f.input :icon
-    = f.input :title
     %li#search_player_input
       %label 所属分类
-      = f.select 'category', Category.roots.collect { |c| [ c.name, c.id ] }, prompt: '主分类'
-      = f.select 'category_id', [], prompt: '子分类'
+      - category_parent = @product.category&.parent
+      - children_conllection = category_parent && category_parent.children.collect { |c| [ c.name, c.id ] }
+      = f.select 'root_category', roots_collection, prompt: '主分类',
+                                  selected: category_parent&.id
+      = f.select 'category_id', children_conllection || [], prompt: '子分类'
+    = f.input :title
+    = f.input :icon, as: :attachment,
+                        hint: '图片最大为 2MB',
+                        image: proc { |o| o.preview_icon }
     = f.input :description
+    = f.semantic_fields_for :master do |form|
+      = form.input :original_price
+      = form.input :price
+      = form.input :stock
+      = form.input :weight
+      = form.input :volume
+      = form.input :origin_point
     = f.actions
 
 :javascript
     $(function() {
         dpEditor.call($('#product_description'), $('form.product'));
-        $('#product_category').change(function() {
+        $('#product_root_category').change(function() {
           $.ajax({
             url: '/admin/categories/' + $(this).val() + '/children.json'
           }).done(function(result){

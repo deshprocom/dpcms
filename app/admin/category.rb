@@ -3,6 +3,7 @@ ActiveAdmin.register Category do
   config.batch_actions = false
   config.filters = false
   config.breadcrumb = false
+  config.paginate = false
 
   permit_params :name, :image, :parent_id
   form do |f|

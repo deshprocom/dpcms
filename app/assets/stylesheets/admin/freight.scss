@@ -47,6 +47,33 @@
   .fre_option{
     margin-top: 40px;
     margin-left: 20px;
+    display: -webkit-flex;
     display: flex;
+
+    .fre_default {
+      margin-left: 24px;
+    }
+
+    .fa-plus-circle{
+      margin-left: 8px;
+    }
+  }
+}
+
+.fre_province_select{
+  span{
+    font-family: 'Helvetica', 'Arial', serif;
+    font-weight: bold;
+    padding: 6px;
+    margin: 8px 4px 8px 4px;
+    margin-left: 10px;
+  }
+
+  div{
+    margin-top: 10px;
+  }
+
+  .blue {
+    background: cornflowerblue;
   }
 }

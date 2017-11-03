@@ -1,0 +1,7 @@
+%div{class: "fre_province_select"}
+  - Province.all.each_with_index do |province, index|
+    - mod = index % 8
+    - if mod.eql?(0)
+      %div
+    %span{ data:{ province_id: index, selected: 'false' } }= province.name
+  = button_to '保存', new_admin_freight_fre_special_path(resource), remote: true

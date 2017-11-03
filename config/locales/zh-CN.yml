@@ -39,6 +39,7 @@
       video_group: '视频组别'
       race_tag: '标签管理'
       freight: '运费管理'
+      fre_special: '运费区域管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -384,6 +385,11 @@
         default: '是否默认'
         created_at: "创建时间"
         updated_at: "修改时间"
+      fre_special:
+        first_cond: '首单位'
+        first_price: '首价格'
+        add_cond: '续单位'
+        add_price: '续价格'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

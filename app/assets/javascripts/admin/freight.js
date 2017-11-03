@@ -5,5 +5,5 @@ $(function(){
             url: "/admin/freights/"+id+"/change_view",
             type: "POST"
         });
-    })
+    });
 });

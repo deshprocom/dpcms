@@ -1,28 +1,32 @@
 - def default_temp(obj, field)
-  - best_in_place obj, :"#{field}", type: 'input', url: [:admin, obj]
-
+  - best_in_place obj, :"#{field}", as: 'input', url: [:admin, obj]
+- diff_en = resource.id.eql?(1) ? 'kg' : (resource.id.eql?(2) ? '件' : 'm²')
+- diff_zh = resource.id.eql?(1) ? '重' : (resource.id.eql?(2) ? '件' : '体积')
 %div
   %span 设置默认邮费：
   %span= default_temp(resource, 'first_cond')
-  件内，
+  = "#{diff_en}内，"
   %span= default_temp(resource, 'first_price')
   元，
   %span 每增加：
   = default_temp(resource, 'add_cond')
-  件，
+  = "#{diff_en}，"
   %span 增加：
   = default_temp(resource, 'add_price')
   元
 
-  %div 为个别城市设置邮费：
+  %div{class: 'special_area'}
+    为特定地区设置邮费：
   %div
     %table
       %thead
         %tr
           %td 运送到
-          %td 首件(件)
+          %td
+            = "首#{diff_zh}(#{diff_en})"
           %td 首费(元)
-          %td 续件(件)
+          %td
+            = "续#{diff_zh}(#{diff_en})"
           %td 续费(元)
           %td 操作
         - resource.fre_specials.each do |special|
@@ -30,7 +34,8 @@
             %td
               %span
                 - special.fre_special_provinces.each do |list|
-                  = list.province_name
+                  %span= list.province_name
+              = link_to '新增', add_province_admin_fre_special_path(special), method: :post, remote: true
             %td
               = default_temp(special, 'first_cond')
             %td
@@ -40,8 +45,27 @@
             %td
               = default_temp(special, 'add_price')
             %td
-              = link_to '删除', admin_fre_special_path(special),
-                      method: :delete, data: {confirm: I18n.t('active_admin.delete_confirmation')}
+              = link_to '删除', remote_delete_admin_fre_special_path(special),
+                      method: :post,
+                      data: {confirm: I18n.t('active_admin.delete_confirmation')},
+                      remote: true
   %div
     %span
-      为指定地区设置邮费
+      = link_to '添加特定地区', new_admin_freight_fre_special_path(resource), remote: true
+
+  - unless resource.eql?(Freight.first)
+    %div
+      %span 亲！在多件不同邮费计费规则情况下，系统会按照重量模版计算邮费
+
+    %div{class: 'fre_default'}
+      %span 设置默认邮费[和重量计费模版同步]：
+      %span= default_temp(Freight.first, 'first_cond')
+      kg内，
+      %span= default_temp(Freight.first, 'first_price')
+      元，
+      %span 每增加：
+      = default_temp(Freight.first, 'add_cond')
+      kg，
+      %span 增加：
+      = default_temp(Freight.first, 'add_price')
+      元

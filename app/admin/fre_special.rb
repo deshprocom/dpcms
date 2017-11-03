@@ -7,7 +7,14 @@ ActiveAdmin.register FreSpecial do
     resource.destroy
   end
 
+  member_action :add_province_view, method: :post do
+  end
+
   member_action :add_province, method: :post do
+    province_list = params[:province]
+    province_list.each_with_index do |item, |
+      resource.fre_special_provinces.create(province_id: item[1][:id].to_i, province_name: item[1][:name])
+    end
   end
 
   controller do

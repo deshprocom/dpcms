@@ -35,7 +35,7 @@
               %span
                 - special.fre_special_provinces.each do |list|
                   %span= list.province_name
-              = link_to '新增', add_province_admin_fre_special_path(special), method: :post, remote: true
+              = link_to '新增', add_province_view_admin_fre_special_path(special), method: :post, remote: true
             %td
               = default_temp(special, 'first_cond')
             %td

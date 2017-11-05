@@ -4,6 +4,7 @@ ActiveAdmin.register Category do
   config.filters = false
   config.breadcrumb = false
   config.paginate = false
+  actions :all, except: :index
 
   permit_params :name, :image, :parent_id
   form do |f|
@@ -14,7 +15,11 @@ ActiveAdmin.register Category do
     f.actions
   end
 
-  index as: IndexAsCategory, download_links: false, paginator: false, pagination_total: false
+  # index as: IndexAsCategory, download_links: false, paginator: false, pagination_total: false
+
+  action [], :index, method: :get do
+    render layout: 'layouts/active_admin'
+  end
 
   collection_action :quick_add, method: :get do
     @category = Category.new(parent_id: params[:parent_id])

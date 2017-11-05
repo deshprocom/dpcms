@@ -22,7 +22,9 @@ ActiveAdmin.register OptionType do
 
   collection_action :destroy, method: :delete do
     @option_type = OptionType.find(params[:id])
+    has_values = @option_type.option_values.exists?
     @option_type.destroy
-    redirect_back fallback_location: variants_admin_product_path(params[:product_id])
+    @option_type.product.rebuild_variants_for_type_delete(has_values)
+    redirect_back fallback_location: admin_product_variants_path(params[:product_id])
   end
 end

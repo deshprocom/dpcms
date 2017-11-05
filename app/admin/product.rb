@@ -6,13 +6,8 @@ ActiveAdmin.register Product do
                                     :volume, :origin_point, :weight]
 
   form partial: 'form'
-
   sidebar '侧边栏', only: [:edit, :update, :variants] do
-    ul do
-      li '详情编辑'
-      li '图片管理'
-      li link_to '商品组合管理', variants_admin_product_path(resource)
-    end
+    product_sidebar_generator(self)
   end
 
   controller do
@@ -36,10 +31,5 @@ ActiveAdmin.register Product do
         render :edit
       end
     end
-  end
-
-  member_action :variants, method: :get do
-    resource
-    render 'variants'
   end
 end

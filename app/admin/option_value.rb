@@ -17,12 +17,14 @@ ActiveAdmin.register OptionValue do
   collection_action :quick_create, method: :post do
     @option_value = OptionValue.new(permitted_params[:option_value])
     @option_value.save
+    @option_value.option_type.product.rebuild_variants_for_value_change
     render 'quick_response', layout: false
   end
 
   collection_action :destroy, method: :delete do
     @option_value = OptionValue.find(params[:id])
     @option_value.destroy
-    redirect_back fallback_location: variants_admin_product_path(params[:product_id])
+    @option_value.option_type.product.rebuild_variants_for_value_change
+    redirect_back fallback_location: admin_product_variants_path(params[:product_id])
   end
 end

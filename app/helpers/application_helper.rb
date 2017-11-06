@@ -33,31 +33,17 @@ module ApplicationHelper
 
   def editable_text_column(resource, attr)
     val = resource.send(attr)
-    val = '&nbsp;' if val.blank?
+    val = '' if val.blank?
     out = []
-    out << content_tag(:div, val, id: "editable_text_column_#{resource.id}",
+    out << content_tag(:div, val, id: "editable_text_column_#{attr}_#{resource.id}",
                                   class: 'editable_text_column',
                                   ondblclick: 'quickEditable.editable_text_column_do(this)')
     out << content_tag(:input, nil, class: 'editable_text_column admin-editable',
-                                    id: "editable_text_column_#{resource.id}",
+                                    id: "editable_text_column_#{attr}_#{resource.id}",
                                     style: 'display:none;',
                                     data: { path: resource_path(resource),
                                             'resource-class': resource.class.name.downcase,
                                             attr: attr })
     safe_join(out)
-    # %{
-    #   <div  id='editable_text_column_#{resource.id}'
-    #         class='editable_text_column'
-    #         ondblclick='quickEditable.editable_text_column_do(this)' >
-    #         #{val}
-    #    </div>
-    #    <input
-    #       data-path='#{resource_path(resource)}'
-    #       data-resource-class='#{resource.class.name.downcase}'
-    #       data-attr='#{attr}'
-    #       class='editable_text_column admin-editable'
-    #       id='editable_text_column_#{resource.id}'
-    #       style='display:none;' />
-    # }.html_safe
   end
 end

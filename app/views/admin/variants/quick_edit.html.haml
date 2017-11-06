@@ -1,0 +1,13 @@
+%div{style: 'min-width: 300px;'}
+  %section#quick-errors
+    = render 'layouts/error_messages', object: @variant
+
+  - url = quick_update_admin_product_variant_path(@variant)
+  = semantic_form_for @variant, url: url, remote: true do |f|
+    = f.inputs do
+      - collection = [[@product.title, @product.id]]
+      = f.input :product, collection: collection, prompt: true
+      = f.input :original_price
+      = f.input :price
+      = f.input :stock
+    = f.submit

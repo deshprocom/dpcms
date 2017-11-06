@@ -30,6 +30,12 @@ ActiveAdmin.register Info do
     column :source
     column :date
     column :info_type_id
+    column :is_show, sortable: false do |info|
+      info&.is_show ? '√' : '×'
+    end
+    column :en_is_show, sortable: false do |info|
+      info.info_en&.is_show ? '√' : '×'
+    end
     column :top
     column :published
     actions name: '操作', class: 'info_actions' do |resource|

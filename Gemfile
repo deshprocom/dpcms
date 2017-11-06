@@ -60,6 +60,10 @@ gem 'faraday','~> 0.11.0'
 
 gem 'jpush', '~> 4.0', '>= 4.0.6'
 
+gem 'best_in_place', github: 'bernat/best_in_place'
+gem 'kuaidiniao'
+gem "font-awesome-rails"
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -68,7 +72,7 @@ group :development, :test do
   gem 'capistrano3-puma'
   gem 'capistrano-rvm'
   gem 'capistrano-resque', require: false
-  gem 'rubocop', require: false
+  gem 'rubocop', '0.46.0', require: false
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'database_cleaner'

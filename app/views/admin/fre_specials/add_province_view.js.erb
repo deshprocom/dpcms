@@ -8,6 +8,7 @@ $(html).dialog({
 
 $(".fre_province_select span").click(
     function(){
+        console.log($(this).data('selected'));
         selected = $(this).data('selected');
         $(this).data('selected', !selected);
         if(!selected) {
@@ -15,6 +16,7 @@ $(".fre_province_select span").click(
         }else{
             $(this).removeClass('blue')
         }
+        console.log($(this).data('selected'));
     }
 );
 

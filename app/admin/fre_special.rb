@@ -12,7 +12,11 @@ ActiveAdmin.register FreSpecial do
 
   member_action :add_province, method: :post do
     province_list = params[:province]
-    province_list.each_with_index do |item, |
+    # 先清除原有的数据
+    resource.fre_special_provinces.map(&:destroy!)
+    # return render :add_province unless province_list.present?
+    # 根据现有的标签新建数据
+    province_list&.each_with_index do |item, |
       resource.fre_special_provinces.create(province_id: item[1][:id].to_i, province_name: item[1][:name])
     end
   end

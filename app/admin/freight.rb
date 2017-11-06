@@ -11,7 +11,7 @@ ActiveAdmin.register Freight do
   end
 
   show do
-    render 'show', { freight: resource }
+    render 'show', freight: resource
   end
 
   member_action :set_default, method: :post do

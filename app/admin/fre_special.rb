@@ -1,5 +1,6 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register FreSpecial do
-  # menu false
+  menu false
   belongs_to :freight, optional: true
   permit_params :first_cond, :first_price, :add_cond, :add_price
 
@@ -16,7 +17,7 @@ ActiveAdmin.register FreSpecial do
     resource.fre_special_provinces.map(&:destroy!)
     # return render :add_province unless province_list.present?
     # 根据现有的标签新建数据
-    province_list&.each_with_index do |item, |
+    province_list&.each_with_index do |item, _index|
       resource.fre_special_provinces.create(province_id: item[1][:id].to_i, province_name: item[1][:name])
     end
   end
@@ -45,7 +46,7 @@ ActiveAdmin.register FreSpecial do
     private
 
     def create_params
-      params.require(:fre_special).permit(:first_cond, :first_price, :add_cond, :add_price);
+      params.require(:fre_special).permit(:first_cond, :first_price, :add_cond, :add_price)
     end
 
     def set_freight

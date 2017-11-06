@@ -215,7 +215,7 @@
         created_at: "创建时间"
         updated_at: "更新时间"
       info:
-        title: '资讯名称'
+        title: '名称'
         source_type: '来源类别'
         source: '来源内容'
         date: '日期'
@@ -227,6 +227,8 @@
         description: '图文内容'
         created_at: '创建日期'
         updated_at: '更新日期'
+        is_show: '中文'
+        en_is_show: '英文'
       headline:
         title: '头条标题'
         source_type: '来源类型'
@@ -257,13 +259,15 @@
         updated_at: "更新时间"
       video:
         name: '名称'
-        title_desc: '标题描述'
+        title_desc: '标题'
         video_link: '视频链接'
         cover_link: '封面链接'
-        description: '视频描述'
-        video_type_id: '视频类别'
-        video_duration: '视频时长'
+        description: '描述'
+        video_type_id: '类别'
+        video_duration: '时长'
         is_main: '主视频'
+        is_show: '中文'
+        en_is_show: '英文'
         video_group: '组别名'
         top: '置顶'
         published: '发布'

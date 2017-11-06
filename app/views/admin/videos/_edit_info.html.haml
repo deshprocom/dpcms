@@ -1,9 +1,6 @@
 - @video.video_en || @video.build_video_en
-- types = VideoType.all.collect do |type|
-  - type_name = type.published ? type.name + ' [已发布]' : type.name
-  - [type_name, type.id]
 
-- selected = types.collect do |val, key|
+- selected = FILTER_VIDEO_TYPE.collect do |val, key|
   - break [val, key] if params[:id].present? && key.eql?(Video.find(params[:id]).video_type.try(:id).to_i)
   - break [val, key] if params[:type_id].present? && key.eql?(params[:type_id].to_i)
   - break [val, key] if params[:video_group_id].present? && VideoGroup.find(params[:video_group_id])&.videos.first.video_type_id.eql?(key)
@@ -32,7 +29,7 @@
         - for tag in RaceTag.all
           = check_box_tag "video[tag_ids][]", tag.id, @video.race_tag_maps.pluck(:race_tag_id).include?(tag.id)
           = tag.name
-    = f.input :video_type_id, as: :select, collection: options_for_select(types, selected)
+    = f.input :video_type_id, as: :select, collection: options_for_select(FILTER_VIDEO_TYPE, selected)
     = f.input :video_group_id, as: :hidden
     = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
     = f.input :video_link

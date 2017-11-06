@@ -3,6 +3,7 @@ ActiveAdmin.register Freight do
   config.filters = false
   config.breadcrumb = false
   actions :all, except: [:new, :destroy, :edit]
+  menu priority: 18, parent: '运费管理'
 
   permit_params :name, :first_cond, :first_price, :add_cond, :add_price
 

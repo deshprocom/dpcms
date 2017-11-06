@@ -43,6 +43,7 @@
       race_tag: '标签管理'
       freight: '运费管理'
       fre_special: '运费区域管理'
+      express_code: '快递查询'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -410,6 +411,10 @@
         first_price: '首价格'
         add_cond: '续单位'
         add_price: '续价格'
+      express_code:
+        name: '快递名称'
+        express_code: '快递编码'
+        region: '快递类型'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

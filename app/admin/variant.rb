@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Variant do
   config.batch_actions = false
   config.filters = false
@@ -15,7 +16,11 @@ ActiveAdmin.register Variant do
 
   controller do
     before_action :set_product, only: [:index, :quick_edit]
-    before_action :set_variant, only: [:quick_edit, :quick_update]
+    before_action :set_variant, only: [:quick_edit, :quick_update, :update]
+
+    def update
+      @variant.update(permitted_params[:variant])
+    end
 
     def set_product
       @product = Product.find(params[:product_id])

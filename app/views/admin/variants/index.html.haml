@@ -34,10 +34,9 @@
                       %td=variant.id
                       - @product.option_types.each do |type|
                         %td=variant.find_option_value(type)&.name
-                      %td=variant.original_price
-                      %td=variant.price
+                      %td= editable_text_column variant, :original_price
+                      %td= editable_text_column variant, :price
                       %td= editable_text_column variant, :stock
-
                       -#%td
                       -#  = link_to '编辑',
                       -#            quick_edit_admin_product_variant_path(@product, variant),

@@ -1,5 +1,7 @@
 "zh-CN":
   active_admin:
+    blank_slate:
+      link: ""
     empty: "空"
     scopes:
       all: '全部'

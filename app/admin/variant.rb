@@ -12,7 +12,8 @@ ActiveAdmin.register Variant do
     product_sidebar_generator(self)
   end
 
-  permit_params :price, :original_price, :stock
+  permit_params :price, :original_price, :stock,
+                image_attributes: [:filename]
 
   controller do
     before_action :set_product, only: [:index, :quick_edit]

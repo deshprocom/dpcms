@@ -15,6 +15,7 @@
                     %th ID
                     - @product.option_types.each do |type|
                       %th=type.name
+                    %th 图片
                     %th
                       商品价格
                       = editable_text_column @product.master, :original_price
@@ -34,13 +35,14 @@
                       %td=variant.id
                       - @product.option_types.each do |type|
                         %td=variant.find_option_value(type)&.name
+                      %td= image_tag(variant.image&.preview.to_s)
                       %td= editable_text_column variant, :original_price
                       %td= editable_text_column variant, :price
                       %td= editable_text_column variant, :stock
-                      -#%td
-                      -#  = link_to '编辑',
-                      -#            quick_edit_admin_product_variant_path(@product, variant),
-                      -#            class: 'fancybox action', data: { 'fancybox-type': 'ajax' }
+                      %td
+                        = link_to '编辑',
+                                  quick_edit_admin_product_variant_path(@product, variant),
+                                  class: 'fancybox action', data: { 'fancybox-type': 'ajax' }
 
 
 :javascript

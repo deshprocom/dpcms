@@ -6,9 +6,14 @@ ActiveAdmin.register Product do
                 master_attributes: [:original_price, :price, :stock,
                                     :volume, :origin_point, :weight]
 
-  form partial: 'form'
   sidebar '侧边栏', only: [:edit, :update, :variants] do
     product_sidebar_generator(self)
+  end
+
+  form partial: 'form'
+
+  index do
+    render 'index', context: self
   end
 
   controller do

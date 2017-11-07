@@ -58,5 +58,4 @@ ActiveAdmin.register ProductImage, as: 'images' do
       @image = @product.images.find(params[:id])
     end
   end
-
 end

@@ -15,7 +15,7 @@ ActiveAdmin.register Variant do
   permit_params :price, :original_price, :stock,
                 image_attributes: [:filename]
 
-                                    controller do
+  controller do
     before_action :set_product, only: [:index, :quick_edit]
     before_action :set_variant, only: [:quick_edit, :quick_update, :update]
 

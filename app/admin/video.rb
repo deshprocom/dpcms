@@ -9,7 +9,7 @@ ActiveAdmin.register Video do
     scope.where(is_main: true)
   end
 
-  @types = VideoType.all.collect do |type|
+  FILTER_VIDEO_TYPE = VideoType.all.collect do |type|
     type_name = type.published ? type.name + ' [已发布]' : type.name
     [type_name, type.id]
   end
@@ -17,7 +17,7 @@ ActiveAdmin.register Video do
   filter :name
   filter :published
   filter :top
-  filter :video_type_id, as: :select, collection: @types
+  filter :video_type_id, as: :select, collection: FILTER_VIDEO_TYPE
 
   config.sort_order = ''
 

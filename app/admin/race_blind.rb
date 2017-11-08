@@ -106,7 +106,10 @@ ActiveAdmin.register RaceBlind do
         last_blind = @race.race_blinds.position_asc.last
         position = last_blind&.position.to_i + 100000
         blind = RaceBlind.new(attrs.merge(race: @race, position: position))
-        success_num += 1 if blind.save
+        if blind.save
+          success_num += 1
+          blind.build_race_blind_en.save
+        end
         total_num += 1
       end
       flash[:notice] = "总计 #{total_num} 个盲注， 成功导入 #{success_num} 个盲注"

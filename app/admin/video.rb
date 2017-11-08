@@ -3,7 +3,7 @@ ActiveAdmin.register Video do
   menu priority: 3, parent: '资讯管理', label: '视频列表'
   belongs_to :video_group, optional: true
   permit_params :name, :video_link, :title_desc, :cover_link, :video_duration, :top, :published,
-                :description, :video_type_id, :video_group_id, video_en_attributes: [:name, :title_desc, :description]
+                :description, :video_type_id, :video_group_id, :race_tag_id, video_en_attributes: [:name, :title_desc, :description]
   scope :all
   scope('main_videos') do |scope|
     scope.where(is_main: true)
@@ -114,9 +114,6 @@ ActiveAdmin.register Video do
       @video = Video.new(update_params.merge(position: position))
       render :new unless @video.save
       url = VideoGroup.exists?(group_id) ? admin_video_group_videos_url(group_id) : admin_videos_url
-      # 添加标签
-      tag_ids = params[:video][:tag_ids]
-      tag_ids&.map { |tag_id| RaceTagMap.create(data: @video, race_tag_id: tag_id) }
       redirect_to url, notice: '添加成功'
     end
 
@@ -134,11 +131,6 @@ ActiveAdmin.register Video do
                        else
                          '视频更新失败'
                        end
-      # 替换所有标签
-      tag_ids = params[:video][:tag_ids]
-      # 首先删除该资讯对应的所有标签
-      resource.race_tag_maps.map(&:destroy)
-      tag_ids&.map { |tag_id| RaceTagMap.create(data: resource, race_tag_id: tag_id) }
       redirect_to admin_videos_url
     end
 
@@ -166,6 +158,7 @@ ActiveAdmin.register Video do
       params.require(:video).permit(:name,
                                     :video_type_id,
                                     :video_group_id,
+                                    :race_tag_id,
                                     :video_link,
                                     :cover_link,
                                     :title_desc,

@@ -4,12 +4,14 @@ ActiveAdmin.register Info do
   SOURCE_TYPE = %w(source author).collect { |d| [I18n.t("info.#{d}"), d] }
 
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
-                :published, :description, :info_type_id, info_en_attributes: [:id, :title, :source, :description]
+                :published, :description, :info_type_id, :race_tag_id, info_en_attributes: [:id, :title, :source, :description]
 
   FILTER_INFO_TYPE = InfoType.all.collect do |type|
     type_name = type.published ? type.name + ' [已发布]' : type.name
     [type_name, type.id]
   end
+
+  RACE_TAG_LIST = RaceTag.all
 
   filter :title
   filter :source_type, as: :select, collection: SOURCE_TYPE
@@ -18,6 +20,7 @@ ActiveAdmin.register Info do
   filter :published
   filter :top
   filter :info_type_id, as: :select, collection: FILTER_INFO_TYPE
+  filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
 
   index title: '资讯管理' do
     column '资讯图片', :image do |info|
@@ -29,7 +32,8 @@ ActiveAdmin.register Info do
     end
     column :source
     column :date
-    column :info_type_id
+    column :info_type_id, sortable: false
+    column :race_tag_id, sortable: false
     column :is_show, sortable: false do |info|
       info&.is_show ? '√' : '×'
     end
@@ -96,19 +100,12 @@ ActiveAdmin.register Info do
     redirect_back fallback_location: admin_infos_url, notice: '取消置顶成功'
   end
 
-  sidebar :'资讯数目', only: :index do
-    "资讯共：#{Info.count}条"
-  end
-
   form partial: 'edit_info'
 
   controller do
     def create
       info = Info.new(update_params)
       if info.save
-        # 添加标签
-        tag_ids = params[:info][:tag_ids]
-        tag_ids&.map { |tag_id| RaceTagMap.create(data: info, race_tag_id: tag_id) }
         redirect_to admin_infos_url, notice: '添加成功'
       else
         redirect_to admin_infos_url, notice: '添加失败'
@@ -129,11 +126,6 @@ ActiveAdmin.register Info do
                        else
                          '资讯更新失败'
                        end
-      # 替换所有标签
-      tag_ids = params[:info][:tag_ids]
-      # 首先删除该资讯对应的所有标签
-      resource.race_tag_maps.map(&:destroy)
-      tag_ids&.map { |tag_id| RaceTagMap.create(data: resource, race_tag_id: tag_id) }
       redirect_to admin_infos_url
     end
 
@@ -146,6 +138,7 @@ ActiveAdmin.register Info do
                                    :source_type,
                                    :source,
                                    :info_type_id,
+                                   :race_tag_id,
                                    :is_show,
                                    :published,
                                    :top,

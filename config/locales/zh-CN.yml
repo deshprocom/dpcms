@@ -69,6 +69,9 @@
       product:
         title: "商品标题"
         icon: "商品图标"
+        type: "商品类型"
+        published: "是否上架"
+        recommended: "是否推荐"
         description: "商品描述"
       variant:
         original_price: "商品价格"

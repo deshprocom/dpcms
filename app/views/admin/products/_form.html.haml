@@ -10,6 +10,7 @@
       = f.select 'category_id', children_conllection || [], prompt: '子分类'
     = f.input :title
     = f.input :published
+    = f.input :recommended
     = f.input :product_type, as: :select, collection: TRANS_PRODUCT_TYPES, prompt: true
     = f.input :icon, as: :attachment,
                         hint: '图片最大为 2MB',

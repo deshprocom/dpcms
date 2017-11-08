@@ -5,6 +5,10 @@ ActiveAdmin.register Product do
   config.batch_actions = false
   config.sort_order = 'published_desc'
 
+  filter :title
+  filter :published
+  filter :recommended
+
   permit_params :title, :icon, :description, :product_type, :category_id, :published,
                 master_attributes: [:original_price, :price, :stock,
                                     :volume, :origin_point, :weight]
@@ -49,6 +53,16 @@ ActiveAdmin.register Product do
 
   member_action :unpublish, method: :post do
     Product.find(params[:id]).unpublish!
-    redirect_back fallback_location: admin_products_url, notice: '下架商品成功'
+    redirect_back fallback_location: admin_products_url, notice: '已下架商品'
+  end
+
+  member_action :recommend, method: :post do
+    Product.find(params[:id]).recommend!
+    redirect_back fallback_location: admin_products_url, notice: '推荐商品成功'
+  end
+
+  member_action :unrecommend, method: :post do
+    Product.find(params[:id]).unrecommend!
+    redirect_back fallback_location: admin_products_url, notice: '已取消推荐商品'
   end
 end

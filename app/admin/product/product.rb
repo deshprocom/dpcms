@@ -1,8 +1,11 @@
 # rubocop:disable Metrics/BlockLength
+PRODUCT_TYPES = Product.product_types.keys
+TRANS_PRODUCT_TYPES = PRODUCT_TYPES.collect { |d| [I18n.t("product.#{d}"), d] }
 ActiveAdmin.register Product do
   config.batch_actions = false
+  config.sort_order = 'published_desc'
 
-  permit_params :title, :icon, :description, :type, :category_id,
+  permit_params :title, :icon, :description, :product_type, :category_id, :published,
                 master_attributes: [:original_price, :price, :stock,
                                     :volume, :origin_point, :weight]
 
@@ -37,5 +40,15 @@ ActiveAdmin.register Product do
         render :edit
       end
     end
+  end
+
+  member_action :publish, method: :post do
+    Product.find(params[:id]).publish!
+    redirect_back fallback_location: admin_products_url, notice: '上架商品成功'
+  end
+
+  member_action :unpublish, method: :post do
+    Product.find(params[:id]).unpublish!
+    redirect_back fallback_location: admin_products_url, notice: '下架商品成功'
   end
 end

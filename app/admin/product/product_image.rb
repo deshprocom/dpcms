@@ -3,6 +3,7 @@ ActiveAdmin.register ProductImage, as: 'images' do
   config.batch_actions = false
   config.filters = false
   config.paginate = false
+  config.sort_order = 'position_asc'
 
   config.clear_action_items!
   action_item :add, only: :index do
@@ -35,7 +36,9 @@ ActiveAdmin.register ProductImage, as: 'images' do
     end
 
     def create
-      @image = @product.images.build(permitted_params[:product_image])
+      last_img = @product.images.position_asc.last
+      position = last_img&.position.to_i + 100000
+      @image = @product.images.build(permitted_params[:product_image].merge(position: position))
       flash[:notice] = '新建成功' if @image.save
       render 'admin/products/images/response'
     end
@@ -57,5 +60,19 @@ ActiveAdmin.register ProductImage, as: 'images' do
     def set_image
       @image = @product.images.find(params[:id])
     end
+  end
+
+  member_action :reposition, method: :post do
+    image = ProductImage.find(params[:id])
+    next_img = params[:next_id] && ProductImage.find(params[:next_id].split('_').last)
+    prev_img = params[:prev_id] && ProductImage.find(params[:prev_id].split('_').last)
+    position = if params[:prev_id].blank?
+                 next_img.position / 2
+               elsif params[:next_id].blank?
+                 prev_img.position + 100000
+               else
+                 (prev_img.position + next_img.position) / 2
+               end
+    image.update(position: position)
   end
 end

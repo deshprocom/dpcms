@@ -1,6 +1,6 @@
 module ShopHelper
   def roots_collection
-    Category.roots.collect { |c| [c.name, c.id] }
+    Category.roots_collection
   end
 
   def product_sidebar_generator(context)

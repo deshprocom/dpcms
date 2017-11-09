@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
   filter :title
   filter :published
   filter :recommended
+  filter :by_root_category_in, label: '主类别', as: :select, collection: Category.roots_collection
 
   permit_params :title, :icon, :description, :product_type, :category_id, :published,
                 master_attributes: [:original_price, :price, :stock,

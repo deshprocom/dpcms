@@ -11,8 +11,8 @@ ActiveAdmin.register ProductImage, as: 'images' do
   end
 
   belongs_to :product
-  navigation_menu :default
   menu false
+  navigation_menu :default
 
   sidebar '侧边栏' do
     product_sidebar_generator(self)
@@ -63,16 +63,16 @@ ActiveAdmin.register ProductImage, as: 'images' do
   end
 
   member_action :reposition, method: :post do
-    image = ProductImage.find(params[:id])
-    next_img = params[:next_id] && ProductImage.find(params[:next_id].split('_').last)
-    prev_img = params[:prev_id] && ProductImage.find(params[:prev_id].split('_').last)
+    blind = ProductImage.find(params[:id])
+    next_blind = params[:next_id] && ProductImage.find(params[:next_id].split('_').last)
+    prev_blind = params[:prev_id] && ProductImage.find(params[:prev_id].split('_').last)
     position = if params[:prev_id].blank?
-                 next_img.position / 2
+                 next_blind.position / 2
                elsif params[:next_id].blank?
-                 prev_img.position + 100000
+                 prev_blind.position + 100000
                else
-                 (prev_img.position + next_img.position) / 2
+                 (prev_blind.position + next_blind.position) / 2
                end
-    image.update(position: position)
+    blind.update(position: position)
   end
 end

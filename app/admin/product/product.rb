@@ -4,13 +4,13 @@ TRANS_PRODUCT_TYPES = PRODUCT_TYPES.collect { |d| [I18n.t("product.#{d}"), d] }
 ActiveAdmin.register Product do
   config.batch_actions = false
   config.sort_order = 'published_desc'
-
   filter :title
   filter :published
   filter :recommended
   filter :by_root_category_in, label: '主类别', as: :select, collection: Category.roots_collection
 
-  permit_params :title, :icon, :description, :product_type, :category_id, :published,
+  permit_params :title, :icon, :description, :product_type, :category_id,
+                :published, :freight_id, :freight_free,
                 master_attributes: [:original_price, :price, :stock,
                                     :volume, :origin_point, :weight]
 

@@ -11,6 +11,8 @@
     = f.input :title
     = f.input :published
     = f.input :recommended
+    = f.input :freight_free
+    = f.input :freight, prompt: true
     = f.input :product_type, as: :select, collection: TRANS_PRODUCT_TYPES, prompt: true
     = f.input :icon, as: :attachment,
                         hint: '图片最大为 2MB',

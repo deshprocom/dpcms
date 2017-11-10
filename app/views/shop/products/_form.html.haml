@@ -1,5 +1,5 @@
 - @product.master   || @product.build_master
-= semantic_form_for [:admin, @product] do |f|
+= semantic_form_for [:shop, @product] do |f|
   = f.inputs do
     %li#search_player_input
       %label 所属分类
@@ -11,6 +11,8 @@
     = f.input :title
     = f.input :published
     = f.input :recommended
+    = f.input :freight_free
+    = f.input :freight, prompt: true
     = f.input :product_type, as: :select, collection: TRANS_PRODUCT_TYPES, prompt: true
     = f.input :icon, as: :attachment,
                         hint: '图片最大为 2MB',
@@ -30,7 +32,7 @@
         dpEditor.call($('#product_description'), $('form.product'));
         $('#product_root_category').change(function() {
           $.ajax({
-            url: '/admin/categories/' + $(this).val() + '/children.json'
+            url: '/shop/categories/' + $(this).val() + '/children.json'
           }).done(function(result){
             var options = '';
             result.forEach(function(category,index){

@@ -2,7 +2,7 @@
   %section#quick-errors
     = render 'layouts/error_messages', object: @category
 
-  = semantic_form_for @category, url: quick_create_admin_categories_path, remote: true do |f|
+  = semantic_form_for @category, url: quick_create_shop_categories_path, remote: true do |f|
     = f.inputs '新建种类' do
       - if @category.parent.present?
         = f.input :parent, collection: [[@category.parent.name, @category.parent.id]], prompt: true

@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register Variant do
+ActiveAdmin.register Variant, namespace: :shop do
   config.batch_actions = false
   config.filters = false
 

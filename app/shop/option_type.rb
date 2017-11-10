@@ -1,4 +1,4 @@
-ActiveAdmin.register OptionType do
+ActiveAdmin.register OptionType, namespace: :shop do
   config.batch_actions = false
 
   belongs_to :product, optional: true
@@ -25,6 +25,6 @@ ActiveAdmin.register OptionType do
     has_values = @option_type.option_values.exists?
     @option_type.destroy
     @option_type.product.rebuild_variants_for_type_delete(has_values)
-    redirect_back fallback_location: admin_product_variants_path(params[:product_id])
+    redirect_back fallback_location: shop_product_variants_path(params[:product_id])
   end
 end

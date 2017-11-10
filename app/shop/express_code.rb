@@ -1,4 +1,4 @@
-ActiveAdmin.register ExpressCode do
+ActiveAdmin.register ExpressCode, namespace: :shop do
   config.batch_actions = false
   config.filters = false
   config.clear_action_items!

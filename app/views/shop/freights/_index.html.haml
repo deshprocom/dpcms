@@ -2,7 +2,7 @@
   - if obj.default
     -  '默认'
   - else
-    - link_to '设为默认', set_default_admin_freight_path(obj), method: :post
+    - link_to '设为默认', set_default_shop_freight_path(obj), method: :post
 
 %div.container
   %table{class: 'fre_table'}
@@ -16,7 +16,7 @@
         %td
           = "按#{freight.name}运费模版"
         %td
-          = link_to '运费详情', admin_freight_path(freight)
+          = link_to '运费详情', shop_freight_path(freight)
         %td
           = common_temp(freight)
 

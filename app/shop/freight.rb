@@ -1,4 +1,4 @@
-ActiveAdmin.register Freight do
+ActiveAdmin.register Freight, namespace: :shop do
   config.batch_actions = false
   config.filters = false
   config.breadcrumb = false
@@ -20,7 +20,7 @@ ActiveAdmin.register Freight do
     list = Freight.all
     list.present? && list.map(&:no_default!)
     resource.default!
-    redirect_back fallback_location: admin_freights_url, notice: '设置成功'
+    redirect_back fallback_location: shop_freights_url, notice: '设置成功'
   end
 
   member_action :change_view, method: :post do

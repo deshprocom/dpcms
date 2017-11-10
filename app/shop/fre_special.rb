@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register FreSpecial do
+ActiveAdmin.register FreSpecial, namespace: :shop do
   menu false
   belongs_to :freight, optional: true
   permit_params :first_cond, :first_price, :add_cond, :add_price
@@ -35,7 +35,7 @@ ActiveAdmin.register FreSpecial do
       respond_to do |format|
         if @fre_special.save
           flash[:notice] = '新建成功'
-          format.html { redirect_to admin_fre_special_url(@fre_special) }
+          format.html { redirect_to shop_fre_special_url(@fre_special) }
         else
           format.html { render :new }
         end

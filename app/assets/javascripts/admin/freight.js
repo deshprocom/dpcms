@@ -4,7 +4,7 @@ $(function(){
         new_url = document.URL.replace(/\/\d+$/,'\/' + id);
         history.pushState(null,null,new_url);
         $.ajax({
-            url: "/admin/freights/"+id+"/change_view",
+            url: "/shop/freights/"+id+"/change_view",
             type: "POST"
         });
     });

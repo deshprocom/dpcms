@@ -1,5 +1,5 @@
 - def default_temp(obj, field)
-  - best_in_place obj, :"#{field}", as: 'input', url: [:admin, obj]
+  - best_in_place obj, :"#{field}", as: 'input', url: [:shop, obj]
 - diff_en = resource.id.eql?(1) ? 'kg' : (resource.id.eql?(2) ? '件' : 'm²')
 - diff_zh = resource.id.eql?(1) ? '重' : (resource.id.eql?(2) ? '件' : '体积')
 %div
@@ -35,7 +35,7 @@
               %span
                 - special.fre_special_provinces.each do |list|
                   %span= list.province_name
-              = link_to '新增', add_province_view_admin_fre_special_path(special), method: :post, remote: true
+              = link_to '新增', add_province_view_shop_fre_special_path(special), method: :post, remote: true
             %td
               = default_temp(special, 'first_cond')
             %td
@@ -45,13 +45,13 @@
             %td
               = default_temp(special, 'add_price')
             %td
-              = link_to '删除', remote_delete_admin_fre_special_path(special),
+              = link_to '删除', remote_delete_shop_fre_special_path(special),
                       method: :post,
                       data: {confirm: I18n.t('active_admin.delete_confirmation')},
                       remote: true
   %div
     %span
-      = link_to '添加特定地区', new_admin_freight_fre_special_path(resource), remote: true
+      = link_to '添加特定地区', new_shop_freight_fre_special_path(resource), remote: true
 
   - unless resource.eql?(Freight.first)
     %div

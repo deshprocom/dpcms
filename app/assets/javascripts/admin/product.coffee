@@ -7,7 +7,7 @@ $ ->
         nextId = ui.item.next().attr('id')
 
         $.ajax
-          url: "/admin/products/0/images/#{itemId.split('_').pop()}/reposition"
+          url: "/shop/products/0/images/#{itemId.split('_').pop()}/reposition"
           type: "POST"
           data:
             id      : itemId

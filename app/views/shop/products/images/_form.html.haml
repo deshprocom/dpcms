@@ -1,5 +1,5 @@
 %div
-  - url = @image.new_record? ? admin_product_images_path(@product) : admin_product_image_path(@product, @image)
+  - url = @image.new_record? ? shop_product_images_path(@product) : shop_product_image_path(@product, @image)
   = semantic_form_for @image, url: url, remote: true do |f|
     = f.inputs style: 'margin-bottom: -10px;' do
       = f.input :viewable, collection: [[@product.title, @product.id]], prompt: true

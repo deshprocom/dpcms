@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register Category do
+ActiveAdmin.register Category, namespace: :shop do
   config.batch_actions = false
   config.filters = false
   config.breadcrumb = false
@@ -60,7 +60,7 @@ ActiveAdmin.register Category do
       return if @category.children_count.zero?
 
       flash[:error] = '该类别下有子分类，不允许删除'
-      redirect_back fallback_location: admin_categories_url
+      redirect_back fallback_location: shop_categories_url
     end
   end
 end

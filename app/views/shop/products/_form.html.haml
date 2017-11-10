@@ -1,5 +1,5 @@
 - @product.master   || @product.build_master
-= semantic_form_for [:admin, @product] do |f|
+= semantic_form_for [:shop, @product] do |f|
   = f.inputs do
     %li#search_player_input
       %label 所属分类
@@ -32,7 +32,7 @@
         dpEditor.call($('#product_description'), $('form.product'));
         $('#product_root_category').change(function() {
           $.ajax({
-            url: '/admin/categories/' + $(this).val() + '/children.json'
+            url: '/shop/categories/' + $(this).val() + '/children.json'
           }).done(function(result){
             var options = '';
             result.forEach(function(category,index){

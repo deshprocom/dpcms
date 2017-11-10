@@ -1,5 +1,5 @@
 # rubocop:disable Metrics/BlockLength
-ActiveAdmin.register ProductImage, as: 'images' do
+ActiveAdmin.register ProductImage, as: 'images', namespace: :shop do
   config.batch_actions = false
   config.filters = false
   config.paginate = false
@@ -7,7 +7,7 @@ ActiveAdmin.register ProductImage, as: 'images' do
 
   config.clear_action_items!
   action_item :add, only: :index do
-    link_to '新增图片', new_admin_product_image_path(product), remote: true
+    link_to '新增图片', new_shop_product_image_path(product), remote: true
   end
 
   belongs_to :product
@@ -21,10 +21,10 @@ ActiveAdmin.register ProductImage, as: 'images' do
   permit_params :filename
 
   index title: '图片管理', download_links: false do
-    render 'admin/products/images/index', context: self
+    render 'shop/products/images/index', context: self
   end
 
-  form partial: 'admin/products/images/form'
+  form partial: 'shop/products/images/form'
 
   controller do
     before_action :set_product, only: [:new, :create, :edit, :update]
@@ -32,7 +32,7 @@ ActiveAdmin.register ProductImage, as: 'images' do
 
     def new
       @image = @product.images.build
-      render 'admin/products/images/new'
+      render 'shop/products/images/new'
     end
 
     def create
@@ -40,17 +40,17 @@ ActiveAdmin.register ProductImage, as: 'images' do
       position = last_img&.position.to_i + 100000
       @image = @product.images.build(permitted_params[:product_image].merge(position: position))
       flash[:notice] = '新建成功' if @image.save
-      render 'admin/products/images/response'
+      render 'shop/products/images/response'
     end
 
     def edit
-      render 'admin/products/images/new'
+      render 'shop/products/images/new'
     end
 
     def update
       @image.assign_attributes(permitted_params[:product_image])
       flash[:notice] = '更新成功' if @image.save
-      render 'admin/products/images/response'
+      render 'shop/products/images/response'
     end
 
     def set_product

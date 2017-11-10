@@ -2,7 +2,7 @@
   %h5
     %span= "#{category.name}: 子类别"
     %span
-      = link_to '新增', quick_add_admin_categories_path(parent_id: category.id),
+      = link_to '新增', quick_add_shop_categories_path(parent_id: category.id),
                     class: ' action fancybox',
                     data: { 'fancybox-type': 'ajax' }
 
@@ -15,10 +15,10 @@
       %div{class: 'child_display', 'data-id': category.id}=category.name
       %div.child_actions
         %span
-          = link_to '编辑', quick_edit_admin_category_path(category),
+          = link_to '编辑', quick_edit_shop_category_path(category),
                            class: 'action fancybox',
                            data: { 'fancybox-type': 'ajax' }
         %span
-          = link_to '删除', admin_category_path(category),
+          = link_to '删除', shop_category_path(category),
                                  method: 'delete', class: 'action',
                                  data: { confirm: '确定删除吗？' }

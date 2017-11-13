@@ -31,7 +31,7 @@ $(".fre_province_select button").bind('click', function(){
     id = $(this).data('special');
     console.log(data);
     $.ajax({
-        url: "/admin/fre_specials/"+id+"/add_province",
+        url: "/shop/fre_specials/"+id+"/add_province",
         data: { province: data },
         type: "POST"
     });

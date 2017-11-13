@@ -1,0 +1,8 @@
+$('form.product_image').parents(".ui-dialog").remove();
+var html = "<%= j(render('shop/products/images/form', remote: true)) %>";
+// 为了dialog有标题
+$(html).dialog({
+    modal: true,
+    width: '40%',
+    title: '商品图片'
+});

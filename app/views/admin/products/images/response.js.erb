@@ -1,6 +1,0 @@
-<% if @image.errors.blank? %>
-window.location.reload();
-<% else %>
-var html = "<%= j(render('admin/products/images/form', remote: true)) %>";
-$('form.product_image').replaceWith(html);
-<% end %>

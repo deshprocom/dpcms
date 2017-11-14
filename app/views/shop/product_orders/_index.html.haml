@@ -12,7 +12,7 @@
           %span 下单时间：
           %span= order.created_at
         %div{ class: 'last-column' }
-          %span= "合计：¥#{order.total_price} (含运费：¥#{order.shipping_price})："
+          %span= "合计：¥#{order.total_price} (含运费：¥#{order.shipping_price})"
       %div.order-table
         - items = order&.product_order_items
         %div.order-left
@@ -23,7 +23,7 @@
             %div 原始价格
             %div 实付价格
             %div 购买数量
-          - items.each_with_index do |item, index|
+          - items.each do |item|
             - variant = item&.variant
             %div.tr
               %div= variant&.product&.title
@@ -39,10 +39,13 @@
         %div.order-right
           %div.tr
             %div
-              = I18n.t("order.#{order.status}")
+              %span{ id: 'count_down', data:{ status: order.status, timestamp: order.created_at.to_i } }
+                = I18n.t("order.#{order.status}")
           %div.tr
             %div= link_to '查看', shop_product_order_path(order)
             %div= link_to '取消', cancel_order_shop_product_order_path(order), remote: true
+:javascript
+  window.onload = showCountDown(1800);
 
 
 

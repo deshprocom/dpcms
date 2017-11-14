@@ -1,6 +1,7 @@
 ActiveAdmin.register ProductOrder, namespace: :shop do
   config.breadcrumb = false
   PRODUCT_ORDER_STATUS = ProductOrder.statuses.keys
+  actions :all, except: [:new, :edit, :create, :destroy]
 
   scope :all, default: 'true'
   scope :unpaid
@@ -23,7 +24,16 @@ ActiveAdmin.register ProductOrder, namespace: :shop do
     redirect_back fallback_location: shop_product_orders_url
   end
 
+  member_action :delivered_order, method: :post do
+    resource.delivered!
+    render 'common/update_success'
+  end
+
   index download_links: false do
     render 'index'
+  end
+
+  show do
+    render 'show'
   end
 end

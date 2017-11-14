@@ -6,7 +6,7 @@
     attributes:
       product_order:
         user_id: '用户'
-        order_number: '编号'
+        order_number: '订单编号'
         name: '名称'
         status: '订单状态'
         pay_status: '支付状态'
@@ -18,6 +18,8 @@
         cancel_reason: '取消原因'
         created_at: '下单时间'
         updated_at: '更新时间'
+        user_user_uuid: '用户ID'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
       product_order_item:
         product_order_id: '所属订单'
         variant_id: '商品'

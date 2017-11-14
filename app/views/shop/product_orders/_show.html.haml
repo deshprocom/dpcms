@@ -55,6 +55,13 @@
           %span= "收货人：#{address&.name}"
           %span= "联系方式：#{address&.mobile}"
           %span= "收货地址：#{address&.full_address}"
+          - unless address.blank?
+            %span
+              - if address&.memo.blank?
+                = link_to '修改地址', change_address_shop_product_shipping_address_path(address), remote: true
+              - else
+                %span{style: "color: red"}
+                  = "备注：#{address.memo} (#{address.change_reason})"
 
 :javascript
   window.onload = showCountDown(1800);

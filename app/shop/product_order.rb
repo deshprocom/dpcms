@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ProductOrder, namespace: :shop do
   config.breadcrumb = false
   PRODUCT_ORDER_STATUS = ProductOrder.statuses.keys

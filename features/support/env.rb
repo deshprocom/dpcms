@@ -21,7 +21,7 @@ Capybara.register_driver :selenium_chrome do |app|
 end
 Capybara.register_driver :poltergeist do |app|
   options = {
-    js_errors: false,
+    js_errors: true,
     timeout:   120,
     debug:     false,
     phantomjs_options: ['--load-images=no', '--disk-cache=false'],

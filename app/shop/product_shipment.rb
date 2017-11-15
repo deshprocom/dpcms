@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ProductShipment, namespace: :shop do
   belongs_to :product_order
   menu false

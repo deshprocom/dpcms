@@ -8,11 +8,7 @@ ActiveAdmin.register ProductShipment, namespace: :shop do
     before_action :set_product_order, only: [:new, :create, :edit, :update]
 
     def new
-      if @product_order.product_shipment.blank?
-        @product_shipment = ProductShipment.new(product_order: @product_order)
-      else
-        render :repeat_error
-      end
+      @product_shipment = ProductShipment.new(product_order: @product_order)
     end
 
     def create
@@ -20,7 +16,7 @@ ActiveAdmin.register ProductShipment, namespace: :shop do
       update_params = product_shipment_params.merge!(shipping_company: shipping_company, product_order: @product_order)
       render :repeat_error unless @product_order.product_shipment.blank?
       @product_shipment = ProductShipment.new(update_params)
-      @product_order.shipped if @product_shipment.save
+      @product_order.delivered! if @product_shipment.save
     end
 
     def set_product_order

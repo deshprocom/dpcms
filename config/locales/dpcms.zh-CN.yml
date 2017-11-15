@@ -80,3 +80,7 @@
   product:
     entity: '实体商品'
     virtual: '虚拟商品'
+  express_code:
+    China:  '国内'
+    foreign: '国际'
+    transfer: '转运'

@@ -11,7 +11,9 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
     column :id
     column :name, sortable: false
     column :express_code
-    column :region
+    column :region do |express_code|
+      I18n.t("express_code.#{express_code.region}")
+    end
     column :published
     actions name: '操作', defaults: false do |express_code|
       str = express_code.published ? '关闭' : '开启'

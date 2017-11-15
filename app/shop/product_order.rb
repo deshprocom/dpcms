@@ -25,9 +25,8 @@ ActiveAdmin.register ProductOrder, namespace: :shop do
     redirect_back fallback_location: shop_product_orders_url
   end
 
-  member_action :delivered_order, method: :post do
-    resource.delivered!
-    render 'common/update_success'
+  member_action :shipping_detail, method: :get do
+    return render :shipping_detail
   end
 
   index download_links: false do

@@ -423,6 +423,7 @@
         name: '快递名称'
         express_code: '快递编码'
         region: '快递类型'
+        published: '开启'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

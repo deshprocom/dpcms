@@ -3,6 +3,7 @@
     models:
       product_order: '商品订单'
       product_order_item: '订单条目'
+      product_shipment: '快递管理'
     attributes:
       product_order:
         user_id: '用户'
@@ -26,6 +27,9 @@
         price: '价格'
         number: '数量'
         shipping_status: '发货状态'
+      product_shipment:
+        express_code_id: '快递公司'
+        shipping_number: '快递单号'
 
 
 

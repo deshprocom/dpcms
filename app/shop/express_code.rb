@@ -25,10 +25,4 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
     resource.toggle_status
     redirect_back fallback_location: shop_express_codes_url, notice: '修改成功'
   end
-
-  member_action :test, method: :get do
-    f = Freight.second
-    f.product_freight(1, '安徽省')
-    render plain: 'test'
-  end
 end

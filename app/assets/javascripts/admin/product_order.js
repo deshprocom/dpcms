@@ -12,7 +12,9 @@ function countDown(startTimestamps) {
     if (interval < 0) return "(00:00:00)";
     h = Math.floor(interval / 60 / 60 % 24);
     m = Math.floor(interval / 60 % 60);
+    m = m < 10 ? "0" + m : m;
     s = Math.floor(interval % 60);
+    s = s < 10 ? "0" + s : s;
     return '(' + h + ':' + m + ':' + s + ')';
 }
 

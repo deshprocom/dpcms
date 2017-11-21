@@ -19,4 +19,13 @@ namespace :batch_order do
     orders.each(&:completed!)
     puts 'complete_delivered_15_days end'
   end
+
+  desc '将商品订单15分钟未付款的订单，自动取消'
+  task cancel_product_unpaid_order_half_an_hour: :environment do
+    Rails.application.eager_load!
+    puts 'cancel_product_unpaid_order_half_an_hour start'
+    orders = ProductOrder.unpaid_half_an_hour
+    orders.map(&:cancel_order)
+    puts 'cancel_product_unpaid_order_half_an_hour end'
+  end
 end

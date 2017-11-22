@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ExpressCode, namespace: :shop do
   config.clear_action_items!
   config.batch_actions = false

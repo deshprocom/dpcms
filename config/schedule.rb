@@ -15,5 +15,5 @@ every :hour, at: '2:30am' do
 end
 
 every 1.minute do
-  rake 'batch_order: cancel_product_unpaid_order_half_an_hour'
+  rake 'batch_order:cancel_product_unpaid_order_half_an_hour'
 end

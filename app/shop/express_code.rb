@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register ExpressCode, namespace: :shop do
   config.clear_action_items!
   config.batch_actions = false
@@ -24,5 +25,13 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
   member_action :open_or_close, method: :post do
     resource.toggle_status
     redirect_back fallback_location: shop_express_codes_url, notice: '修改成功'
+  end
+
+  action_item :add, only: :index do
+    link_to '快递查询', express_search_shop_express_codes_path
+  end
+
+  collection_action :express_search, title: '快递查询', method: :get do
+    render 'express_search'
   end
 end

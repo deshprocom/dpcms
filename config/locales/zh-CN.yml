@@ -43,7 +43,7 @@
       race_tag: '标签管理'
       freight: '运费管理'
       fre_special: '运费区域管理'
-      express_code: '快递查询'
+      express_code: '快递管理'
     attributes:
       race_en:
         logo: "赛事英文图片"

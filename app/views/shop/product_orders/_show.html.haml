@@ -2,7 +2,7 @@
   %div.header
     %div
       %span 订单信息
-      %span{ id: 'count_down', data:{ status: resource.status, timestamp: resource.created_at.to_i } }
+      %span{ class: 'count_down', data:{ status: resource.status, timestamp: resource.created_at.to_i } }
         = "订单状态： #{I18n.t('order.' + resource.status)}"
         %span.multi-status
           - if resource.status.eql?('paid')

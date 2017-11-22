@@ -19,26 +19,15 @@ function countDown(startTimestamps) {
 }
 
 function showCountDown(validTime) {
-    var element = void 0,
-        status = void 0,
-        startTime = void 0,
-        timeStr = void 0,
-        countText = void 0;
-    element = document.getElementById('count_down');
-    status = element.getAttribute('data-status');
-    if (status != 'unpaid') return;
-    countText = document.getElementById('count-text');
-    if (countText != null) {
-        element.removeChild(countText);
-    }
-    startTime = element.getAttribute('data-timestamp');
-    timeStr = countDown(startTime, validTime);
-    var spanNode = document.createElement('span');
-    var textNode = document.createTextNode(timeStr);
-    spanNode.appendChild(textNode);
-    element.appendChild(spanNode);
-    spanNode.setAttribute('id', 'count-text');
-    setInterval(showCountDown, 1000, validTime);
+    $('.count_down').each(function(){
+        if ($(this).data('status') != 'unpaid') return;
+        if ($(this).children('.on') != null) {
+            $(this).children('.on').remove();
+        }
+        var timeStr = countDown($(this).data('timestamp'), validTime);
+        $(this).append("<span class='on'>"+timeStr+"</span>");
+        setInterval(showCountDown, 1000, validTime);
+    });
 }
 
 /**

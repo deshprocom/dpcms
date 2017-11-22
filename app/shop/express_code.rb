@@ -25,4 +25,12 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
     resource.toggle_status
     redirect_back fallback_location: shop_express_codes_url, notice: '修改成功'
   end
+
+  action_item :add, only: :index do
+    link_to '快递查询', express_search_shop_express_codes_path
+  end
+
+  collection_action :express_search, title: '快递查询', method: :get do
+    render 'express_search'
+  end
 end

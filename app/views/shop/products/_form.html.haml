@@ -8,6 +8,8 @@
       = f.select 'root_category', roots_collection, prompt: '主分类',
                                   selected: category_parent&.id
       = f.select 'category_id', children_conllection || [], prompt: '子分类'
+      - @product.errors[:category].each do |err|
+        %p.inline-errors=err
     = f.input :title
     = f.input :published
     = f.input :recommended

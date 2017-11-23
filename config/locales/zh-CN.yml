@@ -238,6 +238,7 @@
         updated_at: '更新日期'
         is_show: '中文'
         en_is_show: '英文'
+        race_tag_name: '标签'
       headline:
         title: '头条标题'
         source_type: '来源类型'
@@ -283,6 +284,7 @@
         published: '发布'
         created_at: "创建时间"
         updated_at: "更新时间"
+        race_tag_name: '标签'
       video_type:
         name: '名称'
         level: '级别'
@@ -425,6 +427,8 @@
         express_code: '快递编码'
         region: '快递类型'
         published: '开启'
+        phone: '官方电话'
+        site: '官网完整地址'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

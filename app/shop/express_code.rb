@@ -4,6 +4,7 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
   config.batch_actions = false
   config.sort_order = 'published_desc'
   menu priority: 19, parent: '运费管理'
+  permit_params :phone, :site
 
   filter :name
   filter :express_code
@@ -15,6 +16,8 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
     column :region do |express_code|
       I18n.t("express_code.#{express_code.region}")
     end
+    column(:phone) { |i| best_in_place i, :phone, as: 'input', url: [:shop, i] }
+    column(:site) { |i| best_in_place i, :phone, as: 'input', url: [:shop, i] }
     column :published
     actions name: '操作', defaults: false do |express_code|
       str = express_code.published ? '关闭' : '开启'

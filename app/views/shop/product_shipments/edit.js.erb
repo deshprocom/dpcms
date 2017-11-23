@@ -1,7 +1,7 @@
 $('.product_shipment').parents(".ui-dialog").remove();
-var html = "<%= j(render('new', remote: true)) %>";
+var html = "<%= j(render('edit', remote: true)) %>";
 $(html).dialog({
     modal: true,
     width: '40%',
-    title: '发货'
+    title: '修改发货'
 });

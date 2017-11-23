@@ -19,6 +19,7 @@ ActiveAdmin.register Video do
   filter :published
   filter :top
   filter :video_type_id, as: :select, collection: FILTER_VIDEO_TYPE
+  filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
 
   config.sort_order = ''
 

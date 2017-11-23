@@ -52,7 +52,7 @@ ActiveAdmin.register PurchaseOrder do
     end
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
-      item '取消', change_status_admin_purchase_order_path(order, change_status: 'canceled'),
+      item '取消', cancel_order_admin_purchase_order_path(order),
            data: { confirm: '确定取消吗？' }, method: :post
     end
   end
@@ -91,6 +91,11 @@ ActiveAdmin.register PurchaseOrder do
     else
       render 'refresh_order'
     end
+  end
+
+  member_action :cancel_order, method: :post do
+    Services::Orders::CancelOrderService.call(resource)
+    redirect_to action: 'index'
   end
 
   member_action :change_price, method: :post do

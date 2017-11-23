@@ -52,7 +52,7 @@ ActiveAdmin.register PurchaseOrder do
     end
     actions name: '操作', defaults: false do |order|
       item '编辑', edit_admin_purchase_order_path(order), class: 'member_link'
-      item '取消', cancel_order_admin_purchase_order_path(order),
+      item '取消', change_status_admin_purchase_order_path(order, change_status: 'canceled'),
            data: { confirm: '确定取消吗？' }, method: :post
     end
   end
@@ -78,7 +78,11 @@ ActiveAdmin.register PurchaseOrder do
                end
     content = format(template, resource.order_number)
     return redirect_to(action: 'index') if old_status.eql? change_status
-    resource.update!(status: change_status)
+    if change_status.eql? 'canceled'
+      Services::Orders::CancelOrderService.call(resource)
+    else
+      resource.update!(status: change_status)
+    end
     # 记录操作日志
     Services::SysLog.call(current_admin_user, resource, 'change',
                           "订单状态被修改：#{I18n.t("order.#{old_status}")} -> #{I18n.t("order.#{change_status}")}")
@@ -91,11 +95,6 @@ ActiveAdmin.register PurchaseOrder do
     else
       render 'refresh_order'
     end
-  end
-
-  member_action :cancel_order, method: :post do
-    Services::Orders::CancelOrderService.call(resource)
-    redirect_to action: 'index'
   end
 
   member_action :change_price, method: :post do

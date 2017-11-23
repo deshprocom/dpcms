@@ -10,7 +10,7 @@ ActiveAdmin.register Product, namespace: :shop do
   filter :by_root_category_in, label: '主类别', as: :select, collection: Category.roots_collection
 
   permit_params :title, :icon, :description, :product_type, :category_id,
-                :published, :freight_id, :freight_free,
+                :published, :freight_id, :freight_free, :seven_days_return,
                 master_attributes: [:original_price, :price, :stock,
                                     :volume, :origin_point, :weight]
 

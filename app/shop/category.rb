@@ -57,9 +57,9 @@ ActiveAdmin.register Category, namespace: :shop do
 
     def deletable?
       @category = Category.find(params[:id])
-      return if @category.children_count.zero?
+      return if @category.children_count.zero? && @category.products.count.zero?
 
-      flash[:error] = '该类别下有子分类，不允许删除'
+      flash[:error] = '该类别下有子分类或者商品，不允许删除'
       redirect_back fallback_location: shop_categories_url
     end
   end

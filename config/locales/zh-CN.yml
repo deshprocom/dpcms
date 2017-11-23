@@ -43,7 +43,7 @@
       race_tag: '标签管理'
       freight: '运费管理'
       fre_special: '运费区域管理'
-      express_code: '快递查询'
+      express_code: '快递管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -424,6 +424,7 @@
         name: '快递名称'
         express_code: '快递编码'
         region: '快递类型'
+        published: '开启'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

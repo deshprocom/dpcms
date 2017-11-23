@@ -10,6 +10,8 @@
       delivered: '已发货'
       completed: '已完成'
       canceled: '已取消'
+      returning: '退货中'
+      returned: '已退货'
       chinese_id: '身份证'
       passport_id: '护照'
       trade_success: '交易成功'

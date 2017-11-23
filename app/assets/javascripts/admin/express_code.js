@@ -77,6 +77,7 @@
         };
         this.excuteProcess = function () {
             var targetContainer = document.getElementById(this.param.container);
+            console.log(targetContainer);
             if (!targetContainer) {
                 console.error("请传入一个容器div");
                 return false
@@ -85,6 +86,7 @@
             targetContainer.style.height = "810px";
             targetContainer.style.margin = "0px auto";
             var iframeHtml = "<iframe frameborder='0' width='1012' height='780' scrolling='auto' src='" + kdnOptions.baseUrl + "SearchTrack.aspx'></iframe>";
+            console.log(targetContainer.innerHTML);
             targetContainer.innerHTML = iframeHtml
         }
     }
@@ -196,5 +198,5 @@
             w.validateOptions().runer()
         }
     };
-    this.KDNWidget = api
+    window.KDNWidget = api
 })();

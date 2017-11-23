@@ -426,6 +426,8 @@
         express_code: '快递编码'
         region: '快递类型'
         published: '开启'
+        phone: '官方电话'
+        site: '官网完整地址'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

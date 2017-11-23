@@ -74,6 +74,7 @@
         freight_free: "是否免运费"
         product_type: "商品类型"
         published: "是否上架"
+        seven_days_return: "支持7天退货"
         recommended: "是否推荐"
         description: "商品描述"
       variant:

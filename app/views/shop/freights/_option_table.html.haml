@@ -1,5 +1,5 @@
 - def default_temp(obj, field)
-  - best_in_place obj, :"#{field}", as: 'input', url: [:shop, obj]
+  - best_in_place obj, :"#{field}", as: 'input', place_holder: '点我添加', url: [:shop, obj]
 - diff_en = resource.id.eql?(1) ? 'kg' : (resource.id.eql?(2) ? '件' : 'm²')
 - diff_zh = resource.id.eql?(1) ? '重' : (resource.id.eql?(2) ? '件' : '体积')
 %div

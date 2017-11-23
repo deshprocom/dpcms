@@ -16,8 +16,8 @@ ActiveAdmin.register ExpressCode, namespace: :shop do
     column :region do |express_code|
       I18n.t("express_code.#{express_code.region}")
     end
-    column(:phone) { |i| best_in_place i, :phone, as: 'input', url: [:shop, i] }
-    column(:site) { |i| best_in_place i, :phone, as: 'input', url: [:shop, i] }
+    column(:phone) { |i| best_in_place i, :phone, as: 'input', place_holder: '点我添加', url: [:shop, i] }
+    column(:site) { |i| best_in_place i, :phone, as: 'input', place_holder: '点我添加', url: [:shop, i] }
     column :published
     actions name: '操作', defaults: false do |express_code|
       str = express_code.published ? '关闭' : '开启'

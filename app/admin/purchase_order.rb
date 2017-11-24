@@ -78,7 +78,11 @@ ActiveAdmin.register PurchaseOrder do
                end
     content = format(template, resource.order_number)
     return redirect_to(action: 'index') if old_status.eql? change_status
-    resource.update!(status: change_status)
+    if change_status.eql? 'canceled'
+      Services::Orders::CancelOrderService.call(resource)
+    else
+      resource.update!(status: change_status)
+    end
     # 记录操作日志
     Services::SysLog.call(current_admin_user, resource, 'change',
                           "订单状态被修改：#{I18n.t("order.#{old_status}")} -> #{I18n.t("order.#{change_status}")}")

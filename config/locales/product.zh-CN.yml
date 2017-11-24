@@ -1,0 +1,36 @@
+"zh-CN":
+  activerecord:
+    models:
+      product_order: '商品订单'
+      product_order_item: '订单条目'
+      product_shipment: '快递管理'
+    attributes:
+      product_order:
+        user_id: '用户'
+        order_number: '订单编号'
+        name: '名称'
+        status: '订单状态'
+        pay_status: '支付状态'
+        shipping_status: '发货状态'
+        shipping_price: '运费'
+        total_product_price: '商品总价'
+        total_price: '订单总价'
+        cancelled_at: '取消时间'
+        cancel_reason: '取消原因'
+        created_at: '下单时间'
+        updated_at: '更新时间'
+        user_user_uuid: '用户ID'
+        user_email_or_user_mobile: '用户账户(手机或邮箱)'
+      product_order_item:
+        product_order_id: '所属订单'
+        variant_id: '商品'
+        price: '价格'
+        number: '数量'
+        shipping_status: '发货状态'
+      product_shipment:
+        express_code_id: '快递公司'
+        shipping_number: '快递单号'
+
+
+
+

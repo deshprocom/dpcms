@@ -6,9 +6,16 @@ context.instance_eval do
     video_tag(video.video_link, controls: true, preload: 'none', height: 200) if video.video_link.present?
   end
   column :video_type_id, sortable: false
+  column :race_tag_id, sortable: false
   column :is_main
   column :video_group do |resource|
     resource.video_group
+  end
+  column :is_show, sortable: false do |video|
+    video&.is_show ? '√' : '×'
+  end
+  column :en_is_show, sortable: false do |video|
+    video.video_en&.is_show ? '√' : '×'
   end
   column :top
   column :published

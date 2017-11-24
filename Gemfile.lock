@@ -17,6 +17,14 @@ GIT
       sass-rails
       sprockets (< 4.1)
 
+GIT
+  remote: https://github.com/bernat/best_in_place.git
+  revision: 1b779e60ea912ab9c39d5c999b00c8ac44a8e535
+  specs:
+    best_in_place (3.1.1)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
+
 GEM
   remote: https://gems.ruby-china.org/
   specs:
@@ -67,6 +75,8 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.5.3)
       execjs
+    awesome_nested_set (3.1.3)
+      activerecord (>= 4.0.0, < 5.2)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
@@ -161,9 +171,13 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    fancybox2-rails (0.2.7)
+      railties (>= 3.1.0)
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.17)
+    font-awesome-rails (4.7.0.2)
+      railties (>= 3.2, < 5.2)
     formtastic (3.1.4)
       actionpack (>= 3.2.13)
     formtastic_i18n (0.6.0)
@@ -216,6 +230,7 @@ GEM
       activerecord
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
+    kuaidiniao (0.1.0)
     leaderboard (3.12.1)
       redis
     listen (3.0.8)
@@ -316,6 +331,7 @@ GEM
       redis-store (>= 1.2, < 2)
     redis-store (1.3.0)
       redis (>= 2.2)
+    remotipart (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     resque (1.26.0)
@@ -432,6 +448,8 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin!
+  awesome_nested_set
+  best_in_place!
   bootstrap-sass (~> 3.3)
   byebug
   capistrano (~> 3.6)
@@ -448,7 +466,9 @@ DEPENDENCIES
   devise
   dotenv-rails
   factory_girl_rails
+  fancybox2-rails
   faraday (~> 0.11.0)
+  font-awesome-rails
   haml
   image_optim
   image_optim_pack
@@ -456,6 +476,7 @@ DEPENDENCIES
   jpush (~> 4.0, >= 4.0.6)
   jquery-rails
   jquery-ui-rails
+  kuaidiniao
   leaderboard
   listen (~> 3.0.5)
   mini_magick
@@ -466,11 +487,12 @@ DEPENDENCIES
   rails-i18n
   redcarpet
   redis-rails (~> 5.0, >= 5.0.2)
+  remotipart
   resque
   roo
   roo-xls
   rspec-rails
-  rubocop
+  rubocop (= 0.46.0)
   sass-rails (~> 5.0)
   second_level_cache (~> 2.3.0)
   selenium-webdriver

@@ -15,4 +15,4 @@
         = form.input :filename, as: :attachment, required: true,
                                 hint: '图片最大为 2MB',
                                 image: proc { |o| o.preview }
-    = f.submit
+    = f.submit data: { disable_with: '请稍等...' }

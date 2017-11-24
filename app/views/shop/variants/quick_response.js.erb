@@ -2,5 +2,6 @@
 var html = "<%= escape_javascript(render 'layouts/error_messages', object: @variant) %>";
 $('#quick-errors').html(html);
 <% else %>
+$.fancybox.close();
 window.location.reload();
 <% end %>

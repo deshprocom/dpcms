@@ -2,6 +2,7 @@
 ActiveAdmin.register ProductOrder, namespace: :shop do
   config.breadcrumb = false
   PRODUCT_ORDER_STATUS = ProductOrder.statuses.keys
+  menu priority: 3, parent: '订单管理'
   actions :all, except: [:new, :edit, :create, :destroy]
 
   scope :all, default: 'true'

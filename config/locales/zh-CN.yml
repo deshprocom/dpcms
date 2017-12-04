@@ -32,6 +32,7 @@
       feedback: '意见反馈'
       bill: '易联支付'
       wx_bill: '微信支付'
+      product_wx_bill: '微信账单'
       weixin_user: '微信用户'
       test_user: '测试用户'
       sms_log: '短信日志'
@@ -342,6 +343,20 @@
         ticket_name: '票务名称'
       wx_bill:
         ticket_name: '票务名称'
+        bank_type: '付款银行'
+        cash_fee: '现金支付金额(元)'
+        fee_type: '货币类型'
+        out_trade_no: '订单编号'
+        time_end: '支付时间'
+        total_fee: '付款金额(元)'
+        transaction_id: '交易流水号'
+        trade_type: '交易方式'
+        result_code: '交易状态码'
+        return_code: '交易信息'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        open_id: '微信ID'
+      product_wx_bill:
         bank_type: '付款银行'
         cash_fee: '现金支付金额(元)'
         fee_type: '货币类型'

@@ -7,7 +7,7 @@ module Serviceable
     end
   end
 
-  def error_result(error_code)
-    ApiResult.error_result(error_code)
+  def error_result(error_code, msg = nil)
+    ApiResult.error_result(error_code, msg)
   end
 end

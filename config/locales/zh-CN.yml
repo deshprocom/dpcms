@@ -2,6 +2,7 @@
   activerecord:
     models:
       product: "商品"
+      product_refund: "商品退款列表"
       variant: "商品规格组合"
       option_type: "规格"
       option_value: "规格值"
@@ -91,6 +92,11 @@
       option_value:
         name: "名称"
         option_type: "规格名"
+      product_refund:
+        refund_number: "退款编号"
+        status: "退款状态"
+        refund_price: "退款金额"
+        admin_memo: "审核备注"
       race:
         name: "赛事标题"
         logo: "赛事图片"

@@ -1,4 +1,4 @@
-  # rubocop:disable Metrics/BlockLength
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register WxBill do
   menu priority: 4, parent: '订单管理'
   config.batch_actions = false

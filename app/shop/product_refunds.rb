@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 PRODUCT_REFUND_STATES = ProductRefund.statuses.keys
 TRANS_REFUND_STATES = PRODUCT_REFUND_STATES.collect { |d| [I18n.t("product_refund.#{d}"), d] }
 ActiveAdmin.register ProductRefund, namespace: :shop do

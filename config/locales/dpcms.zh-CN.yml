@@ -85,6 +85,10 @@
   product:
     entity: '实体商品'
     virtual: '虚拟商品'
+  product_refund:
+    open: '待审核'
+    close: '拒绝退款'
+    completed: '成功退款'
   express_code:
     China:  '国内'
     foreign: '国际'

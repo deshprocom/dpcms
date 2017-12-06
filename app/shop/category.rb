@@ -5,6 +5,7 @@ ActiveAdmin.register Category, namespace: :shop do
   config.breadcrumb = false
   config.paginate = false
   actions :all, except: :index
+  menu priority: 1
 
   permit_params :name, :image, :parent_id
   form do |f|

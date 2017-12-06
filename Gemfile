@@ -62,7 +62,10 @@ gem 'jpush', '~> 4.0', '>= 4.0.6'
 
 gem 'best_in_place', github: 'bernat/best_in_place'
 gem 'kuaidiniao'
-gem "font-awesome-rails"
+gem 'font-awesome-rails'
+
+# 微信支付
+gem 'wx_pay'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

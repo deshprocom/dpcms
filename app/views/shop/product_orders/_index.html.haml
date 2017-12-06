@@ -22,7 +22,7 @@
             %div 商品图片
             %div 商品价格
             %div 购买数量
-            %div 其他
+            %div &nbsp;
           - items.each do |item|
             - variant = item&.variant
             %div.tr
@@ -36,7 +36,8 @@
               %div
                 <s class="red">#{item.original_price}</s> #{item.price}
               %div= item.number
-              %div= I18n.t("refund.#{item.refund_status}")
+              %div
+                <b class="blue">#{I18n.t("refund.#{item.refund_status}")}</b>
         %div.order-right
           %div.tr
             %div

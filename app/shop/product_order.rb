@@ -8,8 +8,6 @@ ActiveAdmin.register ProductOrder, namespace: :shop do
   scope :unpaid
   scope :paid
   scope :delivered
-  scope :returning
-  scope :returned
   scope :completed
   scope :canceled
 

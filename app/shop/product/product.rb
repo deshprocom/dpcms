@@ -4,6 +4,8 @@ TRANS_PRODUCT_TYPES = PRODUCT_TYPES.collect { |d| [I18n.t("product.#{d}"), d] }
 ActiveAdmin.register Product, namespace: :shop do
   config.batch_actions = false
   config.sort_order = 'published_desc'
+  menu priority: 2
+
   filter :title
   filter :published
   filter :recommended

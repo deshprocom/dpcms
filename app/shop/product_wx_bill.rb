@@ -6,7 +6,7 @@ ActiveAdmin.register ProductWxBill, namespace: :shop do
   index do
     id_column
     column :用户 do |bill|
-      bill.product_order.user_extra&.real_name
+      bill.product_order.user.nick_name
     end
     column :out_trade_no
     column :open_id, sortable: false

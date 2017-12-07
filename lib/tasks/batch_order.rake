@@ -28,4 +28,13 @@ namespace :batch_order do
     orders.map(&:cancel_order)
     puts 'cancel_product_unpaid_order_half_an_hour end'
   end
+
+  desc '将已发货15天，但未确认收货的商品订单修改为 已完成'
+  task product_order_complete_delivered_15_days: :environment do
+    Rails.application.eager_load!
+    puts 'product_order_complete_delivered_15_days start'
+    orders = ProductOrder.delivered_15_days
+    orders.each(&:completed!)
+    puts 'product_order_complete_delivered_15_days end'
+  end
 end

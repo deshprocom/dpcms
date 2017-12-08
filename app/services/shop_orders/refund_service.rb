@@ -22,7 +22,17 @@ module Services
         end
 
         @refund.complete_all!
+        restock_when_undelivered
         ApiResult.success_result
+      end
+
+      # 未发货的时候，恢复库存
+      def restock_when_undelivered
+        return unless @refund.product_order.product_shipment.nil?
+
+        @refund.product_refund_details.each do |item|
+          item.product_order_item.variant.increase_stock(item.product_order_item.number)
+        end
       end
 
       private

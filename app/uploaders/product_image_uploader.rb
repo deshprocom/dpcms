@@ -1,5 +1,5 @@
 class ProductImageUploader < BaseUploader
-  process resize_to_limit: [1080, nil]
+  process :crop
 
   def store_dir
     "uploads/products/#{model.viewable_type}/#{model.viewable_id}"

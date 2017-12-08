@@ -13,7 +13,7 @@ ActiveAdmin.register Variant, namespace: :shop do
   end
 
   permit_params :price, :original_price, :stock,
-                image_attributes: [:filename]
+                image_attributes: [:crop_x, :crop_y, :crop_w, :crop_h, :filename]
 
   controller do
     before_action :set_product, only: [:index, :quick_edit]

@@ -18,7 +18,7 @@ ActiveAdmin.register ProductImage, as: 'images', namespace: :shop do
     product_sidebar_generator(self)
   end
 
-  permit_params :filename
+  permit_params :crop_x, :crop_y, :crop_w, :crop_h, :filename
 
   index title: '图片管理', download_links: false do
     render 'shop/products/images/index', context: self

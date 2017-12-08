@@ -20,9 +20,9 @@
             %div 商品名称
             %div 所属分类
             %div 商品图片
-            %div 原始价格
-            %div 实付价格
+            %div 商品价格
             %div 购买数量
+            %div &nbsp;
           - items.each do |item|
             - variant = item&.variant
             %div.tr
@@ -33,9 +33,11 @@
                   = link_to image_tag(variant.image.preview), variant.image.preview, target: '_blank'
                 - else
                   %span
-              %div= item.original_price
-              %div= item.price
+              %div
+                <s class="red">#{item.original_price}</s> #{item.price}
               %div= item.number
+              %div
+                <b>#{I18n.t("refund.#{item.refund_status}")}</b>
         %div.order-right
           %div.tr
             %div

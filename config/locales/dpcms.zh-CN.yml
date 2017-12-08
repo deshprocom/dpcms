@@ -39,6 +39,11 @@
     delivered: '已发货'
     completed: '已完成'
     canceled: '已取消'
+  refund:
+    none: ''
+    open: '退款中'
+    close: '退款失败'
+    completed: '退款完成'
   coupon_type:
     no_discount: '无优惠'
     rebate: '折扣'
@@ -80,6 +85,10 @@
   product:
     entity: '实体商品'
     virtual: '虚拟商品'
+  product_refund:
+    open: '待审核'
+    close: '拒绝退款'
+    completed: '成功退款'
   express_code:
     China:  '国内'
     foreign: '国际'

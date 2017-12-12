@@ -72,4 +72,8 @@ ActiveAdmin.register RaceSchedule do
       @race_schedule = @race.race_schedules.find(params[:id])
     end
   end
+
+  action_item :memo, only: :index do
+    link_to '编辑备注', edit_schedule_admin_race_race_extras_path(race), target: '_blank'
+  end
 end

@@ -84,6 +84,10 @@ ActiveAdmin.register RaceBlind do
     link_to '批量导入', import_admin_race_race_blinds_path(race), remote: true
   end
 
+  action_item :memo, only: :index do
+    link_to '编辑备注', edit_blind_admin_race_race_extras_path(race), target: '_blank'
+  end
+
   collection_action :import, method: [:get, :post] do
     @race = Race.find(params[:race_id])
     return render :import unless request.post?

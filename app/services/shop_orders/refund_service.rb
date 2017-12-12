@@ -31,7 +31,11 @@ module Services
         return unless @refund.product_order.product_shipment.nil?
 
         @refund.product_refund_details.each do |item|
-          item.product_order_item.variant.increase_stock(item.product_order_item.number)
+          variant = item.product_order_item.variant
+          variant.increase_stock(item.product_order_item.number)
+          next if variant.is_master?
+
+          variant.product.master.increase_stock(item.product_order_item.number)
         end
       end
 

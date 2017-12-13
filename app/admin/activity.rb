@@ -1,13 +1,16 @@
 # rubocop:disable Metrics/BlockLength
+AC_PUSH_TYPES = Activity.push_types.keys
+TRANS_AC_PUSH_TYPES = AC_PUSH_TYPES.collect { |d| [I18n.t("activity.#{d}"), d] }
 ActiveAdmin.register Activity do
   config.batch_actions = false
   config.filters = false
   config.sort_order = 'pushed_desc'
 
-  permit_params :title, :pushed_img, :banner, :description, :activity_time, :link, :tag
+  permit_params :title, :pushed_img, :banner, :description, :activity_time,
+                :link, :tag, :push_type, :start_push, :end_push,
+                activity_en_attributes: [:title, :pushed_img, :banner, :description, :link, :tag]
 
   form partial: 'form'
-
   index do
     render 'index', context: self
   end

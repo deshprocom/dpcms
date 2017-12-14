@@ -16,7 +16,7 @@ ActiveAdmin.register HotInfo do
   controller do
     def create
       position = HotInfo.default_order.first.position - 2
-      position = position > 0 ? 0 : position
+      position = position.negative? ? 0 : position
       merge_params = { position: position, source_type: hot_info_params[:source_type].classify }
       @hot_info = HotInfo.new hot_info_params.merge(merge_params)
 

@@ -18,6 +18,11 @@ ActiveAdmin.register Variant, namespace: :shop do
   controller do
     before_action :set_product, only: [:index, :quick_edit]
     before_action :set_variant, only: [:quick_edit, :quick_update, :update]
+    after_action :update_all_stock, only: [:update]
+
+    def update_all_stock
+      @variant.product.recount_all_stock
+    end
 
     def update
       @variant.update(permitted_params[:variant])
@@ -42,6 +47,7 @@ ActiveAdmin.register Variant, namespace: :shop do
 
   member_action :quick_update, method: :patch do
     @variant.update(permitted_params[:variant])
+    @variant.product.recount_all_stock
     render 'quick_response', layout: false
   end
 end

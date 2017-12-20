@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Comment do
   menu priority: 24
   config.breadcrumb = false

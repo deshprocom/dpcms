@@ -62,6 +62,9 @@
   user:
     basic: '普通'
     banned: '禁用'
+  topic:
+    info: '资讯'
+    video: '视频'
 
   player:
     list: '牌手管理'

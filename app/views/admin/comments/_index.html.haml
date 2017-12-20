@@ -1,0 +1,62 @@
+%div.user-comment
+  %div.comment-header
+  %div.comment-main
+    - @comments.each do |comment|
+      %div.comment-body
+        %div
+          %span= comment.id
+        %div
+          %div.u-left
+            %span= image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
+          %div.u-right
+            %div
+              %span= comment.user.nick_name
+            %div
+              %span= comment.body
+        %div
+          %span= I18n.t("topic.#{comment.topic_type.downcase}")
+        %div
+          %span= comment.topic.title
+        %div
+          %span= comment.created_at
+        %div
+          %span
+            - if comment.recommended
+              %span.color-blue 已精选
+            - else
+              %span 未精选
+        %div
+          %span
+            - if comment.recommended
+              = link_to '移除精选', delete_recommend_admin_comment_path(comment), method: 'post', data: { confirm: '确定吗？' }
+            - else
+              = link_to '加入精选', add_recommend_admin_comment_path(comment), method: 'post', data: { confirm: '确定吗？' }
+          %span
+            = link_to '删除', delete_comment_admin_comment_path(comment), remote: true
+
+          %span 回复
+      %div.reply-container
+        - comment.replies.each do |reply|
+          %div.reply-body
+            %div{class: 'reply-body-left'}
+            %div{class: 'reply-body-right'}
+              %div
+                %div.u-left
+                  %span= image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
+                %div.u-right
+                  %div
+                    - if reply.reply
+                      %span #{reply.user.nick_name}
+                      %div
+                        %span 回复#{reply.reply.user.nick_name}: #{reply.body}
+                    -else
+                      %span= reply.user.nick_name
+                      %div
+                        %span= reply.body
+              %div
+              %div
+                %span= comment.created_at
+              %div
+                %span
+                  = link_to '删除', delete_reply_admin_reply_path(reply), remote: true
+                %span 回复

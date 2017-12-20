@@ -1,4 +1,5 @@
 ActiveAdmin.register Comment do
+  menu priority: 24
   config.breadcrumb = false
 
   filter :user_nick_name_or_replies_user_nick_name, as: :string

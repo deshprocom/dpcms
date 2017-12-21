@@ -88,6 +88,27 @@ ActiveAdmin.register User do
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
   end
 
+  # 查看用户资料
+  member_action :user_profile, method: [:get] do
+    render :user_profile
+  end
+
+  member_action :block_user, method: [:post] do
+    resource.blocked!
+    render 'common/update_success'
+  end
+
+  member_action :unblock_user, method: [:post] do
+    resource.unblocked!
+    render 'common/update_success'
+  end
+
+  member_action :silence_user, method: [:get, :post] do
+    return render :silence unless request.post?
+    resource.silenced!(params[:silence_reason], params[:silence_till])
+    render 'silence_success'
+  end
+
   action_item :user_extras, only: :index do
     link_to '实名列表', admin_user_extras_path
   end

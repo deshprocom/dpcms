@@ -1,4 +1,5 @@
 # rubocop:disable Metrics/BlockLength
+RACE_TAG_LIST = RaceTag.all
 ActiveAdmin.register Info do
   menu priority: 3, parent: '资讯管理', label: '资讯列表'
   SOURCE_TYPE = %w(source author).collect { |d| [I18n.t("info.#{d}"), d] }
@@ -10,8 +11,6 @@ ActiveAdmin.register Info do
     type_name = type.published ? type.name + ' [已发布]' : type.name
     [type_name, type.id]
   end
-
-  RACE_TAG_LIST = RaceTag.all
 
   filter :title
   filter :source_type, as: :select, collection: SOURCE_TYPE

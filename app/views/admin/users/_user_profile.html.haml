@@ -32,7 +32,7 @@
 
     %div.register_date
       %div
-        %span 于#{resource.reg_date.strftime('%Y-%m-%d')}注册
+        %span 于#{resource.reg_date&.strftime('%Y-%m-%d')}注册
       %div
         - if resource.silenced?
           %span.color-red 用户已禁言，解禁时间：#{resource.silence_till.strftime('%Y-%m-%d')}

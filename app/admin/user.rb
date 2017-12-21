@@ -2,7 +2,7 @@
 ActiveAdmin.register User do
   menu priority: 1, parent: '用户管理', label: 'app用户'
 
-  permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
+  permit_params :nick_name, :password, :password_confirmation, :email, :tag, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]

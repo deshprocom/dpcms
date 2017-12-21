@@ -2,6 +2,7 @@
 ActiveAdmin.register Comment do
   menu priority: 24
   config.breadcrumb = false
+  actions :all, except: [:new]
 
   filter :user_nick_name_or_replies_user_nick_name, as: :string
   filter :topic_type

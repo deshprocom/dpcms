@@ -253,6 +253,9 @@
         is_show: '中文'
         en_is_show: '英文'
         race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        total_views: '浏览量'
       headline:
         title: '头条标题'
         source_type: '来源类型'
@@ -299,6 +302,9 @@
         created_at: "创建时间"
         updated_at: "更新时间"
         race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        total_views: '浏览量'
       video_type:
         name: '名称'
         level: '级别'

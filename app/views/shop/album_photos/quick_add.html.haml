@@ -10,5 +10,6 @@
         = f.input :album, prompt: true
       = f.input :image, as: :attachment,
                         hint: '图片最大为 2MB',
+                        input_html: {multiple: 'multiple'},
                         image: proc { |o| o.preview_image }
     = f.submit data: { disable_with: '请稍等...' }

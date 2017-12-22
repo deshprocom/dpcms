@@ -29,8 +29,10 @@ ActiveAdmin.register AlbumPhoto, namespace: :shop do
   end
 
   collection_action :quick_create, method: :post do
-    @photo = AlbumPhoto.new(permitted_params[:album_photo])
-    @photo.save
+    params[:album_photo][:image].each do |img|
+      @photo = AlbumPhoto.new(image: img, album_id: params[:album_photo][:album_id])
+      @photo.save
+    end
     render 'quick_response', layout: false
   end
 end

@@ -3,7 +3,11 @@
     %div.user_info
       %div.basic
         %div.u-left
-          %span= image_tag(resource.avatar_path, height: 70, class: 'img-circle')
+          %span
+            - if resource.avatar_path.present?
+              = image_tag(resource.avatar_path, height: 70, class: 'img-circle')
+            - else
+              %div{ class: 'default_user_avatar' }
         %div.u-right
           %div
             %span 昵称：

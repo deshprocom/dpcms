@@ -9,3 +9,8 @@
 .color-red {
     color: red;
 }
+
+.default_user_avatar{
+    width: 60px;
+    height: 60px;
+}

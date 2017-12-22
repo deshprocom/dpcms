@@ -14,11 +14,14 @@
           %div
             %span 备注：
             %span #{resource.mark}
-            %span
-              = link_to '🆚'
-          %div
-            %span 标签：
-            %span 职业排手
+          %div.dynamic_tags
+            = render 'dynamic_tags'
+          -#%div
+          -#  %span 标签:
+          -#  - resource.user_tags.each do |tag|
+          -#    %span.color-blue #{tag.name}
+          -#  %span
+          -#    = link_to '修改️', add_tag_admin_user_path(resource), remote: true
       %div.dynamic
         %span= link_to '查看动态'
       %div.bottom

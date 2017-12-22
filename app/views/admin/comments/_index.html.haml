@@ -11,7 +11,7 @@
               - if comment.user.avatar_path.present?
                 = image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
               - else
-                %div{ class: 'default_user_avatar' }
+                %div{ class: 'default_user_avatar' } 头像
           %div.u-right
             %div
               %span= comment.user.nick_name
@@ -50,7 +50,7 @@
                     - if reply.user.avatar_path.present?
                       = image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
                     - else
-                      %div{ class: 'default_user_avatar' }
+                      %div{ class: 'default_user_avatar' } 头像
                 %div.u-right
                   %div
                     - if reply.reply

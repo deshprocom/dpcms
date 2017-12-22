@@ -19,7 +19,13 @@
     = f.input :product_type, as: :select, collection: TRANS_PRODUCT_TYPES, prompt: true
     %li
       %label 图片剪裁
-      %div= image_tag('', id: 'cropbox')
+      %div
+        = image_tag('', id: 'cropbox')
+    %li
+      %label &nbsp;
+      %div
+        %span= link_to '从相册中选择', shop_album_photos_path, class: 'action', remote: true
+    = hidden_field_tag :remote_img_url
     = f.input :icon, as: :attachment,
                         hint: '图片最大为 2MB',
                         image: proc { |o| o.preview_icon }
@@ -50,5 +56,6 @@
             $('#product_category_id').html(options);
           });
         });
-        DpCropper.call($('#product_icon'), $('#cropbox'), { aspectRatio: 184/178 });
+        var cropper_options = { aspectRatio: 184/178 }
+        DpCropper.call($('#product_icon'), $('#cropbox'), cropper_options);
     });

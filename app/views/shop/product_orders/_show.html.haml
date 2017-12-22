@@ -29,15 +29,14 @@
             %td 数量
           - resource.product_order_items.each_with_index do |item, index|
           %tr
-          - variant = item&.variant
+          - variant = item.variant
+          - product = item.product
             %td= index + 1
-            %td= variant&.product&.title
+            %td= product.title
             %td
-              - if variant.image.present?
-                = link_to image_tag(variant.image.preview), variant.image.preview, target: '_blank'
-              - else
-                %span
-            %td= variant&.product&.category&.name
+              - img = variant&.image&.preview || product.preview_icon
+              = link_to image_tag(img), target: '_blank'
+            %td= product.category&.name
             %td= item.original_price
             %td= item.price
             %td= item.number

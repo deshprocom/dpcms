@@ -47,6 +47,7 @@
       fre_special: '运费区域管理'
       express_code: '快递管理'
       comment: '评论管理'
+      user_tag: '用户标签管理'
     attributes:
       race_en:
         logo: "赛事英文图片"
@@ -476,6 +477,10 @@
         body_or_replies_body: '评论或回复内容'
         user_nick_name_or_replies_user_nick_name: '用户昵称'
         created_at_replies_created_at: '评论或回复时间'
+      user_tag:
+        name: 名称
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

@@ -41,6 +41,9 @@ ActiveAdmin.register Product, namespace: :shop do
     def update
       @product = Product.find(params[:id])
       @product.assign_attributes(permitted_params[:product])
+      unless params[:remote_img_url].blank?
+        @product.remote_icon_url = params[:remote_img_url]
+      end
       if @product.save
         flash[:notice] = '修改商品详情成功'
         redirect_to edit_shop_product_path(@product)

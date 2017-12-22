@@ -118,12 +118,12 @@ ActiveAdmin.register User do
   member_action :remove_tag, method: [:post] do
     tag = UserTag.find(params[:tag_id])
     resource.user_tag_maps.find_by(user_tag: tag).destroy
-    render :add_tag
+    render 'add_tag'
   end
 
   member_action :create_user_tag, method: [:post] do
     UserTag.create(name: params[:name])
-    render 'reload_tag'
+    render 'add_tag'
   end
 
   action_item :user_extras, only: :index do

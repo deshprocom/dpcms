@@ -8,7 +8,10 @@
         %div
           %div.u-left
             %span{ class: 'show_edit_user_info', 'data-id': comment.user.id }
-              = image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
+              - if comment.user.avatar_path.present?
+                = image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
+              - else
+                %div{ class: 'default_user_avatar' }
           %div.u-right
             %div
               %span= comment.user.nick_name
@@ -44,7 +47,10 @@
               %div
                 %div.u-left
                   %span{ class: 'show_edit_user_info', 'data-id': reply.user.id }
-                    = image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
+                    - if reply.user.avatar_path.present?
+                      = image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
+                    - else
+                      %div{ class: 'default_user_avatar' }
                 %div.u-right
                   %div
                     - if reply.reply

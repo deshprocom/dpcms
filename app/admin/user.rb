@@ -109,6 +109,23 @@ ActiveAdmin.register User do
     render 'silence_success'
   end
 
+  member_action :add_tag, method: [:get, :post] do
+    return render :add_tag unless request.post?
+    tag = UserTag.find(params[:tag_id])
+    resource.user_tag_maps.create(user_tag: tag)
+  end
+
+  member_action :remove_tag, method: [:post] do
+    tag = UserTag.find(params[:tag_id])
+    resource.user_tag_maps.find_by(user_tag: tag).destroy
+    render :add_tag
+  end
+
+  member_action :create_user_tag, method: [:post] do
+    UserTag.create(name: params[:name])
+    render 'reload_tag'
+  end
+
   action_item :user_extras, only: :index do
     link_to '实名列表', admin_user_extras_path
   end

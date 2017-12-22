@@ -48,3 +48,49 @@
     width: 150px;
   }
 }
+
+.add_user_tag_list {
+  .tag_option {
+    display: flex;
+    > div{
+      display: flex;
+      flex-wrap: wrap;
+      padding : 20px 20px;
+    }
+
+    .tag_list > div {
+      border: 1px solid white;;
+      padding: 4px 12px;
+      margin: 3px;
+    }
+  }
+
+  .add_tag_option {
+    margin: 30px 8px;
+
+    input#name {
+      width: 15%;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

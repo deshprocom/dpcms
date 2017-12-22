@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register AlbumPhoto, namespace: :shop do
   config.batch_actions = false
   config.filters = false
@@ -9,6 +10,7 @@ ActiveAdmin.register AlbumPhoto, namespace: :shop do
   controller do
     def destroy
       resource.destroy
+      render layout: false
     end
   end
 
@@ -16,7 +18,7 @@ ActiveAdmin.register AlbumPhoto, namespace: :shop do
     @page_title = '相册图片'
     respond_to do |format|
       format.js
-      format.html { render layout: 'layouts/active_admin'}
+      format.html { render layout: 'layouts/active_admin' }
     end
   end
 

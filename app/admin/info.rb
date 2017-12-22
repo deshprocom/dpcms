@@ -40,6 +40,11 @@ ActiveAdmin.register Info do
     column :en_is_show do |info|
       info.info_en&.is_show ? '√' : '×'
     end
+    column :topic_likes, &:total_likes
+    column :topic_comments do |info|
+      info.comments.count
+    end
+    column :total_views, &:total_views
     column :top
     column :published
     actions name: '操作', class: 'info_actions' do |resource|

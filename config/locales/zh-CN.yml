@@ -48,6 +48,7 @@
       freight: '运费管理'
       fre_special: '运费区域管理'
       express_code: '快递管理'
+      comment: '评论管理'
     attributes:
       album:
         name: "相册名"
@@ -258,6 +259,9 @@
         is_show: '中文'
         en_is_show: '英文'
         race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        total_views: '浏览量'
       headline:
         title: '头条标题'
         source_type: '来源类型'
@@ -304,6 +308,9 @@
         created_at: "创建时间"
         updated_at: "更新时间"
         race_tag_name: '标签'
+        topic_likes: '点赞数'
+        topic_comments: '评论数'
+        total_views: '浏览量'
       video_type:
         name: '名称'
         level: '级别'
@@ -462,6 +469,19 @@
         published: '开启'
         phone: '官方电话'
         site: '官网完整地址'
+      comment:
+        topic_type: '话题'
+        body: '内容'
+        deleted_at: '删除时间'
+        deleted_reason: '删除原因'
+        created_at: '评论时间'
+        updated_at: '更新时间'
+        recommended: '精选'
+        deleted: '删除'
+        user_nick_name: '用户昵称'
+        body_or_replies_body: '评论或回复内容'
+        user_nick_name_or_replies_user_nick_name: '用户昵称'
+        created_at_replies_created_at: '评论或回复时间'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

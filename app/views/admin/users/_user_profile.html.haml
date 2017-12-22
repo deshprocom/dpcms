@@ -1,0 +1,50 @@
+%div.user_profile_container
+  %div.container
+    %div.user_info
+      %div.basic
+        %div.u-left
+          %span= image_tag(resource.avatar_path, height: 70, class: 'img-circle')
+        %div.u-right
+          %div
+            %span 昵称：
+            %span #{resource.nick_name}
+          %div
+            %span 扑客ID：
+            %span #{resource.user_name}
+          %div
+            %span 备注：
+            %span #{resource.mark}
+            %span
+              = link_to '🆚'
+          %div
+            %span 标签：
+            %span 职业排手
+      %div.dynamic
+        %span= link_to '查看动态'
+      %div.bottom
+        %span
+          评论
+          %span.color-blue #{ resource.comments.count }
+        %span
+          | 回复
+          %span.color-blue #{ resource.replies.count }
+        %span
+          | 精选评论
+          %span.color-blue #{ resource.comments.recommend_comments.count }
+
+    %div.register_date
+      %div
+        %span 于#{resource.reg_date&.strftime('%Y-%m-%d')}注册
+      %div
+        - if resource.silenced?
+          %span.color-red 用户已禁言，解禁时间：#{resource.silence_till.strftime('%Y-%m-%d')}
+      %div
+        %span
+          = link_to '禁言', silence_user_admin_user_path(resource), method: 'get', remote: true
+        %span
+          - if resource.blocked?
+            = link_to '取消拉黑', unblock_user_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '确定吗?' }
+          - else
+            = link_to '拉黑', block_user_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '加入黑名单后，用户将不能发出任何的消息，无法参与留言和赞赏。' }

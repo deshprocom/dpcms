@@ -1,6 +1,8 @@
 "zh-CN":
   activerecord:
     models:
+      album: "相册列表"
+      album_photo: "相册图片"
       product: "商品"
       product_refund: "商品退款列表"
       variant: "商品规格组合"
@@ -47,6 +49,10 @@
       fre_special: '运费区域管理'
       express_code: '快递管理'
     attributes:
+      album:
+        name: "相册名"
+      album_photo:
+         album: "所属相册"
       race_en:
         logo: "赛事英文图片"
       app_version:

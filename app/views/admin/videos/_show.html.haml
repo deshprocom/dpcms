@@ -1,0 +1,20 @@
+- @comments = resource.comments
+%div.info_show_comments
+  %div
+    %h2 #{resource.name}
+  %div
+    %span= resource.video_type&.name
+    %span= resource.created_at.strftime('%F')
+  %div.description{'data-desc': resource.description}
+  %div.views
+    %span
+      %span 阅读:
+      %span.color-blue 8999
+    %span
+      %span 评论数:
+      %span.color-blue= @comments.count
+  %div#comment
+    %h3 评论列表：
+    = render 'admin/comments/index'
+
+= render 'marked_script'

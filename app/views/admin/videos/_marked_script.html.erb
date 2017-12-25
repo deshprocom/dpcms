@@ -1,0 +1,7 @@
+<script type="text/javascript">
+    var text, description;
+    description = $('.info_show_comments .description');
+    text = description.data('desc');
+    description.html(marked(text));
+    description.attr('data-desc', '');
+</script>

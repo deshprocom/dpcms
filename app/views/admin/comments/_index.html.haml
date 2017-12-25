@@ -38,7 +38,8 @@
           %span
             = link_to '删除', delete_comment_admin_comment_path(comment), remote: true
 
-          %span 回复
+          %span
+            = link_to '回复', create_reply_admin_comment_path(comment), remote: true
       %div.reply-container
         - comment.replies.each do |reply|
           %div.reply-body
@@ -67,4 +68,5 @@
               %div
                 %span
                   = link_to '删除', delete_reply_admin_reply_path(reply), remote: true
-                %span 回复
+                %span
+                  = link_to '回复', create_reply_admin_reply_path(reply), remote: true

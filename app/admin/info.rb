@@ -42,7 +42,7 @@ ActiveAdmin.register Info do
     end
     column :topic_likes, &:total_likes
     column :topic_comments do |info|
-      link_to info.comments.count, admin_info_path(info)+"#comment"
+      link_to info.comments.count, admin_info_path(info) + '#comment'
     end
     column :total_views, &:total_views
     column :top

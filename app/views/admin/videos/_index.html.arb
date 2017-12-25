@@ -19,7 +19,7 @@ context.instance_eval do
   end
   column :topic_likes, &:total_likes
   column :topic_comments do |video|
-    link_to video.comments.count, admin_video_path(video)+"#comment"
+    link_to video.comments.count, admin_video_path(video) + '#comment'
   end
   column :total_views, &:total_views
   column :top

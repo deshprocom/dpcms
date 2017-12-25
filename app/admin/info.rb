@@ -42,7 +42,7 @@ ActiveAdmin.register Info do
     end
     column :topic_likes, &:total_likes
     column :topic_comments do |info|
-      info.comments.count
+      link_to info.comments.count, admin_info_path(info) + '#comment'
     end
     column :total_views, &:total_views
     column :top
@@ -72,6 +72,10 @@ ActiveAdmin.register Info do
              data: { confirm: message }, method: :post
       end
     end
+  end
+
+  show do
+    render 'show'
   end
 
   # 逻辑说明：

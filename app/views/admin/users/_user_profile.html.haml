@@ -17,7 +17,8 @@
             %span #{resource.user_name}
           %div
             %span 备注：
-            %span #{resource.mark}
+            %span
+              = best_in_place resource, 'mark', as: 'input', place_holder: '添加', url: [:admin, resource]
           %div.dynamic_tags
             = render 'dynamic_tags'
           -#%div

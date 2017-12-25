@@ -29,6 +29,10 @@ ActiveAdmin.register Video do
     render 'index', context: self
   end
 
+  show do
+    render 'show'
+  end
+
   member_action :publish, method: :post do
     resource.publish!
     redirect_back fallback_location: admin_videos_url, notice: '发布成功'

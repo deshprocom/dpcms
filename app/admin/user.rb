@@ -2,7 +2,7 @@
 ActiveAdmin.register User do
   menu priority: 1, parent: '用户管理', label: 'app用户'
 
-  permit_params :nick_name, :password, :password_confirmation, :email, :mobile, :mark, user_extra_attributes: [:id, :status]
+  permit_params :nick_name, :password, :password_confirmation, :email, :tag, :mobile, :mark, user_extra_attributes: [:id, :status]
   CERTIFY_STATUS = UserExtra.statuses.keys
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
@@ -86,6 +86,44 @@ ActiveAdmin.register User do
     notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
     redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
+  end
+
+  # 查看用户资料
+  member_action :user_profile, method: [:get] do
+    render :user_profile
+  end
+
+  member_action :block_user, method: [:post] do
+    resource.blocked!
+    render 'common/update_success'
+  end
+
+  member_action :unblock_user, method: [:post] do
+    resource.unblocked!
+    render 'common/update_success'
+  end
+
+  member_action :silence_user, method: [:get, :post] do
+    return render :silence unless request.post?
+    resource.silenced!(params[:silence_reason], params[:silence_till])
+    render 'silence_success'
+  end
+
+  member_action :add_tag, method: [:get, :post] do
+    return render :add_tag unless request.post?
+    tag = UserTag.find(params[:tag_id])
+    resource.user_tag_maps.create(user_tag: tag)
+  end
+
+  member_action :remove_tag, method: [:post] do
+    tag = UserTag.find(params[:tag_id])
+    resource.user_tag_maps.find_by(user_tag: tag).destroy
+    render 'add_tag'
+  end
+
+  member_action :create_user_tag, method: [:post] do
+    UserTag.create(name: params[:name])
+    render 'add_tag'
   end
 
   action_item :user_extras, only: :index do

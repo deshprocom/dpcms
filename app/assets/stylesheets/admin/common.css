@@ -1,0 +1,22 @@
+.img-circle {
+    border-radius: 50%;
+}
+
+.color-blue {
+    color: blue;
+}
+
+.color-red {
+    color: red;
+}
+
+.default_user_avatar{
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    background: #dfdfdf;
+    font-size: 16px;
+    font-family: Tahoma,Helvetica,Arial,'宋体',sans-serif;
+    border-radius:50%
+}

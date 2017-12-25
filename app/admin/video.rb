@@ -15,6 +15,8 @@ ActiveAdmin.register Video do
     [type_name, type.id]
   end
 
+  RACE_TAG_LIST ||= RaceTag.all
+
   filter :name
   filter :published
   filter :top

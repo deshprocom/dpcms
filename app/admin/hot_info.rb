@@ -15,19 +15,13 @@ ActiveAdmin.register HotInfo do
 
   controller do
     def create
-      position = 100_000
-      # 新建的position 默认为 100000
+      position = HotInfo.default_order.first.position - 2
+      position = position.negative? ? 0 : position
       merge_params = { position: position, source_type: hot_info_params[:source_type].classify }
       @hot_info = HotInfo.new hot_info_params.merge(merge_params)
 
       if @hot_info.save
         flash[:notice] = '增加热门资讯成功'
-
-        # 新建成功，重新排序所有的position
-        HotInfo.default_order.each do |info|
-          position += 100_000
-          info.update(position: position)
-        end
         redirect_to admin_hot_infos_url
       else
         render :new

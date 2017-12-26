@@ -14,7 +14,8 @@
                 %div{ class: 'default_user_avatar' } 头像
           %div.u-right
             %div
-              %span= comment.user.nick_name
+              %span.nick_name
+                = comment.user.nick_name
             %div
               %span= comment.body
         %div
@@ -55,11 +56,13 @@
                 %div.u-right
                   %div
                     - if reply.reply
-                      %span #{reply.user.nick_name}
+                      %span.nick_name= reply.user.nick_name
                       %div
-                        %span 回复#{reply.reply.user.nick_name}: #{reply.body}
+                        %span 回复
+                        %span.nick_name #{reply.reply.user.nick_name}
+                        %span: #{reply.body}
                     -else
-                      %span= reply.user.nick_name
+                      %span.nick_name= reply.user.nick_name
                       %div
                         %span= reply.body
               %div

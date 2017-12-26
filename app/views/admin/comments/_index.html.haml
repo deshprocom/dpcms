@@ -21,7 +21,13 @@
         %div
           %span= I18n.t("topic.#{comment.topic_type.downcase}")
         %div
-          %span= comment.topic.title
+          %span
+            - if comment.topic_type.downcase.eql?('info')
+              - url = admin_info_url(comment.topic) + '#comment'
+            - elsif comment.topic_type.downcase.eql?('video')
+              - url = admin_video_url(comment.topic) + '#comment'
+            = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
+
         %div
           %span= comment.created_at.strftime('%Y-%m-%d')
         %div
@@ -73,3 +79,7 @@
                   = link_to '删除', delete_reply_admin_reply_path(reply), remote: true
                 %span
                   = link_to '回复', create_reply_admin_reply_path(reply), remote: true
+
+  %div{style: 'text-align: right'}
+    %a{ href: '#', class: 'btn-move-page', 'data-type': 'top'}
+      %i{ class: 'fa fa-arrow-up' }

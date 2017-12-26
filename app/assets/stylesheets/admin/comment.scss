@@ -5,6 +5,7 @@
   .nick_name {
     color: #2a4691;
   }
+
   .comment-body {
     display: flex;
     border-bottom: 1px solid #cccccc;
@@ -83,5 +84,18 @@
         }
       }
     }
+  }
+
+  a.btn-move-page {
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 5px 12px;
+    outline: 0 !important;
+    position:absolute;
+    right:14px;
+    display: block;
+    width: 30px;
+    text-align: center;
+    margin-top: 5px;
   }
 }

@@ -128,10 +128,10 @@ ActiveAdmin.register User do
 
   member_action :dynamics, method: [:get] do
     @dynamics = resource.dynamics.order(created_at: :desc).page(params[:page]).per(8)
-    @return_lists = Hash.new
+    @return_lists = {}
     @dynamics.collect do |dynamic|
       index = dynamic.created_at.strftime('%Y%m%d')
-      @return_lists[index] = Array.new if @return_lists[index].blank?
+      @return_lists[index] = [] if @return_lists[index].blank?
       @return_lists[index].push(dynamic)
     end
     render 'show_dynamics'

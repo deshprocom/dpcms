@@ -263,6 +263,7 @@ GEM
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    number_to_cn (0.1.0)
     orm_adapter (0.5.0)
     parser (2.3.3.1)
       ast (~> 2.2)
@@ -496,6 +497,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   mini_magick
   mysql2 (>= 0.3.18, < 0.5)
+  number_to_cn
   poltergeist
   puma (~> 3.0)
   rails (~> 5.0.1)
@@ -522,4 +524,4 @@ DEPENDENCIES
   wx_pay
 
 BUNDLED WITH
-   1.14.6
+   1.16.0

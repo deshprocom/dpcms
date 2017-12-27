@@ -17,7 +17,7 @@
               %span.nick_name
                 = comment.user.nick_name
             %div
-              %span= comment.body
+              %span= truncate(comment.body, length: 63)
         %div
           %span= I18n.t("topic.#{comment.topic_type.downcase}")
         %div
@@ -66,11 +66,11 @@
                       %div
                         %span 回复
                         %span.nick_name #{reply.reply.user.nick_name}
-                        %span: #{reply.body}
+                        %span= truncate(reply.body, length: 63)
                     -else
                       %span.nick_name= reply.user.nick_name
                       %div
-                        %span= reply.body
+                        %span= truncate(reply.body, length: 63)
               %div
               %div
                 %span= comment.created_at.strftime('%Y-%m-%d')

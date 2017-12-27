@@ -14,13 +14,20 @@
                 %div{ class: 'default_user_avatar' } 头像
           %div.u-right
             %div
-              %span= comment.user.nick_name
+              %span.nick_name
+                = comment.user.nick_name
             %div
               %span= comment.body
         %div
           %span= I18n.t("topic.#{comment.topic_type.downcase}")
         %div
-          %span= comment.topic.title
+          %span
+            - if comment.topic_type.downcase.eql?('info')
+              - url = admin_info_url(comment.topic) + '#comment'
+            - elsif comment.topic_type.downcase.eql?('video')
+              - url = admin_video_url(comment.topic) + '#comment'
+            = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
+
         %div
           %span= comment.created_at.strftime('%Y-%m-%d')
         %div
@@ -55,11 +62,13 @@
                 %div.u-right
                   %div
                     - if reply.reply
-                      %span #{reply.user.nick_name}
+                      %span.nick_name= reply.user.nick_name
                       %div
-                        %span 回复#{reply.reply.user.nick_name}: #{reply.body}
+                        %span 回复
+                        %span.nick_name #{reply.reply.user.nick_name}
+                        %span: #{reply.body}
                     -else
-                      %span= reply.user.nick_name
+                      %span.nick_name= reply.user.nick_name
                       %div
                         %span= reply.body
               %div
@@ -70,3 +79,7 @@
                   = link_to '删除', delete_reply_admin_reply_path(reply), remote: true
                 %span
                   = link_to '回复', create_reply_admin_reply_path(reply), remote: true
+
+  %div{style: 'text-align: right'}
+    %a{ href: '#', class: 'btn-move-page', 'data-type': 'top'}
+      %i{ class: 'fa fa-arrow-up' }

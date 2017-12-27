@@ -23,12 +23,25 @@
 }
 
 .info_show_comments{
+  position:relative;
+  a.btn-move-page {
+    color: #666;
+    border: 1px solid #ccc;
+    padding: 5px 12px;
+    outline: 0 !important;
+    position:absolute;
+    right:3px;
+    display: block;
+    width: 30px;
+    text-align: center;
+  }
+
   >div:nth-child(1) {
     display: flex;
     justify-content: center;
   }
 
-  >div:nth-child(2) {
+  >div:nth-child(2), >div:nth-child(3) {
     display: flex;
     justify-content: center;
     span {

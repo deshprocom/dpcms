@@ -126,6 +126,17 @@ ActiveAdmin.register User do
     render 'add_tag'
   end
 
+  member_action :dynamics, method: [:get] do
+    @dynamics = resource.dynamics.order(created_at: :desc).page(params[:page]).per(8)
+    @return_lists = {}
+    @dynamics.collect do |dynamic|
+      index = dynamic.created_at.strftime('%Y%m%d')
+      @return_lists[index] = [] if @return_lists[index].blank?
+      @return_lists[index].push(dynamic)
+    end
+    render 'show_dynamics'
+  end
+
   action_item :user_extras, only: :index do
     link_to '实名列表', admin_user_extras_path
   end

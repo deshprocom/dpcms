@@ -32,7 +32,10 @@ ActiveAdmin.register Comment do
 
   member_action :create_reply, method: [:get, :post] do
     return render :create_reply unless request.post?
-    resource.replies.create!(user: User.official, body: params[:body], topic: resource.topic)
+    resource.replies.create!(user: User.official,
+                             body: params[:body],
+                             topic: resource.topic,
+                             reply_user: resource.user)
     redirect_back fallback_location: admin_comments_url, notice: '评论成功'
   end
 

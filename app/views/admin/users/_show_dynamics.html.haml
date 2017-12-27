@@ -11,39 +11,45 @@
         %span.nick_name #{resource.nick_name}
       %div
         %span #{resource.signature}
-  - @dynamics.each do |item|
-    - typological = item.unscoped_typological
-    - topic = item.unscoped_typological_topic
+  - @return_lists.each do |item|
+    - date = item[0]
+    - lists = item[1]
 
     %div.my_dynamics
       %div.d-left
-        - if typological.created_at.strftime('%F').eql?(Date.today.to_s)
+        - if date.eql?(Date.today.strftime('%Y%m%d'))
           %div{style: 'font-size: 18px'} 今天
-        - elsif typological.created_at.strftime('%F').eql?(Date.yesterday.to_s)
+        - elsif date.eql?(Date.yesterday.strftime('%Y%m%d'))
           %div{style: 'font-size: 18px'} 昨天
         - else
-          %div{style: 'font-size: 15px'} #{typological.created_at.strftime('%m').to_i}.#{typological.created_at.strftime('%d')}
+          %div{style: 'font-size: 15px'} #{date[4,2]}.#{date[6,2]}
       %div.d-right
-        - method = item.typological_type.eql?('Comment') ? '评论' : item.typological_type.eql?('Reply') ? '回复' : '赞'
-        %div 在扑客资讯#{method}了一个话题
-        %div
-          %div.image
-            - if topic.image_thumb.present?
-              = image_tag(topic.image_thumb, height: 50, class: 'default_use_image')
-            - else
-              %div{ class: 'default_use_image' } 图片
-          %div.content
-            %div
-              %span.title_color
-                - if typological.topic_type.downcase.eql?('info')
-                  - url = admin_info_url(topic) + '#comment'
-                - elsif typological.topic_type.downcase.eql?('video')
-                  - url = admin_video_url(topic) + '#comment'
-                = link_to topic.title, url, target: "_blank", rel: "nofollow"
-            - if item.typological_type.eql?('TopicLike')
+        - lists.each do |data|
+          - typological = data.unscoped_typological
+          - topic = data.unscoped_typological_topic
+          - method = data.typological_type.eql?('Comment') ? '评论' : data.typological_type.eql?('Reply') ? '回复' : '赞'
+          %div
+            %span 在扑客资讯
+            %span.color-blue #{method}
+            %span 了一个话题
+          %div
+            %div.image
+              - if topic.image_thumb.present?
+                = image_tag(topic.image_thumb, height: 50, class: 'default_use_image')
+              - else
+                %div{ class: 'default_use_image' } 图片
+            %div.content
               %div
-                %span{ style: 'font-style: italic' }= truncate(topic.description, length: 63)
-            - else
-              %div= truncate(typological.body, length: 63)
+                %span.title_color
+                  - if typological.topic_type.downcase.eql?('info')
+                    - url = admin_info_url(topic) + '#comment'
+                  - elsif typological.topic_type.downcase.eql?('video')
+                    - url = admin_video_url(topic) + '#comment'
+                  = link_to topic.title, url, target: "_blank", rel: "nofollow"
+              - if data.typological_type.eql?('TopicLike')
+                %div
+                  %span{ style: 'font-style: italic' }= truncate(topic.description, length: 63)
+              - else
+                %div= truncate(typological.body, length: 63)
   %div.index_foot
     = paginate(@dynamics, remote: true)

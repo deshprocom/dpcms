@@ -17,17 +17,13 @@
             %span #{resource.user_name}
           %div
             %span 备注：
-            %span #{resource.mark}
+            %span
+              = best_in_place resource, 'mark', as: 'input', place_holder: '添加', url: [:admin, resource]
           %div.dynamic_tags
             = render 'dynamic_tags'
-          -#%div
-          -#  %span 标签:
-          -#  - resource.user_tags.each do |tag|
-          -#    %span.color-blue #{tag.name}
-          -#  %span
-          -#    = link_to '修改️', add_tag_admin_user_path(resource), remote: true
       %div.dynamic
-        %span= link_to '查看动态'
+        %span
+          = link_to '查看动态', dynamics_admin_user_path(resource), remote: true
       %div.bottom
         %span
           评论
@@ -43,7 +39,7 @@
       %div
         %span 于#{resource.reg_date&.strftime('%Y-%m-%d')}注册
       %div
-        - if resource.silenced?
+        - if resource.silenced_and_till?
           %span.color-red 用户已禁言，解禁时间：#{resource.silence_till.strftime('%Y-%m-%d')}
       %div
         %span

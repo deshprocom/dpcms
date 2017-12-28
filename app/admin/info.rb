@@ -44,7 +44,9 @@ ActiveAdmin.register Info do
     column :topic_comments do |info|
       link_to info.comments.count, admin_info_path(info) + '#comment'
     end
-    column :total_views, &:total_views
+    column :total_views, sortable: 'info_counters.page_views' do |info|
+      info.counter.page_views
+    end
     column :top
     column :published
     actions name: '操作', class: 'info_actions' do |resource|
@@ -112,6 +114,10 @@ ActiveAdmin.register Info do
   form partial: 'edit_info'
 
   controller do
+    def scoped_collection
+      Info.includes(:counter)
+    end
+
     def create
       info = Info.new(update_params)
       if info.save

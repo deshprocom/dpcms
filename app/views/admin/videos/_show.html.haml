@@ -5,7 +5,7 @@
   %div
     %span= resource.video_type&.name
     %span= resource.created_at.strftime('%F')
-  %div.description{'data-desc': resource.description}
+  %div.description{'data-desc': resource.description, style: 'text-align: center'}
   %div.views
     %span
       %span 阅读:

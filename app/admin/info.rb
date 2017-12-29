@@ -117,6 +117,8 @@ ActiveAdmin.register Info do
   end
 
   member_action :views, method: [:get, :post] do
+    Services::AutoIncreaseCount.call
+    return
     view_toggle = resource.topic_view_toggle
     unless request.post?
       @topic_view_toggle = view_toggle.present? ? view_toggle : TopicViewToggle.new

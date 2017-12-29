@@ -4,6 +4,7 @@ module Services
 
     def call
       TopicViewToggle.toggle_on.each do |toggle|
+        next unless toggle.rule_exist?
         next unless need_update?(toggle)
         update_counters(toggle)
       end
@@ -18,6 +19,9 @@ module Services
 
     def update_counters(toggle)
       rule = toggle.current_rule
+      if rule.min_increase.eql?(rule.max_increase)
+        rule.max_increase = rule.max_increase + 1
+      end
       increase = rand(rule.min_increase...rule.max_increase)
       toggle.topic.increase_view_increment(increase)
       # 更新last_time

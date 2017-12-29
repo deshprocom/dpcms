@@ -37,4 +37,12 @@ namespace :batch_order do
     orders.each(&:completed!)
     puts 'product_order_complete_delivered_15_days end'
   end
+
+  desc '每隔5分钟检查一次，是否有话题的浏览量需要增值'
+  task topic_increase_view_number: :environment do
+    Rails.application.eager_load!
+    puts 'topic_increase_view_number start'
+    Services::AutoIncreaseCount.call
+    puts 'topic_increase_view_number end'
+  end
 end

@@ -50,6 +50,7 @@
       express_code: '快递管理'
       comment: '评论管理'
       user_tag: '用户标签管理'
+      topic_view_rule: '浏览量管理'
     attributes:
       album:
         name: "相册名"
@@ -262,7 +263,9 @@
         race_tag_name: '标签'
         topic_likes: '点赞数'
         topic_comments: '评论数'
-        total_views: '浏览量(真实)'
+        page_views: '阅读量(真实)'
+        total_views: '阅读量'
+        view_increment: '阅读量(增量)'
       headline:
         title: '头条标题'
         source_type: '来源类型'
@@ -311,7 +314,9 @@
         race_tag_name: '标签'
         topic_likes: '点赞数'
         topic_comments: '评论数'
-        total_views: '浏览量(真实)'
+        page_views: '阅读量(真实)'
+        total_views: '阅读量'
+        view_increment: '阅读量(增量)'
       video_type:
         name: '名称'
         level: '级别'
@@ -485,6 +490,14 @@
         created_at_replies_created_at: '评论或回复时间'
       user_tag:
         name: 名称
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      topic_view_rule:
+        day: '第几天'
+        interval: '间隔时间(分钟)'
+        min_increase: '最小值'
+        max_increase: '最大值'
+        hot: '热增长'
         created_at: "创建时间"
         updated_at: "修改时间"
       format: "%{attribute}%{message}"

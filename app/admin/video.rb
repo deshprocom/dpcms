@@ -158,6 +158,7 @@ ActiveAdmin.register Video do
       else
         super.order(created_at: :desc)
       end
+      Video.includes(:counter)
     end
 
     private

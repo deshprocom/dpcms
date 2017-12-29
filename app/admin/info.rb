@@ -23,6 +23,7 @@ ActiveAdmin.register Info do
   filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
 
   index title: '资讯管理' do
+    column :id
     column '资讯图片', :image do |info|
       link_to image_tag(info.image_thumb), info.image_thumb, target: '_blank'
     end
@@ -40,12 +41,14 @@ ActiveAdmin.register Info do
     column :en_is_show do |info|
       info.info_en&.is_show ? '√' : '×'
     end
-    column :topic_likes, &:total_likes
     column :topic_comments do |info|
       link_to info.comments.count, admin_info_path(info) + '#comment'
     end
-    column :total_views, sortable: 'info_counters.page_views' do |info|
+    column :page_views, sortable: 'info_counters.page_views' do |info|
       info.counter.page_views
+    end
+    column :view_increment, sortable: 'info_counters.view_increment' do |info|
+      best_in_place info.counter, :view_increment, as: 'input', place_holder: '点我添加', url: [:admin, info.counter]
     end
     column :top
     column :published
@@ -73,6 +76,7 @@ ActiveAdmin.register Info do
         item '置顶', top_admin_info_path(resource),
              data: { confirm: message }, method: :post
         link_to '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+        item '浏览量', views_admin_info_path(resource), remote: true
       end
     end
   end
@@ -110,6 +114,24 @@ ActiveAdmin.register Info do
   member_action :untop, method: :post do
     resource.untop!
     redirect_back fallback_location: admin_infos_url, notice: '取消置顶成功'
+  end
+
+  member_action :views, method: [:get, :post] do
+    view_toggle = resource.topic_view_toggle
+    unless request.post?
+      @topic_view_toggle = view_toggle.present? ? view_toggle : TopicViewToggle.new
+      return render :topic_view
+    end
+    on_off = params[:on_off].eql?('on') ? true : false
+    hot = params[:type].eql?('hot') ? true : false
+    # 判断之前是否有保存过
+    create_params = { topic: resource,
+                      toggle_status: on_off,
+                      hot: hot,
+                      begin_time: Time.now,
+                      last_time: Time.now }
+    view_toggle.present? ? view_toggle.update(create_params) : TopicViewToggle.create(create_params)
+    redirect_back fallback_location: admin_infos_url, notice: '更改成功'
   end
 
   form partial: 'edit_info'

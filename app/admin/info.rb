@@ -23,6 +23,7 @@ ActiveAdmin.register Info do
   filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
 
   index title: '资讯管理' do
+    column :id
     column '资讯图片', :image do |info|
       link_to image_tag(info.image_thumb), info.image_thumb, target: '_blank'
     end
@@ -40,12 +41,14 @@ ActiveAdmin.register Info do
     column :en_is_show do |info|
       info.info_en&.is_show ? '√' : '×'
     end
-    column :topic_likes, &:total_likes
     column :topic_comments do |info|
       link_to info.comments.count, admin_info_path(info) + '#comment'
     end
-    column :total_views, sortable: 'info_counters.page_views' do |info|
+    column :page_views, sortable: 'info_counters.page_views' do |info|
       info.counter.page_views
+    end
+    column :view_increment, sortable: 'info_counters.view_increment' do |info|
+      best_in_place info.counter, :view_increment, as: 'input', place_holder: '点我添加', url: [:admin, info.counter]
     end
     column :top
     column :published
@@ -110,6 +113,10 @@ ActiveAdmin.register Info do
   member_action :untop, method: :post do
     resource.untop!
     redirect_back fallback_location: admin_infos_url, notice: '取消置顶成功'
+  end
+
+  member_action :views, method: [:get, :post] do
+    return render :topic_view unless request.post?
   end
 
   form partial: 'edit_info'

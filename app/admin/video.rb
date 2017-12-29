@@ -104,6 +104,24 @@ ActiveAdmin.register Video do
     video.update(position: position)
   end
 
+  member_action :views, method: [:get, :post] do
+    view_toggle = resource.topic_view_toggle
+    unless request.post?
+      @topic_view_toggle = view_toggle.present? ? view_toggle : TopicViewToggle.new
+      return render :topic_view
+    end
+    on_off = params[:on_off].eql?('on') ? true : false
+    hot = params[:type].eql?('hot') ? true : false
+    # 判断之前是否有保存过
+    create_params = { topic: resource,
+                      toggle_status: on_off,
+                      hot: hot,
+                      begin_time: Time.now,
+                      last_time: Time.now }
+    view_toggle.present? ? view_toggle.update(create_params) : TopicViewToggle.create(create_params)
+    redirect_back fallback_location: admin_infos_url, notice: '更改成功'
+  end
+
   action_item :add, only: :index do
     link_to '视频类别', admin_video_types_path
   end

@@ -76,6 +76,7 @@ ActiveAdmin.register Info do
         item '置顶', top_admin_info_path(resource),
              data: { confirm: message }, method: :post
         link_to '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+        item '浏览量', views_admin_info_path(resource), remote: true
       end
     end
   end
@@ -116,7 +117,21 @@ ActiveAdmin.register Info do
   end
 
   member_action :views, method: [:get, :post] do
-    return render :topic_view unless request.post?
+    view_toggle = resource.topic_view_toggle
+    unless request.post?
+      @topic_view_toggle = view_toggle.present? ? view_toggle : TopicViewToggle.new
+      return render :topic_view
+    end
+    on_off = params[:on_off].eql?('on') ? true : false
+    hot = params[:type].eql?('hot') ? true : false
+    # 判断之前是否有保存过
+    create_params = { topic: resource,
+                      toggle_status: on_off,
+                      hot: hot,
+                      begin_time: Time.now,
+                      last_time: Time.now }
+    view_toggle.present? ? view_toggle.update(create_params) : TopicViewToggle.create(create_params)
+    redirect_back fallback_location: admin_infos_url, notice: '更改成功'
   end
 
   form partial: 'edit_info'

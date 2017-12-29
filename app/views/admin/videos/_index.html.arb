@@ -58,5 +58,6 @@ context.instance_eval do
     end
     item '更换组别', change_group_admin_video_path(resource), remote: true
     link_to '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+    item '浏览量', views_admin_video_path(resource), remote: true
   end
 end

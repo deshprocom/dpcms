@@ -22,6 +22,6 @@ every :day, at: '2:30am' do
   rake 'batch_order:product_order_complete_delivered_15_days'
 end
 
-every 5.minutes do
+every 10.minutes do
   rake 'batch_order:topic_increase_view_number'
 end

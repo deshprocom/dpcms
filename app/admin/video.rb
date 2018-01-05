@@ -23,8 +23,6 @@ ActiveAdmin.register Video do
   filter :video_type_id, as: :select, collection: FILTER_VIDEO_TYPE
   filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
 
-  config.sort_order = ''
-
   index do
     render 'index', context: self
   end
@@ -172,11 +170,10 @@ ActiveAdmin.register Video do
 
     def scoped_collection
       if request.env['REQUEST_URI'] =~ /video_groups/
-        super.position_asc
+        super.includes(:counter).position_asc
       else
-        super.order(created_at: :desc)
+        super.includes(:counter).order(created_at: :desc)
       end
-      Video.includes(:counter)
     end
 
     private

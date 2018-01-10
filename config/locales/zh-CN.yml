@@ -51,6 +51,7 @@
       comment: '评论管理'
       user_tag: '用户标签管理'
       topic_view_rule: '浏览量管理'
+      crowdfunding: '众筹管理'
     attributes:
       album:
         name: "相册名"
@@ -500,6 +501,24 @@
         hot: '热增长'
         created_at: "创建时间"
         updated_at: "修改时间"
+      crowdfunding:
+        race_name: '赛事名称'
+        race_logo: '赛事图片'
+        race_location: '赛事地点'
+        race_period: '赛事时间'
+        player_count: '牌手人数'
+        cf_total_money: '众筹总额'
+        cf_offer_money: '认购总额'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        race: '赛事'
+        master_image: '主图'
+        cf_cond: '入赛资格'
+        expire_date: '截止时间'
+        publish_date: '公布时间'
+        award_date: '发奖时间'
+        description: '众筹描述'
+
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

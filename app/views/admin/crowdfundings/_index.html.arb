@@ -1,0 +1,13 @@
+context.instance_eval do
+  column(:master_image, sortable: false) { |cf|  image_tag(cf.master_image, height: 150) }
+  column(:race_name) { |cf| cf.race.name }
+  column(:race_location) { |cf| cf.race.location }
+  column(:race_period) { |cf| race_period cf.race }
+  column :player_count
+  column :cf_total_money
+  column :cf_offer_money
+  column :published
+  actions
+end
+
+

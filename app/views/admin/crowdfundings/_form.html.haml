@@ -1,5 +1,5 @@
 %div.crowdfunding-new
-  = semantic_form_for [:admin, @crowdfunding] do |f|
+  = semantic_form_for [:admin, @crowdfunding], builder: ActiveAdmin::FormBuilder do |f|
     = f.inputs do
       = f.input :race_id, as: :hidden
       %li#search_race_input
@@ -14,4 +14,5 @@
       = f.input :expire_date, required: true
       = f.input :publish_date, required: true
       = f.input :award_date, required: true
+      = render 'cf_infos', f: f
       = f.actions

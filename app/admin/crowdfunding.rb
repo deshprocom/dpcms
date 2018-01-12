@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Crowdfunding do
   permit_params :race_id, :master_image, :cf_cond, :expire_time,
                 :publish_time, :award_time, crowdfunding_categories_attributes: [:id, :description, :name, :_destroy]

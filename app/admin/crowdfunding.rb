@@ -21,6 +21,22 @@ ActiveAdmin.register Crowdfunding do
     render 'search_race'
   end
 
+  member_action :add_category, method: [:get, :post] do
+    return render 'add_category' unless request.post?
+    resource.crowdfunding_categories.create(name: params[:name])
+    render 'common/update_success'
+  end
+
+  member_action :publish, method: :post do
+    resource.publish!
+    redirect_back fallback_location: admin_crowdfundings_url, notice: '发布成功'
+  end
+
+  member_action :unpublish, method: :post do
+    resource.unpublish!
+    redirect_back fallback_location: admin_crowdfundings_url, notice: '取消发布成功'
+  end
+
   controller do
     def new
       @crowdfunding = Crowdfunding.new

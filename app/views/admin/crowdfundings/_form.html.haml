@@ -1,7 +1,7 @@
 %div.crowdfunding-new
   = semantic_form_for [:admin, @crowdfunding], builder: ActiveAdmin::FormBuilder do |f|
     = f.inputs do
-      = f.input :race_id, as: :hidden
+      = f.input :race_id, as: :hidden, require: true
       %li#search_race_input
         %label 赛事
         %input{type: 'text', disabled: 'disabled', value: @crowdfunding.race&.name, placeHolder: '请搜索选择一个赛事'}

@@ -518,6 +518,7 @@
         publish_date: '公布时间'
         award_date: '发奖时间'
         description: '众筹描述'
+        published: '发布'
 
       format: "%{attribute}%{message}"
       messages:

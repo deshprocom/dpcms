@@ -1,9 +1,14 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Crowdfunding do
+  menu priority: 25
   permit_params :race_id, :master_image, :cf_cond, :expire_time,
                 :publish_time, :award_time, crowdfunding_categories_attributes: [:id, :description, :name, :_destroy]
 
   form partial: 'form'
+
+  filter :race_name, as: :string
+  filter :race_location, as: :string
+  filter :published
 
   index do
     render 'index', context: self
@@ -36,6 +41,10 @@ ActiveAdmin.register Crowdfunding do
   member_action :unpublish, method: :post do
     resource.unpublish!
     redirect_back fallback_location: admin_crowdfundings_url, notice: '取消发布成功'
+  end
+
+  action_item :banner, only: :index do
+    link_to 'Banner管理', admin_crowdfunding_banners_path
   end
 
   controller do

@@ -52,6 +52,8 @@
       user_tag: '用户标签管理'
       topic_view_rule: '浏览量管理'
       crowdfunding: '众筹管理'
+      crowdfunding_banner: '众筹Banner'
+      crowdfunding_player: '众筹牌手'
     attributes:
       album:
         name: "相册名"
@@ -226,6 +228,10 @@
         dpi_total_score: 'DPI总积分'
         gpi_total_score: 'GPI总积分'
         memo: '备注'
+        lairage_rate: '进圈率(%)'
+        final_rate: '决赛率(%)'
+        nick_name: '昵称'
+        logo: '牌手列表图'
       race_rank:
         ranking: '名次'
         score: '得分'
@@ -519,7 +525,29 @@
         award_date: '发奖时间'
         description: '众筹描述'
         published: '发布'
-
+      crowdfunding_banner:
+        image: '图片'
+        link: '链接'
+        source_type: '来源类型'
+        source_title: '来源标题'
+        source: '来源'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+      crowdfunding_player:
+        name: '姓名(昵称)'
+        logo: '牌手列表图'
+        player_name: '姓名'
+        join_slogan: '参赛口号'
+        sell_stock: '出让股份(%)'
+        stock_number: '股份划分(份)'
+        stock_unit_price: '每股单价(元)'
+        cf_money: '众筹总额(元)'
+        limit_buy: '限购份数(份)'
+        fans: '已认购人数'
+        order_stock_number: '已认购份数'
+        order_stock_money: '已认购金额'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

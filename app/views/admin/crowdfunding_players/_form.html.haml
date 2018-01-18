@@ -9,6 +9,8 @@
       = t.input :logo, as: :attachment, required: true,
                        hint: '图片最大为 2MB',
                        image: proc { |o| o.preview_logo }
+      %li.cf_player_images_
+        = render 'player_images', player: t.object
       = t.input :nick_name
       = t.input :lairage_rate
       = t.input :final_rate

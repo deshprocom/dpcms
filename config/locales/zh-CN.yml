@@ -54,6 +54,7 @@
       crowdfunding: '众筹管理'
       crowdfunding_banner: '众筹Banner'
       crowdfunding_player: '众筹牌手'
+      poker_coin: '扑客币'
     attributes:
       album:
         name: "相册名"
@@ -548,6 +549,15 @@
         order_stock_money: '已认购金额'
         created_at: "创建时间"
         updated_at: "修改时间"
+      poker_coin:
+        number: '扑客币'
+        memo: '备注'
+        typeable_type: '类别'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        user_uuid: '用户ID'
+        user_name: '用户'
+        mobile: '手机号码'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

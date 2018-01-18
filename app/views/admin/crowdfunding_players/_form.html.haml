@@ -18,8 +18,8 @@
     = f.input :sell_stock
     = f.input :stock_number
     = f.input :stock_unit_price
-    = f.input :cf_money
     = f.input :limit_buy
+    = f.input :published
     = f.semantic_fields_for :player do |t|
       ~ t.text_area :description
     = f.actions

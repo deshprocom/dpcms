@@ -549,6 +549,7 @@
         order_stock_money: '已认购金额'
         created_at: "创建时间"
         updated_at: "修改时间"
+        published: "发布"
       poker_coin:
         number: '扑客币'
         memo: '备注'

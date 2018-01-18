@@ -1,7 +1,7 @@
 ActiveAdmin.register CrowdfundingPlayer do
   belongs_to :crowdfunding
   permit_params :player_id, :join_slogan, :sell_stock, :stock_number,
-                :stock_unit_price, :cf_money, :limit_buy,
+                :stock_unit_price, :limit_buy, :published,
                 player_attributes: [:id, :lairage_rate, :final_rate, :nick_name, :description, :logo]
   config.clear_action_items!
 

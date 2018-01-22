@@ -4,7 +4,7 @@
   = form_tag change_group_admin_video_path(@video), multipart: true, remote: true do
     .old_group
       %span 当前组别：
-      %span #{@video&.video_group.name}
+      %span #{@video&.video_group&.name}
     %br
     .new_group
       %span 新的组别：

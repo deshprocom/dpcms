@@ -8,7 +8,7 @@ ActiveAdmin.register AdminSysLog do
     column :operation_id, &:operation_id
     column :action
     column :admin_user_id do |log|
-      log.admin_user.email
+      log.admin_user&.email
     end
     column :mark
     column :updated_at

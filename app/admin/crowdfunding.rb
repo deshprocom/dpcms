@@ -19,11 +19,12 @@ ActiveAdmin.register Crowdfunding do
   collection_action :search_race, method: :get do
     keyword = params[:content].to_s
     like_sql = 'name like ? or location like ?'
-    @races = Race.where(like_sql, "%#{keyword}%", "%#{keyword}%").order(id: :desc).page(params[:page]).per(8)
+    @races = Race.where(like_sql, "%#{keyword}%", "%#{keyword}%")
+                 .where(published: true).order(id: :desc).page(params[:page]).per(8)
   end
 
   collection_action :search_sub_races, method: :get do
-    @races = Race.find(params[:id]).sub_races.order(id: :desc).page(params[:page]).per(8)
+    @races = Race.find(params[:id]).sub_races.where(published: true).order(id: :desc).page(params[:page]).per(8)
     render 'search_race'
   end
 

@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register CrowdfundingPlayer do
   belongs_to :crowdfunding
   permit_params :player_id, :join_slogan, :sell_stock, :stock_number,

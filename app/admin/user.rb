@@ -127,7 +127,7 @@ ActiveAdmin.register User do
   end
 
   member_action :dynamics, method: [:get] do
-    @dynamics = resource.dynamics.normal_dynamics.page(params[:page]).per(8)
+    @dynamics = resource.dynamics.normal_dynamics.order(created_at: :desc).page(params[:page]).per(8)
     @return_lists = {}
     @dynamics.collect do |dynamic|
       index = dynamic.created_at.strftime('%Y%m%d')

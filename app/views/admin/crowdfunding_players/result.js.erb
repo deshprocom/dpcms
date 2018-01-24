@@ -27,8 +27,8 @@ function cal_sale_amount() {
     var sell_number = parseFloat($('.cf_player_result .sell_number').text());
     console.log(deduct_tax, earning, sell_stock);
     if (deduct_tax > earning) {
-        alert('税收不能大于赢得的奖金');
-        return;
+        console.log('税收不能大于赢得的奖金');
+        return false;
     }
 
     var sale_amount = (earning - deduct_tax) * sell_stock;
@@ -36,7 +36,7 @@ function cal_sale_amount() {
 
     var platform_tax = parseFloat($('.cf_player_result input#platform_tax').val()) / 100;
     if (platform_tax < 0 || platform_tax > 1) {
-        alert('平台税收不能小于0 或 大于100%');
+        console.log('平台税收不能小于0 或 大于100%');
         return;
     }
     console.log(sale_amount, platform_tax);

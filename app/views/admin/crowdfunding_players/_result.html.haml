@@ -5,7 +5,7 @@
 - deduct_tax = cf_rank.present? ? cf_rank.deduct_tax : 0
 - platform_tax = cf_rank.present? ? cf_rank.platform_tax : 0
 - sale_amount = cf_rank.present? ? cf_rank.sale_amount : 0
-- total_amount = cf_rank.present? ? cf_rank.total_amount : 0
+- total_amount = cf_rank.present? ? cf_rank.total_amount.round(2) : 0
 
 %div.cf_player_result
   = form_tag result_admin_crowdfunding_crowdfunding_player_path(@crowdfunding, resource), method: :post, remote: true do
@@ -31,7 +31,7 @@
       %span= text_field_tag 'earning', earning
     %div
       %span 扣除税收(元)：
-      %span= text_field_tag 'deduct_tax', deduct_tax
+      %span.deduct_span= text_field_tag 'deduct_tax', deduct_tax
     %div
       %span 出让股权:
       %span.sell_stock #{resource.sell_stock}%
@@ -47,7 +47,7 @@
       %span 总金额(元):
       %span.total_amount.color-blue= total_amount
       %span{style: 'margin-left: 40px'} 单份金额(元):
-      %span.unit_amount.color-blue= total_amount / resource.stock_number
+      %span.unit_amount.color-blue= (total_amount / resource.stock_number).round(2)
 
     = submit_tag '提交'
 

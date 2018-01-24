@@ -1,0 +1,8 @@
+$('.cf_player_result').parents(".ui-dialog").remove();
+var html = "<%= j(render('result', remote: true)) %>";
+$(html).dialog({
+    modal: true,
+    width: '30%',
+    title: '输入结果',
+    position: { my: 'top', at: 'top+100' }
+});

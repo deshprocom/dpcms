@@ -5,6 +5,7 @@ ActiveAdmin.register PlayerImage do
     @player = Player.find(params[:player_id])
     return render 'number_limit' if @player.player_images.count >= 3
     return render 'increase_image' unless request.post?
+    return render 'common/params_format_error' if params[:image].blank?
     @player.player_images.create(image: params[:image])
     render 'option_success'
   end

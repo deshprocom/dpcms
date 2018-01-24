@@ -1,10 +1,24 @@
 $ ->
   window.dpEditor =
+    isUploadingCheck: false
+
     call: (textarea, form, options = {}) ->
       editor = @new(textarea, options)
-      form.submit ->
+      @imgUploadingCheck(form)
+      form.submit(->
         fillValue = toMarkdown(editor.getValue(), { gfm: true })
         editor.textarea.val(fillValue)
+      )
+
+    imgUploadingCheck: (form) ->
+      return if @isUploadingCheck
+
+      @isUploadingCheck = true
+      form.submit(->
+        if $('.simditor-body img.uploading').length > 0
+          alert('文章中的图片未上传成功，请等待上传成功后，再次提交')
+          return false
+      )
 
     new: (textarea, options) ->
       val = textarea.val()

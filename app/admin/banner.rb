@@ -6,6 +6,7 @@ ActiveAdmin.register Banner do
   config.batch_actions = false
   config.filters = false
   config.sort_order = 'position_asc'
+  scope :homepage, default: true
 
   form partial: 'form'
 

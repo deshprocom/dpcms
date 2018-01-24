@@ -42,7 +42,7 @@ ActiveAdmin.register CrowdfundingPlayer do
   member_action :result, method: [:get, :post] do
     return render 'result' unless request.post?
     return render 'common/params_format_error' if params[:ranking].blank?
-    return render 'common/tax_format_error' if params[:platform_tax].to_i > 100 || params[:platform_tax].to_i < 0
+    return render 'common/tax_format_error' if params[:platform_tax].to_i > 100 || params[:platform_tax].negative?
     CrowdfundingRank.where(crowdfunding_player: resource)
                     .update_or_create(crowdfunding: @crowdfunding,
                                       crowdfunding_player: resource,

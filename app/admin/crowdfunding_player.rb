@@ -39,6 +39,18 @@ ActiveAdmin.register CrowdfundingPlayer do
     redirect_back fallback_location: admin_crowdfunding_crowdfunding_players_url, notice: '取消发布成功'
   end
 
+  member_action :poker_coin, method: [:get, :post] do
+    return render 'poker_coin' unless request.post?
+    orders = resource.crowdfunding_orders
+    rank = resource.crowdfunding_rank
+    orders.each do |order|
+      number = rank.unit_amount * order.order_stock_number
+      PokerCoin.create(user: order.user, typeable: @crowdfunding, memo: '众筹成功', number: number)
+    end
+    resource.completed!
+    redirect_back fallback_location: admin_crowdfunding_crowdfunding_players_url, notice: '下发成功'
+  end
+
   member_action :result, method: [:get, :post] do
     return render 'result' unless request.post?
     return render 'common/params_format_error' if params[:ranking].blank?

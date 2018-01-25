@@ -32,7 +32,7 @@ function cal_sale_amount() {
     }
 
     var sale_amount = (earning - deduct_tax) * sell_stock;
-    $('.cf_player_result .sale_amount').text(sale_amount);
+    $('.cf_player_result .sale_amount').text(toDecimal(sale_amount));
 
     var platform_tax = parseFloat($('.cf_player_result input#platform_tax').val()) / 100;
     if (platform_tax < 0 || platform_tax > 1) {

@@ -1,5 +1,4 @@
 # rubocop:disable Metrics/BlockLength
-RACE_TAG_LIST = RaceTag.all
 ActiveAdmin.register Info do
   menu priority: 3, parent: '资讯管理', label: '资讯列表'
   SOURCE_TYPE = %w(source author).collect { |d| [I18n.t("info.#{d}"), d] }
@@ -19,7 +18,7 @@ ActiveAdmin.register Info do
   filter :published
   filter :top
   filter :info_type_id, as: :select, collection: FILTER_INFO_TYPE
-  filter :race_tag_id, as: :select, collection: RACE_TAG_LIST
+  filter :race_tag_id, as: :select, collection: RaceTag.all
 
   index title: '资讯管理' do
     column :id

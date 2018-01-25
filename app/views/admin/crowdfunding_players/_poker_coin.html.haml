@@ -60,7 +60,7 @@
               %td.color-blue= cf_rank.unit_amount * order.order_stock_number
 
   %div.bottom
-    - if resource.waiting?
+    - if resource.waiting? && orders.count > 0
       %span= button_to '确认下发', poker_coin_admin_crowdfunding_crowdfunding_player_path(@crowdfunding, resource), method: :post, data: {confirm: '下发后将不可撤回，请谨慎操作！！'}
     - if resource.completed?
       %span= link_to '前往扑客币管理', admin_poker_coins_path

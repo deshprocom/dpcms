@@ -24,7 +24,7 @@
         = f.semantic_fields_for :video_en do |en|
           = en.text_field :title_desc
     = f.input :video_type_id, as: :select, collection: options_for_select(FILTER_VIDEO_TYPE, selected)
-    = f.input :race_tag_id, as: :select, collection: RACE_TAG_LIST
+    = f.input :race_tag_id, as: :select, collection: RaceTag.all
     = f.input :video_group_id, as: :hidden
     = f.input :cover_link, as: :file, hint: f.object.image_thumb.present? ? image_tag(f.object.image_thumb, height: 60) : nil
     = f.input :video_link

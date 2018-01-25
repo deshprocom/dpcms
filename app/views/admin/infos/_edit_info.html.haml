@@ -16,7 +16,7 @@
         = f.semantic_fields_for :info_en do |en|
           = en.text_field :title
     = f.input :date
-    = f.input :race_tag_id, as: :select, collection: RACE_TAG_LIST
+    = f.input :race_tag_id, as: :select, collection: RaceTag.all
     = f.input :source_type, as: :select, collection: SOURCE_TYPE
     %li
       %div

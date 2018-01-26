@@ -19,8 +19,8 @@ ActiveAdmin.register PokerCoin do
     return render 'coin' unless request.post?
     return render 'params_blank' if params[:number].to_f.zero? || params[:memo].blank?
     return render 'number_format_error' unless params[:number].to_f.is_a?(Numeric)
-    return render 'over_number' if @max_coin < (-params[:number].to_f)
-        # 添加记录
+    return render 'over_number' if @max_coin < -params[:number].to_f
+    # 添加记录
     PokerCoin.create(user: resource.user, typeable: resource.typeable, memo: params[:memo], number: params[:number])
     render 'common/update_success'
   end

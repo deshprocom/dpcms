@@ -29,3 +29,18 @@
     justify-content: flex-end;
   }
 }
+
+.poker_coin {
+  .number-input {
+    width: 100px;
+  }
+
+  form > div {
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .info > span {
+    margin-right: 40px;
+  }
+}

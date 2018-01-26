@@ -11,6 +11,9 @@ context.instance_eval do
   end
   column :memo, sortable: false
   column :created_at
+  actions name: '操作', defaults: false do |p|
+    item '扑客币调整', coin_admin_poker_coin_path(p), class: 'member_link', remote: true
+  end
 end
 
 

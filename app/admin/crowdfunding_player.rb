@@ -45,7 +45,7 @@ ActiveAdmin.register CrowdfundingPlayer do
     rank = resource.crowdfunding_rank
     orders.each do |order|
       number = rank.unit_amount * order.order_stock_number
-      PokerCoin.create(user: order.user, typeable: @crowdfunding, memo: '众筹成功', number: number)
+      PokerCoin.create(user: order.user, typeable: resource, memo: '众筹成功', number: number)
     end
     resource.completed!
     redirect_back fallback_location: admin_crowdfunding_crowdfunding_players_url, notice: '下发成功'

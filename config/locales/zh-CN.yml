@@ -366,6 +366,7 @@
         user_extra_status: "实名状态"
         total_number: '购票次数'
         total_fee: '消费金额'
+        total_poker_coins: '总扑客币'
       feedback:
         content: '反馈内容'
         contact: '联系方式'

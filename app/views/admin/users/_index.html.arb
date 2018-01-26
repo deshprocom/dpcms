@@ -16,11 +16,11 @@ context.instance_eval do
   column(:last_visit)
   column(:login_count)
   column(:mark)
-  # column(:total_number) do |user|
-  #     user.orders.where.not(status: %w(unpaid canceled)).count
-  #   end
   column(:total_fee) do |user|
     user.orders.where.not(status: %w(unpaid canceled)).sum('price')
+  end
+  column(:total_poker_coins) do |user|
+    user.counter.total_poker_coins
   end
   actions(name: '操作', defaults: false) do |user|
     item '详情', admin_user_path(user), class: 'member_link'

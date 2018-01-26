@@ -1,0 +1,23 @@
+%div.poker_coin
+  = form_tag coin_admin_poker_coin_path(resource), remote: true do
+    %div.info
+      %span
+        %span 用户：
+        %span.color-blue= resource.user&.nick_name
+      %span
+        %span 众筹的牌手：
+        %span.color-blue #{resource.typeable.player.name}(#{resource.typeable.player&.nick_name})
+      %span
+        %span 众筹的赛事：
+        %span.color-blue=  resource.typeable.crowdfunding.race.name
+      %span
+        %span 获得的扑客币：
+        %span.color-blue=  resource.number
+    %div
+      %label 变化数量：
+      %span
+        = text_field_tag 'number', nil, class: "number-input"
+    %div
+      %label 更改原因：
+      = text_area_tag 'memo', nil, placeholder: '请输入调整的原因，该填写信息将会展示在用户动态中心，务必谨慎！...'
+      = submit_tag '提交', data: { confirm: "操作不可逆，确定修改吗？" }

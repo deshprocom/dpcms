@@ -4,7 +4,8 @@
     - description.each do |item|
       %span{ 'data-id': item.id }= item.name
     - if @crowdfunding.persisted?
-      = link_to '添加', add_category_admin_crowdfunding_path(@crowdfunding), remote: true
+      = link_to '添加栏目', add_category_admin_crowdfunding_path(@crowdfunding), remote: true
+      (添加会刷新当前页面,请保存好数据)
   %li
     - f.has_many :crowdfunding_categories, heading: '', new_record: false, allow_destroy: true do |t|
       = t.hidden_field :name

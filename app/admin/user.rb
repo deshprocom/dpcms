@@ -140,4 +140,14 @@ ActiveAdmin.register User do
   action_item :user_extras, only: :index do
     link_to '实名列表', admin_user_extras_path
   end
+
+  member_action :poker_coins, method: [:get, :post] do
+    @dynamics = resource.poker_coins.page(params[:page]).per(10)
+    @return_lists = {}
+    @dynamics.collect do |dynamic|
+      index = dynamic.created_at.strftime('%Y%m%d')
+      @return_lists[index] = [] if @return_lists[index].blank?
+      @return_lists[index].push(dynamic)
+    end
+  end
 end

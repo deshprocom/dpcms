@@ -5,14 +5,14 @@
         %span 用户：
         %span.color-blue= resource.user&.nick_name
       %span
-        %span 众筹的牌手：
-        %span.color-blue #{resource.typeable.player.name}(#{resource.typeable.player&.nick_name})
+        %span 所属类别：
+        %span.color-blue= resource.typeable_type
       %span
-        %span 众筹的赛事：
-        %span.color-blue=  resource.typeable.crowdfunding.race.name
+        %span 该类别获得的扑客币：
+        %span.color-blue=  @max_coin
       %span
-        %span 获得的扑客币：
-        %span.color-blue=  resource.number
+        %span 用户总的扑客币
+        %span.color-blue= resource.user.counter.total_poker_coins
     %div
       %label 变化数量：
       %span

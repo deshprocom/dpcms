@@ -20,7 +20,7 @@ context.instance_eval do
     user.orders.where.not(status: %w(unpaid canceled)).sum('price')
   end
   column(:total_poker_coins) do |user|
-    user.counter.total_poker_coins
+    link_to user.counter.total_poker_coins, poker_coins_admin_user_path(user), remote: true
   end
   actions(name: '操作', defaults: false) do |user|
     item '详情', admin_user_path(user), class: 'member_link'

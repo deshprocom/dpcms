@@ -366,6 +366,7 @@
         user_extra_status: "实名状态"
         total_number: '购票次数'
         total_fee: '消费金额'
+        total_poker_coins: '总扑客币'
       feedback:
         content: '反馈内容'
         contact: '联系方式'
@@ -554,11 +555,16 @@
         number: '扑客币'
         memo: '备注'
         typeable_type: '类别'
+        typeable_id: '所属ID'
         created_at: "创建时间"
         updated_at: "修改时间"
         user_uuid: '用户ID'
         user_name: '用户'
         mobile: '手机号码'
+        avatar: '头像'
+        typeable: '来源类别'
+        user_mobile: '用户手机'
+        user_nick_name: '用户昵称'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

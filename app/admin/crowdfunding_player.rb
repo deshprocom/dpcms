@@ -41,7 +41,7 @@ ActiveAdmin.register CrowdfundingPlayer do
 
   member_action :poker_coin, method: [:get, :post] do
     return render 'poker_coin' unless request.post?
-    orders = resource.crowdfunding_orders
+    orders = resource.crowdfunding_orders.paid_status
     rank = resource.crowdfunding_rank
     orders.each do |order|
       number = rank.unit_amount * order.order_stock_number

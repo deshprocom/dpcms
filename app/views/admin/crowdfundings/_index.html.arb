@@ -16,6 +16,7 @@ context.instance_eval do
            data: { confirm: '确定发布吗？' }, method: :post
     end
     item '牌手管理', admin_crowdfunding_crowdfunding_players_path(cf)
+    item '及时赛报', admin_crowdfunding_crowdfunding_reports_path(cf)
   end
 end
 

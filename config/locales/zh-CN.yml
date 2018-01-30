@@ -55,6 +55,7 @@
       crowdfunding_banner: '众筹Banner'
       crowdfunding_player: '众筹牌手'
       poker_coin: '扑客币'
+      crowdfunding_report: '赛报管理'
     attributes:
       album:
         name: "相册名"
@@ -565,6 +566,19 @@
         typeable: '来源类别'
         user_mobile: '用户手机'
         user_nick_name: '用户昵称'
+      crowdfunding_report:
+        record_time: '比赛时间'
+        name: '赛事标题'
+        title: '小标题'
+        level: '级别'
+        small_blind: '小盲注'
+        big_blind: '大盲注'
+        ante: '前注'
+        crowdfunding_player_id: '众筹牌手'
+        description: '图文描述'
+        created_at: "创建时间"
+        updated_at: "修改时间"
+        name_or_title: '标题'
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

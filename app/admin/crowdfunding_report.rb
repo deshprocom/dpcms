@@ -6,6 +6,7 @@ ActiveAdmin.register CrowdfundingReport do
   filter :name_or_title, as: :string
   filter :record_time
   filter :created_at
+  filter :crowdfunding_player_player_name, as: :string
 
   form partial: 'form'
 

@@ -14,6 +14,7 @@ ActiveAdmin.register Player do
       end
     end
     column :name
+    column :nick_name
     column :country
     column :dpi_total_earning
     column :dpi_total_score
@@ -89,6 +90,7 @@ ActiveAdmin.register Player do
 
     def player_params
       params.require(:player).permit(:name,
+                                     :nick_name,
                                      :avatar,
                                      :country,
                                      :dpi_total_earning,

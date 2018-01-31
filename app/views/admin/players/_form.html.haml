@@ -9,6 +9,7 @@
     - %w[x y w h].each do |attr|
       = f.hidden_field "crop_#{attr}"
     = f.input :name
+    = f.input :nick_name
     = f.input :country, as: :string
     = f.input :dpi_total_earning
     = f.input :dpi_total_score

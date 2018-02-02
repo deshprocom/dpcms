@@ -1,5 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Banner, as: 'crowdfunding_banner' do
+  menu priority: 21, parent: '众筹管理', label: '众筹banner'
   config.batch_actions = false
   config.filters = false
   config.sort_order = 'position_asc'

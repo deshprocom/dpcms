@@ -5,7 +5,7 @@ context.instance_eval do
   column :stock_number
   column :stock_unit_price
   column :cf_money
-  column(:fans) { |obj| obj.counter.fans }
+  column(:fans) { |obj| obj.order_fans[:number] }
   column(:order_stock_number) { |obj| obj.counter.order_stock_number }
   column(:order_stock_money) { |obj| obj.counter.order_stock_money }
   actions name: '操作', class: 'info_actions' do |cf_player|

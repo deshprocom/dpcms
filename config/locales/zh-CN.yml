@@ -53,6 +53,7 @@
       topic_view_rule: '浏览量管理'
       crowdfunding: '众筹管理'
       crowdfunding_banner: '众筹Banner'
+      crowdfunding_order: '众筹订单'
       crowdfunding_player: '众筹牌手'
       poker_coin: '扑客币'
       crowdfunding_report: '赛报管理'
@@ -566,6 +567,15 @@
         typeable: '来源类别'
         user_mobile: '用户手机'
         user_nick_name: '用户昵称'
+      crowdfunding_order:
+        order_number: '订单编号'
+        order_stock_number: '认购份数'
+        order_stock_money: '认购单价'
+        total_money: '认购总价'
+        pay_time: '支付时间'
+        paid: '是否支付'
+        record_status: '进展状态'
+        created_at: '创建时间'
       crowdfunding_report:
         record_time: '比赛时间'
         name: '赛事标题'

@@ -99,3 +99,7 @@
     China:  '国内'
     foreign: '国际'
     transfer: '转运'
+  crowdfunding_order:
+    unpublished: '未公布'
+    success: '晋级成功'
+    failed: '失败'

@@ -66,7 +66,7 @@ ActiveAdmin.register CrowdfundingPlayer do
                                       earning: params[:earning],
                                       deduct_tax: params[:deduct_tax],
                                       platform_tax: params[:platform_tax])
-    if !params[:awarded] && !params[:finaled]
+    if params[:awarded].eql?("false") && params[:finaled].eql?("false")
       resource.crowdfunding_orders.paid_status.each(&:failed!)
       resource.failed!
     else

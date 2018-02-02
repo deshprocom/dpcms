@@ -46,6 +46,7 @@ ActiveAdmin.register CrowdfundingPlayer do
     orders.each do |order|
       number = rank.unit_amount * order.order_stock_number
       PokerCoin.create(user: order.user, typeable: resource, memo: '众筹成功', number: number)
+      order.update(poker_coins: number)
     end
     resource.completed!
     redirect_back fallback_location: admin_crowdfunding_crowdfunding_players_url, notice: '下发成功'
@@ -66,7 +67,7 @@ ActiveAdmin.register CrowdfundingPlayer do
                                       earning: params[:earning],
                                       deduct_tax: params[:deduct_tax],
                                       platform_tax: params[:platform_tax])
-    if params[:awarded].eql?("false") && params[:finaled].eql?("false")
+    if params[:awarded].eql?('false') && params[:finaled].eql?('false')
       resource.crowdfunding_orders.paid_status.each(&:failed!)
       resource.failed!
     else

@@ -26,7 +26,7 @@ ActiveAdmin.register PokerCoin do
     PokerCoin.create(user: resource.user, typeable: resource.typeable, memo: params[:memo], number: number)
     # 记录操作日志
     Services::SysLog.call(current_admin_user, resource,
-                          '扑客币手动修改', "类型：#{resource.typeable_type}，相关的用户：#{resource.user.nick_name}，扑客币数量： #{number}")
+                          '扑客币手动修改', "类型：#{resource.typeable_type}，相关的用户：#{resource.user&.nick_name}，扑客币数量： #{number}")
     render 'common/update_success'
   end
 end

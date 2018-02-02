@@ -14,7 +14,13 @@
         %span 用户总的扑客币
         %span.color-blue= resource.user.counter.total_poker_coins
     %div
-      %label 变化数量：
+      %span 扑客币操作：
+      %span= label_tag :direction, '增加'
+      %span= radio_button_tag :direction, 'plus'
+      %span{style: 'margin-left: 20px'}= label_tag :direction, '减少'
+      %span= radio_button_tag :direction, 'decrease', true
+    %div
+      %label 增加或减少的数量(正数)：
       %span
         = text_field_tag 'number', nil, class: "number-input"
       %span ( 该类别最多可扣除金额

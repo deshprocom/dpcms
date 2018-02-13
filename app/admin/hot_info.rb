@@ -5,7 +5,7 @@ ActiveAdmin.register HotInfo do
   menu priority: 5, parent: '首页管理'
   config.batch_actions = false
   config.filters = false
-  config.sort_order = 'position_asc'
+  config.sort_order = 'position_desc'
 
   form partial: 'form'
 
@@ -15,8 +15,7 @@ ActiveAdmin.register HotInfo do
 
   controller do
     def create
-      position = HotInfo.default_order.first.position - 2
-      position = position.negative? ? 0 : position
+      position = HotInfo.position_desc.first&.position.to_i + 100000
       merge_params = { position: position, source_type: hot_info_params[:source_type].classify }
       @hot_info = HotInfo.new hot_info_params.merge(merge_params)
 
@@ -39,9 +38,9 @@ ActiveAdmin.register HotInfo do
     next_hot_info = params[:next_id] && HotInfo.find(params[:next_id].split('_').last)
     prev_hot_info = params[:prev_id] && HotInfo.find(params[:prev_id].split('_').last)
     position = if params[:prev_id].blank?
-                 next_hot_info.position / 2
+                 next_hot_info.position + 100000
                elsif params[:next_id].blank?
-                 prev_hot_info.position + 100000
+                 prev_hot_info.position / 2
                else
                  (prev_hot_info.position + next_hot_info.position) / 2
                end

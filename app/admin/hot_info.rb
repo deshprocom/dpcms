@@ -15,7 +15,7 @@ ActiveAdmin.register HotInfo do
 
   controller do
     def create
-      position = (HotInfo.position_desc.first&.position.to_i) + 100000
+      position = HotInfo.position_desc.first&.position.to_i + 100000
       merge_params = { position: position, source_type: hot_info_params[:source_type].classify }
       @hot_info = HotInfo.new hot_info_params.merge(merge_params)
 

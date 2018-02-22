@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Crowdfunding do
-  menu priority: 25
+  menu priority: 21, parent: '众筹管理', label: '众筹列表'
   permit_params :race_id, :master_image, :cf_cond, :expire_date,
                 :publish_date, :award_date, crowdfunding_categories_attributes: [:id, :description, :name, :_destroy]
 

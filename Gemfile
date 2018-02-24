@@ -53,7 +53,7 @@ gem 'carrierwave-imageoptim'
 # resque
 gem 'resque'
 # Whenever is a Ruby gem that provides a clear syntax for writing and deploying cron jobs.
-gem 'whenever', require: false
+gem 'whenever', '~> 0.10.0', require: false
 
 # http组件
 gem 'faraday','~> 0.11.0'

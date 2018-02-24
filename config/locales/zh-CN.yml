@@ -57,6 +57,7 @@
       crowdfunding_player: '众筹牌手'
       poker_coin: '扑客币'
       crowdfunding_report: '赛报管理'
+      release: '发布管理'
     attributes:
       album:
         name: "相册名"
@@ -591,6 +592,11 @@
         name_or_title: '标题'
         crowdfunding_player: '众筹牌手'
         crowdfunding_player_player_name: '牌手姓名'
+      release:
+        keywords: '模块名'
+        published: '发布'
+        created_at: "创建时间"
+        updated_at: "修改时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

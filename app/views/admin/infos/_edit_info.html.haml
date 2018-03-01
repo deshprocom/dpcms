@@ -44,10 +44,12 @@
         ~ en.text_area :description
     = f.actions
 
+= render 'admin/common/dp_sources'
+
 :javascript
   $(function() {
-        dpEditor.call($('#info_description'), $('form.info'));
+    dpEditor.call($('#info_info_en_attributes_description'), $('form.info'));
+    dpEditor.call($('#info_description'), $('form.info'));
+    HomepageEvent.bindFormEvents();
   });
-  $(function() {
-        dpEditor.call($('#info_info_en_attributes_description'), $('form.info'));
-  });
+

@@ -1,6 +1,5 @@
 #= require active_admin/base
 #= require ./app
-#= require_tree ./admin
 #= require marked
 #= require to-markdown
 #= require simditor
@@ -13,6 +12,7 @@
 #= require jquery.purr
 #= require best_in_place.purr
 #= require cropper
+#= require_tree ./admin
 
 $(document).ready ->
   jQuery(".best_in_place").best_in_place()

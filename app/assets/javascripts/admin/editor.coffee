@@ -9,6 +9,7 @@ $ ->
         fillValue = toMarkdown(editor.getValue(), { gfm: true })
         editor.textarea.val(fillValue)
       )
+      return editor
 
     imgUploadingCheck: (form) ->
       return if @isUploadingCheck
@@ -26,7 +27,7 @@ $ ->
       placeholder = if options['placeholder'] then options['placeholder'] else '这里输入文字...'
       new Simditor(
         textarea: textarea,
-        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', '|', 'markdown'],
+        toolbar: ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', '|', 'markdown', 'dpLink'],
         toolbarFloat: true,
         placeholder: placeholder,
         pasteImage: true,

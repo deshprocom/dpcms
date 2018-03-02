@@ -124,7 +124,7 @@ $ ->
       else
         trs = ''
       for race in races
-        trs += "<tr data-id=#{race.id} data-title=#{race.name}>"
+        trs += "<tr data-id=#{race.id} data-title=#{race.name} data-type='race'>"
         trs += "<td>#{race.id}</td>"
         trs += "<td>#{race.name}</td>"
         trs += '/<tr>'
@@ -136,7 +136,7 @@ $ ->
       else
         trs = ''
       for info in infos
-        trs += "<tr data-id=#{info.id} data-title=#{info.title}>"
+        trs += "<tr data-id=#{info.id} data-title=#{info.title} data-type='info'>"
         trs += "<td>#{info.id}</td>"
         trs += "<td>#{info.title}</td>"
         trs += '/<tr>'
@@ -148,7 +148,7 @@ $ ->
       else
         trs = ''
       for video in vidoes
-        trs += "<tr data-id=#{video.id} data-title=#{video.name}>"
+        trs += "<tr data-id=#{video.id} data-title=#{video.name} data-type='video'>"
         trs += "<td>#{video.id}</td>"
         trs += "<td>#{video.name}</td>"
         trs += '/<tr>'

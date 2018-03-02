@@ -46,8 +46,10 @@
         ~ en.text_area :description
     = f.actions
 
+= render 'admin/common/dp_sources_with_select'
 :javascript
   $(function() {
         dpEditor.call($('#video_description'), $('form.video'));
         dpEditor.call($('#video_video_en_attributes_description'), $('form.video'));
+        HomepageEvent.bindFormEvents();
   });

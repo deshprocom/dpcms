@@ -8,7 +8,12 @@ class SimditorDpLink extends Simditor.Button
   
   disableTag: 'pre'
 
-  clickToLink: ->
+  appLink: (sourceType, sourceId) ->
+    return "approuter://race/#{sourceId}" if sourceType == 'race'
+
+    return "approuter://news/#{sourceId}" if sourceType == 'info'
+
+    return "approuter://video/#{sourceId}" if sourceType == 'video'
 
   command: ->
     range = @editor.selection.range()
@@ -30,12 +35,13 @@ class SimditorDpLink extends Simditor.Button
     @editor.selection.range range
     @editor.trigger 'valuechanged'
 
-    console.log(dp_link)
-    dialog = $('.sources').dialog({ width: '50%' })
+    dialog = $('.sources_with_select').dialog({ width: '50%' })
+    that = @
     dialog.one 'click', 'tbody tr', (e) ->
       id = $(this).data('id')
+      type = $(this).data('type')
       dp_link.text($(this).data('title'))
-      dp_link.attr('href', id);
+      dp_link.attr('href', that.appLink(type, id));
       dialog.dialog('close')
 
 Simditor.Toolbar.addButton SimditorDpLink

@@ -44,7 +44,7 @@ ActiveAdmin.register CrowdfundingPlayer do
     orders = resource.crowdfunding_orders.paid_status
     rank = resource.crowdfunding_rank
     orders.each do |order|
-      number = rank.unit_amount * order.order_stock_number
+      number = (rank.unit_amount * order.order_stock_number) * 100
       PokerCoin.create(user: order.user, typeable: resource, memo: '众筹成功', number: number)
       order.update(poker_coins: number)
     end

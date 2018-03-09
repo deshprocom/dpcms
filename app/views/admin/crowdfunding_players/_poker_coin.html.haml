@@ -57,7 +57,7 @@
               %td= order.user.mobile
               %td= order.order_stock_money
               %td= order.order_stock_number
-              %td.color-blue= cf_rank.unit_amount * order.order_stock_number
+              %td.color-blue= (cf_rank.unit_amount * order.order_stock_number * 100).to_i
 
   %div.bottom
     - if resource.waiting? && orders.count > 0

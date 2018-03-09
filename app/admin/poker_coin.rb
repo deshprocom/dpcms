@@ -18,7 +18,7 @@ ActiveAdmin.register PokerCoin do
     @max_coin = PokerCoin.total_coin_of_the_type(resource.typeable, resource.user)
     return render 'coin' unless request.post?
 
-    number = params[:number].to_f
+    number = params[:number].to_i
     return render 'params_blank' if number <= 0
     number = params[:direction].eql?('decrease') ? -number : number
     return render 'over_number' if @max_coin < -number

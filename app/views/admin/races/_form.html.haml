@@ -32,9 +32,13 @@
       = f.semantic_fields_for :race_desc_en do |form|
         ~ form.text_area :description
   = f.actions
+
+= render 'admin/common/dp_sources_with_select'
+
 :javascript
     $(function() {
         dpEditor.call($('#race_race_desc_attributes_description'), $('form.race'));
         dpEditor.call($('#race_race_desc_en_attributes_description'), $('form.race'),
          { placeholder: 'Here to enter text...' });
+        HomepageEvent.bindFormEvents();
     });

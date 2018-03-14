@@ -27,7 +27,7 @@ ActiveAdmin.register WxBill do
     column :out_trade_no
     column :open_id, sortable: false
     column :total_fee do |bill|
-      bill.total_fee / 100
+      bill.total_fee.to_f / 100
     end
     column :fee_type, sortable: false
     column :time_end

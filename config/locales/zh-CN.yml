@@ -498,6 +498,7 @@
         mobile: '手机号码'
         avatar: '头像'
         typeable: '来源类别'
+        orderable: '抵扣订单'
         user_mobile: '用户手机'
         user_nick_name: '用户昵称'
       crowdfunding_order:

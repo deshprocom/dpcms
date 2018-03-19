@@ -1,15 +1,15 @@
 class CmsAuthorization < ActiveAdmin::AuthorizationAdapter
-  def authorized?(action, subject = nil)
+  def authorized?(_action, subject = nil)
     ActiveAdmin.application.namespace(:shop).resources.keys
     case subject
-      when ActiveAdmin::Page # Dashboard
-        true
-      when Class # 所有的models
-        can? subject.model_name.element
-      when ActiveAdmin::Resource
-        can? subject.resource_name.element
-      else
-        can? resource.resource_name.element
+    when ActiveAdmin::Page # Dashboard
+      true
+    when Class # 所有的models
+      can? subject.model_name.element
+    when ActiveAdmin::Resource
+      can? subject.resource_name.element
+    else
+      can? resource.resource_name.element
     end
   end
 

@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register AdminRole do
   config.filters = false
   menu priority: 1, parent: '用户管理'
@@ -15,7 +16,7 @@ ActiveAdmin.register AdminRole do
   index do
     id_column
     column(:name)
-    column(:permissions) { |role| role.permissions_text }
+    column(:permissions, &:permissions_text)
     actions
   end
 
@@ -23,7 +24,7 @@ ActiveAdmin.register AdminRole do
     attributes_table do
       row(:id)
       row(:name)
-      row(:permissions) { |role| role.permissions_text }
+      row(:permissions, &:permissions_text)
     end
   end
 

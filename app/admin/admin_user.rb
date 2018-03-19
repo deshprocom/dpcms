@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register AdminUser do
   menu priority: 1, parent: '用户管理', label: '管理员列表'
   actions :all, except: [:show]
@@ -32,10 +33,10 @@ ActiveAdmin.register AdminUser do
     before_action :process_params, only: [:create, :update]
 
     def process_params
-      if params[:admin_user][:password].blank?
-        params[:admin_user].delete(:password)
-        params[:admin_user].delete(:password_confirmation)
-      end
+      return unless params[:admin_user][:password].blank?
+
+      params[:admin_user].delete(:password)
+      params[:admin_user].delete(:password_confirmation)
     end
   end
 end

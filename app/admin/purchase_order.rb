@@ -38,6 +38,7 @@ ActiveAdmin.register PurchaseOrder do
     end
     column :original_price
     column :price
+    column :final_price
     column :status, sortable: false do |order|
       I18n.t("order.#{order.status}")
     end

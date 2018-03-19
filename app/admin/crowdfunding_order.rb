@@ -22,6 +22,8 @@ ActiveAdmin.register CrowdfundingOrder do
     column :order_stock_money
     column :order_stock_number
     column :total_money
+    column :deduction_price
+    column :final_price
     column :pay_time
     column :paid
     column :record_status, sortable: false do |order|

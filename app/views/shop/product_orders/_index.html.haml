@@ -12,7 +12,7 @@
           %span 下单时间：
           %span= order.created_at
         %div{ class: 'last-column' }
-          %span= "合计：¥#{order.total_price} (含运费：¥#{order.shipping_price})"
+          %span= "合计：¥#{order.total_price}，实付：¥#{order.final_price} (含运费：¥#{order.shipping_price}, 扑客币抵扣：#{order.deduction_price})"
       %div.order-table
         - items = order&.product_order_items
         %div.order-left

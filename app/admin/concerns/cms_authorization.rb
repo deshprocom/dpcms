@@ -17,25 +17,27 @@ class CmsAuthorization < ActiveAdmin::AuthorizationAdapter
     name.in? user.permissions
   end
 
-  def self.admin_permissions
-    @admin_permissions ||= Dir["#{Rails.root.join('app/admin')}/*.rb"].map do |file|
-      File.basename(file).chomp('.rb')
+  class << self
+    def admin_permissions
+      @admin_permissions ||= Dir["#{Rails.root.join('app/admin')}/*.rb"].map do |file|
+        File.basename(file).chomp('.rb')
+      end
     end
-  end
 
-  def self.shop_permissions
-    @shop_permissions ||= Dir["#{Rails.root.join('app/shop')}/**/*.rb"].map do |file|
-      File.basename(file).chomp('.rb')
+    def shop_permissions
+      @shop_permissions ||= Dir["#{Rails.root.join('app/shop')}/**/*.rb"].map do |file|
+        File.basename(file).chomp('.rb')
+      end
     end
-  end
 
-  def self.permissions
-    @permissions ||= admin_permissions + shop_permissions
-  end
+    def permissions
+      @permissions ||= admin_permissions + shop_permissions
+    end
 
-  def self.permissions_with_trans
-    @permissions_with_trans ||= permissions.map do |permission|
-      [I18n.t("activerecord.models.#{permission}"), permission]
+    def permissions_with_trans
+      @permissions_with_trans ||= permissions.map do |permission|
+        [I18n.t("activerecord.models.#{permission}"), permission]
+      end
     end
   end
 end

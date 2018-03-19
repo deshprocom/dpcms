@@ -30,9 +30,17 @@ ActiveAdmin.register AdminRole do
 
   controller do
     before_action :process_params, only: [:create, :update]
+    before_action :destroy_super_admin?, only: [:destroy]
 
     def process_params
       params[:admin_role][:permissions].reject!(&:empty?)
+    end
+
+    def destroy_super_admin?
+      return unless resource.name == '超级管理员'
+
+      flash[:error] = '不能删除超级管理员'
+      redirect_back fallback_location: admin_admin_roles_url
     end
   end
 end

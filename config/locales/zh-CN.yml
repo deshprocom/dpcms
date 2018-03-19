@@ -148,7 +148,8 @@
         mobile: "手机号"
         order_number: "订单编号"
         original_price: "订单总金额(元)"
-        price: "实付金额(元)"
+        price: "小计金额(元)"
+        final_price: "实付金额(元)"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"
@@ -506,6 +507,8 @@
         order_stock_number: '认购份数'
         order_stock_money: '认购单价'
         total_money: '认购总价'
+        deduction_price: '扑客币抵扣'
+        final_price: '实付价格'
         pay_time: '支付时间'
         paid: '是否支付'
         record_status: '进展状态'

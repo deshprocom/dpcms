@@ -74,6 +74,7 @@
         status: "退款状态"
         refund_price: "退款金额"
         admin_memo: "审核备注"
+        refund_poker_coins: "退款扑客币"
       product_wx_bill:
         bank_type: '付款银行'
         cash_fee: '现金支付金额(元)'

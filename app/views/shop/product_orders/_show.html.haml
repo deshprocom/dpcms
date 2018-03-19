@@ -40,7 +40,7 @@
             %td= item.original_price
             %td= item.price
             %td= item.number
-        %span= "总价：¥#{resource.total_price} (含快递：¥#{resource.shipping_price})"
+        %span= "总价：¥#{resource.total_price}，实付：¥#{resource.final_price} (快递：¥#{resource.shipping_price}, 扑客币抵扣：#{resource.deduction_price})"
     - user = resource.user
     %div.user_info
       %div

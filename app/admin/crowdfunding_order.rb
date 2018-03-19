@@ -3,6 +3,7 @@ ActiveAdmin.register CrowdfundingOrder do
   menu priority: 21, parent: '众筹管理', label: '众筹订单'
   config.batch_actions = false
   config.filters = false
+  actions :all, except: [:new]
 
   index do
     id_column

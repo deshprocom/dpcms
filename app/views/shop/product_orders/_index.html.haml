@@ -29,9 +29,10 @@
             %div.tr
               %div= product&.title
               %div= product&.category&.name
-              %div
-                - img = variant&.image&.preview || product.preview_icon
-                = link_to image_tag(img), target: '_blank'
+              - img = variant&.image&.preview || product&.preview_icon
+              - if img.present?
+                %div
+                  = link_to image_tag(img), target: '_blank'
               %div
                 <s class="red">#{item.original_price}</s> #{item.price}
               %div= item.number

@@ -20,7 +20,7 @@ module ApplicationHelper
       strikethrough: true,
       superscript: true
     }
-    Redcarpet::Markdown.new(renderer, options).render(content) # rubocop:disable Rails/OutputSafety
+    Redcarpet::Markdown.new(renderer, options).render(content)
   end
 
   def multilingual_editor_switch

@@ -4,7 +4,7 @@ class SimditorDpLink extends Simditor.Button
   
   icon: 'dpLink'
   
-  htmlTag: 'dpLink'
+  htmlTag: 'a'
   
   disableTag: 'pre'
 
@@ -35,7 +35,7 @@ class SimditorDpLink extends Simditor.Button
     @editor.selection.range range
     @editor.trigger 'valuechanged'
 
-    dialog = $('.sources_with_select').dialog({ width: '50%' })
+    dialog = $('.sources_with_select').dialog({ width: '40%' })
     that = @
     dialog.one 'click', 'tbody tr', (e) ->
       id = $(this).data('id')

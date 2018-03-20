@@ -12,7 +12,7 @@ module ApplicationHelper
   def markdown(content)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {
-      autolink: true,
+      autolink: false,
       no_intra_emphasis: true,
       disable_indented_code_blocks: true,
       fenced_code_blocks: true,
@@ -20,7 +20,7 @@ module ApplicationHelper
       strikethrough: true,
       superscript: true
     }
-    Redcarpet::Markdown.new(renderer, options).render(content).html_safe # rubocop:disable Rails/OutputSafety
+    Redcarpet::Markdown.new(renderer, options).render(content)
   end
 
   def multilingual_editor_switch

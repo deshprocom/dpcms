@@ -8,7 +8,8 @@
   %div
     %span #{resource.date}
     %span #{I18n.t("info.#{resource.source_type}")} #{resource.source}
-  %div.description{'data-desc': resource.description, style: 'text-align: center'}
+  -#%div.description{'data-desc': resource.description, style: 'text-align: center'}
+  %div.description= sanitize resource.description
   %div.views
     %span
       %span 阅读:
@@ -23,4 +24,4 @@
     %h3 评论列表：
     = render 'admin/comments/index'
 
-= render 'marked_script'
+-#= render 'marked_script'

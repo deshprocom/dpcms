@@ -48,8 +48,9 @@
 
 :javascript
   $(function() {
-    dpEditor.call($('#info_info_en_attributes_description'), $('form.info'));
-    dpEditor.call($('#info_description'), $('form.info'));
+    var options = { is_html: true }
+    dpEditor.call($('#info_info_en_attributes_description'), $('form.info'), options);
+    dpEditor.call($('#info_description'), $('form.info'), options);
     HomepageEvent.bindFormEvents();
   });
 

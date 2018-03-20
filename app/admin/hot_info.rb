@@ -20,6 +20,8 @@ ActiveAdmin.register HotInfo do
       @hot_info = HotInfo.new hot_info_params.merge(merge_params)
 
       if @hot_info.save
+        # 开启热增长
+        open_view_toggle(@hot_info)
         flash[:notice] = '增加热门资讯成功'
         redirect_to admin_hot_infos_url
       else
@@ -30,6 +32,15 @@ ActiveAdmin.register HotInfo do
     def hot_info_params
       params.require(:hot_info).permit(:source_id,
                                        :source_type)
+    end
+
+    def open_view_toggle(hot_info)
+      return hot_info.open_view_toggle if hot_info.view_toggle?
+      TopicViewToggle.create(topic: hot_info.source,
+                             toggle_status: true,
+                             hot: true,
+                             begin_time: Time.now,
+                             last_time: Time.now)
     end
   end
 

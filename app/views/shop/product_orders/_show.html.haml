@@ -10,6 +10,8 @@
           - if resource.status.eql?('delivered')
             %span= link_to '查看物流', shipping_detail_shop_product_order_path(resource), remote: true
             %span= link_to '重新发货', edit_shop_product_order_product_shipment_path(resource, resource.product_shipment), remote: true
+          - if resource.status.eql?('completed')
+            %span= link_to '查看物流', shipping_detail_shop_product_order_path(resource), remote: true
           - unless resource.status.eql?('canceled')
             %span.cancel= link_to '取消', cancel_order_shop_product_order_path(resource), remote: true
   %div.body

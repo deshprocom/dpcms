@@ -3,6 +3,7 @@ ActiveAdmin.register CrowdfundingOrder do
   menu priority: 21, parent: '众筹管理', label: '众筹订单'
   config.batch_actions = false
   config.filters = false
+  actions :all, except: [:new]
 
   index do
     id_column
@@ -22,6 +23,8 @@ ActiveAdmin.register CrowdfundingOrder do
     column :order_stock_money
     column :order_stock_number
     column :total_money
+    column :deduction_price
+    column :final_price
     column :pay_time
     column :paid
     column :record_status, sortable: false do |order|

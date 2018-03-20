@@ -23,12 +23,18 @@
           #{ticket.ticket_info.entity_ticket_number - ticket.ticket_info.entity_ticket_sold_number}张实体票
       %td
         .order_amount
-          .amount
+          .order_amount
             %span 订单总金额：
             %span #{order.original_price}
-          .price
-            %span 实付金额：
+          .order_price
+            %span 小计金额：
             %span #{order.price}
+          .deduction_price
+            %span 扑客币抵扣：
+            %span #{order.deduction_price}
+          .final_price
+            %span 实付金额：
+            %span #{order.final_price}
         .change_price
           = form_tag(change_price_admin_purchase_order_path(order.id), id: 'change_price', method: 'post', remote: true) do
             %label{ for: 'order_price' } 实付金额：

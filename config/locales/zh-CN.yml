@@ -1,34 +1,37 @@
 "zh-CN":
   activerecord:
     models:
-      album: "相册列表"
-      album_photo: "相册图片"
-      product: "商品"
-      product_refund: "商品退款列表"
-      variant: "商品规格组合"
-      option_type: "规格"
-      option_value: "规格值"
+      admin_role: "后台角色"
       admin_user: "管理员"
+      admin_comment: "管理员评论"
       app_version: "app版本管理"
-      race: "赛事"
-      category: "分类"
       activity: "活动"
-      race_rank: "排名"
-      race_host: "主办方"
-      sub_races: "边赛"
-      sub_race: "边赛"
+      banner: "首页banner"
+      dashboard: "首页"
+      race: "赛事"
+      race_rank: "赛事排名"
+      race_host: "赛事主办方"
+      race_schedule: '赛程表'
+      race_blind: '盲注结构'
+      race_tag: '赛事标签'
+      race_extra: '赛事额外信息'
+      category: "分类"
+      sub_races: "赛事边赛"
+      sub_race: "赛事边赛"
       headline: "首页头条"
       hot_info: "热门资讯"
       ticket: "赛票"
       ticket_info: "门票数量信息"
       purchase_order: "订单"
       player: '牌手'
+      player_image: "牌手照片"
       info: '资讯'
       info_type: '资讯类别'
-      race_schedule: '赛程表'
-      race_blind: '盲注结构'
+      info_counter: "资讯计数器"
       video: '视频管理'
       video_type: '视频类别'
+      video_group: '视频组别'
+      video_counter: '视频计数器'
       admin_sys_log: '日志管理'
       user: '用户管理'
       user_extra: '实名认证'
@@ -40,15 +43,11 @@
       test_user: '测试用户'
       sms_log: '短信日志'
       invite_code: '邀请码'
-      reply_template: '回复列表'
       template_type: '模版类别'
       offline_race_order: '线下订单'
-      video_group: '视频组别'
-      race_tag: '标签管理'
-      freight: '运费管理'
-      fre_special: '运费区域管理'
-      express_code: '快递管理'
       comment: '评论管理'
+      reply: '回复管理'
+      reply_template: '回复模板'
       user_tag: '用户标签管理'
       topic_view_rule: '浏览量管理'
       crowdfunding: '众筹管理'
@@ -87,38 +86,6 @@
         start_push: "推送开始时间"
         end_push: "推送结束时间"
         push_type: "推送类型"
-      category:
-        name: "分类名称"
-        image: "分类图片"
-      product:
-        title: "商品标题"
-        icon: "商品图标"
-        type: "商品类型"
-        freight: "运费模板"
-        freight_free: "是否免运费"
-        product_type: "商品类型"
-        published: "是否上架"
-        seven_days_return: "支持7天退货"
-        recommended: "是否推荐"
-        description: "商品描述"
-      variant:
-        original_price: "商品价格"
-        price: "实付价格"
-        stock: "库存"
-        weight: "商品重量"
-        volume: "商品体积"
-        origin_point: "发货地点"
-      option_type:
-        name: "名称"
-        product: "商品名"
-      option_value:
-        name: "名称"
-        option_type: "规格名"
-      product_refund:
-        refund_number: "退款编号"
-        status: "退款状态"
-        refund_price: "退款金额"
-        admin_memo: "审核备注"
       race:
         name: "赛事标题"
         logo: "赛事图片"
@@ -181,7 +148,8 @@
         mobile: "手机号"
         order_number: "订单编号"
         original_price: "订单总金额(元)"
-        price: "实付金额(元)"
+        price: "小计金额(元)"
+        final_price: "实付金额(元)"
         status: "订单状态"
         created_at: "下单时间"
         updated_at: "更新时间"
@@ -399,20 +367,6 @@
         created_at: "创建时间"
         updated_at: "修改时间"
         open_id: '微信ID'
-      product_wx_bill:
-        bank_type: '付款银行'
-        cash_fee: '现金支付金额(元)'
-        fee_type: '货币类型'
-        out_trade_no: '订单编号'
-        time_end: '支付时间'
-        total_fee: '付款金额(元)'
-        transaction_id: '交易流水号'
-        trade_type: '交易方式'
-        result_code: '交易状态码'
-        return_code: '交易信息'
-        created_at: "创建时间"
-        updated_at: "修改时间"
-        open_id: '微信ID'
       weixin_user:
         user_id: '绑定用户'
         open_id: '微信ID'
@@ -466,27 +420,6 @@
         name_en: '英文名称'
         created_at: "创建时间"
         updated_at: "修改时间"
-      freight:
-        name: '计费方式'
-        first_cond: '首单位(kg|m|件)'
-        first_price: '首价格(元)'
-        add_cond: '续单位'
-        add_price: '续价格'
-        default: '是否默认'
-        created_at: "创建时间"
-        updated_at: "修改时间"
-      fre_special:
-        first_cond: '首单位'
-        first_price: '首价格'
-        add_cond: '续单位'
-        add_price: '续价格'
-      express_code:
-        name: '快递名称'
-        express_code: '快递编码'
-        region: '快递类型'
-        published: '开启'
-        phone: '官方电话'
-        site: '官网完整地址'
       comment:
         topic_type: '话题'
         body: '内容'
@@ -566,6 +499,7 @@
         mobile: '手机号码'
         avatar: '头像'
         typeable: '来源类别'
+        orderable: '抵扣订单'
         user_mobile: '用户手机'
         user_nick_name: '用户昵称'
       crowdfunding_order:
@@ -573,6 +507,8 @@
         order_stock_number: '认购份数'
         order_stock_money: '认购单价'
         total_money: '认购总价'
+        deduction_price: '扑客币抵扣'
+        final_price: '实付价格'
         pay_time: '支付时间'
         paid: '是否支付'
         record_status: '进展状态'

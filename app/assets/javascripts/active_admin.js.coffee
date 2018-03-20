@@ -4,6 +4,7 @@
 #= require to-markdown
 #= require simditor
 #= require simditor-markdown
+#= require simditor-video
 #= require jquery.Jcrop
 #= require jquery-ui/widgets/sortable
 #= require jquery.remotipart

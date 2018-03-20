@@ -28,7 +28,7 @@
             - product = item.product
             %div.tr
               %div= product&.title
-              %div= product.category&.name
+              %div= product&.category&.name
               %div
                 - img = variant&.image&.preview || product.preview_icon
                 = link_to image_tag(img), target: '_blank'

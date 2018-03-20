@@ -86,6 +86,7 @@ ActiveAdmin.setup do |config|
   # ensure that there is a user with proper rights. You can use
   # CanCanAdapter or make your own. Please refer to documentation.
   # config.authorization_adapter = ActiveAdmin::CanCanAdapter
+  config.authorization_adapter = 'CmsAuthorization'
 
   # In case you prefer Pundit over other solutions you can here pass
   # the name of default policy class. This policy will be used in every
@@ -170,7 +171,9 @@ ActiveAdmin.setup do |config|
   # Active Admin resources and pages from here.
   #
   # config.before_action :do_something_awesome
-
+  # config.before_action do
+  #   authorize_resource!(nil)
+  # end
   # == Localize Date/Time Format
   #
   # Set the localize format to display dates and times.

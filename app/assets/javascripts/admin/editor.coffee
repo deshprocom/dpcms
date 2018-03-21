@@ -23,7 +23,7 @@ $ ->
       )
 
     new: (textarea, options) ->
-      toolbar = ['title', 'bold', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', 'video', '|', 'dpLink']
+      toolbar = ['title', 'bold', 'color','italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', 'video', '|', 'dpLink']
       if options['is_html'] != true
         val = textarea.val()
         textarea.val(marked(val))
@@ -36,6 +36,7 @@ $ ->
         toolbarFloat: true,
         placeholder: placeholder,
         pasteImage: true,
+        allowedStyles: { span: ['color'] },# 去掉font-size的支持
         upload: {
           url: '/photos',
           fileKey: 'image',

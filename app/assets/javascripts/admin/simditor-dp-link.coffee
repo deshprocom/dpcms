@@ -4,7 +4,7 @@ class SimditorDpLink extends Simditor.Button
   
   icon: 'dpLink'
   
-  htmlTag: 'a'
+  htmlTag: 'dpLink'
   
   disableTag: 'pre'
 

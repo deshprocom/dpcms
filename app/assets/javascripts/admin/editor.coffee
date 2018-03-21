@@ -23,7 +23,7 @@ $ ->
       )
 
     new: (textarea, options) ->
-      toolbar = ['title', 'bold', 'color','italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', 'video', '|', 'dpLink']
+      toolbar = ['title', 'bold', 'color', 'alignment', 'italic', 'underline', 'strikethrough' ,'hr', '|', 'ol', 'ul', 'blockquote', 'table', 'link','image', 'video', '|', 'dpLink']
       if options['is_html'] != true
         val = textarea.val()
         textarea.val(marked(val))

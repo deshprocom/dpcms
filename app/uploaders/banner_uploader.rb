@@ -1,5 +1,4 @@
 class BannerUploader < BaseUploader
-
   # 在 UpYun 配置图片缩略图
   # http://docs.upyun.com/guide/#_12
   # 固定宽度,高度自适应

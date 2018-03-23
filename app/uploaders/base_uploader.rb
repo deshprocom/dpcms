@@ -10,6 +10,8 @@ class BaseUploader < CarrierWave::Uploader::Base
     %w(jpg jpeg gif png)
   end
 
+  process resize_to_limit: [1080, nil]
+
   # rubocop:disable Style/GuardClause
   def crop
     if model.crop_x.present?

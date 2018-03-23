@@ -1,6 +1,7 @@
 class BaseUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   include CarrierWave::MiniMagick
+  process resize_to_limit: [1080, nil]
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}"
@@ -9,8 +10,6 @@ class BaseUploader < CarrierWave::Uploader::Base
   def extension_whitelist
     %w(jpg jpeg gif png)
   end
-
-  process resize_to_limit: [1080, nil]
 
   # rubocop:disable Style/GuardClause
   def crop
@@ -23,5 +22,12 @@ class BaseUploader < CarrierWave::Uploader::Base
         img.crop([[w, h].join('x'), [x, y].join('+')].join('+'))
       end
     end
+  end
+
+  def filename
+    return if super.nil?
+
+    @md5_name ||= Digest::MD5.hexdigest(current_path)
+    "#{@md5_name}.#{file.extension.downcase}"
   end
 end

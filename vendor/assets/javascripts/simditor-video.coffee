@@ -60,6 +60,9 @@ class Simditor.VideoPopover extends Simditor.Popover
       <div class="settings-field">
         <label>视频链接</label>
         <input class="video-src" type="text"/>
+        <a class="btn-delete-video" href="javascript:;">
+          删除
+        </a>
       </div>
       <div class="settings-field">
         <label>封面链接</label>
@@ -71,6 +74,7 @@ class Simditor.VideoPopover extends Simditor.Popover
       .append(tpl)
     @srcEl = @el.find '.video-src'
     @posterEl = @el.find '.poster-src'
+    @deleteEl = @el.find '.btn-delete-video'
 
     @srcEl.on 'keyup', (e) =>
       return if e.which == 13
@@ -89,6 +93,11 @@ class Simditor.VideoPopover extends Simditor.Popover
         @editor.selection.setRangeAfter @target, range
         @hide()
         @editor.inputManager.throttledValueChanged()
+
+    @deleteEl.on 'click', (e) =>
+      console.log(@target)
+      @target.remove()
+      @hide()
 
   show: (args...) ->
     super args...

@@ -3,25 +3,21 @@ class Simditor.VideoButton extends Simditor.Button
 
   icon: 'video'
 
-  title: '插入视频'
-
   htmlTag: 'video'
 
   disableTag: 'pre, table'
 
-  _init: (args...) ->
+  constructor: (args...) ->
     super args...
     if @editor.formatter._allowedAttributes.video == undefined
       @editor.formatter._allowedAttributes.video = []
     @editor.formatter._allowedAttributes.video.push('src', 'controls', 'poster')
 
+  _init: (args...) ->
+    super args...
     @editor.body.on 'click', 'video', (e) =>
       $video = $(e.currentTarget)
-      range = document.createRange()
-      range.selectNode $video[0]
-      @editor.selection.range range
       @popover.show $video
-
       false
 
   render: (args...) ->
@@ -35,18 +31,12 @@ class Simditor.VideoButton extends Simditor.Button
   command: ->
     range = @editor.selection.range()
     @editor.selection.range range
-#    if @editor.selection.blockNodes().length > 0
-#      range.insertNode video[0]  # 在当前行后面增加元素
-#    else
-#      $newBlock = $('<p/>').append(video)
-#      range.insertNode $newBlock[0] #新建一行后增加元素
-
     $video = $('<video/>', {
       src: '',
       controls: 'controls',
       preload: 'none'
     })
-    $newBlock = $('<p/>').append($video).append($('<br/>'))
+    $newBlock = $('<p/>').append($video)
     range.insertNode $newBlock[0]
     @editor.selection.setRangeAfter $video, range
     @editor.trigger 'valuechanged'
@@ -61,7 +51,7 @@ class Simditor.VideoPopover extends Simditor.Popover
         <label>视频链接</label>
         <input class="video-src" type="text"/>
         <a class="btn-delete-video" href="javascript:;">
-          删除
+          <i class="simditor-icon-delete"/>
         </a>
       </div>
       <div class="settings-field">
@@ -95,7 +85,6 @@ class Simditor.VideoPopover extends Simditor.Popover
         @editor.inputManager.throttledValueChanged()
 
     @deleteEl.on 'click', (e) =>
-      console.log(@target)
       @target.remove()
       @hide()
 

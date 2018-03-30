@@ -29,23 +29,27 @@
           - topic = data.unscoped_typological_topic
           - method = data.typological_type.eql?('Comment') ? '评论' : data.typological_type.eql?('Reply') ? '回复' : '赞'
           %div
-            %span 在扑客资讯
+            在扑客APP
             %span.color-blue #{method}
             %span 了一个话题
           %div
             %div.image
-              - if topic.image_thumb.present?
+              - if typological.topic_type.eql?('UserTopic')
+                = image_tag(topic.user.avatar_path, height: 60, class: 'img-circle')
+              - elsif topic&.image_thumb.present?
                 = image_tag(topic.image_thumb, height: 50, class: 'default_use_image')
               - else
                 %div{ class: 'default_use_image' } 图片
             %div.content
               %div
                 %span.title_color
-                  - if typological.topic_type.downcase.eql?('info')
-                    - url = admin_info_url(topic) + '#comment'
-                  - elsif typological.topic_type.downcase.eql?('video')
-                    - url = admin_video_url(topic) + '#comment'
-                  = link_to topic.title, url, target: "_blank", rel: "nofollow"
+                  - topic_type_str = typological.topic_type.underscore
+                  // TODO: 说说长帖链接暂时没有
+                  - unless topic_type_str.eql?('user_topic')
+                    - url = send("admin_#{topic_type_str}_url", typological.topic) + '#comment'
+                    = link_to typological.topic.title, url, target: "_blank", rel: "nofollow"
+                  - else
+                    = typological.topic.title
               - if data.typological_type.eql?('TopicLike')
                 %div
                   %span{ style: 'font-style: italic' }= truncate(topic.description, length: 63)

@@ -51,3 +51,10 @@
           - else
             = link_to '拉黑', block_user_admin_user_path(resource), method: 'post',
                              remote: true, data: { confirm: '加入黑名单后，用户将不能发出任何的消息，无法参与留言和赞赏。' }
+        %span
+          - if resource.banned?
+            = link_to '解封', user_banned_admin_user_path(resource), method: 'post',
+                               remote: true, data: { confirm: '确定解封用户吗?' }
+          - else
+            = link_to '停封账号', user_banned_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '停封后用户将无法登录APP, 确定吗?' }

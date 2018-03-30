@@ -73,9 +73,9 @@ ActiveAdmin.register Info do
                   end
         item '置顶', top_admin_info_path(resource),
              data: { confirm: message }, method: :post
-        item '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
-        item '浏览量', views_admin_info_path(resource), remote: true
       end
+      item '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+      item '浏览量', views_admin_info_path(resource), remote: true
     end
   end
 

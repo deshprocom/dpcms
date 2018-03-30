@@ -65,6 +65,7 @@
   topic:
     info: '资讯'
     video: '视频'
+    usertopic: '说说|长帖'
 
   player:
     list: '牌手管理'

@@ -85,7 +85,7 @@ ActiveAdmin.register User do
     resource.role.eql?('banned') ? resource.update!(role: 'basic') : resource.update!(role: 'banned')
     notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
-    redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
+    render 'common/update_success'
   end
 
   # 查看用户资料
@@ -106,7 +106,7 @@ ActiveAdmin.register User do
   member_action :silence_user, method: [:get, :post] do
     return render :silence unless request.post?
     resource.silenced!(params[:silence_reason], params[:silence_till])
-    render 'silence_success'
+    render 'common/update_success'
   end
 
   member_action :add_tag, method: [:get, :post] do

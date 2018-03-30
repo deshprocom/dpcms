@@ -22,11 +22,13 @@
           %span= I18n.t("topic.#{comment.topic_type.downcase}")
         %div
           %span
-            - if comment.topic_type.downcase.eql?('info')
-              - url = admin_info_url(comment.topic) + '#comment'
-            - elsif comment.topic_type.downcase.eql?('video')
-              - url = admin_video_url(comment.topic) + '#comment'
-            = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
+            - topic_type_str = comment.topic_type.underscore
+            // TODO: 说说长帖链接暂时没有
+            - unless topic_type_str.eql?('user_topic')
+              - url = send("admin_#{topic_type_str}_url", comment.topic) + '#comment'
+              = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
+            - else
+              = comment.topic.title
 
         %div
           %span= comment.created_at.strftime('%Y-%m-%d')

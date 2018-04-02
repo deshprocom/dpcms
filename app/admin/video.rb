@@ -12,15 +12,10 @@ ActiveAdmin.register Video do
 
   config.sort_order = ''
 
-  FILTER_VIDEO_TYPE = VideoType.all.collect do |type|
-    type_name = type.published ? type.name + ' [已发布]' : type.name
-    [type_name, type.id]
-  end
-
   filter :name
   filter :published
   filter :top
-  filter :video_type_id, as: :select, collection: FILTER_VIDEO_TYPE
+  filter :video_type_id, as: :select, collection: VideoType.video_type_array
   filter :race_tag_id, as: :select, collection: RaceTag.all
 
   index do

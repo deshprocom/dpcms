@@ -57,6 +57,7 @@
       poker_coin: '扑客币'
       crowdfunding_report: '赛报管理'
       release: '发布管理'
+      user_topic: '社交中心'
     attributes:
       album:
         name: "相册名"
@@ -533,6 +534,24 @@
         published: '发布'
         created_at: "创建时间"
         updated_at: "修改时间"
+      user_topic:
+        user_id: 用户ID
+        title: 标题
+        body: 内容
+        body_type: 类别
+        recommended: 是否精选
+        published: 是否发布
+        published_time: 发布时间
+        abnormal: 是否异常
+        deleted: 是否删除
+        deleted_at: 删除时间
+        deleted_reason: 删除原因
+        location: 地点
+      user_topic_counter:
+        page_views: 阅读数
+        likes: 点赞数
+        comments: 评论数
+        reports: 被举报数
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

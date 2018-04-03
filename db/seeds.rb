@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 unless AdminUser.exists?(email: 'admin@deshpro.com')
   AdminUser.create!(email: 'admin@deshpro.com', password: 'password', password_confirmation: 'password')
 end
@@ -40,4 +39,24 @@ express_code fre_special freight option_type option_value product product_image 
 product_shipment product_shipping_address product_wx_bill)
 
   AdminRole.create!(name: '运营人员', memo: '除了管理员修改和退款的权限', permissions: permissions)
+end
+
+unless UserTopic.exists?
+  def between(one, the_other)
+    rand(2).odd? ? one : the_other
+  end
+  (1..20).each do |i|
+    published_time = Time.current + i.days
+    UserTopic.create!(
+      user_id: between(1, 2),
+      title: "今日新闻: #{published_time}",
+      body: "生活就像海洋，只有意志坚强的人才能到达彼岸",
+      body_type: between('long', 'short'),
+      recommended: between(true, false),
+      published: true,
+      published_time: published_time,
+      abnormal: between(true, false),
+      location: between('深圳', '广州')
+    )
+  end
 end

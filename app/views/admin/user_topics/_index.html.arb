@@ -1,7 +1,9 @@
 # rubocop:disable Metrics/BlockLength
 context.instance_eval do
   column '' do |topic|
-    img src: topic.user.avatar_url, height: 50, class: 'img-circle'
+    a href: user_profile_admin_user_path(topic.user) do
+      avatar(topic.user.avatar_path)
+    end
   end
   column '内容', :body, min_width: '60px', max_width: '60px' do |topic|
     topic.long? ? topic.title : topic.body
@@ -15,7 +17,7 @@ context.instance_eval do
     topic.counter.page_views
   end
   column '点赞数', sortable: 'user_topic_counters.likes' do |topic|
-    topic.counter.likes
+    link_to topic.counter.likes, like_list_admin_user_topic_path(topic)
   end
   column '评论数', sortable: 'user_topic_counters.comments' do |topic|
     topic.counter.comments

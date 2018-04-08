@@ -2,10 +2,7 @@
   %div.person_info
     %div.u-left
       %span
-        - if resource.avatar_path.present?
-          = image_tag(resource.avatar_path, height: 60, class: 'img-circle')
-        - else
-          %div{ class: 'default_user_avatar' } 头像
+        = avatar(resource.avatar_path, size: 60)
     %div.u-right
       %div
         %span.nick_name #{resource.nick_name}

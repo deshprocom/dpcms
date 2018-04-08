@@ -37,4 +37,10 @@ ActiveAdmin.register UserTopic do
     resource.update(deleted: true, deleted_at: Time.current, deleted_reason: params[:deleted_reason])
     redirect_back fallback_location: admin_user_topics_url, notice: '删除成功'
   end
+
+  member_action :like_list, method: :get do
+    @page_title = "用户点赞列表(共计#{resource.counter.likes}个)"
+    @topic_likes = resource.topic_likes.includes(:user).page(params[:page]).per(10)
+    render 'like_list'
+  end
 end

@@ -41,12 +41,8 @@
               %div
                 %span.title_color
                   - topic_type_str = typological.topic_type.underscore
-                  // TODO: 说说长帖链接暂时没有
-                  - unless topic_type_str.eql?('user_topic')
-                    - url = send("admin_#{topic_type_str}_url", typological.topic) + '#comment'
-                    = link_to typological.topic.title, url, target: "_blank", rel: "nofollow"
-                  - else
-                    = typological.topic.title
+                  - url = send("admin_#{topic_type_str}_url", typological.topic) + '#comment'
+                  = link_to typological.topic.title, url, target: "_blank", rel: "nofollow"
               - if data.typological_type.eql?('TopicLike')
                 %div
                   %span{ style: 'font-style: italic' }= truncate(topic.description, length: 63)

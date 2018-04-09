@@ -8,10 +8,7 @@
         %div
           %div.u-left
             %span{ class: 'show_edit_user_info', 'data-id': comment.user.id }
-              - if comment.user.avatar_path.present?
-                = image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
-              - else
-                %div{ class: 'default_user_avatar' } 头像
+              = avatar(comment.user.avatar_path)
           %div.u-right
             %div
               %span.nick_name
@@ -53,10 +50,7 @@
               %div
                 %div.u-left
                   %span{ class: 'show_edit_user_info', 'data-id': reply.user.id }
-                    - if reply.user.avatar_path.present?
-                      = image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
-                    - else
-                      %div{ class: 'default_user_avatar' } 头像
+                    = avatar(reply.user.avatar_path, size: 50)
                 %div.u-right
                   %div
                     - if reply.reply

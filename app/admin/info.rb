@@ -35,7 +35,7 @@ ActiveAdmin.register Info do
       info.info_en&.is_show ? '√' : '×'
     end
     column :topic_comments do |info|
-      link_to info.comments.count, admin_info_path(info) + '#comment'
+      link_to info.total_comments, admin_info_path(info) + '#comment'
     end
     column :page_views, sortable: 'info_counters.page_views' do |info|
       info.counter.page_views

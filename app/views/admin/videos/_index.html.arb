@@ -18,7 +18,7 @@ context.instance_eval do
     video.video_en&.is_show ? '√' : '×'
   end
   column :topic_comments do |video|
-    link_to video.comments.count, admin_video_path(video) + '#comment'
+    link_to video.total_comments, admin_video_path(video) + '#comment'
   end
   column :page_views, sortable: 'video_counters.page_views' do |video|
     video.counter.page_views

@@ -6,18 +6,13 @@ ActiveAdmin.register Info do
   permit_params :title, :date, :source_type, :source, :image, :image_thumb, :top,
                 :published, :description, :info_type_id, :race_tag_id, info_en_attributes: [:id, :title, :source, :description]
 
-  FILTER_INFO_TYPE = InfoType.all.collect do |type|
-    type_name = type.published ? type.name + ' [已发布]' : type.name
-    [type_name, type.id]
-  end
-
   filter :title
   filter :source_type, as: :select, collection: SOURCE_TYPE
   filter :source
   filter :date
   filter :published
   filter :top
-  filter :info_type_id, as: :select, collection: FILTER_INFO_TYPE
+  filter :info_type_id, as: :select, collection: InfoType.info_type_array
   filter :race_tag_id, as: :select, collection: RaceTag.all
 
   index title: '资讯管理' do
@@ -40,7 +35,7 @@ ActiveAdmin.register Info do
       info.info_en&.is_show ? '√' : '×'
     end
     column :topic_comments do |info|
-      link_to info.comments.count, admin_info_path(info) + '#comment'
+      link_to info.total_comments, admin_info_path(info) + '#comment'
     end
     column :page_views, sortable: 'info_counters.page_views' do |info|
       info.counter.page_views
@@ -73,9 +68,9 @@ ActiveAdmin.register Info do
                   end
         item '置顶', top_admin_info_path(resource),
              data: { confirm: message }, method: :post
+        item '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
+        item '浏览量', views_admin_info_path(resource), remote: true
       end
-      item '分享', resource.share_link, target: '_blank', data: { confirm: "链接地址: #{resource.share_link}" }
-      item '浏览量', views_admin_info_path(resource), remote: true
     end
   end
 

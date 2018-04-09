@@ -23,12 +23,8 @@
         %div
           %span
             - topic_type_str = comment.topic_type.underscore
-            // TODO: 说说长帖链接暂时没有
-            - unless topic_type_str.eql?('user_topic')
-              - url = send("admin_#{topic_type_str}_url", comment.topic) + '#comment'
-              = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
-            - else
-              = comment.topic.title
+            - url = send("admin_#{topic_type_str}_url", comment.topic) + '#comment'
+            = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
 
         %div
           %span= comment.created_at.strftime('%Y-%m-%d')

@@ -7,6 +7,8 @@ ActiveAdmin.register User do
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 
+  includes :counter, :user_extra
+
   scope :all
   scope('race_order_succeed') do |scope|
     scope.joins(:orders).where('purchase_orders.status NOT IN (?)', %w(unpaid canceled)).distinct
@@ -90,6 +92,8 @@ ActiveAdmin.register User do
 
   # 查看用户资料
   member_action :user_profile, method: [:get] do
+    @page_title = '用户信息'
+    return render '_user_profile' unless request.xhr?
     render :user_profile
   end
 
@@ -149,5 +153,17 @@ ActiveAdmin.register User do
       @return_lists[index] = [] if @return_lists[index].blank?
       @return_lists[index].push(dynamic)
     end
+  end
+
+  member_action :followers, method: :get do
+    @page_title = "粉丝列表(共计#{resource.counter.follower_count}个)"
+    @followers = resource.followers.page(params[:page])
+    render 'followers'
+  end
+
+  member_action :followings, method: :get do
+    @page_title = "关注列表(共计#{resource.counter.following_count}个)"
+    @followings = resource.followings.page(params[:page])
+    render 'followings'
   end
 end

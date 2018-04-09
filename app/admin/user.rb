@@ -7,6 +7,8 @@ ActiveAdmin.register User do
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 
+  includes :counter, :user_extra
+
   scope :all
   scope('race_order_succeed') do |scope|
     scope.joins(:orders).where('purchase_orders.status NOT IN (?)', %w(unpaid canceled)).distinct

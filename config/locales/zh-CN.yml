@@ -58,6 +58,7 @@
       crowdfunding_report: '赛报管理'
       release: '发布管理'
       user_topic: '社交中心'
+      j_user: '极光用户'
     attributes:
       album:
         name: "相册名"
@@ -552,6 +553,13 @@
         likes: 点赞数
         comments: 评论数
         reports: 被举报数
+      j_user:
+        user_id: '用户ID'
+        user_user_uuid: '用户ID'
+        user_nick_name: '用户昵称'
+        username: '昵称'
+        nick_name: '用户名'
+        created_at: "创建时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

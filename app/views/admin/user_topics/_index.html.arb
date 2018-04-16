@@ -15,7 +15,7 @@ context.instance_eval do
     UserTopic::BODY_TYPE[topic.body_type]
   end
   column '发布时间', :published_time
-  column '地点', :location
+  column '地点', :address
   column '阅读量', sortable: 'user_topic_counters.page_views' do |topic|
     topic.counter.page_views
   end

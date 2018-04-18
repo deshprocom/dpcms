@@ -104,3 +104,7 @@
     unpublished: '未公布'
     success: '晋级成功'
     failed: '失败'
+  user_topic_report:
+    im: 'IM'
+    short: '说说'
+    long: '长帖'

@@ -11,7 +11,7 @@ context.instance_eval do
       div sanitize(topic.cover_link || topic.title)
     else
       div sanitize(topic.body)
-      topic.topic_images.each { |image| img(src: image.url, height: '20px') }.presence
+      topic.topic_images.each { |image| img(src: image.image_path, height: '20px') }.presence
     end
   end
   column '类别', :body_type do |topic|

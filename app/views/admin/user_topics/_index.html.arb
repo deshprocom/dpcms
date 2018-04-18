@@ -7,8 +7,11 @@ context.instance_eval do
     end
   end
   column '内容', :body, min_width: '60px', max_width: '60px' do |topic|
-    link_to admin_user_topic_path(topic) do
-      topic.long? ? topic.title : topic.body
+    if topic.long?
+      div sanitize(topic.cover_link || topic.title)
+    else
+      div sanitize(topic.body)
+      topic.topic_images.each { |image| img(src: image.url, height: '20px') }.presence
     end
   end
   column '类别', :body_type do |topic|
@@ -23,10 +26,10 @@ context.instance_eval do
     link_to topic.counter.likes, like_list_admin_user_topic_path(topic)
   end
   column '评论数', sortable: 'user_topic_counters.comments' do |topic|
-    topic.counter.comments
+    link_to topic.counter.comments, admin_user_topic_path(topic) + '#comment'
   end
   column '状态' do |topic|
-    topic.abnormal ? '--' : link_to('异常', '#', style: 'color: red;')
+    topic.abnormal ? link_to('异常', '#', style: 'color: red;') : '--'
   end
   column '精华', :recommended
   actions name: '操作', defaults: false do |topic|
@@ -35,7 +38,7 @@ context.instance_eval do
     else
       item '加入精华', recommend_admin_user_topic_path(topic), method: :patch, class: 'member_link'
     end
-    item '回复', '#', class: 'member_link'
+    item '查看', admin_user_topic_path(topic), class: 'member_link'
     item '删除', delete_admin_user_topic_path(topic), remote: true, class: 'member_link'
   end
 end

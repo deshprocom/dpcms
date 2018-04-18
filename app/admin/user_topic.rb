@@ -1,6 +1,6 @@
 # rubocop:disable Metrics/BlockLength
 ActiveAdmin.register UserTopic do
-  menu priority: 9, label: '社交管理'
+  menu priority: 9, label: '社交管理', parent: '社交管理'
 
   actions :all, except: [:new, :create, :edit, :update, :destroy]
 

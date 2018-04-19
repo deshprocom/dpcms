@@ -15,7 +15,6 @@ ActiveAdmin.register JUser do
     column :nick_name do |resource|
       resource.user.nick_name
     end
-    column :username
     column :created_at
     actions name: '操作', defaults: false do |resource|
       item '删除', delete_user_admin_j_user_path(resource), method: :post, data: { confirm: '确定删除吗？' }

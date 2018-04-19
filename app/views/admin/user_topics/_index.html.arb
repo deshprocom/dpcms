@@ -6,13 +6,8 @@ context.instance_eval do
       avatar(topic.user.avatar_path)
     end
   end
-  column '内容', :body, min_width: '60px', max_width: '60px' do |topic|
-    if topic.long?
-      div sanitize(topic.cover_link || topic.title)
-    else
-      div sanitize(topic.body)
-      topic.topic_images.each { |image| img(src: image.image_path, height: '20px') }.presence
-    end
+  column '内容', :body, class: 'body-width' do |topic|
+    render partial: 'index_body', locals: { resource: topic }
   end
   column '类别', :body_type do |topic|
     UserTopic::BODY_TYPE[topic.body_type]

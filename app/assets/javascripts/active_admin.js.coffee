@@ -13,6 +13,7 @@
 #= require jquery.purr
 #= require best_in_place.purr
 #= require cropper
+#= require jquery.colorbox-min
 #= require_tree ./admin
 
 $(document).ready ->

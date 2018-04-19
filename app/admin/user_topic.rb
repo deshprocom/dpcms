@@ -4,7 +4,7 @@ ActiveAdmin.register UserTopic do
 
   actions :all, except: [:new, :create, :edit, :update, :destroy]
 
-  includes :counter, :user
+  includes :counter, :user, :topic_images
 
   BODY_TYPE = { 'short' => '说说', 'long' => '长帖' }.freeze
 

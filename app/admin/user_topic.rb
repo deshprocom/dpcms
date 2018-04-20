@@ -13,7 +13,7 @@ ActiveAdmin.register UserTopic do
   filter :user_id
   filter :body_type, as: :select, collection: BODY_TYPE.invert
   filter :address
-  filter :published_time, as: :date_range
+  filter :created_at, as: :date_range
 
   scope 'square', :all, default: true
   scope 'essence', :recommended

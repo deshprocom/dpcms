@@ -12,7 +12,7 @@ context.instance_eval do
   column '类别', :body_type do |topic|
     UserTopic::BODY_TYPE[topic.body_type]
   end
-  column '发布时间', :published_time
+  column '发布时间', :created_at
   column '地点', :address
   column '阅读量', sortable: 'user_topic_counters.page_views' do |topic|
     topic.counter.page_views

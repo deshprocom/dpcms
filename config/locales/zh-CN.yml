@@ -548,7 +548,8 @@
         deleted: 是否删除
         deleted_at: 删除时间
         deleted_reason: 删除原因
-        location: 地点
+        address_title: 地点
+        created_at: 发布时间
       user_topic_counter:
         page_views: 阅读数
         likes: 点赞数

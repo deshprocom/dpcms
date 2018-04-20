@@ -13,7 +13,7 @@ context.instance_eval do
     UserTopic::BODY_TYPE[topic.body_type]
   end
   column '发布时间', :created_at
-  column '地点', :address
+  column '地点', :address_title
   column '阅读量', sortable: 'user_topic_counters.page_views' do |topic|
     topic.counter.page_views
   end
@@ -22,9 +22,6 @@ context.instance_eval do
   end
   column '评论数', sortable: 'user_topic_counters.comments' do |topic|
     link_to topic.counter.comments, admin_user_topic_path(topic) + '#comment'
-  end
-  column '状态' do |topic|
-    topic.abnormal ? link_to('异常', '#', style: 'color: red;') : '--'
   end
   column '精华', :recommended
   actions name: '操作', defaults: false do |topic|

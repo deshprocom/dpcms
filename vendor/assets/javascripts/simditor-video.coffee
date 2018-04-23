@@ -1,4 +1,12 @@
 class Simditor.VideoButton extends Simditor.Button
+  @i18n =
+    'zh-CN':
+      videoLink: '视频链接'
+      posterLink: '封面链接'
+    'en-US':
+      videoLink: 'Video Link'
+      posterLink: 'Poster Link'
+
   name: 'video'
 
   icon: 'video'
@@ -48,14 +56,14 @@ class Simditor.VideoPopover extends Simditor.Popover
     tpl = """
     <div class="video-settings">
       <div class="settings-field">
-        <label>视频链接</label>
+        <label>#{ @_t 'videoLink' }</label>
         <input class="video-src" type="text"/>
         <a class="btn-delete-video" href="javascript:;">
           <i class="simditor-icon-delete"/>
         </a>
       </div>
       <div class="settings-field">
-        <label>封面链接</label>
+        <label>#{ @_t 'posterLink' }</label>
         <input class="poster-src" type="text"/>
       </div>
     </div>

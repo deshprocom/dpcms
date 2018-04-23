@@ -67,6 +67,10 @@ gem 'font-awesome-rails'
 # 微信支付
 gem 'wx_pay'
 
+# charts相关
+gem 'chartkick'
+gem 'groupdate'
+
 gem 'jmessage'
 
 # 附近的人

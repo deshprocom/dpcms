@@ -9,6 +9,11 @@ module ApplicationHelper
     end
   end
 
+  def avatar(src, options = {})
+    html_options = { class: 'img-circle', size: 60 }.merge(options)
+    image_tag(src || 'default_avatar.jpg', html_options)
+  end
+
   def markdown(content)
     renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
     options = {

@@ -65,6 +65,7 @@
   topic:
     info: '资讯'
     video: '视频'
+    usertopic: '说说|长帖'
 
   player:
     list: '牌手管理'
@@ -103,3 +104,7 @@
     unpublished: '未公布'
     success: '晋级成功'
     failed: '失败'
+  user_topic_report:
+    im: 'IM'
+    short: '说说'
+    long: '长帖'

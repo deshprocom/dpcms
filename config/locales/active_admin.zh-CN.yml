@@ -22,6 +22,9 @@
       auth_failed: '审核拒绝'
       main_videos: '主视频'
       video_groups: '同类视频'
+      # UserTopic
+      square: '广场'
+      essence: '精华'
     tag:
       race_detail: '赛事详情'
       race_ticket: '票务信息'

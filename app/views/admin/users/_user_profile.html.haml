@@ -4,10 +4,7 @@
       %div.basic
         %div.u-left
           %span
-            - if resource.avatar_path.present?
-              = image_tag(resource.avatar_path, height: 70, class: 'img-circle')
-            - else
-              %div{ class: 'default_user_avatar' } 头像
+            = avatar(resource.avatar_path, size: 70)
         %div.u-right
           %div
             %span 昵称：
@@ -24,6 +21,28 @@
       %div.dynamic
         %span
           = link_to '查看动态', dynamics_admin_user_path(resource), remote: true
+      %div.dynamic
+        %span
+          关注
+          %span
+            = link_to resource.counter.following_count, followings_admin_user_path(resource)
+        %span
+          | 粉丝
+          %span
+            = link_to resource.counter.follower_count, followers_admin_user_path(resource)
+      %div
+        %span
+          长帖
+          %span
+            = link_to resource.counter.long_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'long' })
+        %span
+          | 说说
+          %span
+            = link_to resource.counter.short_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, body_type_eq: 'short' })
+        %span
+          | 精华
+          %span
+            = link_to resource.counter.great_topic_count, admin_user_topics_path(q: { user_id_eq: resource.id, recommended_eq: 'true' })
       %div.bottom
         %span
           评论
@@ -51,3 +70,10 @@
           - else
             = link_to '拉黑', block_user_admin_user_path(resource), method: 'post',
                              remote: true, data: { confirm: '加入黑名单后，用户将不能发出任何的消息，无法参与留言和赞赏。' }
+        %span
+          - if resource.banned?
+            = link_to '解封', user_banned_admin_user_path(resource), method: 'post',
+                               remote: true, data: { confirm: '确定解封用户吗?' }
+          - else
+            = link_to '停封账号', user_banned_admin_user_path(resource), method: 'post',
+                             remote: true, data: { confirm: '停封后用户将无法登录APP, 确定吗?' }

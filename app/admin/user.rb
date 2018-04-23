@@ -7,6 +7,8 @@ ActiveAdmin.register User do
   USER_STATUS = User.statuses.keys
   actions :all, except: [:new, :destroy]
 
+  includes :counter, :user_extra
+
   scope :all
   scope('race_order_succeed') do |scope|
     scope.joins(:orders).where('purchase_orders.status NOT IN (?)', %w(unpaid canceled)).distinct
@@ -85,11 +87,13 @@ ActiveAdmin.register User do
     resource.role.eql?('banned') ? resource.update!(role: 'basic') : resource.update!(role: 'banned')
     notice_str = resource.role.eql?('banned') ? '禁用' : '取消禁用'
     Services::SysLog.call(current_admin_user, resource, notice_str, "#{notice_str}用户: #{resource.id} - #{resource.nick_name}")
-    redirect_back fallback_location: admin_users_url, notice: "#{notice_str}用户：#{resource.nick_name}成功！"
+    render 'common/update_success'
   end
 
   # 查看用户资料
   member_action :user_profile, method: [:get] do
+    @page_title = '用户信息'
+    return render '_user_profile' unless request.xhr?
     render :user_profile
   end
 
@@ -106,7 +110,7 @@ ActiveAdmin.register User do
   member_action :silence_user, method: [:get, :post] do
     return render :silence unless request.post?
     resource.silenced!(params[:silence_reason], params[:silence_till])
-    render 'silence_success'
+    render 'common/update_success'
   end
 
   member_action :add_tag, method: [:get, :post] do
@@ -149,5 +153,17 @@ ActiveAdmin.register User do
       @return_lists[index] = [] if @return_lists[index].blank?
       @return_lists[index].push(dynamic)
     end
+  end
+
+  member_action :followers, method: :get do
+    @page_title = "粉丝列表(共计#{resource.counter.follower_count}个)"
+    @followers = resource.followers.page(params[:page])
+    render 'followers'
+  end
+
+  member_action :followings, method: :get do
+    @page_title = "关注列表(共计#{resource.counter.following_count}个)"
+    @followings = resource.followings.page(params[:page])
+    render 'followings'
   end
 end

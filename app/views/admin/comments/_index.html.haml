@@ -8,10 +8,7 @@
         %div
           %div.u-left
             %span{ class: 'show_edit_user_info', 'data-id': comment.user.id }
-              - if comment.user.avatar_path.present?
-                = image_tag(comment.user.avatar_path, height: 60, class: 'img-circle')
-              - else
-                %div{ class: 'default_user_avatar' } 头像
+              = avatar(comment.user.avatar_path)
           %div.u-right
             %div
               %span.nick_name
@@ -22,10 +19,8 @@
           %span= I18n.t("topic.#{comment.topic_type.downcase}")
         %div
           %span
-            - if comment.topic_type.downcase.eql?('info')
-              - url = admin_info_url(comment.topic) + '#comment'
-            - elsif comment.topic_type.downcase.eql?('video')
-              - url = admin_video_url(comment.topic) + '#comment'
+            - topic_type_str = comment.topic_type.underscore
+            - url = send("admin_#{topic_type_str}_url", comment.topic) + '#comment'
             = link_to comment.topic.title, url, target: "_blank", rel: "nofollow"
 
         %div
@@ -55,10 +50,7 @@
               %div
                 %div.u-left
                   %span{ class: 'show_edit_user_info', 'data-id': reply.user.id }
-                    - if reply.user.avatar_path.present?
-                      = image_tag(reply.user.avatar_path, height: 50, class: 'img-circle')
-                    - else
-                      %div{ class: 'default_user_avatar' } 头像
+                    = avatar(reply.user.avatar_path, size: 50)
                 %div.u-right
                   %div
                     - if reply.reply

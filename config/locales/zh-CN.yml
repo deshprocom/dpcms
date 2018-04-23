@@ -57,6 +57,9 @@
       poker_coin: '扑客币'
       crowdfunding_report: '赛报管理'
       release: '发布管理'
+      user_topic: '社交中心'
+      j_user: '极光用户'
+      user_topic_report: '举报管理'
     attributes:
       album:
         name: "相册名"
@@ -533,6 +536,41 @@
         published: '发布'
         created_at: "创建时间"
         updated_at: "修改时间"
+      user_topic:
+        user_id: 用户ID
+        title: 标题
+        body: 内容
+        body_type: 类别
+        recommended: 是否精选
+        published: 是否发布
+        published_time: 发布时间
+        abnormal: 是否异常
+        deleted: 是否删除
+        deleted_at: 删除时间
+        deleted_reason: 删除原因
+        address_title: 地点
+        created_at: 发布时间
+      user_topic_counter:
+        page_views: 阅读数
+        likes: 点赞数
+        comments: 评论数
+        reports: 被举报数
+      user_topic_report:
+        user_nickname: 被举报人
+        report_user_nickname: 举报人
+        report_type: 举报类别
+        report_times: 举报次数
+        topic_title: 话题标题
+        body: 举报的原因
+        description: 私信内容
+        created_at: 举报的时间
+      j_user:
+        user_id: '用户ID'
+        user_user_uuid: '用户ID'
+        user_nick_name: '用户昵称'
+        username: '昵称'
+        nick_name: '用户名'
+        created_at: "创建时间"
       format: "%{attribute}%{message}"
       messages:
         blank: '不能为空'

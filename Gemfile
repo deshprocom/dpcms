@@ -67,6 +67,15 @@ gem 'font-awesome-rails'
 # 微信支付
 gem 'wx_pay'
 
+# charts相关
+gem 'chartkick'
+gem 'groupdate'
+
+gem 'jmessage'
+
+# 附近的人
+gem 'geocoder'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -82,6 +91,8 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'selenium-webdriver'
   gem 'poltergeist'
+  gem 'pry-rails'
+  gem 'awesome_print'
 end
 
 group :development do

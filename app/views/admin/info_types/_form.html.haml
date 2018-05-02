@@ -1,6 +1,7 @@
 - @info_type.info_type_en || @info_type.build_info_type_en
 = semantic_form_for [:admin, @info_type] do |f|
   = f.inputs name: '资讯类别' do
+    = f.semantic_errors *f.object.errors.keys
     %li
       %div
         %label 类别名称

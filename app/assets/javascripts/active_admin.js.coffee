@@ -13,7 +13,10 @@
 #= require jquery.purr
 #= require best_in_place.purr
 #= require cropper
+#= require jquery.colorbox-min
 #= require_tree ./admin
+#= require Chart.bundle
+#= require chartkick
 
 $(document).ready ->
   jQuery(".best_in_place").best_in_place()

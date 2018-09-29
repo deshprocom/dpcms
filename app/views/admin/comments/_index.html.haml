@@ -2,6 +2,7 @@
   %div.comment-header
   %div.comment-main
     - @comments.each do |comment|
+      - next if comment.topic.blank?
       %div.comment-body
         %div
           %span= comment.id
